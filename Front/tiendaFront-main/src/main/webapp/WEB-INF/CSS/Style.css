@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+body {
+  height:665px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image:"https://cdn.pixabay.com/photo/2016/02/17/19/08/lotus-1205631_960_720.jpg";
+  
+}
+p {
+  text-align: right;
+}
+.link { color: #000000; }
+.link:hover { color: #010331; }
+.table { color: #FFFFFF; }
+td { color: #FFF35F; }
