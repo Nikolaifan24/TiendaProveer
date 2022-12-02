@@ -22,9 +22,9 @@ public class Clientes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	//@OneToMany(cascade = CascadeType.ALL)
-	//@JoinColumn(name = "cedulaCliente")
-	//private List<Ventas> ventas;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cedulaCliente")
+	private List<Ventas> ventas;
 	
 	private Long cedulaCliente;
 	
