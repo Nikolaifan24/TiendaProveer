@@ -3,6 +3,8 @@ package com.mintic.tienda.dto;
 public class ProveedoresDto {
 	
 	private Long id;
+
+	private String nombreProveedor;
 	
 	private Long nitProveedor;
 	
@@ -10,35 +12,45 @@ public class ProveedoresDto {
 	
 	private String direccionProveedor;
 	
-	private String nombreProveedor;
-	
 	private String telefonoProveedor;
-	
-	public ProveedoresDto() {
-		
-	}
 
-	public ProveedoresDto(Long id, Long nitProveedor, String ciudadProveedor, String direccionProveedor,
-			String nombreProveedor, String telefonoProveedor) {
-		super();
+	private String TipoProveedor;
+
+
+	public ProveedoresDto() {
+	}
+	
+
+
+	public ProveedoresDto(Long id, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProveedor) {
 		this.id = id;
+		this.nombreProveedor = nombreProveedor;
 		this.nitProveedor = nitProveedor;
 		this.ciudadProveedor = ciudadProveedor;
 		this.direccionProveedor = direccionProveedor;
-		this.nombreProveedor = nombreProveedor;
 		this.telefonoProveedor = telefonoProveedor;
+		this.TipoProveedor = TipoProveedor;
 	}
 
+
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public String getNombreProveedor() {
+		return this.nombreProveedor;
+	}
+
+	public void setNombreProveedor(String nombreProveedor) {
+		this.nombreProveedor = nombreProveedor;
+	}
+
 	public Long getNitProveedor() {
-		return nitProveedor;
+		return this.nitProveedor;
 	}
 
 	public void setNitProveedor(Long nitProveedor) {
@@ -46,7 +58,7 @@ public class ProveedoresDto {
 	}
 
 	public String getCiudadProveedor() {
-		return ciudadProveedor;
+		return this.ciudadProveedor;
 	}
 
 	public void setCiudadProveedor(String ciudadProveedor) {
@@ -54,28 +66,28 @@ public class ProveedoresDto {
 	}
 
 	public String getDireccionProveedor() {
-		return direccionProveedor;
+		return this.direccionProveedor;
 	}
 
 	public void setDireccionProveedor(String direccionProveedor) {
 		this.direccionProveedor = direccionProveedor;
 	}
 
-	public String getNombreProveedor() {
-		return nombreProveedor;
-	}
-
-	public void setNombreProveedor(String nombreProveedor) {
-		this.nombreProveedor = nombreProveedor;
-	}
-
 	public String getTelefonoProveedor() {
-		return telefonoProveedor;
+		return this.telefonoProveedor;
 	}
 
 	public void setTelefonoProveedor(String telefonoProveedor) {
 		this.telefonoProveedor = telefonoProveedor;
 	}
 
+	public String getTipoProveedor() {
+		return this.TipoProveedor;
+	}
+
+	public void setTipoProveedor(String TipoProveedor) {
+		this.TipoProveedor = TipoProveedor;
+	}
 	
+
 }

@@ -9,7 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /*
@@ -19,99 +22,92 @@ import javax.persistence.Table;
 @Entity
 @Table(name = Usuarios.TABLE_NAME)
 public class Usuarios {
-	public static final String TABLE_NAME = "usuarios";
+	public static final String TABLE_NAME = "usuario";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long ID;
 	
-	//@OneToMany
-	//@JoinColumn(name = "cedulaUusario")
-	//private List<Ventas> ventas;
+	@OneToOne(mappedBy = "usuario")
 	
-	private Long cedulaUsuario;
-	
-	private String emailUsuario;
+    private String usuario;
 
-	private String nombreUsuario;
+	private String nombre;
+
+	private String correo;
 
 	private String password;
 
-	private String usuario;
-	
-	public Usuarios() {
-		
-	}
-	
+	private String perfil;
 
-	public Usuarios(Long id, Long cedulaUsuario, String emailUsuario, String nombreUsuario, String password,
-			String usuario) {
-		this.id = id;
-		this.cedulaUsuario = cedulaUsuario;
-		this.emailUsuario = emailUsuario;
-		this.nombreUsuario = nombreUsuario;
+
+	public Usuarios() {
+	}
+
+	public Usuarios(Long ID, String usuario, List<Usuarios> usuarios, String nombre, String correo, String password, String perfil) {
+		this.ID = ID;
+		this.usuario = usuario;
+		this.usuarios = usuarios;
+		this.nombre = nombre;
+		this.correo = correo;
 		this.password = password;
+		this.perfil = perfil;
+	}
+
+	public Long getID() {
+		return this.ID;
+	}
+
+	public void setID(Long ID) {
+		this.ID = ID;
+	}
+
+	public String getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
-
-	public Long getId() {
-		return id;
+	public List<Usuarios> getUsuarios() {
+		return this.usuarios;
 	}
 
-
-	public void setId(Long id) {
-		this.id = id;
+	public void setUsuarios(List<Usuarios> usuarios) {
+		this.usuarios = usuarios;
 	}
 
-
-	public Long getCedulaUsuario() {
-		return cedulaUsuario;
+	public String getNombre() {
+		return this.nombre;
 	}
 
-
-	public void setCedulaUsuario(Long cedulaUusario) {
-		this.cedulaUsuario = cedulaUusario;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-
-	public String getEmailUsuario() {
-		return emailUsuario;
+	public String getCorreo() {
+		return this.correo;
 	}
 
-
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
-
-
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
-
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
-
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-	public String getUsuario() {
-		return usuario;
+	public String getPerfil() {
+		return this.perfil;
 	}
 
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 	

@@ -20,81 +20,94 @@ public class Productos {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long IDProductos;
 	
-	//@OneToMany
-	//@JoinColumn(name = "codigoProducto")
-	
+	@OneToMany(mappedBy="NombreProducto" )
+  	private List<Productos> productos;
+
+	@ManyToOne
+	@JoinColumn(name="IDProveedor")
+	private Long IDProveedor;
+
 	private Long codigoProducto;
-	
-	private Double ivaCompra;
-	
-	//@ManyToOne
-	private Long idProveedor;
-	
+
 	private String nombreProducto;
+
+	private String tipoProducto;
 	
 	private Double precioCompra;
 	
 	private Double precioVenta;
 
-	public Productos() {
-		
-	}
+	private Long cantidadProducto;
 
-	public Productos(Long id, Long codigoProducto, Double ivaCompra, Long idProveedor, String nombreProducto,
-			Double precioCompra, Double precioVenta) {
-		this.id = id;
+
+	public Productos() {
+	}
+	
+
+	public Productos(Long IDProductos, List<Productos> productos, Long IDProveedor, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto) {
+		this.IDProductos = IDProductos;
+		this.productos = productos;
+		this.IDProveedor = IDProveedor;
 		this.codigoProducto = codigoProducto;
-		this.ivaCompra = ivaCompra;
-		this.idProveedor = idProveedor;
 		this.nombreProducto = nombreProducto;
+		this.tipoProducto = tipoProducto;
 		this.precioCompra = precioCompra;
 		this.precioVenta = precioVenta;
+		this.cantidadProducto = cantidadProducto;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIDProductos() {
+		return this.IDProductos;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIDProductos(Long IDProductos) {
+		this.IDProductos = IDProductos;
+	}
+
+	public List<Productos> getProductos() {
+		return this.productos;
+	}
+
+	public void setProductos(List<Productos> productos) {
+		this.productos = productos;
+	}
+
+	public Long getIDProveedor() {
+		return this.IDProveedor;
+	}
+
+	public void setIDProveedor(Long IDProveedor) {
+		this.IDProveedor = IDProveedor;
 	}
 
 	public Long getCodigoProducto() {
-		return codigoProducto;
+		return this.codigoProducto;
 	}
 
 	public void setCodigoProducto(Long codigoProducto) {
 		this.codigoProducto = codigoProducto;
 	}
 
-	public Double getIvaCompra() {
-		return ivaCompra;
-	}
-
-	public void setIvaCompra(Double ivaCompra) {
-		this.ivaCompra = ivaCompra;
-	}
-
-	public Long getIdProveedor() {
-		return idProveedor;
-	}
-
-	public void setIdProveedor(Long idProveedor) {
-		this.idProveedor = idProveedor;
-	}
-
 	public String getNombreProducto() {
-		return nombreProducto;
+		return this.nombreProducto;
 	}
 
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
 	}
 
+	public String getTipoProducto() {
+		return this.tipoProducto;
+	}
+
+	public void setTipoProducto(String tipoProducto) {
+		this.tipoProducto = tipoProducto;
+	}
+
 	public Double getPrecioCompra() {
-		return precioCompra;
+		return this.precioCompra;
 	}
 
 	public void setPrecioCompra(Double precioCompra) {
@@ -102,15 +115,21 @@ public class Productos {
 	}
 
 	public Double getPrecioVenta() {
-		return precioVenta;
+		return this.precioVenta;
 	}
 
 	public void setPrecioVenta(Double precioVenta) {
 		this.precioVenta = precioVenta;
 	}
 
-	
-	
+	public Long getCantidadProducto() {
+		return this.cantidadProducto;
+	}
+
+	public void setCantidadProducto(Long cantidadProducto) {
+		this.cantidadProducto = cantidadProducto;
+	}
+
 
 	
 }

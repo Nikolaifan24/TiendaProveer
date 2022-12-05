@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,85 +21,101 @@ public class Clientes {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long ID;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cedulaCliente")
-	private List<Ventas> ventas;
-	
-	private Long cedulaCliente;
+	@OneToMany(mappedBy = "cliente")
+	private List<Clientes> clientes;
+
+	private String nombreCliente;
+
+	private String apellidoCliente;
 	
 	private String direccionCliente;
 	
-	private String emailCliente;
-	
-	private String nombreCliente;
-	
+	private String barrioCliente;
+
+	private String zonaCliente;
+		
 	private String telefonoCliente;
 
+
 	public Clientes() {
-	
 	}
 
-	public Clientes(Long id, Long cedulaCliente, String direccionCliente, String emailCliente, String nombreCliente,
-			String telefonoCliente) {
-		this.id = id;
-		this.cedulaCliente = cedulaCliente;
-		this.direccionCliente = direccionCliente;
-		this.emailCliente = emailCliente;
+	public Clientes(Long ID, List<Clientes> clientes, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente) {
+		this.ID = ID;
+		this.clientes = clientes;
 		this.nombreCliente = nombreCliente;
+		this.apellidoCliente = apellidoCliente;
+		this.direccionCliente = direccionCliente;
+		this.barrioCliente = barrioCliente;
+		this.zonaCliente = zonaCliente;
 		this.telefonoCliente = telefonoCliente;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getID() {
+		return this.ID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setID(Long ID) {
+		this.ID = ID;
 	}
 
-	public Long getCedulaCliente() {
-		return cedulaCliente;
+	public List<Clientes> getClientes() {
+		return this.clientes;
 	}
 
-	public void setCedulaCliente(Long cedulaCliente) {
-		this.cedulaCliente = cedulaCliente;
-	}
-
-	public String getDireccionCliente() {
-		return direccionCliente;
-	}
-
-	public void setDireccionCliente(String direccionCliente) {
-		this.direccionCliente = direccionCliente;
-	}
-
-	public String getEmailCliente() {
-		return emailCliente;
-	}
-
-	public void setEmailCliente(String emailCliente) {
-		this.emailCliente = emailCliente;
+	public void setClientes(List<Clientes> clientes) {
+		this.clientes = clientes;
 	}
 
 	public String getNombreCliente() {
-		return nombreCliente;
+		return this.nombreCliente;
 	}
 
 	public void setNombreCliente(String nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
 
+	public String getApellidoCliente() {
+		return this.apellidoCliente;
+	}
+
+	public void setApellidoCliente(String apellidoCliente) {
+		this.apellidoCliente = apellidoCliente;
+	}
+
+	public String getDireccionCliente() {
+		return this.direccionCliente;
+	}
+
+	public void setDireccionCliente(String direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}
+
+	public String getBarrioCliente() {
+		return this.barrioCliente;
+	}
+
+	public void setBarrioCliente(String barrioCliente) {
+		this.barrioCliente = barrioCliente;
+	}
+
+	public String getZonaCliente() {
+		return this.zonaCliente;
+	}
+
+	public void setZonaCliente(String zonaCliente) {
+		this.zonaCliente = zonaCliente;
+	}
+
 	public String getTelefonoCliente() {
-		return telefonoCliente;
+		return this.telefonoCliente;
 	}
 
 	public void setTelefonoCliente(String telefonoCliente) {
 		this.telefonoCliente = telefonoCliente;
 	}
-	
-	
-	
+
 	
 }

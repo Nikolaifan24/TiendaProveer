@@ -2,83 +2,80 @@ package com.mintic.tienda.dto;
 
 public class UsuarioDto {
 	
-	private Long id;
+	private Long ID;
 
-	private Long cedulaUsuario;
-	
-	private String emailUsuario;
+	private String usuario;
 
-	private String nombreUsuario;
+	private String nombre;
+
+	private String correo;
 
 	private String password;
 
-	private String usuario;
+	private String perfil;
 	
+
 	public UsuarioDto() {
-		
 	}
+	
 
-	public UsuarioDto(Long id, Long cedulaUsuario, String emailUsuario, String nombreUsuario, String password,
-			String usuario) {
-		super();
-		this.id = id;
-		this.cedulaUsuario = cedulaUsuario;
-		this.emailUsuario = emailUsuario;
-		this.nombreUsuario = nombreUsuario;
-		this.password = password;
+	public UsuarioDto(Long ID, String usuario, String nombre, String correo, String password, String perfil) {
+		this.ID = ID;
 		this.usuario = usuario;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCedulaUsuario() {
-		return cedulaUsuario;
-	}
-
-	public void setCedulaUsuario(Long cedulaUsuario) {
-		this.cedulaUsuario = cedulaUsuario;
-	}
-
-	public String getEmailUsuario() {
-		return emailUsuario;
-	}
-
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
-	}
-
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
+		this.nombre = nombre;
+		this.correo = correo;
 		this.password = password;
+		this.perfil = perfil;
+	}
+
+
+	public Long getID() {
+		return this.ID;
+	}
+
+	public void setID(Long ID) {
+		this.ID = ID;
 	}
 
 	public String getUsuario() {
-		return usuario;
+		return this.usuario;
 	}
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
-	
-	
-	
-	
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCorreo() {
+		return this.correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPerfil() {
+		return this.perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+
+
 }

@@ -19,12 +19,13 @@ public class Proveedores {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long IDProveedor;
 	
-	//@OneToMany
-	//@JoinColumn(name = "nitProveedor")
+	@OneToMany(mappedBy = "proveedor")
+	private List<Productos> productos;
+	
 	private Long nitProveedor;
-	//private List<Productos> productos;
+	
 	
 	private String ciudadProveedor;
 	
@@ -34,13 +35,13 @@ public class Proveedores {
 	
 	private String telefonoProveedor;
 
+
 	public Proveedores() {
-		
 	}
 
-	public Proveedores(Long id, Long nitProveedor, String ciudadProveedor, String direccionProveedor,
-			String nombreProveedor, String telefonoProveedor) {
-		this.id = id;
+	public Proveedores(Long IDProveedor, List<Productos> productos, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String nombreProveedor, String telefonoProveedor) {
+		this.IDProveedor = IDProveedor;
+		this.productos = productos;
 		this.nitProveedor = nitProveedor;
 		this.ciudadProveedor = ciudadProveedor;
 		this.direccionProveedor = direccionProveedor;
@@ -48,16 +49,24 @@ public class Proveedores {
 		this.telefonoProveedor = telefonoProveedor;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIDProveedor() {
+		return this.IDProveedor;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIDProveedor(Long IDProveedor) {
+		this.IDProveedor = IDProveedor;
+	}
+
+	public List<Productos> getProductos() {
+		return this.productos;
+	}
+
+	public void setProductos(List<Productos> productos) {
+		this.productos = productos;
 	}
 
 	public Long getNitProveedor() {
-		return nitProveedor;
+		return this.nitProveedor;
 	}
 
 	public void setNitProveedor(Long nitProveedor) {
@@ -65,7 +74,7 @@ public class Proveedores {
 	}
 
 	public String getCiudadProveedor() {
-		return ciudadProveedor;
+		return this.ciudadProveedor;
 	}
 
 	public void setCiudadProveedor(String ciudadProveedor) {
@@ -73,7 +82,7 @@ public class Proveedores {
 	}
 
 	public String getDireccionProveedor() {
-		return direccionProveedor;
+		return this.direccionProveedor;
 	}
 
 	public void setDireccionProveedor(String direccionProveedor) {
@@ -81,7 +90,7 @@ public class Proveedores {
 	}
 
 	public String getNombreProveedor() {
-		return nombreProveedor;
+		return this.nombreProveedor;
 	}
 
 	public void setNombreProveedor(String nombreProveedor) {
@@ -89,15 +98,12 @@ public class Proveedores {
 	}
 
 	public String getTelefonoProveedor() {
-		return telefonoProveedor;
+		return this.telefonoProveedor;
 	}
 
 	public void setTelefonoProveedor(String telefonoProveedor) {
 		this.telefonoProveedor = telefonoProveedor;
 	}
-
-	
-	
 	
 
 }

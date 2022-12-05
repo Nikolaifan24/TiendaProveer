@@ -1,93 +1,160 @@
 package com.mintic.tienda.dto;
 
+import java.util.Date;
+
 public class VentasDto {
 	
-	private Long id;
+	private Long ID;
+
+	private Long IDCliente;
 	
-	private Long codigoVenta;
-	
-	private Long idCliente;
-	
-	private Long idUsuario;
-	
-	private Double ivaVenta;
+	private Long IDVendedor;
+
+	private Long IDProducto;
+
+	private Date FechaVenta;
+
+	private String nombreProducto;
+		
+	private int Cantidad;
 	
 	private Double totalVenta;
-	
-	private Double valorVenta;
-	
+
+	private Double ivaVenta;
+
+	private Double valorPago;
+
+	private Double saldo;
+
+	private String formaPago;
+
+	private Date FechaPago;
+
+
 	public VentasDto() {
-		
 	}
 
-	public VentasDto(Long id, Long codigoVenta, Long idCliente, Long idUsuario, Double ivaVenta, Double totalVenta,
-			Double valorVenta) {
-		this.id = id;
-		this.codigoVenta = codigoVenta;
-		this.idCliente = idCliente;
-		this.idUsuario = idUsuario;
-		this.ivaVenta = ivaVenta;
+
+	public VentasDto(Long ID, Long IDCliente, Long IDVendedor, Long IDProducto, Date FechaVenta, String nombreProducto, int Cantidad, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago) {
+		this.ID = ID;
+		this.IDCliente = IDCliente;
+		this.IDVendedor = IDVendedor;
+		this.IDProducto = IDProducto;
+		this.FechaVenta = FechaVenta;
+		this.nombreProducto = nombreProducto;
+		this.Cantidad = Cantidad;
 		this.totalVenta = totalVenta;
-		this.valorVenta = valorVenta;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCodigoVenta() {
-		return codigoVenta;
-	}
-
-	public void setCodigoVenta(Long codigoVenta) {
-		this.codigoVenta = codigoVenta;
-	}
-
-	public Long getIdCliente() {
-		return idCliente;
-	}
-
-	public void setIdCliente(Long idCliente) {
-		this.idCliente = idCliente;
-	}
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
-	public Double getIvaVenta() {
-		return ivaVenta;
-	}
-
-	public void setIvaVenta(Double ivaVenta) {
 		this.ivaVenta = ivaVenta;
+		this.valorPago = valorPago;
+		this.saldo = saldo;
+		this.formaPago = formaPago;
+		this.FechaPago = FechaPago;
+	}
+
+	public Long getID() {
+		return this.ID;
+	}
+
+	public void setID(Long ID) {
+		this.ID = ID;
+	}
+
+	public Long getIDCliente() {
+		return this.IDCliente;
+	}
+
+	public void setIDCliente(Long IDCliente) {
+		this.IDCliente = IDCliente;
+	}
+
+	public Long getIDVendedor() {
+		return this.IDVendedor;
+	}
+
+	public void setIDVendedor(Long IDVendedor) {
+		this.IDVendedor = IDVendedor;
+	}
+
+	public Long getIDProducto() {
+		return this.IDProducto;
+	}
+
+	public void setIDProducto(Long IDProducto) {
+		this.IDProducto = IDProducto;
+	}
+
+	public Date getFechaVenta() {
+		return this.FechaVenta;
+	}
+
+	public void setFechaVenta(Date FechaVenta) {
+		this.FechaVenta = FechaVenta;
+	}
+
+	public String getNombreProducto() {
+		return this.nombreProducto;
+	}
+
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+
+	public int getCantidad() {
+		return this.Cantidad;
+	}
+
+	public void setCantidad(int Cantidad) {
+		this.Cantidad = Cantidad;
 	}
 
 	public Double getTotalVenta() {
-		return totalVenta;
+		return this.totalVenta;
 	}
 
 	public void setTotalVenta(Double totalVenta) {
 		this.totalVenta = totalVenta;
 	}
 
-	public Double getValorVenta() {
-		return valorVenta;
+	public Double getIvaVenta() {
+		return this.ivaVenta;
 	}
 
-	public void setValorVenta(Double valorVenta) {
-		this.valorVenta = valorVenta;
+	public void setIvaVenta(Double ivaVenta) {
+		this.ivaVenta = ivaVenta;
+	}
+
+	public Double getValorPago() {
+		return this.valorPago;
+	}
+
+	public void setValorPago(Double valorPago) {
+		this.valorPago = valorPago;
+	}
+
+	public Double getSaldo() {
+		return this.saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
+
+	public String getFormaPago() {
+		return this.formaPago;
+	}
+
+	public void setFormaPago(String formaPago) {
+		this.formaPago = formaPago;
+	}
+
+	public Date getFechaPago() {
+		return this.FechaPago;
+	}
+
+	public void setFechaPago(Date FechaPago) {
+		this.FechaPago = FechaPago;
 	}
 
 	
-
-	
+		
 }

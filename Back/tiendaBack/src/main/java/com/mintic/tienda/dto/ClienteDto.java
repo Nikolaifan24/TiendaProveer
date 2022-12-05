@@ -2,75 +2,97 @@ package com.mintic.tienda.dto;
 
 public class ClienteDto {
 	
-	private Long id;
+	private Long ID;
 	
 	private Long cedulaCliente;
+
+	private String nombreCliente;
+
+	private String apellidoCliente;
 	
 	private String direccionCliente;
 	
-	private String emailCliente;
-	
-	private String nombreCliente;
-	
+	private String barrioCliente;
+
+	private String zonaCliente;
+		
 	private String telefonoCliente;
 	
+
 	public ClienteDto() {
-		
 	}
 
-	public ClienteDto(Long id, Long cedulaCliente, String direccionCliente, String emailCliente, String nombreCliente,
-			String telefonoCliente) {
-		super();
-		this.id = id;
+
+	public ClienteDto(Long ID, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente) {
+		this.ID = ID;
 		this.cedulaCliente = cedulaCliente;
-		this.direccionCliente = direccionCliente;
-		this.emailCliente = emailCliente;
 		this.nombreCliente = nombreCliente;
+		this.apellidoCliente = apellidoCliente;
+		this.direccionCliente = direccionCliente;
+		this.barrioCliente = barrioCliente;
+		this.zonaCliente = zonaCliente;
 		this.telefonoCliente = telefonoCliente;
 	}
 
-	public Long getId() {
-		return id;
+
+	public Long getID() {
+		return this.ID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setID(Long ID) {
+		this.ID = ID;
 	}
 
 	public Long getCedulaCliente() {
-		return cedulaCliente;
+		return this.cedulaCliente;
 	}
 
 	public void setCedulaCliente(Long cedulaCliente) {
 		this.cedulaCliente = cedulaCliente;
 	}
 
-	public String getDireccionCliente() {
-		return direccionCliente;
-	}
-
-	public void setDireccionCliente(String direccionCliente) {
-		this.direccionCliente = direccionCliente;
-	}
-
-	public String getEmailCliente() {
-		return emailCliente;
-	}
-
-	public void setEmailCliente(String emailCliente) {
-		this.emailCliente = emailCliente;
-	}
-
 	public String getNombreCliente() {
-		return nombreCliente;
+		return this.nombreCliente;
 	}
 
 	public void setNombreCliente(String nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
 
+	public String getApellidoCliente() {
+		return this.apellidoCliente;
+	}
+
+	public void setApellidoCliente(String apellidoCliente) {
+		this.apellidoCliente = apellidoCliente;
+	}
+
+	public String getDireccionCliente() {
+		return this.direccionCliente;
+	}
+
+	public void setDireccionCliente(String direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}
+
+	public String getBarrioCliente() {
+		return this.barrioCliente;
+	}
+
+	public void setBarrioCliente(String barrioCliente) {
+		this.barrioCliente = barrioCliente;
+	}
+
+	public String getZonaCliente() {
+		return this.zonaCliente;
+	}
+
+	public void setZonaCliente(String zonaCliente) {
+		this.zonaCliente = zonaCliente;
+	}
+
 	public String getTelefonoCliente() {
-		return telefonoCliente;
+		return this.telefonoCliente;
 	}
 
 	public void setTelefonoCliente(String telefonoCliente) {
@@ -78,7 +100,4 @@ public class ClienteDto {
 	}
 
 	
-
-	
-
 }

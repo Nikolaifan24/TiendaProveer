@@ -3,76 +3,80 @@ package com.mintic.tienda.dto;
 public class ProductosDto {
 	
 	private Long id;
-	
-	private Long codigoProducto;
-	
-	private Double ivaCompra;
-	
+
 	private Long idProveedor;
 	
+	private Long codigoProducto;
+
 	private String nombreProducto;
+
+	private String tipoProducto;
 	
 	private Double precioCompra;
 	
 	private Double precioVenta;
-	
-	public ProductosDto() {
-		
-	}
 
-	public ProductosDto(Long id, Long codigoProducto, Double ivaCompra, Long idProveedor, String nombreProducto,
-			Double precioCompra, Double precioVenta) {
+	private Long cantidadProducto;
+
+
+	public ProductosDto() {
+	}
+	
+
+	public ProductosDto(Long id, Long idProveedor, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto) {
 		this.id = id;
-		this.codigoProducto = codigoProducto;
-		this.ivaCompra = ivaCompra;
 		this.idProveedor = idProveedor;
+		this.codigoProducto = codigoProducto;
 		this.nombreProducto = nombreProducto;
+		this.tipoProducto = tipoProducto;
 		this.precioCompra = precioCompra;
 		this.precioVenta = precioVenta;
+		this.cantidadProducto = cantidadProducto;
 	}
 
+
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Long getCodigoProducto() {
-		return codigoProducto;
-	}
-
-	public void setCodigoProducto(Long codigoProducto) {
-		this.codigoProducto = codigoProducto;
-	}
-
-	public Double getIvaCompra() {
-		return ivaCompra;
-	}
-
-	public void setIvaCompra(Double ivaCompra) {
-		this.ivaCompra = ivaCompra;
-	}
-
 	public Long getIdProveedor() {
-		return idProveedor;
+		return this.idProveedor;
 	}
 
 	public void setIdProveedor(Long idProveedor) {
 		this.idProveedor = idProveedor;
 	}
 
+	public Long getCodigoProducto() {
+		return this.codigoProducto;
+	}
+
+	public void setCodigoProducto(Long codigoProducto) {
+		this.codigoProducto = codigoProducto;
+	}
+
 	public String getNombreProducto() {
-		return nombreProducto;
+		return this.nombreProducto;
 	}
 
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
 	}
 
+	public String getTipoProducto() {
+		return this.tipoProducto;
+	}
+
+	public void setTipoProducto(String tipoProducto) {
+		this.tipoProducto = tipoProducto;
+	}
+
 	public Double getPrecioCompra() {
-		return precioCompra;
+		return this.precioCompra;
 	}
 
 	public void setPrecioCompra(Double precioCompra) {
@@ -80,14 +84,20 @@ public class ProductosDto {
 	}
 
 	public Double getPrecioVenta() {
-		return precioVenta;
+		return this.precioVenta;
 	}
 
 	public void setPrecioVenta(Double precioVenta) {
 		this.precioVenta = precioVenta;
 	}
 
-	
+	public Long getCantidadProducto() {
+		return this.cantidadProducto;
+	}
+
+	public void setCantidadProducto(Long cantidadProducto) {
+		this.cantidadProducto = cantidadProducto;
+	}
 	
 	
 
