@@ -1,13 +1,15 @@
 package com.mintic.tienda.servicio;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mintic.tienda.dto.CalculoDto;
+// import com.mintic.tienda.dto.CalculoDto;
 import com.mintic.tienda.dto.ProductosDto;
-import com.mintic.tienda.dto.ResultadoVentaDto;
+// import com.mintic.tienda.dto.ResultadoVentaDto;
+import com.mintic.tienda.dto.DetalleventaDto;
 import com.mintic.tienda.dto.VentasDto;
 import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
@@ -39,13 +41,19 @@ public class VentasImp implements IVentasService{
 
 	private VentasDto mapVentasDto(Ventas venta) {
 		return new VentasDto(
-				venta.getId(),
-				venta.getCodigoVenta(),
-				venta.getIdCliente(),
-				venta.getIdUsuario(),
-				venta.getIvaVenta(),
+				venta.getIDVenta(),
+				venta.getIDCliente(),
+				venta.getIDVendedor(),
+				venta.getFechaVenta(),
+				venta.getFechaEntrega(),
 				venta.getTotalVenta(),
-				venta.getValorVenta()
+				venta.getIvaVenta(),
+				venta.getValorPago(),
+				venta.getSaldo(),
+				venta.getFormaPago(),
+				venta.getFechaPago(),
+				venta.getZonaventa()
+		
 		);
 	}
 
@@ -58,25 +66,30 @@ public class VentasImp implements IVentasService{
 	private Ventas buildVenta(VentasDto ventasDto) {
 		Ventas venta = new Ventas();
 		
-		Long id =  ventasDto.getId();
-		Long codigoVenta = ventasDto.getCodigoVenta();
-		Long idCliente = ventasDto.getIdCliente();
-		Long idUsuario = ventasDto.getIdUsuario();
+		Long id =  ventasDto.getID();
+		Long idCliente = ventasDto.getIDCliente();
+		Long idVendedor = ventasDto.getIDVendedor();
+		Date fechaVenta = ventasDto.getFechaVenta();
+		Date fechaEntrega = ventasDto.getFechaEntrega();
+		Double valorVenta = ventasDto.getTotalVenta();
 		Double ivaVenta = ventasDto.getIvaVenta();
-		Double totalVenta = ventasDto.getTotalVenta();
-		Double valorVenta = ventasDto.getValorVenta();
+		Double valorPago = ventasDto.getValorPago();
+		Double saldo = ventasDto.getSaldo();
+		String formaPago = ventasDto.getFormaPago();
+		Date fechaPago = ventasDto.getFechaPago();
+		String zonaVenta = ventasDto.getZonaventa();
 		
 		if(id != null) {
-			venta.setId(id);
+			venta.setIDVenta(id);
 		}
-		if(codigoVenta != null) {
-			venta.setCodigoVenta(codigoVenta);
+		if(idCliente  != null) {
+			venta.setIDCliente(idCliente);
 		}
-		if(idCliente != null) {
-			venta.setIdCliente(idCliente);
+		if(fechaVenta != null) {
+			venta.setFechaVenta(null);
 		}
-		if(idUsuario != null) {
-			venta.setIdUsuario(idUsuario);
+		if(fechaEntrega != null) {
+			venta.setFechaEntrega(null);
 		}
 		if(ivaVenta != null) {
 			venta.setIvaVenta(ivaVenta);
