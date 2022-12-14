@@ -3,7 +3,7 @@ package com.mintic.tienda;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.tienda.dto.ClienteDto;
-import com.mintic.tienda.dto.LoginDto;
-import com.mintic.tienda.dto.ProveedoresDto;
-import com.mintic.tienda.dto.UsuarioDto;
+// import com.mintic.tienda.dto.LoginDto;
+// import com.mintic.tienda.dto.ProveedoresDto;
+// import com.mintic.tienda.dto.UsuarioDto;
 import com.mintic.tienda.entities.Clientes;
-import com.mintic.tienda.entities.Usuarios;
+// import com.mintic.tienda.entities.Usuarios;
 import com.mintic.tienda.servicio.IClienteService;
-import com.mintic.tienda.servicio.IUsuarioService;
+// import com.mintic.tienda.servicio.IUsuarioService;
 
 @RestController
 public class ControladorClientes {

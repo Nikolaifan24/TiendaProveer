@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.mintic.tienda.entities.Usuarios;
+import com.mintic.tienda.entities.Usuario;
 
 /*
  * Aqui se realizan las opereciones crud    los parametros son la entidad  y el tipo de datos que se definio como @id en la entidad  
@@ -20,7 +20,7 @@ import com.mintic.tienda.entities.Usuarios;
  * 
  * 
  * */
-public interface IUsuario extends CrudRepository<Usuarios, Long> {
+public interface IUsuario extends CrudRepository<Usuario, Long> {
 
 	/*
 	@Query("select count(*) from Usuarios as p where p.nombreUsuario= :nombreUsuario and p.password=:password")
@@ -29,10 +29,10 @@ public interface IUsuario extends CrudRepository<Usuarios, Long> {
 	*/
 	
 	@Query(value = "SELECT * from Usuarios p where p.nombreUsuario= :nombreUsuario and p.password=:password", nativeQuery = true)
-	Usuarios findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
+	Usuario findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
 			@Param("password") String password);
 	
 	@Query(value = "SELECT * FROM Usuarios p where p.perfil=:perfil", nativeQuery = true)
-	Usuarios buscarUsuarioPorPerfil(@Param("perfil") Long perfil);
+	Usuario buscarUsuarioPorPerfil(@Param("perfil") Long perfil);
 
 }

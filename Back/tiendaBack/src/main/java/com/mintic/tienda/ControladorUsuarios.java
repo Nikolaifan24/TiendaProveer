@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mintic.tienda.dto.ClienteDto;
+// import com.mintic.tienda.dto.ClienteDto;
 import com.mintic.tienda.dto.LoginDto;
-import com.mintic.tienda.dto.ProveedoresDto;
+// import com.mintic.tienda.dto.ProveedoresDto;
 import com.mintic.tienda.dto.UsuarioDto;
-import com.mintic.tienda.entities.Usuarios;
-import com.mintic.tienda.servicio.IClienteService;
+import com.mintic.tienda.entities.Usuario;
+// import com.mintic.tienda.servicio.IClienteService;
 import com.mintic.tienda.servicio.IUsuarioService;
 
 @RestController
@@ -37,14 +37,14 @@ public class ControladorUsuarios {
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@PostMapping("/loginusuario")
-	public Usuarios loginusuario(@RequestBody LoginDto usuario) {
-		Usuarios responseLogin = iUsuario.loginUsuario(usuario);
+	public Usuario loginusuario(@RequestBody LoginDto usuario) {
+		Usuario responseLogin = iUsuario.loginUsuario(usuario);
 		return responseLogin;
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/usuarios")
-	public List<Usuarios> listarUsuarios() {
+	public List<Usuario> listarUsuarios() {
 		return iUsuario.getUsuarios();
 	}
 	

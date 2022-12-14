@@ -2,17 +2,18 @@ package com.mintic.tienda.entities;
 
 
 import java.util.List;
-import javax.persistence.Column;
+// import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.OneToMany;
+// import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /*
@@ -20,15 +21,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *la entidad se utiliza en los repositorios 
  * */
 @Entity
-@Table(name = Usuarios.TABLE_NAME)
-public class Usuarios {
+@Table(name = Usuario.TABLE_NAME)
+public class Usuario {
 	public static final String TABLE_NAME = "usuario";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
 	
-	@OneToOne(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario")
+	private List<Vendedor> vendedor;
+
 	
     private String usuario;
 
@@ -41,11 +44,13 @@ public class Usuarios {
 	private String perfil;
 
 
-	public Usuarios() {
+	public Usuario() {
 	}
 
-	public Usuarios(Long ID, String usuario, String nombre, String correo, String password, String perfil) {
+
+	public Usuario(Long ID, List<Vendedor> vendedor, String usuario, String nombre, String correo, String password, String perfil) {
 		this.ID = ID;
+		this.vendedor = vendedor;
 		this.usuario = usuario;
 		this.nombre = nombre;
 		this.correo = correo;
@@ -59,6 +64,14 @@ public class Usuarios {
 
 	public void setID(Long ID) {
 		this.ID = ID;
+	}
+
+	public List<Vendedor> getvendedor() {
+		return this.vendedor;
+	}
+
+	public void setvendedor(List<Vendedor> vendedor) {
+		this.vendedor = vendedor;
 	}
 
 	public String getUsuario() {
@@ -100,7 +113,7 @@ public class Usuarios {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
-
+	
 
 	
 }

@@ -8,10 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+// import javax.persistence.JoinColumn;s
 // import javax.persistence.JoinColumn;
 // import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = Clientes.TABLE_NAME)
@@ -21,10 +24,17 @@ public class Clientes {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ID;
+	private Long IDCliente;
 	
+    // @JsonIgnore
 	@OneToMany(mappedBy = "clientes")
-	private List<Clientes> clientes;
+	private List<Cartera> carteras;
+
+	@OneToMany(mappedBy = "clientes")
+	private List<Ventas> ventas;
+
+	@OneToMany(mappedBy = "clientes")
+	private List<Pagos> pagos;
 
 	private Long cedulaCliente;
 
@@ -48,10 +58,11 @@ public class Clientes {
 	public Clientes() {
 	}
 
-
-	public Clientes(Long ID, List<Clientes> clientes, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
-		this.ID = ID;
-		this.clientes = clientes;
+	public Clientes(Long IDCliente, List<Cartera> carteras, List<Ventas> ventas, List<Pagos> pagos, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
+		this.IDCliente = IDCliente;
+		this.carteras = carteras;
+		this.ventas = ventas;
+		this.pagos = pagos;
 		this.cedulaCliente = cedulaCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
@@ -63,20 +74,36 @@ public class Clientes {
 		this.correoCliente = correoCliente;
 	}
 
-	public Long getID() {
-		return this.ID;
+	public Long getIDCliente() {
+		return this.IDCliente;
 	}
 
-	public void setID(Long ID) {
-		this.ID = ID;
+	public void setIDCliente(Long IDCliente) {
+		this.IDCliente = IDCliente;
 	}
 
-	public List<Clientes> getClientes() {
-		return this.clientes;
+	public List<Cartera> getCarteras() {
+		return this.carteras;
 	}
 
-	public void setClientes(List<Clientes> clientes) {
-		this.clientes = clientes;
+	public void setCarteras(List<Cartera> carteras) {
+		this.carteras = carteras;
+	}
+
+	public List<Ventas> getVentas() {
+		return this.ventas;
+	}
+
+	public void setVentas(List<Ventas> ventas) {
+		this.ventas = ventas;
+	}
+
+	public List<Pagos> getPagos() {
+		return this.pagos;
+	}
+
+	public void setPagos(List<Pagos> pagos) {
+		this.pagos = pagos;
 	}
 
 	public Long getCedulaCliente() {
@@ -150,6 +177,5 @@ public class Clientes {
 	public void setCorreoCliente(String correoCliente) {
 		this.correoCliente = correoCliente;
 	}
-	
-	
+
 }

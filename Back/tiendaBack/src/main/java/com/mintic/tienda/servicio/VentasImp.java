@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 // import com.mintic.tienda.dto.detalleventaDto;
-import com.mintic.tienda.dto.ProductosDto;
+// import com.mintic.tienda.dto.ProductosDto;
 // import com.mintic.tienda.dto.ResultadoVentaDto;
 import com.mintic.tienda.dto.DetalleventaDto;
 import com.mintic.tienda.dto.VentasDto;
-import com.mintic.tienda.entities.Productos;
+// import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
 import com.mintic.tienda.repositories.IVenta;
 

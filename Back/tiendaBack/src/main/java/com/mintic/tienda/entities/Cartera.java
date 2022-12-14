@@ -21,18 +21,18 @@ public class Cartera {
 	private Long IDCartera;
     
 	@ManyToOne
-    @JoinColumn(name="IIDCliente")
-    private Long IDClientes;
+    @JoinColumn(name="IDCliente")
+    private Clientes clientes;
 
     
 	@ManyToOne
     @JoinColumn(name="IDVenta")
-    private Long IDVenta;
+    private Ventas ventas;
 
     
 	@ManyToOne
     @JoinColumn(name="IDPagos")
-    private Long IDPago;
+    private Pagos pagos;
 
     private Date FechaVenta;
 
@@ -44,11 +44,12 @@ public class Cartera {
     public Cartera() {
     }
 
-    public Cartera(Long IDCartera, Long IDClientes, Long IDVenta, Long IDPago, Date FechaVenta, Date FechaPago, Double Saldo) {
+
+    public Cartera(Long IDCartera, Clientes clientes, Ventas ventas, Pagos pagos, Date FechaVenta, Date FechaPago, Double Saldo) {
         this.IDCartera = IDCartera;
-        this.IDClientes = IDClientes;
-        this.IDVenta = IDVenta;
-        this.IDPago = IDPago;
+        this.clientes = clientes;
+        this.ventas = ventas;
+        this.pagos = pagos;
         this.FechaVenta = FechaVenta;
         this.FechaPago = FechaPago;
         this.Saldo = Saldo;
@@ -62,28 +63,28 @@ public class Cartera {
         this.IDCartera = IDCartera;
     }
 
-    public Long getIDClientes() {
-        return this.IDClientes;
+    public Clientes getClientes() {
+        return this.clientes;
     }
 
-    public void setIDClientes(Long IDClientes) {
-        this.IDClientes = IDClientes;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 
-    public Long getIDVenta() {
-        return this.IDVenta;
+    public Ventas getVentas() {
+        return this.ventas;
     }
 
-    public void setIDVenta(Long IDVenta) {
-        this.IDVenta = IDVenta;
+    public void setVentas(Ventas ventas) {
+        this.ventas = ventas;
     }
 
-    public Long getIDPago() {
-        return this.IDPago;
+    public Pagos getPagos() {
+        return this.pagos;
     }
 
-    public void setIDPago(Long IDPago) {
-        this.IDPago = IDPago;
+    public void setPagos(Pagos pagos) {
+        this.pagos = pagos;
     }
 
     public Date getFechaVenta() {
@@ -110,5 +111,4 @@ public class Cartera {
         this.Saldo = Saldo;
     }
 
-    
 }

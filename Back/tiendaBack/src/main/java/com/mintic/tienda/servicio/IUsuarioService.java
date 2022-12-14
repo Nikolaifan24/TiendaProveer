@@ -2,12 +2,12 @@ package com.mintic.tienda.servicio;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 
-import com.mintic.tienda.dto.ClienteDto;
+// import com.mintic.tienda.dto.ClienteDto;
 import com.mintic.tienda.dto.LoginDto;
 import com.mintic.tienda.dto.UsuarioDto;
-import com.mintic.tienda.entities.Usuarios;
+import com.mintic.tienda.entities.Usuario;
 
 
 /*
@@ -17,11 +17,11 @@ public interface IUsuarioService {
 
 	Long login(LoginDto usuarioDto);
 
-	List<Usuarios> getUsuarios();
+	List<Usuario> getUsuarios();
 	
 	UsuarioDto buscarUsuarioPorCedula(Long numeroCedula);
 
-	Usuarios loginUsuario(LoginDto usuario);
+	Usuario loginUsuario(LoginDto usuario);
 
 	void crearUsuario(UsuarioDto usuarioDto);
 

@@ -25,15 +25,21 @@ public class Ventas {
 	private Long IDVenta;
 
 	@OneToMany(mappedBy="ventas" )
-  	private List<Ventas> ventas;
+  	private List<Cartera> carteras;
+
+	@OneToMany(mappedBy="ventas" )
+  	private List<Detalleventa> detalleventas;
+
+	@OneToMany(mappedBy = "ventas")
+	private List<Pagos> pagos;
 
 	@ManyToOne
 	@JoinColumn(name="IDCliente")
-	private Long IDCliente;
+	private Clientes clientes;
 	
 	@ManyToOne
     @JoinColumn(name="IDVendedor")
-    private Long IDVendedor;
+    private Vendedor vendedor;
 
 	private Date FechaVenta;
 
@@ -57,11 +63,14 @@ public class Ventas {
 	public Ventas() {
 	}
 
-	public Ventas(Long IDVenta, List<Ventas> ventas, Long IDCliente, Long IDVendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
+
+	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
 		this.IDVenta = IDVenta;
-		this.ventas = ventas;
-		this.IDCliente = IDCliente;
-		this.IDVendedor = IDVendedor;
+		this.carteras = carteras;
+		this.detalleventas = detalleventas;
+		this.pagos = pagos;
+		this.clientes = clientes;
+		this.vendedor = vendedor;
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
@@ -81,28 +90,44 @@ public class Ventas {
 		this.IDVenta = IDVenta;
 	}
 
-	public List<Ventas> getVentas() {
-		return this.ventas;
+	public List<Cartera> getCarteras() {
+		return this.carteras;
 	}
 
-	public void setVentas(List<Ventas> ventas) {
-		this.ventas = ventas;
+	public void setCarteras(List<Cartera> carteras) {
+		this.carteras = carteras;
 	}
 
-	public Long getIDCliente() {
-		return this.IDCliente;
+	public List<Detalleventa> getDetalleventas() {
+		return this.detalleventas;
 	}
 
-	public void setIDCliente(Long IDCliente) {
-		this.IDCliente = IDCliente;
+	public void setDetalleventas(List<Detalleventa> detalleventas) {
+		this.detalleventas = detalleventas;
 	}
 
-	public Long getIDVendedor() {
-		return this.IDVendedor;
+	public List<Pagos> getPagos() {
+		return this.pagos;
 	}
 
-	public void setIDVendedor(Long IDVendedor) {
-		this.IDVendedor = IDVendedor;
+	public void setPagos(List<Pagos> pagos) {
+		this.pagos = pagos;
+	}
+
+	public Clientes getClientes() {
+		return this.clientes;
+	}
+
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
+	}
+
+	public Vendedor getVendedor() {
+		return this.vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
 
 	public Date getFechaVenta() {
@@ -177,4 +202,5 @@ public class Ventas {
 		this.zonaventa = zonaventa;
 	}
 
+	
 }

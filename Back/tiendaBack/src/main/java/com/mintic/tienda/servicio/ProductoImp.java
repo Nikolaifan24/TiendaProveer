@@ -1,6 +1,6 @@
 package com.mintic.tienda.servicio;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mintic.tienda.dto.ProductosDto;
 import com.mintic.tienda.entities.Productos;
 // import com.mintic.tienda.entities.Productos;
-import com.mintic.tienda.entities.Usuarios;
+// import com.mintic.tienda.entities.Usuarios;
 import com.mintic.tienda.repositories.IProducto;
 // import com.mintic.tienda.repositories.IProducto;
 

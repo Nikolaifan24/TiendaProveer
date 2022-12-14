@@ -11,7 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+// import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
 
 @Entity
@@ -24,11 +26,12 @@ public class Vendedor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
 	
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="IDUsuario")
+    private Usuario usuarios;
 
 	@OneToMany(mappedBy = "vendedor")
-    private List<Vendedor> vendedors;
+    private List<Ventas> ventas;
 	
     private Long documentoVendedor;
 	
@@ -48,10 +51,10 @@ public class Vendedor {
     public Vendedor() {
     }
 
-
-    public Vendedor(Long ID, List<Vendedor> vendedors, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
+    public Vendedor(Long ID, Usuario usuarios, List<Ventas> ventas, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
         this.ID = ID;
-        this.vendedors = vendedors;
+        this.usuarios = usuarios;
+        this.ventas = ventas;
         this.documentoVendedor = documentoVendedor;
         this.nombreVendedor = nombreVendedor;
         this.dirrecionVendedor = dirrecionVendedor;
@@ -61,6 +64,7 @@ public class Vendedor {
         this.Salario = Salario;
     }
 
+
     public Long getID() {
         return this.ID;
     }
@@ -69,12 +73,20 @@ public class Vendedor {
         this.ID = ID;
     }
 
-    public List<Vendedor> getVendedors() {
-        return this.vendedors;
+    public Usuario getUsuarios() {
+        return this.usuarios;
     }
 
-    public void setVendedors(List<Vendedor> vendedors) {
-        this.vendedors = vendedors;
+    public void setUsuarios(Usuario usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Ventas> getVentas() {
+        return this.ventas;
+    }
+
+    public void setVentas(List<Ventas> ventas) {
+        this.ventas = ventas;
     }
 
     public Long getDocumentoVendedor() {

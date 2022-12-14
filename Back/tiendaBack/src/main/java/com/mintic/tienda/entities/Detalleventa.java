@@ -24,12 +24,11 @@ public class Detalleventa {
 	
     @ManyToOne
     @JoinColumn(name="IDVenta")
-    private Long IDVenta;
-
+    private Ventas  ventas;
 
     @ManyToOne
     @JoinColumn(name="IDProducto")
-    private Long IDProducto;
+    private Productos productos;
 
 	private int cantidadProducto;
 
@@ -41,10 +40,10 @@ public class Detalleventa {
     public Detalleventa() {
     }
 
-    public Detalleventa(Long ID, Long IDVenta, Long IDProducto, int cantidadProducto, Double precioProducto, Double totalDetalle) {
+    public Detalleventa(Long ID, Ventas ventas, Productos productos, int cantidadProducto, Double precioProducto, Double totalDetalle) {
         this.ID = ID;
-        this.IDVenta = IDVenta;
-        this.IDProducto = IDProducto;
+        this.ventas = ventas;
+        this.productos = productos;
         this.cantidadProducto = cantidadProducto;
         this.precioProducto = precioProducto;
         this.totalDetalle = totalDetalle;
@@ -58,20 +57,20 @@ public class Detalleventa {
         this.ID = ID;
     }
 
-    public Long getIDVenta() {
-        return this.IDVenta;
+    public Ventas getVentas() {
+        return this.ventas;
     }
 
-    public void setIDVenta(Long IDVenta) {
-        this.IDVenta = IDVenta;
+    public void setVentas(Ventas ventas) {
+        this.ventas = ventas;
     }
 
-    public Long getIDProducto() {
-        return this.IDProducto;
+    public Productos getProductos() {
+        return this.productos;
     }
 
-    public void setIDProducto(Long IDProducto) {
-        this.IDProducto = IDProducto;
+    public void setProductos(Productos productos) {
+        this.productos = productos;
     }
 
     public int getCantidadProducto() {
@@ -97,5 +96,6 @@ public class Detalleventa {
     public void setTotalDetalle(Double totalDetalle) {
         this.totalDetalle = totalDetalle;
     }
-    
+
+
 }

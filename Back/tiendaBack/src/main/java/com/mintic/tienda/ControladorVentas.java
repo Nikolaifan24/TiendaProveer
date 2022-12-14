@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mintic.tienda.dto.ProductosDto;
 // import com.mintic.tienda.dto.ResultadoVentaDto;
 import com.mintic.tienda.dto.VentasDto;
-import com.mintic.tienda.entities.Productos;
+// import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
-import com.mintic.tienda.repositories.IVenta;
+// import com.mintic.tienda.repositories.IVenta;
 
-import com.mintic.tienda.servicio.IDetalleVentasService;
+// import com.mintic.tienda.servicio.IDetalleVentasService;
 import com.mintic.tienda.servicio.IProductoService;
 import com.mintic.tienda.servicio.IVentasService;
 

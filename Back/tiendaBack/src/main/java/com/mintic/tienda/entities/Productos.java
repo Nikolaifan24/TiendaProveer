@@ -2,7 +2,7 @@ package com.mintic.tienda.entities;
 
 import java.util.List;
 
-import javax.persistence.Column;
+// import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +23,18 @@ public class Productos {
 	private Long IDProductos;
 	
 	@OneToMany(mappedBy="productos" )
-  	private List<Productos> productos;
+  	private List<Detalleventa> detalleventas;
+
+	@OneToMany(mappedBy="productos" )
+  	private List<Detallecompra> detallecompras;
 
 	@ManyToOne
 	@JoinColumn(name="IDProveedor")
-	private Long IDProveedor;
+	private Proveedores proveedores;
+
+	@ManyToOne
+	@JoinColumn(name="IDCompra")
+	private Compras compras;
 
 	private Long IDCompras;
 
@@ -53,10 +60,12 @@ public class Productos {
 	public Productos() {
 	}
 
-	public Productos(Long IDProductos, List<Productos> productos, Long IDProveedor, Long IDCompras, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
+	public Productos(Long IDProductos, List<Detalleventa> detalleventas, List<Detallecompra> detallecompras, Proveedores proveedores, Compras compras, Long IDCompras, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
 		this.IDProductos = IDProductos;
-		this.productos = productos;
-		this.IDProveedor = IDProveedor;
+		this.detalleventas = detalleventas;
+		this.detallecompras = detallecompras;
+		this.proveedores = proveedores;
+		this.compras = compras;
 		this.IDCompras = IDCompras;
 		this.codigoProducto = codigoProducto;
 		this.nombreProducto = nombreProducto;
@@ -77,20 +86,36 @@ public class Productos {
 		this.IDProductos = IDProductos;
 	}
 
-	public List<Productos> getProductos() {
-		return this.productos;
+	public List<Detalleventa> getDetalleventas() {
+		return this.detalleventas;
 	}
 
-	public void setProductos(List<Productos> productos) {
-		this.productos = productos;
+	public void setDetalleventas(List<Detalleventa> detalleventas) {
+		this.detalleventas = detalleventas;
 	}
 
-	public Long getIDProveedor() {
-		return this.IDProveedor;
+	public List<Detallecompra> getDetallecompras() {
+		return this.detallecompras;
 	}
 
-	public void setIDProveedor(Long IDProveedor) {
-		this.IDProveedor = IDProveedor;
+	public void setDetallecompras(List<Detallecompra> detallecompras) {
+		this.detallecompras = detallecompras;
+	}
+
+	public Proveedores getProveedores() {
+		return this.proveedores;
+	}
+
+	public void setProveedores(Proveedores proveedores) {
+		this.proveedores = proveedores;
+	}
+
+	public Compras getCompras() {
+		return this.compras;
+	}
+
+	public void setCompras(Compras compras) {
+		this.compras = compras;
 	}
 
 	public Long getIDCompras() {
@@ -172,6 +197,6 @@ public class Productos {
 	public void setDevoluciones(Long devoluciones) {
 		this.devoluciones = devoluciones;
 	}
-	
+
 
 }

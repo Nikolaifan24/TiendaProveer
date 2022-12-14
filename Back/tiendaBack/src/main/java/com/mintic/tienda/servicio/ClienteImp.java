@@ -35,7 +35,7 @@ public class ClienteImp implements IClienteService {
 
 		
 		if (id != null) {
-			cliente.setID(id);
+			cliente.setIDCliente(documentoCliente);;
 		}
 		
 		if(documentoCliente != null) {
@@ -81,7 +81,7 @@ public class ClienteImp implements IClienteService {
 
 		
 		if (id != null) {
-			cliente.setID(id);
+			cliente.setIDCliente(documentoCliente);;
 		}
 		
 		if(documentoCliente != null) {
@@ -127,7 +127,7 @@ public class ClienteImp implements IClienteService {
 
 	private ClienteDto mapClienteDto(Clientes cliente) {
 		return new ClienteDto(
-				cliente.getID(),
+				cliente.getIDCliente(),
 				cliente.getCedulaCliente(),
 				cliente.getDireccionCliente(),
 				cliente.getCorreoCliente(),

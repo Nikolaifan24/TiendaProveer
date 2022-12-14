@@ -23,16 +23,16 @@ public class Pagos {
 	private Long IDPagos;
 
     @OneToMany(mappedBy = "pagos")
-    private List<Pagos> pagos;
+    private List<Cartera> carteras;
 	
 	@ManyToOne
     @JoinColumn(name="IDCliente")
-    private Long IDClientes;
+    private Clientes clientes;
 
     
 	@ManyToOne
     @JoinColumn(name="IDIVenta")
-    private Long IDVenta;
+    private Ventas ventas;
 
 	private Date FechaVenta;
 
@@ -48,11 +48,12 @@ public class Pagos {
     public Pagos() {
     }
 
-    public Pagos(Long IDPagos, List<Pagos> pagos, Long IDClientes, Long IDVenta, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
+
+    public Pagos(Long IDPagos, List<Cartera> carteras, Clientes clientes, Ventas ventas, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
         this.IDPagos = IDPagos;
-        this.pagos = pagos;
-        this.IDClientes = IDClientes;
-        this.IDVenta = IDVenta;
+        this.carteras = carteras;
+        this.clientes = clientes;
+        this.ventas = ventas;
         this.FechaVenta = FechaVenta;
         this.FechaPago = FechaPago;
         this.TipoPago = TipoPago;
@@ -68,28 +69,28 @@ public class Pagos {
         this.IDPagos = IDPagos;
     }
 
-    public List<Pagos> getPagos() {
-        return this.pagos;
+    public List<Cartera> getCarteras() {
+        return this.carteras;
     }
 
-    public void setPagos(List<Pagos> pagos) {
-        this.pagos = pagos;
+    public void setCarteras(List<Cartera> carteras) {
+        this.carteras = carteras;
     }
 
-    public Long getIDClientes() {
-        return this.IDClientes;
+    public Clientes getClientes() {
+        return this.clientes;
     }
 
-    public void setIDClientes(Long IDClientes) {
-        this.IDClientes = IDClientes;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 
-    public Long getIDVenta() {
-        return this.IDVenta;
+    public Ventas getVentas() {
+        return this.ventas;
     }
 
-    public void setIDVenta(Long IDVenta) {
-        this.IDVenta = IDVenta;
+    public void setVentas(Ventas ventas) {
+        this.ventas = ventas;
     }
 
     public Date getFechaVenta() {
@@ -131,6 +132,6 @@ public class Pagos {
     public void setValorPago(Double ValorPago) {
         this.ValorPago = ValorPago;
     }
-
-        
+    
+ 
 }

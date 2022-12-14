@@ -23,12 +23,11 @@ public class Detallecompra {
 	
     @ManyToOne
     @JoinColumn(name="IDCompra")
-    private Long IDVenta;
-
+    private Compras compras;
 
     @ManyToOne
     @JoinColumn(name="IDProducto")
-    private Long IDProducto;
+    private Productos productos;
     
     private Double ValorUnitario;
 
@@ -40,10 +39,11 @@ public class Detallecompra {
     public Detallecompra() {
     }
 
-    public Detallecompra(Long ID, Long IDVenta, Long IDProducto, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
+
+    public Detallecompra(Long ID, Compras compras, Productos productos, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
         this.ID = ID;
-        this.IDVenta = IDVenta;
-        this.IDProducto = IDProducto;
+        this.compras = compras;
+        this.productos = productos;
         this.ValorUnitario = ValorUnitario;
         this.cantidadProducto = cantidadProducto;
         this.ValorTotal = ValorTotal;
@@ -57,20 +57,20 @@ public class Detallecompra {
         this.ID = ID;
     }
 
-    public Long getIDVenta() {
-        return this.IDVenta;
+    public Compras getCompras() {
+        return this.compras;
     }
 
-    public void setIDVenta(Long IDVenta) {
-        this.IDVenta = IDVenta;
+    public void setCompras(Compras compras) {
+        this.compras = compras;
     }
 
-    public Long getIDProducto() {
-        return this.IDProducto;
+    public Productos getProductos() {
+        return this.productos;
     }
 
-    public void setIDProducto(Long IDProducto) {
-        this.IDProducto = IDProducto;
+    public void setProductos(Productos productos) {
+        this.productos = productos;
     }
 
     public Double getValorUnitario() {
@@ -96,5 +96,6 @@ public class Detallecompra {
     public void setValorTotal(Double ValorTotal) {
         this.ValorTotal = ValorTotal;
     }
+    
 
 }

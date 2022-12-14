@@ -11,6 +11,8 @@ import javax.persistence.Id;
 // import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = Proveedores.TABLE_NAME)
@@ -20,8 +22,12 @@ public class Proveedores {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDProveedor;
-	
-	@OneToMany(mappedBy = "proveedor")
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "proveedores")
+	private List<Compras> compras;
+
+	@OneToMany(mappedBy = "proveedores")
 	private List<Productos> productos;
 
 	private String nombreProveedor;
@@ -40,8 +46,10 @@ public class Proveedores {
 	public Proveedores() {
 	}
 
-	public Proveedores(Long IDProveedor, List<Productos> productos, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
+
+	public Proveedores(Long IDProveedor, List<Compras> compras, List<Productos> productos, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
 		this.IDProveedor = IDProveedor;
+		this.compras = compras;
 		this.productos = productos;
 		this.nombreProveedor = nombreProveedor;
 		this.nitProveedor = nitProveedor;
@@ -57,6 +65,14 @@ public class Proveedores {
 
 	public void setIDProveedor(Long IDProveedor) {
 		this.IDProveedor = IDProveedor;
+	}
+
+	public List<Compras> getCompras() {
+		return this.compras;
+	}
+
+	public void setCompras(List<Compras> compras) {
+		this.compras = compras;
 	}
 
 	public List<Productos> getProductos() {

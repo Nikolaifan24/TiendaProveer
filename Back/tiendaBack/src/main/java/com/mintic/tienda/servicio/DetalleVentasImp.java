@@ -39,8 +39,8 @@ public class DetalleVentasImp implements IDetalleVentasService{
 	private DetalleventaDto mapDetalleVentasDto(Detalleventa detalleVentas) {
 			return new DetalleventaDto(
 					detalleVentas.getID(),
-					detalleVentas.getIDVenta(),
-					detalleVentas.getIDProducto(),
+					detalleVentas.getVentas(),
+					detalleVentas.getProductos(),
 					detalleVentas.getCantidadProducto(),
 					detalleVentas.getPrecioProducto(),
 					detalleVentas.getTotalDetalle()

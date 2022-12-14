@@ -1,17 +1,17 @@
 
 package com.mintic.tienda.servicio;
 
-import java.util.HashMap;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+// import java.util.HashMap;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
 import java.util.List;
-import java.util.Map;
+// import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mintic.tienda.dto.LoginDto;
 import com.mintic.tienda.dto.UsuarioDto;
-import com.mintic.tienda.entities.Usuarios;
+import com.mintic.tienda.entities.Usuario;
 import com.mintic.tienda.repositories.IUsuario;
 
 @Service 
@@ -23,20 +23,20 @@ public class UsuarioImp implements IUsuarioService {
 	
 	@Override
 	public Long login(LoginDto usuarioDto) {
-		Usuarios u = iUsuario.findByNombreUsuarioAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
+		Usuario u = iUsuario.findByNombreUsuarioAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
 		return u != null ? u.getID() : 0;
 	}
 	
 	@Override
-	public Usuarios loginUsuario(LoginDto usuarioDto) {
+	public Usuario loginUsuario(LoginDto usuarioDto) {
 		//return iUsuario.findByNameAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
 		return null;
 	}
 
 	@Override
-	public List<Usuarios> getUsuarios() {
+	public List<Usuario> getUsuarios() {
 
-		return (List<Usuarios>) iUsuario.findAll();
+		return (List<Usuario>) iUsuario.findAll();
 	}
 
 
@@ -47,8 +47,8 @@ public class UsuarioImp implements IUsuarioService {
 		
 	}
 
-	private Usuarios buildUsuario(UsuarioDto usuarioDto) {
-		Usuarios myusuario = new Usuarios();
+	private Usuario buildUsuario(UsuarioDto usuarioDto) {
+		Usuario myusuario = new Usuario();
 		
 		Long id = usuarioDto.getID();
 		String emailUsuario = usuarioDto.getCorreo();
@@ -82,7 +82,7 @@ public class UsuarioImp implements IUsuarioService {
 		String usuario = usuarioDto.getUsuario();
 		myusuario.setID(id);
 		if(emailUsuario != null) {
-			myusuario.setCorreo(emailUsuario);;
+			myusuario.setCorreo(emailUsuario);
 		}
 		if(nombreUsuario != null) {
 			myusuario.setNombre(nombreUsuario);
@@ -100,7 +100,7 @@ public class UsuarioImp implements IUsuarioService {
 
 	@Override
 	public void eliminarUsuario(Long cedulaUsuario) {
-		Usuarios usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
+		Usuario usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
 		iUsuario.delete(usuario);
 		
 	}
@@ -108,14 +108,13 @@ public class UsuarioImp implements IUsuarioService {
 	@Override
 	public void actualizarUsuario(Long cedulaUsuario, UsuarioDto usuarioDto) {
 		
-		Usuarios usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
+		Usuario usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
 		updateUsuario(usuarioDto, usuario);
 		
 	}
 
 	@Override
 	public UsuarioDto buscarUsuarioPorCedula(Long numeroCedula) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -27,12 +27,14 @@ public class Compras {
 	private Long ID;
 	
 	@OneToMany(mappedBy = "compras")
-    private List<Compras> compras;
+    private List<Productos> productos;
 
+    @OneToMany(mappedBy = "compras")
+	private List<Detallecompra> detallecompras;
     
     @ManyToOne
     @JoinColumn(name="IDProveedor")
-	private Long IDProveedor;
+	private Proveedores proveedores;
 
     private Date FechaCompra;
 
@@ -45,14 +47,16 @@ public class Compras {
     }
 
 
-    public Compras(Long ID, List<Compras> compras, Long IDProveedor, Date FechaCompra, Double totalCompra, Double ivaCompra) {
+    public Compras(Long ID, List<Productos> productos, List<Detallecompra> detallecompras, Proveedores proveedores, Date FechaCompra, Double totalCompra, Double ivaCompra) {
         this.ID = ID;
-        this.compras = compras;
-        this.IDProveedor = IDProveedor;
+        this.productos = productos;
+        this.detallecompras = detallecompras;
+        this.proveedores = proveedores;
         this.FechaCompra = FechaCompra;
         this.totalCompra = totalCompra;
         this.ivaCompra = ivaCompra;
     }
+
 
     public Long getID() {
         return this.ID;
@@ -62,20 +66,28 @@ public class Compras {
         this.ID = ID;
     }
 
-    public List<Compras> getCompras() {
-        return this.compras;
+    public List<Productos> getProductos() {
+        return this.productos;
     }
 
-    public void setCompras(List<Compras> compras) {
-        this.compras = compras;
+    public void setProductos(List<Productos> productos) {
+        this.productos = productos;
     }
 
-    public Long getIDProveedor() {
-        return this.IDProveedor;
+    public List<Detallecompra> getDetallecompras() {
+        return this.detallecompras;
     }
 
-    public void setIDProveedor(Long IDProveedor) {
-        this.IDProveedor = IDProveedor;
+    public void setDetallecompras(List<Detallecompra> detallecompras) {
+        this.detallecompras = detallecompras;
+    }
+
+    public Proveedores getProveedores() {
+        return this.proveedores;
+    }
+
+    public void setProveedores(Proveedores proveedores) {
+        this.proveedores = proveedores;
     }
 
     public Date getFechaCompra() {
@@ -101,7 +113,5 @@ public class Compras {
     public void setIvaCompra(Double ivaCompra) {
         this.ivaCompra = ivaCompra;
     }
-    
-
     
 }
