@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mintic.tienda.dto.DetalleVentasDto;
-import com.mintic.tienda.dto.ProductosDto;
-import com.mintic.tienda.entities.DetalleVentas;
-import com.mintic.tienda.entities.Productos;
+import com.mintic.tienda.dto.DetalleventaDto;
+// import com.mintic.tienda.dto.ProductosDto;
+import com.mintic.tienda.entities.Detalleventa;
+// import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.servicio.IDetalleVentasService;
 
 @RestController
@@ -22,24 +22,24 @@ public class ControladorDetalleVentas {
 	@Autowired
 	IDetalleVentasService iDetalleVentas;
 	
-	DetalleVentasDto detalleVentaDto;
+	DetalleventaDto detalleVentaDto;
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/detalleVentas")
-	public List<DetalleVentas> listarDetalleVentas() {
+	public List<Detalleventa> listarDetalleVentas() {
 		return iDetalleVentas.getDetalleVentas();
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/detalleVentas/{idVenta}")
-	public DetalleVentasDto buscarDetalleVentaPorIdVenta(@PathVariable Long idVenta) {
+	public DetalleventaDto buscarDetalleVentaPorIdVenta(@PathVariable Long idVenta) {
 		return iDetalleVentas.buscarDetalleVentasPorIdVenta(idVenta);
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@PostMapping("/detalleVentas")
-	public void creadDetalleVentas(@RequestBody DetalleVentasDto detalleVentasDto) {
-		iDetalleVentas.crearDetalleVentas(detalleVentasDto);
+	public void creadDetalleVentas(@RequestBody DetalleventaDto DetalleVentaDto) {
+		iDetalleVentas.crearDetalleVentas(DetalleVentaDto);
 		
 	}
 	
