@@ -6,13 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mintic.tienda.dto.ClienteDto;
+// import com.mintic.tienda.dto.ProductoDto;
 import com.mintic.tienda.dto.ProductosDto;
-import com.mintic.tienda.entities.Clientes;
 import com.mintic.tienda.entities.Productos;
+// import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Usuarios;
-import com.mintic.tienda.repositories.ICliente;
 import com.mintic.tienda.repositories.IProducto;
+// import com.mintic.tienda.repositories.IProducto;
 
 @Service
 public class ProductoImp implements IProductoService {
@@ -21,11 +21,11 @@ public class ProductoImp implements IProductoService {
 	IProducto iProducto;
 	
 	@Override
-	public ProductosDto buscarProductoPorCodigo(Long codigoProducto) {
+	public ProductosDto buscarProductoPorNombre(String nombreProducto) {
 	
 		Productos producto = null;
 		try {
-			producto = iProducto.buscarProductoPorCodigo(codigoProducto);
+			producto = iProducto.buscarProductoPorNombre(nombreProducto);
 			ProductosDto productosDto = mapProductosDto(producto);
 			return productosDto;
 		} catch (Exception e) {
@@ -37,13 +37,18 @@ public class ProductoImp implements IProductoService {
 
 	private ProductosDto mapProductosDto(Productos producto) {
 		return new ProductosDto(
-				producto.getId(),
+				producto.getIDProductos(),
+				producto.getIDProveedor(),
+				producto.getIDCompras(),
 				producto.getCodigoProducto(),
-				producto.getIvaCompra(),
-				producto.getIdProveedor(),
 				producto.getNombreProducto(),
+				producto.getTipoProducto(),
 				producto.getPrecioCompra(),
-				producto.getPrecioVenta()
+				producto.getPrecioVenta(), 
+				producto.getCantidadProducto(),
+				producto.getUnidadesCompradas(),
+				producto.getUnidadesVendidas(), 
+				producto.getDevoluciones() 
 		);		
 	}
 
@@ -65,28 +70,36 @@ public class ProductoImp implements IProductoService {
 		
 		Productos productos = new Productos();
 		
-		Long id =  productosDto.getId();
-		Long codigoProducto = productosDto.getCodigoProducto();
-		Double ivaCompra = productosDto.getIvaCompra();
+		Long id =  productosDto.getIdProducto();
 		Long idProveedor = productosDto.getIdProveedor();
+		Long idCompra = productosDto.getIdCompras();
+		Long codigoProducto = productosDto.getCodigoProducto();
 		String nombreProducto = productosDto.getNombreProducto();
+		String tipoProducto = productosDto.getTipoProducto();
 		Double precioCompra = productosDto.getPrecioCompra();
 		Double precioVenta = productosDto.getPrecioVenta();
+		Long cantidadProducto = productosDto.getCantidadProducto();
+		Long unidadesVendidas = productosDto.getUnidadesVendidas();
+		Long unidadesCompradas = productosDto.getUnidadesCompradas();
+		Long devoluciones = productosDto.getDevoluciones();
 		
 		if(id != null) {
-			productos.setId(id);
+			productos.setIDProductos(cantidadProducto);;
+		}
+		if(idProveedor != null) {
+			productos.setIDProveedor(idProveedor);
+		}
+		if(idCompra != null) {
+			productos.setIDCompras(idCompra);
 		}
 		if(codigoProducto != null) {
 			productos.setCodigoProducto(codigoProducto);
 		}
-		if(ivaCompra != null) {
-			productos.setIvaCompra(ivaCompra);
-		}
-		if(idProveedor != null) {
-			productos.setIdProveedor(idProveedor);
-		}
 		if(nombreProducto != null) {
 			productos.setNombreProducto(nombreProducto);
+		}
+		if(tipoProducto != null) {
+			productos.setTipoProducto(tipoProducto);
 		}
 		if(precioCompra != null) {
 			productos.setPrecioCompra(precioCompra);
@@ -94,8 +107,86 @@ public class ProductoImp implements IProductoService {
 		if(precioVenta != null) {
 			productos.setPrecioVenta(precioVenta);
 		}
-			
+		if(cantidadProducto != null) {
+			productos.setCantidadProducto(cantidadProducto);
+		}
+		if(unidadesVendidas != null) {
+			productos.setUnidadesVendidas(unidadesVendidas);
+		}
+		if(unidadesCompradas != null) {
+			productos.setUnidadesCompradas(unidadesCompradas);
+		}
+		if(devoluciones != null) {
+			productos.setDevoluciones(devoluciones);
+		}
+		
 		return productos;
 	}
+
+
+	private void updateProducto(ProductosDto productosDto, Productos productos) {
+		// Productos productos = new Productos();
+		
+		Long id =  productosDto.getIdProducto();
+		Long idProveedor = productosDto.getIdProveedor();
+		Long idCompra = productosDto.getIdCompras();
+		Long codigoProducto = productosDto.getCodigoProducto();
+		String nombreProducto = productosDto.getNombreProducto();
+		String tipoProducto = productosDto.getTipoProducto();
+		Double precioCompra = productosDto.getPrecioCompra();
+		Double precioVenta = productosDto.getPrecioVenta();
+		Long cantidadProducto = productosDto.getCantidadProducto();
+		Long unidadesVendidas = productosDto.getUnidadesVendidas();
+		Long unidadesCompradas = productosDto.getUnidadesCompradas();
+		Long devoluciones = productosDto.getDevoluciones();
+
+		
+		if(id != null) {
+			productos.setIDProductos(cantidadProducto);;
+		}
+		if(idProveedor != null) {
+			productos.setIDProveedor(idProveedor);
+		}
+		if(idCompra != null) {
+			productos.setIDCompras(idCompra);
+		}
+		if(codigoProducto != null) {
+			productos.setCodigoProducto(codigoProducto);
+		}
+		if(nombreProducto != null) {
+			productos.setNombreProducto(nombreProducto);
+		}
+		if(tipoProducto != null) {
+			productos.setTipoProducto(tipoProducto);
+		}
+		if(precioCompra != null) {
+			productos.setPrecioCompra(precioCompra);
+		}
+		if(precioVenta != null) {
+			productos.setPrecioVenta(precioVenta);
+		}
+		if(cantidadProducto != null) {
+			productos.setCantidadProducto(cantidadProducto);
+		}
+		if(unidadesVendidas != null) {
+			productos.setUnidadesVendidas(unidadesVendidas);
+		}
+		if(unidadesCompradas != null) {
+			productos.setUnidadesCompradas(unidadesCompradas);
+		}
+		if(devoluciones != null) {
+			productos.setDevoluciones(devoluciones);
+		}
+		iProducto.save(productos);
+	}
+	
+	@Override
+	public void actualizarProducto(String nombreProductoString, ProductosDto productosDto) {
+		Productos Producto = iProducto.buscarProductoPorNombre(nombreProductoString);
+		updateProducto(productosDto, Producto);
+
+	}
+
+	
 
 }

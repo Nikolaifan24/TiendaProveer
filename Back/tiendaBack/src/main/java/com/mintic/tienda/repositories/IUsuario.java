@@ -32,7 +32,7 @@ public interface IUsuario extends CrudRepository<Usuarios, Long> {
 	Usuarios findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
 			@Param("password") String password);
 	
-	@Query(value = "SELECT * FROM Usuarios p where p.cedulaUsuario=:cedulaUsuario", nativeQuery = true)
-	Usuarios buscarUsuarioPorCedula(@Param("cedulaUsuario") Long cedulaUsuario);
+	@Query(value = "SELECT * FROM Usuarios p where p.perfil=:perfil", nativeQuery = true)
+	Usuarios buscarUsuarioPorPerfil(@Param("perfil") Long perfil);
 
 }

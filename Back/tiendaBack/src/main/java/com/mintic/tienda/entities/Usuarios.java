@@ -44,10 +44,9 @@ public class Usuarios {
 	public Usuarios() {
 	}
 
-	public Usuarios(Long ID, String usuario, List<Usuarios> usuarios, String nombre, String correo, String password, String perfil) {
+	public Usuarios(Long ID, String usuario, String nombre, String correo, String password, String perfil) {
 		this.ID = ID;
 		this.usuario = usuario;
-		this.usuarios = usuarios;
 		this.nombre = nombre;
 		this.correo = correo;
 		this.password = password;
@@ -68,14 +67,6 @@ public class Usuarios {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
-	}
-
-	public List<Usuarios> getUsuarios() {
-		return this.usuarios;
-	}
-
-	public void setUsuarios(List<Usuarios> usuarios) {
-		this.usuarios = usuarios;
 	}
 
 	public String getNombre() {
@@ -109,6 +100,7 @@ public class Usuarios {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
+
 
 	
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-// import com.mintic.tienda.dto.CalculoDto;
+// import com.mintic.tienda.dto.detalleventaDto;
 import com.mintic.tienda.dto.ProductosDto;
 // import com.mintic.tienda.dto.ResultadoVentaDto;
 import com.mintic.tienda.dto.DetalleventaDto;
@@ -85,20 +85,35 @@ public class VentasImp implements IVentasService{
 		if(idCliente  != null) {
 			venta.setIDCliente(idCliente);
 		}
+		if(idVendedor  != null) {
+			venta.setIDVendedor(idVendedor);
+		}
 		if(fechaVenta != null) {
 			venta.setFechaVenta(null);
 		}
 		if(fechaEntrega != null) {
 			venta.setFechaEntrega(null);
 		}
+		if(valorVenta != null) {
+			venta.setTotalVenta(ivaVenta);
+		}
 		if(ivaVenta != null) {
 			venta.setIvaVenta(ivaVenta);
 		}
-		if(totalVenta != null) {
-			venta.setTotalVenta(totalVenta);
+		if(valorPago != null) {
+			venta.setValorPago(valorPago);
 		}
-		if(valorVenta != null) {
-			venta.setValorVenta(valorVenta);
+		if(saldo != null) {
+			venta.setSaldo(saldo);
+		}
+		if(formaPago != null) {
+			venta.setFormaPago(formaPago);
+		}
+		if(fechaPago != null) {
+			venta.setFechaPago(null);
+		}
+		if(zonaVenta != null) {
+			venta.setZonaventa(zonaVenta);
 		}
 			
 		return venta;
@@ -107,40 +122,39 @@ public class VentasImp implements IVentasService{
 	}
 
 	@Override
-	public CalculoDto realizarCalculo(ProductosDto productosDto, Integer cantidad) {
-		CalculoDto calculoDto = new CalculoDto();
+	public DetalleventaDto realizarCalculo(DetalleventaDto detalleventaDto, Integer cantidad) {
+		// DetalleventaDto detalleventaDto = new DetalleventaDto();
 		
-		Long codigoProducto = productosDto.getCodigoProducto();
-		Double precioCompra = productosDto.getPrecioCompra();
-		Double ivaCompra = productosDto.getIvaCompra();
-		Integer cantidadProducto = cantidad;
-		Double valorProductos = precioCompra * cantidadProducto;
-		Double valorIvas = ivaCompra * cantidadProducto;
-		Double valorVenta = valorProductos + valorIvas;
+		// Long codigoProducto = detalleventaDto.getCodigoProducto();
+		// Double precioCompra = detalleventaDto.getPrecioCompra();
+		// Double ivaCompra = productosDto.getIvaCompra();
+		Double precioProducto = detalleventaDto.getPrecioProducto();
+		Integer cantidadProducto = detalleventaDto.getCantidad();
+		Double valorProductos = precioProducto * cantidadProducto;
+		// Double valorIvas = ivaCompra * cantidadProducto;
+		// Double valorVenta = valorProductos + valorIvas;
 		
-		if(codigoProducto != null) {
-			calculoDto.setCodigoProducto(codigoProducto);
-		}
-		if(precioCompra != null) {
-			calculoDto.setPrecioCompra(precioCompra);
-		}
-		if(ivaCompra != null) {
-			calculoDto.setIvaCompra(ivaCompra);
-		}
+		// if(codigoProducto != null) {
+		// 	detalleventaDto.setCodigoProducto(codigoProducto);
+		// }
+		// if(precioCompra != null) {
+		// 	detalleventaDto.setPrecioCompra(precioCompra);
+		// }
+		// if(ivaCompra != null) {
+		// 	detalleventaDto.setIvaCompra(ivaCompra);
+		// }
 		if(cantidadProducto != null) {
-			calculoDto.setCantidadProducto(cantidadProducto);
+			detalleventaDto.setCantidad(cantidadProducto);
+		}
+		if(precioProducto != null) {
+			detalleventaDto.setPrecioProducto(precioProducto);
 		}
 		if(valorProductos != null) {
-			calculoDto.setValorProductos(valorProductos);
-		}
-		if(valorIvas != null) {
-			calculoDto.setValorIvas(valorIvas);
-		}
-		if(valorVenta != null) {
-			calculoDto.setValorVenta(valorVenta);
+			detalleventaDto.setTotalDetalle(valorProductos);
 		}
 		
-		return calculoDto;
+		
+		return detalleventaDto;
 	}
 
 	

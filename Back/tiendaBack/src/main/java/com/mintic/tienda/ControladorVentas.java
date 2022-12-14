@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mintic.tienda.dto.CalculoDto;
+// import com.mintic.tienda.dto.CalculoDto;
 import com.mintic.tienda.dto.ProductosDto;
-import com.mintic.tienda.dto.ResultadoVentaDto;
+// import com.mintic.tienda.dto.ResultadoVentaDto;
 import com.mintic.tienda.dto.VentasDto;
 import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
@@ -34,7 +34,7 @@ public class ControladorVentas {
 	IProductoService iProducto;
 	
 	VentasDto ventasDto;
-	CalculoDto calculoDto;
+	// CalculoDto calculoDto;
 	ProductosDto productosDto;
 	
 	@CrossOrigin(origins = "http://localhost:8091")

@@ -2,14 +2,14 @@ package com.mintic.tienda.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+// import javax.persistence.CascadeType;
+// import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,8 +23,10 @@ public class Clientes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
 	
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "clientes")
 	private List<Clientes> clientes;
+
+	private Long cedulaCliente;
 
 	private String nombreCliente;
 
@@ -38,19 +40,27 @@ public class Clientes {
 		
 	private String telefonoCliente;
 
+	private String telefonoadicional;
+
+	private String correoCliente;
+
 
 	public Clientes() {
 	}
 
-	public Clientes(Long ID, List<Clientes> clientes, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente) {
+
+	public Clientes(Long ID, List<Clientes> clientes, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
 		this.ID = ID;
 		this.clientes = clientes;
+		this.cedulaCliente = cedulaCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
 		this.direccionCliente = direccionCliente;
 		this.barrioCliente = barrioCliente;
 		this.zonaCliente = zonaCliente;
 		this.telefonoCliente = telefonoCliente;
+		this.telefonoadicional = telefonoadicional;
+		this.correoCliente = correoCliente;
 	}
 
 	public Long getID() {
@@ -67,6 +77,14 @@ public class Clientes {
 
 	public void setClientes(List<Clientes> clientes) {
 		this.clientes = clientes;
+	}
+
+	public Long getCedulaCliente() {
+		return this.cedulaCliente;
+	}
+
+	public void setCedulaCliente(Long cedulaCliente) {
+		this.cedulaCliente = cedulaCliente;
 	}
 
 	public String getNombreCliente() {
@@ -117,5 +135,21 @@ public class Clientes {
 		this.telefonoCliente = telefonoCliente;
 	}
 
+	public String getTelefonoadicional() {
+		return this.telefonoadicional;
+	}
+
+	public void setTelefonoadicional(String telefonoadicional) {
+		this.telefonoadicional = telefonoadicional;
+	}
+
+	public String getCorreoCliente() {
+		return this.correoCliente;
+	}
+
+	public void setCorreoCliente(String correoCliente) {
+		this.correoCliente = correoCliente;
+	}
+	
 	
 }

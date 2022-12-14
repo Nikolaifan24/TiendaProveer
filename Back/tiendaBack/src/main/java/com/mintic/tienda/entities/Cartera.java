@@ -8,11 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+// import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = Ventas.TABLE_NAME)
+@Table(name = Cartera.TABLE_NAME)
 public class Cartera {
     public static final String TABLE_NAME = "cartera";
 	
@@ -26,10 +26,17 @@ public class Cartera {
 
     
 	@ManyToOne
-    @JoinColumn(name="IIVenta")
+    @JoinColumn(name="IDVenta")
     private Long IDVenta;
 
+    
+	@ManyToOne
+    @JoinColumn(name="IDPagos")
+    private Long IDPago;
+
     private Date FechaVenta;
+
+    private Date FechaPago;
 
     private Double Saldo;
     
@@ -37,11 +44,13 @@ public class Cartera {
     public Cartera() {
     }
 
-    public Cartera(Long IDCartera, Long IDClientes, Long IDVenta, Date FechaVenta, Double Saldo) {
+    public Cartera(Long IDCartera, Long IDClientes, Long IDVenta, Long IDPago, Date FechaVenta, Date FechaPago, Double Saldo) {
         this.IDCartera = IDCartera;
         this.IDClientes = IDClientes;
         this.IDVenta = IDVenta;
+        this.IDPago = IDPago;
         this.FechaVenta = FechaVenta;
+        this.FechaPago = FechaPago;
         this.Saldo = Saldo;
     }
 
@@ -69,12 +78,28 @@ public class Cartera {
         this.IDVenta = IDVenta;
     }
 
+    public Long getIDPago() {
+        return this.IDPago;
+    }
+
+    public void setIDPago(Long IDPago) {
+        this.IDPago = IDPago;
+    }
+
     public Date getFechaVenta() {
         return this.FechaVenta;
     }
 
     public void setFechaVenta(Date FechaVenta) {
         this.FechaVenta = FechaVenta;
+    }
+
+    public Date getFechaPago() {
+        return this.FechaPago;
+    }
+
+    public void setFechaPago(Date FechaPago) {
+        this.FechaPago = FechaPago;
     }
 
     public Double getSaldo() {
@@ -84,5 +109,6 @@ public class Cartera {
     public void setSaldo(Double Saldo) {
         this.Saldo = Saldo;
     }
+
     
 }

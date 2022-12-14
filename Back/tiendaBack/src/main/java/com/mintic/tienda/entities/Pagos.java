@@ -1,6 +1,8 @@
 package com.mintic.tienda.entities;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,39 +21,43 @@ public class Pagos {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDPagos;
+
+    @OneToMany(mappedBy = "pagos")
+    private List<Pagos> pagos;
 	
 	@ManyToOne
-    @JoinColumn(name="IIDCliente")
+    @JoinColumn(name="IDCliente")
     private Long IDClientes;
 
     
 	@ManyToOne
-    @JoinColumn(name="IIVenta")
+    @JoinColumn(name="IDIVenta")
     private Long IDVenta;
 
-    private Date FechaVenta;
+	private Date FechaVenta;
 
 	private Date FechaPago;
 
 	private String TipoPago;
 
-	private Double Abono;
+	private String MedioPago;
 
-	private Double PagoTotal;
+	private Double ValorPago;
 
 
     public Pagos() {
     }
 
-    public Pagos(Long IDPagos, Long IDClientes, Long IDVenta, Date FechaVenta, Date FechaPago, String TipoPago, Double Abono, Double PagoTotal) {
+    public Pagos(Long IDPagos, List<Pagos> pagos, Long IDClientes, Long IDVenta, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
         this.IDPagos = IDPagos;
+        this.pagos = pagos;
         this.IDClientes = IDClientes;
         this.IDVenta = IDVenta;
         this.FechaVenta = FechaVenta;
         this.FechaPago = FechaPago;
         this.TipoPago = TipoPago;
-        this.Abono = Abono;
-        this.PagoTotal = PagoTotal;
+        this.MedioPago = MedioPago;
+        this.ValorPago = ValorPago;
     }
 
     public Long getIDPagos() {
@@ -60,6 +66,14 @@ public class Pagos {
 
     public void setIDPagos(Long IDPagos) {
         this.IDPagos = IDPagos;
+    }
+
+    public List<Pagos> getPagos() {
+        return this.pagos;
+    }
+
+    public void setPagos(List<Pagos> pagos) {
+        this.pagos = pagos;
     }
 
     public Long getIDClientes() {
@@ -102,23 +116,21 @@ public class Pagos {
         this.TipoPago = TipoPago;
     }
 
-    public Double getAbono() {
-        return this.Abono;
+    public String getMedioPago() {
+        return this.MedioPago;
     }
 
-    public void setAbono(Double Abono) {
-        this.Abono = Abono;
+    public void setMedioPago(String MedioPago) {
+        this.MedioPago = MedioPago;
     }
 
-    public Double getPagoTotal() {
-        return this.PagoTotal;
+    public Double getValorPago() {
+        return this.ValorPago;
     }
 
-    public void setPagoTotal(Double PagoTotal) {
-        this.PagoTotal = PagoTotal;
+    public void setValorPago(Double ValorPago) {
+        this.ValorPago = ValorPago;
     }
-
-
 
         
 }

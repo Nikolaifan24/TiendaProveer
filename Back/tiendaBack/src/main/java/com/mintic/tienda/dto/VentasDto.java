@@ -14,9 +14,7 @@ public class VentasDto {
 
 	private Date FechaVenta;
 
-	private String nombreProducto;
-		
-	private int Cantidad;
+	private Date FechaEntrega;
 	
 	private Double totalVenta;
 
@@ -27,28 +25,30 @@ public class VentasDto {
 	private Double saldo;
 
 	private String formaPago;
-
+	
 	private Date FechaPago;
 
+	private String zonaventa;
 
+
+
+	
 	public VentasDto() {
 	}
 
-
-	public VentasDto(Long ID, Long IDCliente, Long IDVendedor, Long IDProducto, Date FechaVenta, String nombreProducto, int Cantidad, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago) {
+	public VentasDto(Long ID, Long IDCliente, Long IDVendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
 		this.ID = ID;
 		this.IDCliente = IDCliente;
 		this.IDVendedor = IDVendedor;
-		this.IDProducto = IDProducto;
 		this.FechaVenta = FechaVenta;
-		this.nombreProducto = nombreProducto;
-		this.Cantidad = Cantidad;
+		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
 		this.ivaVenta = ivaVenta;
 		this.valorPago = valorPago;
 		this.saldo = saldo;
 		this.formaPago = formaPago;
 		this.FechaPago = FechaPago;
+		this.zonaventa = zonaventa;
 	}
 
 	public Long getID() {
@@ -91,20 +91,12 @@ public class VentasDto {
 		this.FechaVenta = FechaVenta;
 	}
 
-	public String getNombreProducto() {
-		return this.nombreProducto;
+	public Date getFechaEntrega() {
+		return this.FechaEntrega;
 	}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
-	}
-
-	public int getCantidad() {
-		return this.Cantidad;
-	}
-
-	public void setCantidad(int Cantidad) {
-		this.Cantidad = Cantidad;
+	public void setFechaEntrega(Date FechaEntrega) {
+		this.FechaEntrega = FechaEntrega;
 	}
 
 	public Double getTotalVenta() {
@@ -155,6 +147,14 @@ public class VentasDto {
 		this.FechaPago = FechaPago;
 	}
 
+	public String getZonaventa() {
+		return this.zonaventa;
+	}
+
+	public void setZonaventa(String zonaventa) {
+		this.zonaventa = zonaventa;
+	}
+	
 	
 		
 }

@@ -7,9 +7,14 @@ import com.mintic.tienda.entities.Productos;
 
 public interface IProductoService {
 
-	ProductosDto buscarProductoPorCodigo(Long codigoProducto);
+	// ProductosDto buscarProductoPorCodigo(Long codigoProducto);
 
 	List<Productos> getProductos();
 
 	void crearProducto(ProductosDto productosDto);
+
+    ProductosDto buscarProductoPorNombre(String nombreProducto);
+
+	void actualizarProducto(String nombreProducto, ProductosDto productosDto);
+
 }

@@ -3,7 +3,7 @@ package com.mintic.tienda.dto;
 public class VendedorDto {
     private Long ID;
 	
-	private Long IUsuario;
+	private Long IDUsuario;
 
 	private Long Documento;
 	
@@ -24,9 +24,9 @@ public class VendedorDto {
     }
 
 
-    public VendedorDto(Long ID, Long IUsuario, Long Documento, String Nombre, String Dirrecion, Double Telefono, Float Comision, String FechaIngreso, Double Salario) {
+    public VendedorDto(Long ID, Long IDUsuario, Long Documento, String Nombre, String Dirrecion, Double Telefono, Float Comision, String FechaIngreso, Double Salario) {
         this.ID = ID;
-        this.IUsuario = IUsuario;
+        this.IDUsuario = IDUsuario;
         this.Documento = Documento;
         this.Nombre = Nombre;
         this.Dirrecion = Dirrecion;
@@ -45,12 +45,12 @@ public class VendedorDto {
         this.ID = ID;
     }
 
-    public Long getIUsuario() {
-        return this.IUsuario;
+    public Long getIDUsuario() {
+        return this.IDUsuario;
     }
 
-    public void setIUsuario(Long IUsuario) {
-        this.IUsuario = IUsuario;
+    public void setIDUsuario(Long IDUsuario) {
+        this.IDUsuario = IDUsuario;
     }
 
     public Long getDocumento() {

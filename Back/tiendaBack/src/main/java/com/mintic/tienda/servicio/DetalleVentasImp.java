@@ -5,30 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mintic.tienda.dto.ClienteDto;
-import com.mintic.tienda.dto.DetalleVentasDto;
-import com.mintic.tienda.dto.ProductosDto;
-import com.mintic.tienda.entities.DetalleVentas;
-import com.mintic.tienda.entities.Productos;
-import com.mintic.tienda.repositories.IDetalleVentas;
+// import com.mintic.tienda.dto.ClienteDto;
+import com.mintic.tienda.dto.DetalleventaDto;
+// import com.mintic.tienda.dto.ProductosDto;
+import com.mintic.tienda.entities.Detalleventa;
+// import com.mintic.tienda.entities.Productos;
+import com.mintic.tienda.repositories.IDetalleVenta;
 
 @Service
 public class DetalleVentasImp implements IDetalleVentasService{
 
 	@Autowired
-	IDetalleVentas iDetalleVentas;
+	IDetalleVenta iDetalleVentas;
 
 	@Override
-	public List<DetalleVentas> getDetalleVentas() {
-		return (List<DetalleVentas>) iDetalleVentas.findAll();
+	public List<Detalleventa> getDetalleVentas() {
+		return (List<Detalleventa>) iDetalleVentas.findAll();
 	}
 
 	@Override
-	public DetalleVentasDto buscarDetalleVentasPorIdVenta(Long idVenta) {
-		DetalleVentas detalleVentas = null;
+	public DetalleventaDto buscarDetalleVentasPorIdVenta(Long idVenta) {
+		Detalleventa detalleVentas = null;
 		try {
 			detalleVentas = iDetalleVentas.buscarDetalleVentaPorIdVenta(idVenta);
-			DetalleVentasDto detalleVentasDto = mapDetalleVentasDto(detalleVentas);
+			DetalleventaDto detalleVentasDto = mapDetalleVentasDto(detalleVentas);
 			return detalleVentasDto;
 		} catch (Exception e) {
 			throw e;
@@ -36,65 +36,58 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		}
 	}
 
-	private DetalleVentasDto mapDetalleVentasDto(DetalleVentas detalleVentas) {
-			return new DetalleVentasDto(
-					detalleVentas.getId(),
-					detalleVentas.getCodigoDetalleVenta(),
+	private DetalleventaDto mapDetalleVentasDto(Detalleventa detalleVentas) {
+			return new DetalleventaDto(
+					detalleVentas.getID(),
+					detalleVentas.getIDVenta(),
+					detalleVentas.getIDProducto(),
 					detalleVentas.getCantidadProducto(),
-					detalleVentas.getIdProducto(),
-					detalleVentas.getIdVenta(),
-					detalleVentas.getValorTotal(),
-					detalleVentas.getValorVenta(),
-					detalleVentas.getValorIva()
+					detalleVentas.getPrecioProducto(),
+					detalleVentas.getTotalDetalle()
+										
 			);		
 				
 	}
 
 	@Override
-	public void crearDetalleVentas(DetalleVentasDto detalleVentasDto) {
+	public void crearDetalleVentas(DetalleventaDto detalleVentasDto) {
 		iDetalleVentas.save(buildDetalleVentas(detalleVentasDto));
 		
 	}
 
-	private DetalleVentas buildDetalleVentas(DetalleVentasDto detalleVentasDto) {
-		DetalleVentas detalleVentas = new DetalleVentas();
+	private Detalleventa buildDetalleVentas(DetalleventaDto detalleVentasDto) {
+		Detalleventa detalleVenta = new Detalleventa();
 		
-		Long id = detalleVentasDto.getId();
-		Long codigoDetalleVenta = detalleVentasDto.getCodigoDetalleVenta();
-		Integer cantidadProducto = detalleVentasDto.getCantidadProducto();
-		Long idProducto = detalleVentasDto.getIdProducto();
-		Long idVenta = detalleVentasDto.getIdVenta();
-		Double valorTotal = detalleVentasDto.getValorTotal();
-		Double valorVenta = detalleVentasDto.getValorVenta();
-		Double valorIva = detalleVentasDto.getValorIva();
-		
+		Long id = detalleVentasDto.getID();
+		Long idVenta = detalleVentasDto.getIDVenta();
+		Long idProducto = detalleVentasDto.getIDProducto();
+		Integer cantidadProducto = detalleVentasDto.getCantidad();
+		Double precioProducto = detalleVentasDto.getPrecioProducto();
+		Double totalDetalle = detalleVentasDto.getTotalDetalle();
+			
 		if(id != null) {
-			detalleVentas.setId(idVenta);
+			detalleVenta.setID(id);
 		}
-		if(codigoDetalleVenta != null) {
-			detalleVentas.setCodigoDetalleVenta(codigoDetalleVenta);
+		if(id != null) {
+			detalleVenta.setIDVenta(idVenta);
+		}
+		if(id != null) {
+			detalleVenta.setIDProducto(idProducto);
 		}
 		if(cantidadProducto != null) {
-			detalleVentas.setCantidadProducto(cantidadProducto);;
+			detalleVenta.setCantidadProducto(cantidadProducto);;
 		}
-		if(idProducto != null) {
-			detalleVentas.setIdProducto(idProducto);
+		if(precioProducto != null) {
+			detalleVenta.setPrecioProducto(precioProducto);
 		}
-		if(idVenta != null) {
-			detalleVentas.setIdVenta(idVenta);
+		if(totalDetalle != null) {
+			detalleVenta.getTotalDetalle();
 		}
-		if(valorTotal != null) {
-			detalleVentas.setValorTotal(valorTotal);
-		}
-		if(valorVenta != null) {
-			detalleVentas.setValorVenta(valorVenta);
-		}
-		if(valorIva != null) {
-			detalleVentas.setValorIva(valorIva);
-		}
-		return detalleVentas;
+		
+		return detalleVenta;
 		
 	}
+
 	
 	
 }

@@ -17,13 +17,16 @@ public class ClienteDto {
 	private String zonaCliente;
 		
 	private String telefonoCliente;
-	
+
+	private String telefonoadicional;
+
+	private String correoCliente;
+		
 
 	public ClienteDto() {
 	}
 
-
-	public ClienteDto(Long ID, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente) {
+	public ClienteDto(Long ID, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
 		this.ID = ID;
 		this.cedulaCliente = cedulaCliente;
 		this.nombreCliente = nombreCliente;
@@ -32,8 +35,9 @@ public class ClienteDto {
 		this.barrioCliente = barrioCliente;
 		this.zonaCliente = zonaCliente;
 		this.telefonoCliente = telefonoCliente;
+		this.telefonoadicional = telefonoadicional;
+		this.correoCliente = correoCliente;
 	}
-
 
 	public Long getID() {
 		return this.ID;
@@ -97,6 +101,22 @@ public class ClienteDto {
 
 	public void setTelefonoCliente(String telefonoCliente) {
 		this.telefonoCliente = telefonoCliente;
+	}
+
+	public String getTelefonoadicional() {
+		return this.telefonoadicional;
+	}
+
+	public void setTelefonoadicional(String telefonoadicional) {
+		this.telefonoadicional = telefonoadicional;
+	}
+
+	public String getCorreoCliente() {
+		return this.correoCliente;
+	}
+
+	public void setCorreoCliente(String correoCliente) {
+		this.correoCliente = correoCliente;
 	}
 
 	

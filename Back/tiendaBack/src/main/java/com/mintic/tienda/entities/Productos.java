@@ -22,12 +22,14 @@ public class Productos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDProductos;
 	
-	@OneToMany(mappedBy="NombreProducto" )
+	@OneToMany(mappedBy="productos" )
   	private List<Productos> productos;
 
 	@ManyToOne
 	@JoinColumn(name="IDProveedor")
 	private Long IDProveedor;
+
+	private Long IDCompras;
 
 	private Long codigoProducto;
 
@@ -41,21 +43,30 @@ public class Productos {
 
 	private Long cantidadProducto;
 
+	private Long unidadesVendidas;
+
+	private Long unidadesCompradas;
+
+	private Long devoluciones;
+
 
 	public Productos() {
 	}
-	
 
-	public Productos(Long IDProductos, List<Productos> productos, Long IDProveedor, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto) {
+	public Productos(Long IDProductos, List<Productos> productos, Long IDProveedor, Long IDCompras, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
 		this.IDProductos = IDProductos;
 		this.productos = productos;
 		this.IDProveedor = IDProveedor;
+		this.IDCompras = IDCompras;
 		this.codigoProducto = codigoProducto;
 		this.nombreProducto = nombreProducto;
 		this.tipoProducto = tipoProducto;
 		this.precioCompra = precioCompra;
 		this.precioVenta = precioVenta;
 		this.cantidadProducto = cantidadProducto;
+		this.unidadesVendidas = unidadesVendidas;
+		this.unidadesCompradas = unidadesCompradas;
+		this.devoluciones = devoluciones;
 	}
 
 	public Long getIDProductos() {
@@ -80,6 +91,14 @@ public class Productos {
 
 	public void setIDProveedor(Long IDProveedor) {
 		this.IDProveedor = IDProveedor;
+	}
+
+	public Long getIDCompras() {
+		return this.IDCompras;
+	}
+
+	public void setIDCompras(Long IDCompras) {
+		this.IDCompras = IDCompras;
 	}
 
 	public Long getCodigoProducto() {
@@ -130,6 +149,29 @@ public class Productos {
 		this.cantidadProducto = cantidadProducto;
 	}
 
+	public Long getUnidadesVendidas() {
+		return this.unidadesVendidas;
+	}
 
+	public void setUnidadesVendidas(Long unidadesVendidas) {
+		this.unidadesVendidas = unidadesVendidas;
+	}
+
+	public Long getUnidadesCompradas() {
+		return this.unidadesCompradas;
+	}
+
+	public void setUnidadesCompradas(Long unidadesCompradas) {
+		this.unidadesCompradas = unidadesCompradas;
+	}
+
+	public Long getDevoluciones() {
+		return this.devoluciones;
+	}
+
+	public void setDevoluciones(Long devoluciones) {
+		this.devoluciones = devoluciones;
+	}
 	
+
 }

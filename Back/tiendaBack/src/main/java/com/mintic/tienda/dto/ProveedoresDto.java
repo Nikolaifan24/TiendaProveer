@@ -14,7 +14,7 @@ public class ProveedoresDto {
 	
 	private String telefonoProveedor;
 
-	private String TipoProveedor;
+	private String TipoProducto;
 
 
 	public ProveedoresDto() {
@@ -22,14 +22,14 @@ public class ProveedoresDto {
 	
 
 
-	public ProveedoresDto(Long id, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProveedor) {
+	public ProveedoresDto(Long id, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
 		this.id = id;
 		this.nombreProveedor = nombreProveedor;
 		this.nitProveedor = nitProveedor;
 		this.ciudadProveedor = ciudadProveedor;
 		this.direccionProveedor = direccionProveedor;
 		this.telefonoProveedor = telefonoProveedor;
-		this.TipoProveedor = TipoProveedor;
+		this.TipoProducto = TipoProducto;
 	}
 
 
@@ -81,12 +81,12 @@ public class ProveedoresDto {
 		this.telefonoProveedor = telefonoProveedor;
 	}
 
-	public String getTipoProveedor() {
-		return this.TipoProveedor;
+	public String getTipoProducto() {
+		return this.TipoProducto;
 	}
 
-	public void setTipoProveedor(String TipoProveedor) {
-		this.TipoProveedor = TipoProveedor;
+	public void setTipoProducto(String TipoProducto) {
+		this.TipoProducto = TipoProducto;
 	}
 	
 

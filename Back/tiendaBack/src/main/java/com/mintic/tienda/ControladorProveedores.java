@@ -30,6 +30,11 @@ public class ControladorProveedores {
 	public ProveedoresDto buscarProveedorPorNit(@PathVariable Long nitProveedor) {
 		return iProveedor.buscarProveedorPorNit(nitProveedor);
 	}
+
+	@GetMapping("/proveedor/buscar/{TipoProducto}")
+	public ProveedoresDto buscarProveedorPorTipoproducto(@PathVariable String tipoProducto) {
+		return iProveedor.buscarProveedorPorTipoproducto(null);
+	}
 	
 	@PostMapping("/proveedor")
 	public void crearProveedor(@RequestBody ProveedoresDto proveedorDto) {

@@ -12,6 +12,8 @@ public interface IProveedorService {
 
 	ProveedoresDto buscarProveedorPorNit(Long nitProveedor);
 
+	ProveedoresDto buscarProveedorPorTipoproducto(String TipoProducto);
+
 	void eliminarProveedor(Long nitProveedor);
 
 	void actualizarProveedor(Long nitProveedor, ProveedoresDto ProveedorDto);

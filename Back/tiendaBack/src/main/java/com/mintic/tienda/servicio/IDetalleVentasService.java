@@ -2,15 +2,15 @@ package com.mintic.tienda.servicio;
 
 import java.util.List;
 
-import com.mintic.tienda.dto.DetalleVentasDto;
-import com.mintic.tienda.entities.DetalleVentas;
+import com.mintic.tienda.dto.DetalleventaDto;
+import com.mintic.tienda.entities.Detalleventa;
 
 public interface IDetalleVentasService {
 
-	List<DetalleVentas> getDetalleVentas();
+	List<Detalleventa> getDetalleVentas();
 
-	DetalleVentasDto buscarDetalleVentasPorIdVenta(Long idVenta);
+	DetalleventaDto buscarDetalleVentasPorIdVenta(Long idVenta);
 
-	void crearDetalleVentas(DetalleVentasDto detalleVentasDto);
+	void crearDetalleVentas(DetalleventaDto detalleVentasDto);
 
 }

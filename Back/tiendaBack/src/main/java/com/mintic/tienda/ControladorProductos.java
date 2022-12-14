@@ -43,9 +43,9 @@ public class ControladorProductos {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/producto/{codigoProducto}")
-	public ProductosDto buscarProductoPorCodigo(@PathVariable Long codigoProducto) {
-		return iProducto.buscarProductoPorCodigo(codigoProducto);
+	@GetMapping("/producto/{nombreProducto}")
+	public ProductosDto buscarProductoPorNombre(@PathVariable String nombreProducto) {
+		return iProducto.buscarProductoPorNombre(nombreProducto);
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")

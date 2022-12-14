@@ -11,4 +11,8 @@ public interface IProveedor extends CrudRepository<Proveedores, Long> {
 	
 	@Query(value = "SELECT * FROM Proveedores c where c.nitProveedor=:nitProveedor", nativeQuery = true)
 	Proveedores buscarProveedorPorNit(@Param("nitProveedor") Long nitProveedor);
+
+	@Query(value = "SELECT * FROM Proveedores c where c.TipoProducuto=:TipoProducto", nativeQuery = true)
+	Proveedores buscarProveedorPorTipoproducto(@Param("TipoProdcuto") String TipoProducto);
+
 }

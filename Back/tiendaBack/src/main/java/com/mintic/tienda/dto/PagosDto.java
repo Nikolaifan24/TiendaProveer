@@ -16,24 +16,24 @@ public class PagosDto {
 
 	private String TipoPago;
 
-	private Double Abono;
+	private String MedioPago;
 
-	private Double PagoTotal;
+	private Double ValorPago;
 
 
 	public PagosDto() {
 	}
 
 
-	public PagosDto(Long id, Long idClientes, Long idVenta, Date FechaVenta, Date FechaPago, String TipoPago, Double Abono, Double PagoTotal) {
+	public PagosDto(Long id, Long idClientes, Long idVenta, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
 		this.id = id;
 		this.idClientes = idClientes;
 		this.idVenta = idVenta;
 		this.FechaVenta = FechaVenta;
 		this.FechaPago = FechaPago;
 		this.TipoPago = TipoPago;
-		this.Abono = Abono;
-		this.PagoTotal = PagoTotal;
+		this.MedioPago = MedioPago;
+		this.ValorPago = ValorPago;
 	}
 
 
@@ -85,21 +85,20 @@ public class PagosDto {
 		this.TipoPago = TipoPago;
 	}
 
-	public Double getAbono() {
-		return this.Abono;
+	public String getMedioPago() {
+		return this.MedioPago;
 	}
 
-	public void setAbono(Double Abono) {
-		this.Abono = Abono;
+	public void setMedioPago(String MedioPago) {
+		this.MedioPago = MedioPago;
 	}
 
-	public Double getPagoTotal() {
-		return this.PagoTotal;
+	public Double getValorPago() {
+		return this.ValorPago;
 	}
 
-	public void setPagoTotal(Double PagoTotal) {
-		this.PagoTotal = PagoTotal;
+	public void setValorPago(Double ValorPago) {
+		this.ValorPago = ValorPago;
 	}
-
 
 }

@@ -27,14 +27,18 @@ public class ProveedorImp implements IProveedorService {
 	private Proveedores buildProveedor(ProveedoresDto proveedorDto) {
 		Proveedores proveedor = new Proveedores();
 		Long id = proveedorDto.getId();
+		String nombreProveedor = proveedorDto.getNombreProveedor();
 		Long nitProveedor = proveedorDto.getNitProveedor();
 		String ciudadProveedor = proveedorDto.getCiudadProveedor();
 		String direccionProveedor = proveedorDto.getDireccionProveedor();
-		String nombreProveedor = proveedorDto.getNombreProveedor();
 		String telefonoProveedor = proveedorDto.getTelefonoProveedor();
+		String tipoproducto = proveedorDto.getTipoProducto();
 		
 		if(id != null) {
-			proveedor.setId(id);
+			proveedor.setIDProveedor(nitProveedor);
+		}
+		if(nombreProveedor != null) {
+			proveedor.setNombreProveedor(nombreProveedor);
 		}
 		if(nitProveedor != null) {
 			proveedor.setNitProveedor(nitProveedor);
@@ -45,25 +49,28 @@ public class ProveedorImp implements IProveedorService {
 		if(direccionProveedor != null) {
 			proveedor.setDireccionProveedor(direccionProveedor);
 		}
-		if(nombreProveedor != null) {
-			proveedor.setNombreProveedor(nombreProveedor);
-		}
 		if(telefonoProveedor != null) {
 			proveedor.setTelefonoProveedor(telefonoProveedor);
 		}
-		
+		if(tipoproducto != null) {
+			proveedor.setTipoProducto(tipoproducto);
+		}
+
 		System.out.println(proveedor);
 		return proveedor;
 	}
 	
 	private void updateProveedor(ProveedoresDto ProveedorDto, Proveedores Proveedor) {
-		
+		String nombreProveedor = ProveedorDto.getNombreProveedor();
 		Long nitProveedor = ProveedorDto.getNitProveedor();
 		String ciudadProveedor = ProveedorDto.getCiudadProveedor();
 		String direccionProveedor = ProveedorDto.getDireccionProveedor();
-		String nombreProveedor = ProveedorDto.getNombreProveedor();
 		String telefonoProveedor = ProveedorDto.getTelefonoProveedor();
+		String tipoProducto = ProveedorDto.getTipoProducto();
 		
+		if(nombreProveedor != null) {
+			Proveedor.setNombreProveedor(nombreProveedor);
+		}
 		if(nitProveedor != null) {
 			Proveedor.setNitProveedor(nitProveedor);
 		}
@@ -73,11 +80,11 @@ public class ProveedorImp implements IProveedorService {
 		if(direccionProveedor != null) {
 			Proveedor.setDireccionProveedor(direccionProveedor);
 		}
-		if(nombreProveedor != null) {
-			Proveedor.setDireccionProveedor(direccionProveedor);
-		}
 		if(telefonoProveedor != null) {
 			Proveedor.setTelefonoProveedor(telefonoProveedor);
+		}
+		if(tipoProducto != null) {
+			Proveedor.setTipoProducto(tipoProducto);
 		}		
 		
 		iProveedor.save(Proveedor);
@@ -98,12 +105,14 @@ public class ProveedorImp implements IProveedorService {
 	
 	private ProveedoresDto mapProveedorDto(Proveedores proveedores) {
 		return new ProveedoresDto(
-				proveedores.getId(),
+				proveedores.getIDProveedor(),
+				proveedores.getNombreProveedor(),
 				proveedores.getNitProveedor(),
 				proveedores.getCiudadProveedor(),
 				proveedores.getDireccionProveedor(),
-				proveedores.getNombreProveedor(),
-				proveedores.getTelefonoProveedor()
+				proveedores.getTelefonoProveedor(),
+				proveedores.getTipoProducto()
+
 		);		
 	}
 	
@@ -125,6 +134,18 @@ public class ProveedorImp implements IProveedorService {
 	@Override
 	public List<Proveedores> listaProvedores() {
 		return (List<Proveedores>) iProveedor.findAll();
+	}
+
+	@Override
+	public ProveedoresDto buscarProveedorPorTipoproducto(String TipoProducto) {
+		Proveedores proveedores = null;
+		try {
+			proveedores = iProveedor.buscarProveedorPorTipoproducto(TipoProducto);
+			ProveedoresDto  proveedoresDto = mapProveedorDto(proveedores);
+			return proveedoresDto;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

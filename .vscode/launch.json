@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TiendaFrontApplication<tiendaFront>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.mintic.tiendafront.TiendaFrontApplication",
+            "projectName": "tiendaFront",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TiendaApplication<tienda>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.mintic.tienda.TiendaApplication",
+            "projectName": "tienda",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

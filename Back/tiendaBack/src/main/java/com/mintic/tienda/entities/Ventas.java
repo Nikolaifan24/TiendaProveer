@@ -24,26 +24,20 @@ public class Ventas {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDVenta;
 
-	@OneToMany(mappedBy="persona" )
+	@OneToMany(mappedBy="ventas" )
   	private List<Ventas> ventas;
-	
-	@ManyToOne
-    @JoinColumn(name="IIVendedor")
-    private Long IDVendedor;
-	
-	@ManyToOne
-    @JoinColumn(name="IIDCliente")
-    private Long IDCliente;
 
 	@ManyToOne
-    @JoinColumn(name="IIProducto")
-    private Long IDProductos;
+	@JoinColumn(name="IDCliente")
+	private Long IDCliente;
+	
+	@ManyToOne
+    @JoinColumn(name="IDVendedor")
+    private Long IDVendedor;
 
 	private Date FechaVenta;
 
-	private String nombreProducto;
-		
-	private int Cantidad;
+	private Date FechaEntrega;
 	
 	private Double totalVenta;
 
@@ -54,28 +48,29 @@ public class Ventas {
 	private Double saldo;
 
 	private String formaPago;
-
-	private Date FechaPago;
 	
+	private Date FechaPago;
 
+	private String zonaventa;
+
+	
 	public Ventas() {
 	}
 
-	public Ventas(Long IDVenta, List<Ventas> ventas, Long IDVendedor, Long IDCliente, Long IDProductos, Date FechaVenta, String nombreProducto, int Cantidad, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago) {
+	public Ventas(Long IDVenta, List<Ventas> ventas, Long IDCliente, Long IDVendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
 		this.IDVenta = IDVenta;
 		this.ventas = ventas;
-		this.IDVendedor = IDVendedor;
 		this.IDCliente = IDCliente;
-		this.IDProductos = IDProductos;
+		this.IDVendedor = IDVendedor;
 		this.FechaVenta = FechaVenta;
-		this.nombreProducto = nombreProducto;
-		this.Cantidad = Cantidad;
+		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
 		this.ivaVenta = ivaVenta;
 		this.valorPago = valorPago;
 		this.saldo = saldo;
 		this.formaPago = formaPago;
 		this.FechaPago = FechaPago;
+		this.zonaventa = zonaventa;
 	}
 
 	public Long getIDVenta() {
@@ -94,14 +89,6 @@ public class Ventas {
 		this.ventas = ventas;
 	}
 
-	public Long getIDVendedor() {
-		return this.IDVendedor;
-	}
-
-	public void setIDVendedor(Long IDVendedor) {
-		this.IDVendedor = IDVendedor;
-	}
-
 	public Long getIDCliente() {
 		return this.IDCliente;
 	}
@@ -110,12 +97,12 @@ public class Ventas {
 		this.IDCliente = IDCliente;
 	}
 
-	public Long getIDProductos() {
-		return this.IDProductos;
+	public Long getIDVendedor() {
+		return this.IDVendedor;
 	}
 
-	public void setIDProductos(Long IDProductos) {
-		this.IDProductos = IDProductos;
+	public void setIDVendedor(Long IDVendedor) {
+		this.IDVendedor = IDVendedor;
 	}
 
 	public Date getFechaVenta() {
@@ -126,20 +113,12 @@ public class Ventas {
 		this.FechaVenta = FechaVenta;
 	}
 
-	public String getNombreProducto() {
-		return this.nombreProducto;
+	public Date getFechaEntrega() {
+		return this.FechaEntrega;
 	}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
-	}
-
-	public int getCantidad() {
-		return this.Cantidad;
-	}
-
-	public void setCantidad(int Cantidad) {
-		this.Cantidad = Cantidad;
+	public void setFechaEntrega(Date FechaEntrega) {
+		this.FechaEntrega = FechaEntrega;
 	}
 
 	public Double getTotalVenta() {
@@ -190,6 +169,12 @@ public class Ventas {
 		this.FechaPago = FechaPago;
 	}
 
-	
-	
+	public String getZonaventa() {
+		return this.zonaventa;
+	}
+
+	public void setZonaventa(String zonaventa) {
+		this.zonaventa = zonaventa;
+	}
+
 }

@@ -2,13 +2,13 @@ package com.mintic.tienda.entities;
 
 import java.util.List;
 
-import javax.persistence.Column;
+// import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,30 +23,32 @@ public class Proveedores {
 	
 	@OneToMany(mappedBy = "proveedor")
 	private List<Productos> productos;
-	
+
+	private String nombreProveedor;
+
 	private Long nitProveedor;
-	
 	
 	private String ciudadProveedor;
 	
 	private String direccionProveedor;
 	
-	private String nombreProveedor;
-	
 	private String telefonoProveedor;
+
+	private String TipoProducto;
 
 
 	public Proveedores() {
 	}
 
-	public Proveedores(Long IDProveedor, List<Productos> productos, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String nombreProveedor, String telefonoProveedor) {
+	public Proveedores(Long IDProveedor, List<Productos> productos, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
 		this.IDProveedor = IDProveedor;
 		this.productos = productos;
+		this.nombreProveedor = nombreProveedor;
 		this.nitProveedor = nitProveedor;
 		this.ciudadProveedor = ciudadProveedor;
 		this.direccionProveedor = direccionProveedor;
-		this.nombreProveedor = nombreProveedor;
 		this.telefonoProveedor = telefonoProveedor;
+		this.TipoProducto = TipoProducto;
 	}
 
 	public Long getIDProveedor() {
@@ -63,6 +65,14 @@ public class Proveedores {
 
 	public void setProductos(List<Productos> productos) {
 		this.productos = productos;
+	}
+
+	public String getNombreProveedor() {
+		return this.nombreProveedor;
+	}
+
+	public void setNombreProveedor(String nombreProveedor) {
+		this.nombreProveedor = nombreProveedor;
 	}
 
 	public Long getNitProveedor() {
@@ -89,14 +99,6 @@ public class Proveedores {
 		this.direccionProveedor = direccionProveedor;
 	}
 
-	public String getNombreProveedor() {
-		return this.nombreProveedor;
-	}
-
-	public void setNombreProveedor(String nombreProveedor) {
-		this.nombreProveedor = nombreProveedor;
-	}
-
 	public String getTelefonoProveedor() {
 		return this.telefonoProveedor;
 	}
@@ -104,6 +106,15 @@ public class Proveedores {
 	public void setTelefonoProveedor(String telefonoProveedor) {
 		this.telefonoProveedor = telefonoProveedor;
 	}
+
+	public String getTipoProducto() {
+		return this.TipoProducto;
+	}
+
+	public void setTipoProducto(String TipoProducto) {
+		this.TipoProducto = TipoProducto;
+	}
+
 	
 
 }

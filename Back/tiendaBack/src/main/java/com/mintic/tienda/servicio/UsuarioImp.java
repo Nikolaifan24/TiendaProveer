@@ -18,14 +18,13 @@ import com.mintic.tienda.repositories.IUsuario;
 public class UsuarioImp implements IUsuarioService {
 
 	
-	
 	@Autowired
 	IUsuario iUsuario;
 	
 	@Override
 	public Long login(LoginDto usuarioDto) {
 		Usuarios u = iUsuario.findByNombreUsuarioAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
-		return u != null ? u.getId() : 0;
+		return u != null ? u.getID() : 0;
 	}
 	
 	@Override
@@ -41,33 +40,6 @@ public class UsuarioImp implements IUsuarioService {
 	}
 
 
-	@Override
-	public UsuarioDto buscarUsuarioPorCedula(Long cedulaUsuario) {
-		Usuarios usuario = null;
-		try {
-			
-			usuario = iUsuario.buscarUsuarioPorCedula(cedulaUsuario);
-			UsuarioDto usuarioDto = mapUsuarioDto(usuario);
-			return usuarioDto;
-		} catch (Exception e) {
-			return null;
-		}
-		
-	}
-
-	private UsuarioDto mapUsuarioDto(Usuarios usuario) {
-		
-		return new UsuarioDto(
-				usuario.getId(),
-				usuario.getCedulaUsuario(),
-				usuario.getEmailUsuario(),
-				usuario.getNombreUsuario(),
-				usuario.getPassword(),
-				usuario.getUsuario()
-		);
-	}
-
-	
 
 	@Override
 	public void crearUsuario(UsuarioDto usuarioDto) {
@@ -78,21 +50,18 @@ public class UsuarioImp implements IUsuarioService {
 	private Usuarios buildUsuario(UsuarioDto usuarioDto) {
 		Usuarios myusuario = new Usuarios();
 		
-		Long id = usuarioDto.getId();
-		Long cedulaUsuario = usuarioDto.getCedulaUsuario();
-		String emailUsuario = usuarioDto.getEmailUsuario();
-		String nombreUsuario = usuarioDto.getNombreUsuario();
+		Long id = usuarioDto.getID();
+		String emailUsuario = usuarioDto.getCorreo();
+		String nombreUsuario = usuarioDto.getNombre();
 		String password = usuarioDto.getPassword();
 		String usuario = usuarioDto.getUsuario();
-		myusuario.setId(id);
-		if(cedulaUsuario != null) {
-			myusuario.setCedulaUsuario(cedulaUsuario);
-		}
+		myusuario.setID(id);
+		
 		if(emailUsuario != null) {
-			myusuario.setEmailUsuario(emailUsuario);
+			myusuario.setCorreo(emailUsuario);
 		}
 		if(nombreUsuario != null) {
-			myusuario.setNombreUsuario(nombreUsuario);
+			myusuario.setNombre(nombreUsuario);;
 		}
 		if(password != null) {
 			myusuario.setPassword(password);
@@ -106,21 +75,17 @@ public class UsuarioImp implements IUsuarioService {
 	
 	private void updateUsuario(UsuarioDto usuarioDto, Usuarios myusuario) {
 		
-		Long id = usuarioDto.getId();
-		Long cedulaUsuario = usuarioDto.getCedulaUsuario();
-		String emailUsuario = usuarioDto.getEmailUsuario();
-		String nombreUsuario = usuarioDto.getNombreUsuario();
+		Long id = usuarioDto.getID();
+		String emailUsuario = usuarioDto.getCorreo();
+		String nombreUsuario = usuarioDto.getNombre();
 		String password = usuarioDto.getPassword();
 		String usuario = usuarioDto.getUsuario();
-		myusuario.setId(id);
-		if(cedulaUsuario != null) {
-			myusuario.setCedulaUsuario(cedulaUsuario);
-		}
+		myusuario.setID(id);
 		if(emailUsuario != null) {
-			myusuario.setEmailUsuario(emailUsuario);
+			myusuario.setCorreo(emailUsuario);;
 		}
 		if(nombreUsuario != null) {
-			myusuario.setNombreUsuario(nombreUsuario);
+			myusuario.setNombre(nombreUsuario);
 		}
 		if(password != null) {
 			myusuario.setPassword(password);
@@ -135,7 +100,7 @@ public class UsuarioImp implements IUsuarioService {
 
 	@Override
 	public void eliminarUsuario(Long cedulaUsuario) {
-		Usuarios usuario = iUsuario.buscarUsuarioPorCedula(cedulaUsuario);
+		Usuarios usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
 		iUsuario.delete(usuario);
 		
 	}
@@ -143,9 +108,15 @@ public class UsuarioImp implements IUsuarioService {
 	@Override
 	public void actualizarUsuario(Long cedulaUsuario, UsuarioDto usuarioDto) {
 		
-		Usuarios usuario = iUsuario.buscarUsuarioPorCedula(cedulaUsuario);
+		Usuarios usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
 		updateUsuario(usuarioDto, usuario);
 		
+	}
+
+	@Override
+	public UsuarioDto buscarUsuarioPorCedula(Long numeroCedula) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
