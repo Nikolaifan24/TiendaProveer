@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 // import com.mintic.tienda.dto.ProductoDto;
 import com.mintic.tienda.dto.ProductosDto;
+import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Productos;
+import com.mintic.tienda.entities.Proveedores;
 // import com.mintic.tienda.entities.Productos;
 // import com.mintic.tienda.entities.Usuarios;
 import com.mintic.tienda.repositories.IProducto;
@@ -38,8 +40,8 @@ public class ProductoImp implements IProductoService {
 	private ProductosDto mapProductosDto(Productos producto) {
 		return new ProductosDto(
 				producto.getIDProductos(),
-				producto.getIDProveedor(),
-				producto.getIDCompras(),
+				producto.getProveedores(),
+				producto.getCompras(),
 				producto.getCodigoProducto(),
 				producto.getNombreProducto(),
 				producto.getTipoProducto(),
@@ -71,8 +73,8 @@ public class ProductoImp implements IProductoService {
 		Productos productos = new Productos();
 		
 		Long id =  productosDto.getIdProducto();
-		Long idProveedor = productosDto.getIdProveedor();
-		Long idCompra = productosDto.getIdCompras();
+		Proveedores proveedores = productosDto.getProveedores();
+		Compras compras = productosDto.getCompras();
 		Long codigoProducto = productosDto.getCodigoProducto();
 		String nombreProducto = productosDto.getNombreProducto();
 		String tipoProducto = productosDto.getTipoProducto();
@@ -86,11 +88,11 @@ public class ProductoImp implements IProductoService {
 		if(id != null) {
 			productos.setIDProductos(cantidadProducto);;
 		}
-		if(idProveedor != null) {
-			productos.setIDProveedor(idProveedor);
+		if(proveedores != null) {
+			productos.setProveedores(proveedores);
 		}
-		if(idCompra != null) {
-			productos.setIDCompras(idCompra);
+		if(compras != null) {
+			productos.setCompras(compras);
 		}
 		if(codigoProducto != null) {
 			productos.setCodigoProducto(codigoProducto);
@@ -128,8 +130,8 @@ public class ProductoImp implements IProductoService {
 		// Productos productos = new Productos();
 		
 		Long id =  productosDto.getIdProducto();
-		Long idProveedor = productosDto.getIdProveedor();
-		Long idCompra = productosDto.getIdCompras();
+		Proveedores proveedores = productosDto.getProveedores();
+		Compras compras = productosDto.getCompras();
 		Long codigoProducto = productosDto.getCodigoProducto();
 		String nombreProducto = productosDto.getNombreProducto();
 		String tipoProducto = productosDto.getTipoProducto();
@@ -142,13 +144,13 @@ public class ProductoImp implements IProductoService {
 
 		
 		if(id != null) {
-			productos.setIDProductos(cantidadProducto);;
+			productos.setIDProductos(cantidadProducto);
 		}
-		if(idProveedor != null) {
-			productos.setIDProveedor(idProveedor);
+		if(proveedores != null) {
+			productos.setProveedores(proveedores);
 		}
-		if(idCompra != null) {
-			productos.setIDCompras(idCompra);
+		if(compras != null) {
+			productos.setCompras(compras);
 		}
 		if(codigoProducto != null) {
 			productos.setCodigoProducto(codigoProducto);

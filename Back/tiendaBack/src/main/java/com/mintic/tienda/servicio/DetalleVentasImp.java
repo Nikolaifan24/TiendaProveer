@@ -59,8 +59,8 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		Detalleventa detalleVenta = new Detalleventa();
 		
 		Long id = detalleVentasDto.getID();
-		Long idVenta = detalleVentasDto.getIDVenta();
-		Long idProducto = detalleVentasDto.getIDProducto();
+		// Long idVenta = detalleVentasDto.getIDVenta();
+		// Long idProducto = detalleVentasDto.getIDProducto();
 		Integer cantidadProducto = detalleVentasDto.getCantidad();
 		Double precioProducto = detalleVentasDto.getPrecioProducto();
 		Double totalDetalle = detalleVentasDto.getTotalDetalle();
@@ -69,10 +69,10 @@ public class DetalleVentasImp implements IDetalleVentasService{
 			detalleVenta.setID(id);
 		}
 		if(id != null) {
-			detalleVenta.setIDVenta(idVenta);
+			detalleVenta.getVentas();
 		}
 		if(id != null) {
-			detalleVenta.setIDProducto(idProducto);
+			detalleVenta.getProductos();
 		}
 		if(cantidadProducto != null) {
 			detalleVenta.setCantidadProducto(cantidadProducto);;

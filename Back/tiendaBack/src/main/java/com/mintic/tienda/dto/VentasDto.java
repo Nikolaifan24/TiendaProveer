@@ -2,15 +2,16 @@ package com.mintic.tienda.dto;
 
 import java.util.Date;
 
+import com.mintic.tienda.entities.Clientes;
+import com.mintic.tienda.entities.Vendedor;
+
 public class VentasDto {
 	
 	private Long ID;
 
-	private Long IDCliente;
+	private Clientes clientes;
 	
-	private Long IDVendedor;
-
-	private Long IDProducto;
+	private Vendedor vendedor;
 
 	private Date FechaVenta;
 
@@ -36,10 +37,11 @@ public class VentasDto {
 	public VentasDto() {
 	}
 
-	public VentasDto(Long ID, Long IDCliente, Long IDVendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
+
+	public VentasDto(Long ID, Clientes clientes, Vendedor vendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
 		this.ID = ID;
-		this.IDCliente = IDCliente;
-		this.IDVendedor = IDVendedor;
+		this.clientes = clientes;
+		this.vendedor = vendedor;
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
@@ -59,28 +61,20 @@ public class VentasDto {
 		this.ID = ID;
 	}
 
-	public Long getIDCliente() {
-		return this.IDCliente;
+	public Clientes getClientes() {
+		return this.clientes;
 	}
 
-	public void setIDCliente(Long IDCliente) {
-		this.IDCliente = IDCliente;
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
 	}
 
-	public Long getIDVendedor() {
-		return this.IDVendedor;
+	public Vendedor getVendedor() {
+		return this.vendedor;
 	}
 
-	public void setIDVendedor(Long IDVendedor) {
-		this.IDVendedor = IDVendedor;
-	}
-
-	public Long getIDProducto() {
-		return this.IDProducto;
-	}
-
-	public void setIDProducto(Long IDProducto) {
-		this.IDProducto = IDProducto;
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
 
 	public Date getFechaVenta() {
@@ -154,7 +148,6 @@ public class VentasDto {
 	public void setZonaventa(String zonaventa) {
 		this.zonaventa = zonaventa;
 	}
-	
-	
+
 		
 }

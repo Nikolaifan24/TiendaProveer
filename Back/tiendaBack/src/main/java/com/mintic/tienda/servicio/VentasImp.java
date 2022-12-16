@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 // import com.mintic.tienda.dto.ResultadoVentaDto;
 import com.mintic.tienda.dto.DetalleventaDto;
 import com.mintic.tienda.dto.VentasDto;
+import com.mintic.tienda.entities.Clientes;
+import com.mintic.tienda.entities.Vendedor;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
 import com.mintic.tienda.repositories.IVenta;
@@ -42,8 +44,8 @@ public class VentasImp implements IVentasService{
 	private VentasDto mapVentasDto(Ventas venta) {
 		return new VentasDto(
 				venta.getIDVenta(),
-				venta.getIDCliente(),
-				venta.getIDVendedor(),
+				venta.getClientes(),
+				venta.getVendedor(),
 				venta.getFechaVenta(),
 				venta.getFechaEntrega(),
 				venta.getTotalVenta(),
@@ -67,8 +69,8 @@ public class VentasImp implements IVentasService{
 		Ventas venta = new Ventas();
 		
 		Long id =  ventasDto.getID();
-		Long idCliente = ventasDto.getIDCliente();
-		Long idVendedor = ventasDto.getIDVendedor();
+		Clientes clientes = ventasDto.getClientes();
+		Vendedor vendedor = ventasDto.getVendedor();
 		Date fechaVenta = ventasDto.getFechaVenta();
 		Date fechaEntrega = ventasDto.getFechaEntrega();
 		Double valorVenta = ventasDto.getTotalVenta();
@@ -82,11 +84,11 @@ public class VentasImp implements IVentasService{
 		if(id != null) {
 			venta.setIDVenta(id);
 		}
-		if(idCliente  != null) {
-			venta.setIDCliente(idCliente);
+		if(clientes  != null) {
+			venta.setClientes(clientes);
 		}
-		if(idVendedor  != null) {
-			venta.setIDVendedor(idVendedor);
+		if(vendedor  != null) {
+			venta.setVendedor(vendedor);
 		}
 		if(fechaVenta != null) {
 			venta.setFechaVenta(null);

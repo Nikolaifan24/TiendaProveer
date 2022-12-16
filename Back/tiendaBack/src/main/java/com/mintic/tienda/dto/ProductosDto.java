@@ -1,12 +1,15 @@
 package com.mintic.tienda.dto;
 
+import com.mintic.tienda.entities.Compras;
+import com.mintic.tienda.entities.Proveedores;
+
 public class ProductosDto {
 	
 	private Long idProducto;
 
-	private Long idProveedor;
+	private Proveedores proveedores;
 
-	private Long idCompras;
+	private Compras compras;
 	
 	private Long codigoProducto;
 
@@ -26,17 +29,14 @@ public class ProductosDto {
 
 	private Long devoluciones;
 
-	
-
-
 	public ProductosDto() {
 	}
 
 
-	public ProductosDto(Long idProducto, Long idProveedor, Long idCompras, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
+	public ProductosDto(Long idProducto, Proveedores proveedores, Compras compras, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
 		this.idProducto = idProducto;
-		this.idProveedor = idProveedor;
-		this.idCompras = idCompras;
+		this.proveedores = proveedores;
+		this.compras = compras;
 		this.codigoProducto = codigoProducto;
 		this.nombreProducto = nombreProducto;
 		this.tipoProducto = tipoProducto;
@@ -56,20 +56,20 @@ public class ProductosDto {
 		this.idProducto = idProducto;
 	}
 
-	public Long getIdProveedor() {
-		return this.idProveedor;
+	public Proveedores getProveedores() {
+		return this.proveedores;
 	}
 
-	public void setIdProveedor(Long idProveedor) {
-		this.idProveedor = idProveedor;
+	public void setProveedores(Proveedores proveedores) {
+		this.proveedores = proveedores;
 	}
 
-	public Long getIdCompras() {
-		return this.idCompras;
+	public Compras getCompras() {
+		return this.compras;
 	}
 
-	public void setIdCompras(Long idCompras) {
-		this.idCompras = idCompras;
+	public void setCompras(Compras compras) {
+		this.compras = compras;
 	}
 
 	public Long getCodigoProducto() {
@@ -143,6 +143,5 @@ public class ProductosDto {
 	public void setDevoluciones(Long devoluciones) {
 		this.devoluciones = devoluciones;
 	}
-
 
 }

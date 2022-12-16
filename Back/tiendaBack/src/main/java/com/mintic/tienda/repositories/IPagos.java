@@ -16,9 +16,9 @@ public interface IPagos extends CrudRepository<Pagos, Long> {
     Pagos buscarPagosPorFechayMedio(@Param("FechaPago") Date FechaPago,
             @Param("MedioPago") String MedioPago);
 
-    @Query(value = "SELECT * from Pagos p where p.FechaPago= :FechaPago and p.TipoPago=: TipoPAgo and p.MedioPago =: MedioPago", nativeQuery = true)
-    Pagos buscarPagosPorFechayTipoyMedio(@Param("FechaPago") Date FechaPago,
-            @Param("TipoPago") String TipoPago, @Param("MedioPago") String MedioPago);
+    // @Query(value = "SELECT * from Pagos p where p.FechaPago= :FechaPago and p.TipoPago=: TipoPago and p.MedioPago =: MedioPago", nativeQuery = true)
+    // Pagos buscarPagosPorFechayTipoyMedio(@Param("FechaPago") Date FechaPago,
+    //         @Param("TipoPago") String TipoPago, @Param("MedioPago") String MedioPago);
 	
 	@Query(value = "SELECT * FROM Pagos p where p.TipoPago=:TipoPago", nativeQuery = true)
 	Pagos buscarPagosPorTipo(@Param("TipoPago") String TipoPago);

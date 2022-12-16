@@ -73,7 +73,7 @@ public class UsuarioImp implements IUsuarioService {
 		
 	}
 	
-	private void updateUsuario(UsuarioDto usuarioDto, Usuarios myusuario) {
+	private void updateUsuario(UsuarioDto usuarioDto, Usuario myusuario) {
 		
 		Long id = usuarioDto.getID();
 		String emailUsuario = usuarioDto.getCorreo();

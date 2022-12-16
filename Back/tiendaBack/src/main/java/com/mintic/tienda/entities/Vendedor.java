@@ -28,7 +28,7 @@ public class Vendedor {
 	
     @ManyToOne
     @JoinColumn(name="IDUsuario")
-    private Usuario usuarios;
+    private Usuario usuario;
 
 	@OneToMany(mappedBy = "vendedor")
     private List<Ventas> ventas;
@@ -51,9 +51,9 @@ public class Vendedor {
     public Vendedor() {
     }
 
-    public Vendedor(Long ID, Usuario usuarios, List<Ventas> ventas, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
+    public Vendedor(Long ID, Usuario usuario, List<Ventas> ventas, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
         this.ID = ID;
-        this.usuarios = usuarios;
+        this.usuario = usuario;
         this.ventas = ventas;
         this.documentoVendedor = documentoVendedor;
         this.nombreVendedor = nombreVendedor;
@@ -64,7 +64,6 @@ public class Vendedor {
         this.Salario = Salario;
     }
 
-
     public Long getID() {
         return this.ID;
     }
@@ -73,12 +72,12 @@ public class Vendedor {
         this.ID = ID;
     }
 
-    public Usuario getUsuarios() {
-        return this.usuarios;
+    public Usuario getUsuario() {
+        return this.usuario;
     }
 
-    public void setUsuarios(Usuario usuarios) {
-        this.usuarios = usuarios;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public List<Ventas> getVentas() {
@@ -144,6 +143,7 @@ public class Vendedor {
     public void setSalario(Double Salario) {
         this.Salario = Salario;
     }
+
 
 
 }
