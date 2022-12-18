@@ -44,9 +44,9 @@ public class ControladorVentas {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/venta/{codigoVenta}")
-	public VentasDto buscarVentaPorCodigo(@PathVariable Long codigoVenta) {
-		return iVentas.buscarVentaPorCodigo(codigoVenta);
+	@GetMapping("/venta/{fechaVenta}")
+	public VentasDto buscarVentaPorfecha(@PathVariable Long fechaVenta) {
+		return iVentas.buscarVentaPorfecha(fechaVenta);
 	}
 	
 	

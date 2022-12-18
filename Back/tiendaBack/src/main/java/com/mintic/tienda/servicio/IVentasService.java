@@ -12,7 +12,7 @@ public interface IVentasService {
 
 	List<Ventas> getVentas();
 
-	VentasDto buscarVentaPorCodigo(Long codigoVenta);
+	VentasDto buscarVentaPorfecha(Long fechaVenta);
 
 	void crearVenta(VentasDto ventasDto);
 

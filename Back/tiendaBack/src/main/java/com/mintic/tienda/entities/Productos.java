@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = Productos.TABLE_NAME)
 public class Productos {
@@ -22,9 +24,11 @@ public class Productos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDProductos;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="productos" )
   	private List<Detalleventa> detalleventas;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="productos" )
   	private List<Detallecompra> detallecompras;
 

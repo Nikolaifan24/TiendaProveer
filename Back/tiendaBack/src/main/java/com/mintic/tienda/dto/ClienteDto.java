@@ -4,7 +4,7 @@ public class ClienteDto {
 	
 	private Long ID;
 	
-	private Long cedulaCliente;
+	private Long documentoCliente;
 
 	private String nombreCliente;
 
@@ -26,9 +26,10 @@ public class ClienteDto {
 	public ClienteDto() {
 	}
 
-	public ClienteDto(Long ID, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
+
+	public ClienteDto(Long ID, Long documentoCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
 		this.ID = ID;
-		this.cedulaCliente = cedulaCliente;
+		this.documentoCliente = documentoCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
 		this.direccionCliente = direccionCliente;
@@ -47,12 +48,12 @@ public class ClienteDto {
 		this.ID = ID;
 	}
 
-	public Long getCedulaCliente() {
-		return this.cedulaCliente;
+	public Long getDocumentoCliente() {
+		return this.documentoCliente;
 	}
 
-	public void setCedulaCliente(Long cedulaCliente) {
-		this.cedulaCliente = cedulaCliente;
+	public void setDocumentoCliente(Long documentoCliente) {
+		this.documentoCliente = documentoCliente;
 	}
 
 	public String getNombreCliente() {

@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = Vendedor.TABLE_NAME)
 public class Vendedor {
@@ -30,6 +32,7 @@ public class Vendedor {
     @JoinColumn(name="IDUsuario")
     private Usuario usuario;
 
+    @JsonIgnore
 	@OneToMany(mappedBy = "vendedor")
     private List<Ventas> ventas;
 	

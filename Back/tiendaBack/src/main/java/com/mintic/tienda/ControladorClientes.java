@@ -31,24 +31,24 @@ public class ControladorClientes {
 	ClienteDto clienteDto;
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/cliente/{cedulaCliente}")
-	public ClienteDto buscarClienteByNumeroDocumento(@PathVariable Long cedulaCliente) {
-		return iCliente.buscarClientePorCedula(cedulaCliente);
+	@GetMapping("/cliente/{documentoCliente}")
+	public ClienteDto buscarClienteByNumeroDocumento(@PathVariable Long documentoCliente) {
+		return iCliente.buscarClientePorCedula(documentoCliente);
 	}
 	
-	@PostMapping("/cliente")
+	@PostMapping("/crearcliente")
 	public void crearCliente(@RequestBody ClienteDto clienteDto) {
 		iCliente.crearCliente(clienteDto);
 	}
 	
-	@DeleteMapping("/cliente/{cedulaCliente}")
-	public void eliminarCliente(@PathVariable Long cedulaCliente) {
-		iCliente.eliminarCliente(cedulaCliente);
+	@DeleteMapping("/cliente/{documentoCliente}")
+	public void eliminarCliente(@PathVariable Long documentoCliente) {
+		iCliente.eliminarCliente(documentoCliente);
 	}
 	
-	@PatchMapping("/cliente/{cedulaCliente}")
-	public void actualizarCliente(@PathVariable Long cedulaCliente, @RequestBody ClienteDto clienteDto) {
-		iCliente.actualizarCliente(cedulaCliente, clienteDto);
+	@PatchMapping("/cliente/{documentoCliente}")
+	public void actualizarCliente(@PathVariable Long documentoCliente, @RequestBody ClienteDto clienteDto) {
+		iCliente.actualizarCliente(documentoCliente, clienteDto);
 	}
 	
 	@GetMapping("/cliente")

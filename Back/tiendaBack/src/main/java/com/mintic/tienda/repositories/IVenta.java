@@ -9,8 +9,8 @@ import com.mintic.tienda.entities.Ventas;
 
 public interface IVenta extends CrudRepository<Ventas, Long> {
 
-	@Query(value = "SELECT * FROM Ventas v where v.codigoVenta=:codigoVenta", nativeQuery = true)
-	Ventas buscarVentaPorCodigo(@Param("codigoVenta") Long codigoVenta);
+	@Query(value = "SELECT * FROM Ventas v where v.fechaVenta=:fechaVenta", nativeQuery = true)
+	Ventas buscarVentaPorfecha(@Param("fechaVenta") Long fechaVenta);
 	
 	
 }

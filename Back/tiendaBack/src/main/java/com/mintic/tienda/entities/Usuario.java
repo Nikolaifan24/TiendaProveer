@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 // import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -29,6 +31,7 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Vendedor> vendedor;
 

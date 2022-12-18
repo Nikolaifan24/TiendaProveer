@@ -27,6 +27,7 @@ public class Proveedores {
 	@OneToMany(mappedBy = "proveedores")
 	private List<Compras> compras;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "proveedores")
 	private List<Productos> productos;
 

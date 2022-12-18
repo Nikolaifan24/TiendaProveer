@@ -29,10 +29,10 @@ public class VentasImp implements IVentasService{
 	}
 
 	@Override
-	public VentasDto buscarVentaPorCodigo(Long codigoVenta) {
+	public VentasDto buscarVentaPorfecha(Long fechaVenta) {
 		Ventas venta = null;
 		try {
-			venta = iVenta.buscarVentaPorCodigo(codigoVenta);
+			venta = iVenta.buscarVentaPorfecha(fechaVenta);
 			VentasDto ventasDto = mapVentasDto(venta);
 			return ventasDto;
 		} catch (Exception e) {
@@ -127,7 +127,7 @@ public class VentasImp implements IVentasService{
 	public DetalleventaDto realizarCalculo(DetalleventaDto detalleventaDto, Integer cantidad) {
 		// DetalleventaDto detalleventaDto = new DetalleventaDto();
 		
-		// Long codigoProducto = detalleventaDto.getCodigoProducto();
+		// Long fechaProducto = detalleventaDto.getfechaProducto();
 		// Double precioCompra = detalleventaDto.getPrecioCompra();
 		// Double ivaCompra = productosDto.getIvaCompra();
 		Double precioProducto = detalleventaDto.getPrecioProducto();
@@ -136,8 +136,8 @@ public class VentasImp implements IVentasService{
 		// Double valorIvas = ivaCompra * cantidadProducto;
 		// Double valorVenta = valorProductos + valorIvas;
 		
-		// if(codigoProducto != null) {
-		// 	detalleventaDto.setCodigoProducto(codigoProducto);
+		// if(fechaProducto != null) {
+		// 	detalleventaDto.setfechaProducto(fechaProducto);
 		// }
 		// if(precioCompra != null) {
 		// 	detalleventaDto.setPrecioCompra(precioCompra);

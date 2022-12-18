@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -26,17 +28,19 @@ public class Clientes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDCliente;
 	
-    // @JsonIgnore
+    @JsonIgnore
 	@OneToMany(mappedBy = "clientes")
-	private List<Cartera> carteras;
+	private List<Cartera> cartera;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "clientes")
 	private List<Ventas> ventas;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "clientes")
 	private List<Pagos> pagos;
 
-	private Long cedulaCliente;
+	private Long documentoCliente;
 
 	private String nombreCliente;
 
@@ -58,12 +62,13 @@ public class Clientes {
 	public Clientes() {
 	}
 
-	public Clientes(Long IDCliente, List<Cartera> carteras, List<Ventas> ventas, List<Pagos> pagos, Long cedulaCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
+
+	public Clientes(Long IDCliente, List<Cartera> cartera, List<Ventas> ventas, List<Pagos> pagos, Long documentoCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
 		this.IDCliente = IDCliente;
-		this.carteras = carteras;
+		this.cartera = cartera;
 		this.ventas = ventas;
 		this.pagos = pagos;
-		this.cedulaCliente = cedulaCliente;
+		this.documentoCliente = documentoCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidoCliente = apellidoCliente;
 		this.direccionCliente = direccionCliente;
@@ -82,12 +87,12 @@ public class Clientes {
 		this.IDCliente = IDCliente;
 	}
 
-	public List<Cartera> getCarteras() {
-		return this.carteras;
+	public List<Cartera> getCartera() {
+		return this.cartera;
 	}
 
-	public void setCarteras(List<Cartera> carteras) {
-		this.carteras = carteras;
+	public void setCartera(List<Cartera> cartera) {
+		this.cartera = cartera;
 	}
 
 	public List<Ventas> getVentas() {
@@ -106,12 +111,12 @@ public class Clientes {
 		this.pagos = pagos;
 	}
 
-	public Long getCedulaCliente() {
-		return this.cedulaCliente;
+	public Long getDocumentoCliente() {
+		return this.documentoCliente;
 	}
 
-	public void setCedulaCliente(Long cedulaCliente) {
-		this.cedulaCliente = cedulaCliente;
+	public void setDocumentoCliente(Long documentoCliente) {
+		this.documentoCliente = documentoCliente;
 	}
 
 	public String getNombreCliente() {
@@ -177,5 +182,6 @@ public class Clientes {
 	public void setCorreoCliente(String correoCliente) {
 		this.correoCliente = correoCliente;
 	}
+
 
 }

@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = Ventas.TABLE_NAME)
 public class Ventas {
@@ -24,12 +26,15 @@ public class Ventas {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDVenta;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="ventas" )
   	private List<Cartera> carteras;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="ventas" )
   	private List<Detalleventa> detalleventas;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "ventas")
 	private List<Pagos> pagos;
 

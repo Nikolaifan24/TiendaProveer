@@ -23,38 +23,32 @@ public class ClienteImp implements IClienteService {
 	
 	private Clientes buildCliente(ClienteDto clienteDto) {
 		Clientes cliente = new Clientes();
-		Long id = clienteDto.getID();
-		Long documentoCliente = clienteDto.getCedulaCliente();
-		String direccionCliente = clienteDto.getDireccionCliente();
-		String CorreoCliente = clienteDto.getCorreoCliente();
+		// Long id = clienteDto.getID();
+		Long documentoCliente = clienteDto.getDocumentoCliente();
 		String nombreCliente = clienteDto.getNombreCliente();
+		String apellidoCliente = clienteDto.getApellidoCliente();
+		String direccionCliente = clienteDto.getDireccionCliente();
+		String barrioCliente = clienteDto.getBarrioCliente();
+		String zonaCliente = clienteDto.getZonaCliente();
 		String telefonoCliente = clienteDto.getTelefonoCliente();
 		String telefonoadicionalCliente = clienteDto.getTelefonoadicional();
-		String zonaCliente = clienteDto.getZonaCliente();
-		String barrioCliente = clienteDto.getBarrioCliente();
+		String CorreoCliente = clienteDto.getCorreoCliente();
 
 		
-		if (id != null) {
-			cliente.setIDCliente(documentoCliente);;
-		}
-		
+		// if (id != null) {
+		// 	cliente.setIDCliente(id);
+		// }
 		if(documentoCliente != null) {
-			cliente.setCedulaCliente(documentoCliente);
-		}
-		if(direccionCliente != null) {
-			cliente.setDireccionCliente(direccionCliente);
-		}
-		if(CorreoCliente != null) {
-			cliente.setCorreoCliente(CorreoCliente);
+			cliente.setDocumentoCliente(documentoCliente);
 		}
 		if(nombreCliente != null) {
 			cliente.setNombreCliente(nombreCliente);
 		}
-		if(telefonoCliente != null) {
-			cliente.setTelefonoCliente(telefonoCliente);
+		if(apellidoCliente != null) {
+			cliente.setApellidoCliente(apellidoCliente);
 		}
-		if(telefonoadicionalCliente != null) {
-			cliente.setTelefonoadicional(telefonoadicionalCliente);
+		if(direccionCliente != null) {
+			cliente.setDireccionCliente(direccionCliente);
 		}
 		if(barrioCliente != null) {
 			cliente.setBarrioCliente(barrioCliente);;
@@ -62,7 +56,17 @@ public class ClienteImp implements IClienteService {
 		if(zonaCliente != null) {
 			cliente.setZonaCliente(zonaCliente);
 		}
-
+		if(telefonoCliente != null) {
+			cliente.setTelefonoCliente(telefonoCliente);
+		}
+		if(telefonoadicionalCliente != null) {
+			cliente.setTelefonoadicional(telefonoadicionalCliente);
+		}
+		if(CorreoCliente != null) {
+			cliente.setCorreoCliente(CorreoCliente);
+		}
+		
+		
 		return cliente;
 	}
 	
@@ -70,31 +74,36 @@ public class ClienteImp implements IClienteService {
 		
 		// Clientes cliente = new Clientes();
 		Long id = clienteDto.getID();
-		Long documentoCliente = clienteDto.getCedulaCliente();
-		String direccionCliente = clienteDto.getDireccionCliente();
-		String CorreoCliente = clienteDto.getCorreoCliente();
+		Long documentoCliente = clienteDto.getDocumentoCliente();
 		String nombreCliente = clienteDto.getNombreCliente();
+		String apellidoCliente = clienteDto.getApellidoCliente();
+		String direccionCliente = clienteDto.getDireccionCliente();
+		String barrioCliente = clienteDto.getBarrioCliente();
+		String zonaCliente = clienteDto.getZonaCliente();
 		String telefonoCliente = clienteDto.getTelefonoCliente();
 		String telefonoadicionalCliente = clienteDto.getTelefonoadicional();
-		String zonaCliente = clienteDto.getZonaCliente();
-		String barrioCliente = clienteDto.getBarrioCliente();
+		String CorreoCliente = clienteDto.getCorreoCliente();
 
-		
 		if (id != null) {
-			cliente.setIDCliente(documentoCliente);;
+			cliente.setIDCliente(id);
 		}
-		
 		if(documentoCliente != null) {
-			cliente.setCedulaCliente(documentoCliente);
+			cliente.setDocumentoCliente(documentoCliente);
+		}
+		if(nombreCliente != null) {
+			cliente.setNombreCliente(nombreCliente);
+		}
+		if(apellidoCliente != null) {
+			cliente.setApellidoCliente(apellidoCliente);
 		}
 		if(direccionCliente != null) {
 			cliente.setDireccionCliente(direccionCliente);
 		}
-		if(CorreoCliente != null) {
-			cliente.setCorreoCliente(CorreoCliente);
+		if(barrioCliente != null) {
+			cliente.setBarrioCliente(barrioCliente);;
 		}
-		if(nombreCliente != null) {
-			cliente.setNombreCliente(nombreCliente);
+		if(zonaCliente != null) {
+			cliente.setZonaCliente(zonaCliente);
 		}
 		if(telefonoCliente != null) {
 			cliente.setTelefonoCliente(telefonoCliente);
@@ -102,11 +111,8 @@ public class ClienteImp implements IClienteService {
 		if(telefonoadicionalCliente != null) {
 			cliente.setTelefonoadicional(telefonoadicionalCliente);
 		}
-		if(barrioCliente != null) {
-			cliente.setBarrioCliente(barrioCliente);;
-		}
-		if(zonaCliente != null) {
-			cliente.setZonaCliente(zonaCliente);
+		if(CorreoCliente != null) {
+			cliente.setCorreoCliente(CorreoCliente);
 		}
 			
 		iCliente.save(cliente);
@@ -128,7 +134,7 @@ public class ClienteImp implements IClienteService {
 	private ClienteDto mapClienteDto(Clientes cliente) {
 		return new ClienteDto(
 				cliente.getIDCliente(),
-				cliente.getCedulaCliente(),
+				cliente.getDocumentoCliente(),
 				cliente.getDireccionCliente(),
 				cliente.getCorreoCliente(),
 				cliente.getNombreCliente(),

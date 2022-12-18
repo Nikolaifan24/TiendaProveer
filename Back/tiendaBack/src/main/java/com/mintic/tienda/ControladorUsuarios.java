@@ -49,9 +49,9 @@ public class ControladorUsuarios {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/usuario/{cedulaUsuario}")
-	public UsuarioDto buscarUsuarioByNumeroDocumento(@PathVariable Long cedulaUsuario) {
-		return iUsuario.buscarUsuarioPorCedula(cedulaUsuario);
+	@GetMapping("/usuario/{documentoUsuario}")
+	public UsuarioDto buscarUsuarioByNumeroDocumento(@PathVariable Long documentoUsuario) {
+		return iUsuario.buscarUsuarioPorCedula(documentoUsuario);
 	}
 	
 	@PostMapping("/usuario")
@@ -59,13 +59,13 @@ public class ControladorUsuarios {
 		iUsuario.crearUsuario(usuarioDto);
 	}
 	
-	@DeleteMapping("/usuario/{cedulaUsuario}")
-	public void eliminarUsuario(@PathVariable Long cedulaUsuario) {
-		iUsuario.eliminarUsuario(cedulaUsuario);
+	@DeleteMapping("/usuario/{documentoUsuario}")
+	public void eliminarUsuario(@PathVariable Long documentoUsuario) {
+		iUsuario.eliminarUsuario(documentoUsuario);
 	}
 	
-	@PatchMapping("/usuario/{cedulaUsuario}")
-	public void actualizarUsuario(@PathVariable Long cedulaUsuario, @RequestBody UsuarioDto usuarioDto) {
-		iUsuario.actualizarUsuario(cedulaUsuario, usuarioDto);
+	@PatchMapping("/usuario/{documentoUsuario}")
+	public void actualizarUsuario(@PathVariable Long documentoUsuario, @RequestBody UsuarioDto usuarioDto) {
+		iUsuario.actualizarUsuario(documentoUsuario, usuarioDto);
 	}
 }
