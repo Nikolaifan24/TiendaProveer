@@ -27,15 +27,10 @@ public class UsuarioImp implements IUsuarioService {
 		return u != null ? u.getID() : 0;
 	}
 	
-	@Override
-	public Usuario loginUsuario(LoginDto usuarioDto) {
-		//return iUsuario.findByNameAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
-		return null;
-	}
+	
 
 	@Override
-	public List<Usuario> getUsuarios() {
-
+	public List<Usuario> listaUsuario() {
 		return (List<Usuario>) iUsuario.findAll();
 	}
 
@@ -52,7 +47,7 @@ public class UsuarioImp implements IUsuarioService {
 		
 		Long id = usuarioDto.getID();
 		String emailUsuario = usuarioDto.getCorreo();
-		String nombreUsuario = usuarioDto.getNombre();
+		String nombreUsuario = usuarioDto.getNombreUsuario();
 		String password = usuarioDto.getPassword();
 		String usuario = usuarioDto.getUsuario();
 		myusuario.setID(id);
@@ -61,7 +56,7 @@ public class UsuarioImp implements IUsuarioService {
 			myusuario.setCorreo(emailUsuario);
 		}
 		if(nombreUsuario != null) {
-			myusuario.setNombre(nombreUsuario);;
+			myusuario.setNombreUsuario(nombreUsuario);
 		}
 		if(password != null) {
 			myusuario.setPassword(password);
@@ -77,7 +72,7 @@ public class UsuarioImp implements IUsuarioService {
 		
 		Long id = usuarioDto.getID();
 		String emailUsuario = usuarioDto.getCorreo();
-		String nombreUsuario = usuarioDto.getNombre();
+		String nombreUsuario = usuarioDto.getNombreUsuario();
 		String password = usuarioDto.getPassword();
 		String usuario = usuarioDto.getUsuario();
 		myusuario.setID(id);
@@ -85,7 +80,7 @@ public class UsuarioImp implements IUsuarioService {
 			myusuario.setCorreo(emailUsuario);
 		}
 		if(nombreUsuario != null) {
-			myusuario.setNombre(nombreUsuario);
+			myusuario.setNombreUsuario(nombreUsuario);
 		}
 		if(password != null) {
 			myusuario.setPassword(password);
@@ -99,7 +94,7 @@ public class UsuarioImp implements IUsuarioService {
 	
 
 	@Override
-	public void eliminarUsuario(Long cedulaUsuario) {
+	public void eliminarUsuario(String nombreUsuario) {
 		Usuario usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
 		iUsuario.delete(usuario);
 		
@@ -113,12 +108,7 @@ public class UsuarioImp implements IUsuarioService {
 		
 	}
 
-	@Override
-	public UsuarioDto buscarUsuarioPorCedula(Long numeroCedula) {
-		return null;
-	}
 
-	
 	
 	
 

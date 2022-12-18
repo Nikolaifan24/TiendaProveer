@@ -17,17 +17,17 @@ public interface IUsuarioService {
 
 	Long login(LoginDto usuarioDto);
 
-	List<Usuario> getUsuarios();
+	List<Usuario> listaUsuarios();
 	
-	UsuarioDto buscarUsuarioPorCedula(Long numeroCedula);
+	UsuarioDto buscarUsuarioPorNombre(String nombreUsuario);
 
 	Usuario loginUsuario(LoginDto usuario);
 
 	void crearUsuario(UsuarioDto usuarioDto);
 
-	void eliminarUsuario(Long cedulaUsuario);
+	void eliminarUsuario(String nombreUsuario);
 
-	void actualizarUsuario(Long cedulaUsuario, UsuarioDto usuarioDto);
+	void actualizarUsuario(String nombreUsuario, UsuarioDto usuarioDto);
 
 	
 

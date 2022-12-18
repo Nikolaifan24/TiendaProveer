@@ -6,7 +6,7 @@ public class UsuarioDto {
 
 	private String usuario;
 
-	private String nombre;
+	private String nombreUsuario;
 
 	private String correo;
 
@@ -19,10 +19,10 @@ public class UsuarioDto {
 	}
 	
 
-	public UsuarioDto(Long ID, String usuario, String nombre, String correo, String password, String perfil) {
+	public UsuarioDto(Long ID, String usuario, String nombreUsuario, String correo, String password, String perfil) {
 		this.ID = ID;
 		this.usuario = usuario;
-		this.nombre = nombre;
+		this.nombreUsuario = nombreUsuario;
 		this.correo = correo;
 		this.password = password;
 		this.perfil = perfil;
@@ -45,12 +45,12 @@ public class UsuarioDto {
 		this.usuario = usuario;
 	}
 
-	public String getNombre() {
-		return this.nombre;
+	public String getNombreUsuario() {
+		return this.nombreUsuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 	public String getCorreo() {
@@ -76,6 +76,5 @@ public class UsuarioDto {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
-
 
 }
