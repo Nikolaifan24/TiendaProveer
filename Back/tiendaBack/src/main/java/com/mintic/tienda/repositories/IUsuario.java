@@ -35,4 +35,6 @@ public interface IUsuario extends CrudRepository<Usuario, Long> {
 	@Query(value = "SELECT * FROM Usuarios p where p.perfil=:perfil", nativeQuery = true)
 	Usuario buscarUsuarioPorPerfil(@Param("perfil") Long perfil);
 
+	@Query(value = "SELECT * FROM Usuarios p where p.nombreUSuario=:nombreUsuario", nativeQuery = true)
+	Usuario buscarUsuarioPorNombre(@Param("nombreUsuario") Long perfil);
 }

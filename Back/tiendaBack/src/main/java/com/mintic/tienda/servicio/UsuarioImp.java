@@ -46,24 +46,29 @@ public class UsuarioImp implements IUsuarioService {
 		Usuario myusuario = new Usuario();
 		
 		Long id = usuarioDto.getID();
-		String emailUsuario = usuarioDto.getCorreo();
-		String nombreUsuario = usuarioDto.getNombreUsuario();
-		String password = usuarioDto.getPassword();
 		String usuario = usuarioDto.getUsuario();
-		myusuario.setID(id);
+		String nombreUsuario = usuarioDto.getNombreUsuario();
+		String emailUsuario = usuarioDto.getCorreo();
+		String password = usuarioDto.getPassword();
+		Stirng perfil = usuarioDto.getPerfil();
+		// myusuario.setID(id);
 		
-		if(emailUsuario != null) {
-			myusuario.setCorreo(emailUsuario);
+		if(usuario != null) {
+			myusuario.setUsuario(usuario);
 		}
 		if(nombreUsuario != null) {
 			myusuario.setNombreUsuario(nombreUsuario);
 		}
+		if(emailUsuario != null) {
+			myusuario.setCorreo(emailUsuario);
+		}
 		if(password != null) {
 			myusuario.setPassword(password);
 		}
-		if(usuario != null) {
-			myusuario.setUsuario(usuario);
+		if(perfil != null) {
+			myusuario.setPerfil(password);
 		}
+		
 		return myusuario;
 		
 	}
@@ -71,41 +76,71 @@ public class UsuarioImp implements IUsuarioService {
 	private void updateUsuario(UsuarioDto usuarioDto, Usuario myusuario) {
 		
 		Long id = usuarioDto.getID();
-		String emailUsuario = usuarioDto.getCorreo();
-		String nombreUsuario = usuarioDto.getNombreUsuario();
-		String password = usuarioDto.getPassword();
 		String usuario = usuarioDto.getUsuario();
+		String nombreUsuario = usuarioDto.getNombreUsuario();
+		String emailUsuario = usuarioDto.getCorreo();
+		String password = usuarioDto.getPassword();
+		Stirng perfil = usuarioDto.getPerfil();
 		myusuario.setID(id);
-		if(emailUsuario != null) {
-			myusuario.setCorreo(emailUsuario);
-		}
-		if(nombreUsuario != null) {
-			myusuario.setNombreUsuario(nombreUsuario);
-		}
-		if(password != null) {
-			myusuario.setPassword(password);
+		
+		if (id != null) {
+			myusuario.setID(id);
 		}
 		if(usuario != null) {
 			myusuario.setUsuario(usuario);
 		}
-		
+		if(nombreUsuario != null) {
+			myusuario.setNombreUsuario(nombreUsuario);
+		}
+		if(emailUsuario != null) {
+			myusuario.setCorreo(emailUsuario);
+		}
+		if(password != null) {
+			myusuario.setPassword(password);
+		}
+		if(perfil != null) {
+			myusuario.setPerfil(password);
+		}
 		iUsuario.save(myusuario);
 	}
 	
 
 	@Override
 	public void eliminarUsuario(String nombreUsuario) {
-		Usuario usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
+		Usuario usuario = iUsuario.buscarUsuarioPorNombre(nombreUsuario);
 		iUsuario.delete(usuario);
 		
 	}
 
 	@Override
-	public void actualizarUsuario(Long cedulaUsuario, UsuarioDto usuarioDto) {
+	public void actualizarUsuario(String nombreUsuario, UsuarioDto usuarioDto) {
 		
-		Usuario usuario = iUsuario.buscarUsuarioPorPerfil(cedulaUsuario);
+		Usuario usuario = iUsuario.buscarUsuarioPorNombre(nombreUsuario);
 		updateUsuario(usuarioDto, usuario);
 		
+	}
+
+	@Override
+	public UsuarioDto buscarUsuarioPorNombre(String nombreUsuario) {
+		Usuarios Usuario = null;
+		try {
+			Usuario = iUsuario.buscarUsuarioPorNombre(nombreUsuario);
+			UsuarioDto  UsuarioDto = mapUsuarioDto(Usuario);
+			return UsuarioDto;
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+
+	private UsuarioDto mapUsuarioDto(Usuario usuario) {
+		return new UsuarioDto(
+				usuario.getID();
+				usuario.getNombreUsuario();
+				usuario.getCorreo();
+				usuario.getPassword();
+				usuario.getPerfil();
+		);		
 	}
 
 

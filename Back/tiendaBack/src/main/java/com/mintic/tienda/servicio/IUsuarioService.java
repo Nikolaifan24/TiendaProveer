@@ -21,6 +21,8 @@ public interface IUsuarioService {
 	
 	UsuarioDto buscarUsuarioPorNombre(String nombreUsuario);
 
+	UsuarioDto buscarUsuarioPorPerfil(String perfilUsuario);
+
 	Usuario loginUsuario(LoginDto usuario);
 
 	void crearUsuario(UsuarioDto usuarioDto);
