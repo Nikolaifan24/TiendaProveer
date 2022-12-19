@@ -17,5 +17,9 @@ public interface IClienteService {
 	void actualizarCliente(Long cedulaCliente, ClienteDto clienteDto);
 
 	List<Clientes> listaCliente();
+
+	// ClienteDto buscarClientePorZona(String zonaCliente);
+
+	List<Clientes> listazonaCliente(String zonaCliente);
 	
 }

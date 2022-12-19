@@ -22,15 +22,19 @@ public class UsuarioImp implements IUsuarioService {
 	IUsuario iUsuario;
 	
 	@Override
-	public Long login(LoginDto usuarioDto) {
-		Usuario u = iUsuario.findByNombreUsuarioAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
-		return u != null ? u.getID() : 0;
+	public int login(LoginDto usuarioDto) {
+		int u = iUsuario.findByNombreUsuarioAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
+		return u;
 	}
 	
-	
+	// @Override
+	// public Usuario loginUsuario(LoginDto usuarioDto) {
+	// 	//return iUsuario.findByNameAndPassword(usuarioDto.getNombreUsuario(), usuarioDto.getPassword());
+	// 	return null;
+	// }
 
 	@Override
-	public List<Usuario> listaUsuario() {
+	public List<Usuario> listarUsuarios() {
 		return (List<Usuario>) iUsuario.findAll();
 	}
 
@@ -45,12 +49,12 @@ public class UsuarioImp implements IUsuarioService {
 	private Usuario buildUsuario(UsuarioDto usuarioDto) {
 		Usuario myusuario = new Usuario();
 		
-		Long id = usuarioDto.getID();
+		// Long id = usuarioDto.getID();
 		String usuario = usuarioDto.getUsuario();
 		String nombreUsuario = usuarioDto.getNombreUsuario();
 		String emailUsuario = usuarioDto.getCorreo();
 		String password = usuarioDto.getPassword();
-		Stirng perfil = usuarioDto.getPerfil();
+		String perfil = usuarioDto.getPerfil();
 		// myusuario.setID(id);
 		
 		if(usuario != null) {
@@ -80,11 +84,11 @@ public class UsuarioImp implements IUsuarioService {
 		String nombreUsuario = usuarioDto.getNombreUsuario();
 		String emailUsuario = usuarioDto.getCorreo();
 		String password = usuarioDto.getPassword();
-		Stirng perfil = usuarioDto.getPerfil();
-		myusuario.setID(id);
+		String perfil = usuarioDto.getPerfil();
+		// myusuario.setIDUsuario(id);
 		
 		if (id != null) {
-			myusuario.setID(id);
+			myusuario.setIDUsuario(id);
 		}
 		if(usuario != null) {
 			myusuario.setUsuario(usuario);
@@ -122,7 +126,7 @@ public class UsuarioImp implements IUsuarioService {
 
 	@Override
 	public UsuarioDto buscarUsuarioPorNombre(String nombreUsuario) {
-		Usuarios Usuario = null;
+		Usuario Usuario = null;
 		try {
 			Usuario = iUsuario.buscarUsuarioPorNombre(nombreUsuario);
 			UsuarioDto  UsuarioDto = mapUsuarioDto(Usuario);
@@ -135,12 +139,36 @@ public class UsuarioImp implements IUsuarioService {
 
 	private UsuarioDto mapUsuarioDto(Usuario usuario) {
 		return new UsuarioDto(
-				usuario.getID();
-				usuario.getNombreUsuario();
-				usuario.getCorreo();
-				usuario.getPassword();
-				usuario.getPerfil();
+				usuario.getIDUsuario(),
+				usuario.getUsuario(),
+				usuario.getNombreUsuario(),
+				usuario.getCorreo(),
+				usuario.getPassword(),
+				usuario.getPerfil()
 		);		
+	}
+
+
+
+	@Override
+	public UsuarioDto buscarUsuarioPorPerfil(String perfil) {
+		Usuario Usuario = null;
+		try {
+			Usuario = iUsuario.buscarUsuarioPorPerfil(perfil);
+			UsuarioDto  UsuarioDto = mapUsuarioDto(Usuario);
+			return UsuarioDto;
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+
+
+
+	@Override
+	public Usuario loginUsuario(LoginDto usuario) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

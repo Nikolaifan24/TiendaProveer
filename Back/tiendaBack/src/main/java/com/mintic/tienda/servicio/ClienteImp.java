@@ -1,5 +1,6 @@
 package com.mintic.tienda.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.mintic.tienda.repositories.ICliente;
 public class ClienteImp implements IClienteService {
 	
 	@Autowired
+	public
 	ICliente iCliente;
 	
 	@Override
@@ -125,24 +127,39 @@ public class ClienteImp implements IClienteService {
 			cliente = iCliente.buscarClientePorCedula(documentoCliente);
 			ClienteDto  clienteDto = mapClienteDto(cliente);
 			return clienteDto;
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			return null;
 		}
-		
 	}
+
+	// @Override
+	// public ClienteDto buscarClientePorZona(String zonaCliente) {
+	// 	Clientes cliente = null;
+	// 	try {
+	// 		cliente = iCliente.buscarClientePorZona(zonaCliente);
+	// 		ClienteDto  clienteDto = mapClienteDto(cliente);
+	// 		return clienteDto;
+	// 	} catch (Exception e) {
+	// 		return null;
+	// 	}
+		
+	// }
 
 	private ClienteDto mapClienteDto(Clientes cliente) {
 		return new ClienteDto(
 				cliente.getIDCliente(),
 				cliente.getDocumentoCliente(),
-				cliente.getDireccionCliente(),
-				cliente.getCorreoCliente(),
 				cliente.getNombreCliente(),
+				cliente.getApellidoCliente(),
+				cliente.getDireccionCliente(),
+				cliente.getBarrioCliente(),
+				cliente.getZonaCliente(),
 				cliente.getTelefonoCliente(),
 				cliente.getTelefonoadicional(),
-				cliente.getZonaCliente(),
-				cliente.getBarrioCliente(),
 				cliente.getCorreoCliente()
+				
+			
 		);		
 	}
 
@@ -165,7 +182,14 @@ public class ClienteImp implements IClienteService {
 	public List<Clientes> listaCliente() {
 		return (List<Clientes>) iCliente.findAll();
 	}
-	
+
+	@Override
+	public List<Clientes> listazonaCliente(String zonaCliente) {
+		// TODO Auto-generated method stub
+		List<Clientes> lista = new ArrayList<Clientes>();
+		lista.add(iCliente.buscarClientePorZona(zonaCliente));
+		return (lista) ;
+	}
 	
 
 }

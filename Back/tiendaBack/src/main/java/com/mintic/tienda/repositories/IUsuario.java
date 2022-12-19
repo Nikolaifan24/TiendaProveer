@@ -28,13 +28,13 @@ public interface IUsuario extends CrudRepository<Usuario, Long> {
 			@Param("password") String password);
 	*/
 	
-	@Query(value = "SELECT * from Usuarios p where p.nombreUsuario= :nombreUsuario and p.password=:password", nativeQuery = true)
-	Usuario findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
+	@Query(value = "select count(*) from Usuario p where p.nombreUsuario= :nombreUsuario and p.password=:password", nativeQuery = true)
+	Integer findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
 			@Param("password") String password);
 	
-	@Query(value = "SELECT * FROM Usuarios p where p.perfil=:perfil", nativeQuery = true)
-	Usuario buscarUsuarioPorPerfil(@Param("perfil") Long perfil);
+	@Query(value = "SELECT * FROM Usuario p where p.perfil=:perfil", nativeQuery = true)
+	Usuario buscarUsuarioPorPerfil(@Param("perfil") String perfil);
 
-	@Query(value = "SELECT * FROM Usuarios p where p.nombreUSuario=:nombreUsuario", nativeQuery = true)
-	Usuario buscarUsuarioPorNombre(@Param("nombreUsuario") Long perfil);
+	@Query(value = "SELECT * FROM Usuario p where p.nombreUsuario=:nombreUsuario", nativeQuery = true)
+	Usuario buscarUsuarioPorNombre(@Param("nombreUsuario") String nombreUsuario);
 }

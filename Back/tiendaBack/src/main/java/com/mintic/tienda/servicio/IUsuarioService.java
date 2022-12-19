@@ -15,13 +15,13 @@ import com.mintic.tienda.entities.Usuario;
  * */
 public interface IUsuarioService {
 
-	Long login(LoginDto usuarioDto);
+	int login(LoginDto usuarioDto);
 
-	List<Usuario> listaUsuarios();
+	List<Usuario> listarUsuarios();
 	
 	UsuarioDto buscarUsuarioPorNombre(String nombreUsuario);
 
-	UsuarioDto buscarUsuarioPorPerfil(String perfilUsuario);
+	UsuarioDto buscarUsuarioPorPerfil(String perfil);
 
 	Usuario loginUsuario(LoginDto usuario);
 

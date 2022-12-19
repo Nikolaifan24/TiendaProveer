@@ -30,8 +30,8 @@ public class ControladorUsuarios {
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@PostMapping("/loginclient")
-	public Long login(@RequestBody LoginDto usuario) {
-		Long responseLogin = iUsuario.login(usuario);
+	public int login(@RequestBody LoginDto usuario) {
+		int responseLogin = iUsuario.login(usuario);
 		return responseLogin;
 	}
 	
@@ -45,13 +45,19 @@ public class ControladorUsuarios {
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/usuarios")
 	public List<Usuario> listarUsuarios() {
-		return iUsuario.getUsuarios();
+		return iUsuario.listarUsuarios();
 	}
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/usuario/{documentoUsuario}")
-	public UsuarioDto buscarUsuarioByNumeroDocumento(@PathVariable Long documentoUsuario) {
-		return iUsuario.buscarUsuarioPorCedula(documentoUsuario);
+	@GetMapping("/usuario/{nombreUsuario}")
+	public UsuarioDto buscarUsuarioByNombreUsuario(@PathVariable String  nombreUsuario) {
+		return iUsuario.buscarUsuarioPorNombre(nombreUsuario);
+	}
+
+	@CrossOrigin(origins = "http://localhost:8091")
+	@GetMapping("/usuario/perfil/{perfil}")
+	public UsuarioDto buscarUsuarioByPerfil(@PathVariable String  perfil) {
+		return iUsuario.buscarUsuarioPorPerfil(perfil);
 	}
 	
 	@PostMapping("/usuario")
@@ -59,13 +65,13 @@ public class ControladorUsuarios {
 		iUsuario.crearUsuario(usuarioDto);
 	}
 	
-	@DeleteMapping("/usuario/{documentoUsuario}")
-	public void eliminarUsuario(@PathVariable Long documentoUsuario) {
-		iUsuario.eliminarUsuario(documentoUsuario);
+	@DeleteMapping("/usuario/{nombreUsuario}")
+	public void eliminarUsuario(@PathVariable String nombreUsuario) {
+		iUsuario.eliminarUsuario(nombreUsuario);
 	}
 	
-	@PatchMapping("/usuario/{documentoUsuario}")
-	public void actualizarUsuario(@PathVariable Long documentoUsuario, @RequestBody UsuarioDto usuarioDto) {
-		iUsuario.actualizarUsuario(documentoUsuario, usuarioDto);
+	@PatchMapping("/usuario/{nombreUsuario}")
+	public void actualizarUsuario(@PathVariable String nombreUsuario, @RequestBody UsuarioDto usuarioDto) {
+		iUsuario.actualizarUsuario(nombreUsuario, usuarioDto);
 	}
 }

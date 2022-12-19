@@ -29,7 +29,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ID;
+	private Long IDUsuario;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
@@ -50,8 +50,9 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Long ID, List<Vendedor> vendedor, String usuario, String nombreUsuario, String correo, String password, String perfil) {
-		this.ID = ID;
+
+	public Usuario(Long IDUsuario, List<Vendedor> vendedor, String usuario, String nombreUsuario, String correo, String password, String perfil) {
+		this.IDUsuario = IDUsuario;
 		this.vendedor = vendedor;
 		this.usuario = usuario;
 		this.nombreUsuario = nombreUsuario;
@@ -60,13 +61,12 @@ public class Usuario {
 		this.perfil = perfil;
 	}
 
-
-	public Long getID() {
-		return this.ID;
+	public Long getIDUsuario() {
+		return this.IDUsuario;
 	}
 
-	public void setID(Long ID) {
-		this.ID = ID;
+	public void setIDUsuario(Long IDUsuario) {
+		this.IDUsuario = IDUsuario;
 	}
 
 	public List<Vendedor> getVendedor() {
@@ -116,6 +116,7 @@ public class Usuario {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
+
 
 	
 }

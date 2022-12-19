@@ -36,6 +36,12 @@ public class ControladorClientes {
 		return iCliente.buscarClientePorCedula(documentoCliente);
 	}
 	
+	// @CrossOrigin(origins = "http://localhost:8091")
+	// @GetMapping("/cliente/zona/{zonaCliente}")
+	// public ClienteDto buscarClienteByZona(@PathVariable String zonaCliente) {
+	// 	return iCliente.buscarClientePorZona(zonaCliente);
+	// }
+
 	@PostMapping("/crearcliente")
 	public void crearCliente(@RequestBody ClienteDto clienteDto) {
 		iCliente.crearCliente(clienteDto);
@@ -56,4 +62,8 @@ public class ControladorClientes {
 		return iCliente.listaCliente();
 	}
 	
+	@GetMapping("/cliente/zona/{zonaCliente}")
+	public List<Clientes> listazonaCliente(@PathVariable String zonaCliente){
+		return iCliente.listazonaCliente(zonaCliente);
+	}
 }
