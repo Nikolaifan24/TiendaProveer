@@ -1,5 +1,7 @@
 package com.mintic.tienda.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,11 +14,13 @@ public interface ICliente extends CrudRepository<Clientes, Long>{
 	Clientes buscarClientePorCedula(@Param("documentoCliente") Long documentoCliente);
 
 	@Query(value = "SELECT * FROM Clientes c where c.zonaCliente= :zonaCliente", nativeQuery = true)
-	Clientes buscarClientePorZona(@Param("zonaCliente") String zonaCliente);
+	List<Clientes> buscarClientePorZona(@Param("zonaCliente") String zonaCliente);
 
+	// @Query(value = "SELECT * FROM Clientes c where c.zonaCliente= :zonaCliente", nativeQuery = true)
+	// Integer contarClientePorZona(@Param("zonaCliente") String zonaCliente);
 
 	@Query(value = "SELECT * from Clientes p where p.nombreCliente= :nombreCliente and p.apellidoCliente=:apellidoCliente", nativeQuery = true)
-	Clientes buscarClientePorNombreyApellido(@Param("nombreCliente") String nombreCliente,
+	List<Clientes> buscarClientePorNombreyApellido(@Param("nombreCliente") String nombreCliente,
 			@Param("apellidoCliente") String apellidoCliente);
 
     		

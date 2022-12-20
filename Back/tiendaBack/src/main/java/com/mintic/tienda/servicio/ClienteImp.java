@@ -186,10 +186,35 @@ public class ClienteImp implements IClienteService {
 	@Override
 	public List<Clientes> listazonaCliente(String zonaCliente) {
 		// TODO Auto-generated method stub
+		
 		List<Clientes> lista = new ArrayList<Clientes>();
-		lista.add(iCliente.buscarClientePorZona(zonaCliente));
+		
+		lista = iCliente.buscarClientePorZona(zonaCliente);
+		
+		
 		return (lista) ;
 	}
+
+	@Override
+	public List<Clientes> listarNombreYapellidoCliente(String nombreCliente, String apellidoCliente) {
+		// TODO Auto-generated method stub
+		
+		List<Clientes> lista = new ArrayList<Clientes>();
+		
+		lista = iCliente.buscarClientePorNombreyApellido(nombreCliente, apellidoCliente);
+		
+		
+		return (lista) ;
+	}
+
+	
+
+	// @Override
+	// public Integer contarClientePorZona(String zonaCliente) {
+	// 	// TODO Auto-generated method stub
+	// 	int u = iCliente.contarClientePorZona(zonaCliente);
+	// 	return u;
+	// }
 	
 
 }

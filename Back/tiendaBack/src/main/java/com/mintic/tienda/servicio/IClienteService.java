@@ -20,6 +20,10 @@ public interface IClienteService {
 
 	// ClienteDto buscarClientePorZona(String zonaCliente);
 
+	// Integer contarClientePorZona(String zonaCliente);
+
 	List<Clientes> listazonaCliente(String zonaCliente);
+
+	List<Clientes> listarNombreYapellidoCliente(String nombreCliente, String apellidoCliente);
 	
 }
