@@ -1,6 +1,8 @@
 package com.mintic.tienda.repositories;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -32,8 +34,8 @@ public interface IUsuario extends CrudRepository<Usuario, Long> {
 	Integer findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
 			@Param("password") String password);
 	
-	@Query(value = "SELECT * FROM Usuario p where p.perfil=:perfil", nativeQuery = true)
-	Usuario buscarUsuarioPorPerfil(@Param("perfil") String perfil);
+	@Query(value = "SELECT * FROM Usuario c where c.perfil= :perfil", nativeQuery = true)
+	List<Usuario> buscarUsuarioPorPerfil(@Param("perfil") String perfil);
 
 	@Query(value = "SELECT * FROM Usuario p where p.nombreUsuario=:nombreUsuario", nativeQuery = true)
 	Usuario buscarUsuarioPorNombre(@Param("nombreUsuario") String nombreUsuario);

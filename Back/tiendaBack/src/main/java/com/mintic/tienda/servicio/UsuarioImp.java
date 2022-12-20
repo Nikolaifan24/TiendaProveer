@@ -1,6 +1,7 @@
 
 package com.mintic.tienda.servicio;
 
+import java.util.ArrayList;
 // import java.util.HashMap;
 // import org.springframework.http.HttpStatus;
 // import org.springframework.http.ResponseEntity;
@@ -148,30 +149,32 @@ public class UsuarioImp implements IUsuarioService {
 		);		
 	}
 
+	public List<Usuario> encontrarUsuarioPorNombre(String nombreUsuario){
 
+		List<Usuario> lista = new ArrayList<Usuario>();
+		lista.add(iUsuario.buscarUsuarioPorNombre(nombreUsuario));
+		return lista;
 
-	@Override
-	public UsuarioDto buscarUsuarioPorPerfil(String perfil) {
-		Usuario Usuario = null;
-		try {
-			Usuario = iUsuario.buscarUsuarioPorPerfil(perfil);
-			UsuarioDto  UsuarioDto = mapUsuarioDto(Usuario);
-			return UsuarioDto;
-		} catch (Exception e) {
-			return null;
-		}
-		
 	}
 
-
-
 	@Override
-	public Usuario loginUsuario(LoginDto usuario) {
+	public List<Usuario> listarUsuarioporPerfil(String perfil) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		List<Usuario> lista = new ArrayList<Usuario>();
+		
+		lista = iUsuario.buscarUsuarioPorPerfil(perfil);
+		
+		
+		return (lista) ;
 	}
 
 
+	
+
+
+
+	
 	
 	
 

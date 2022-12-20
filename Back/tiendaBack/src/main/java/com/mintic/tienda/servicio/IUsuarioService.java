@@ -19,11 +19,14 @@ public interface IUsuarioService {
 
 	List<Usuario> listarUsuarios();
 	
+	// UsuarioDto buscarUsuarioPorNombre(String nombreUsuario);
+
+	// UsuarioDto buscarUsuarioPorPerfil(String perfil);
+
+	// Usuario loginUsuario(LoginDto usuario);
 	UsuarioDto buscarUsuarioPorNombre(String nombreUsuario);
 
-	UsuarioDto buscarUsuarioPorPerfil(String perfil);
-
-	Usuario loginUsuario(LoginDto usuario);
+	List<Usuario> listarUsuarioporPerfil(String perfil); 
 
 	void crearUsuario(UsuarioDto usuarioDto);
 
@@ -31,6 +34,9 @@ public interface IUsuarioService {
 
 	void actualizarUsuario(String nombreUsuario, UsuarioDto usuarioDto);
 
+	List<Usuario> encontrarUsuarioPorNombre(String nombreUsuario);
+
+	// void actualizarUsuario(Long nombreUsuario, UsuarioDto usuarioDto);	
 	
 
 }

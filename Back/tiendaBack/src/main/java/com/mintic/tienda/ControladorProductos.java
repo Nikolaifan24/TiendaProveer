@@ -42,13 +42,13 @@ public class ControladorProductos {
 		return iProducto.getProductos();
 	}
 	
-	@CrossOrigin(origins = "http://localhost:8091")
+	// @CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/producto/{nombreProducto}")
 	public ProductosDto buscarProductoPorNombre(@PathVariable String nombreProducto) {
 		return iProducto.buscarProductoPorNombre(nombreProducto);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:8091")
+	// @CrossOrigin(origins = "http://localhost:8091")
 	@PostMapping("/producto")
 	public void crearProducto(@RequestBody ProductosDto productosDto) {
 		iProducto.crearProducto(productosDto);

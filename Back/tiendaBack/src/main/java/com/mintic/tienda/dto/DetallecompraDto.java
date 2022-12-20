@@ -1,12 +1,15 @@
 package com.mintic.tienda.dto;
 
+import com.mintic.tienda.entities.Compras;
+import com.mintic.tienda.entities.Productos;
+
 public class DetallecompraDto {
     
    private Long ID;
 
-   private Long IDCompra;
+   private Compras compras;
    
-   private Long IDProducto;
+   private Productos productos;
 
    private Double ValorUnitario;
 
@@ -18,10 +21,11 @@ public class DetallecompraDto {
     public DetallecompraDto() {
     }
 
-    public DetallecompraDto(Long ID, Long IDCompra, Long IDProducto, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
+
+    public DetallecompraDto(Long ID, Compras compras, Productos productos, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
         this.ID = ID;
-        this.IDCompra = IDCompra;
-        this.IDProducto = IDProducto;
+        this.compras = compras;
+        this.productos = productos;
         this.ValorUnitario = ValorUnitario;
         this.cantidadProducto = cantidadProducto;
         this.ValorTotal = ValorTotal;
@@ -35,20 +39,20 @@ public class DetallecompraDto {
         this.ID = ID;
     }
 
-    public Long getIDCompra() {
-        return this.IDCompra;
+    public Compras getCompras() {
+        return this.compras;
     }
 
-    public void setIDCompra(Long IDCompra) {
-        this.IDCompra = IDCompra;
+    public void setCompras(Compras compras) {
+        this.compras = compras;
     }
 
-    public Long getIDProducto() {
-        return this.IDProducto;
+    public Productos getProductos() {
+        return this.productos;
     }
 
-    public void setIDProducto(Long IDProducto) {
-        this.IDProducto = IDProducto;
+    public void setProductos(Productos productos) {
+        this.productos = productos;
     }
 
     public Double getValorUnitario() {
@@ -74,6 +78,6 @@ public class DetallecompraDto {
     public void setValorTotal(Double ValorTotal) {
         this.ValorTotal = ValorTotal;
     }
-   
+ 
 
 }

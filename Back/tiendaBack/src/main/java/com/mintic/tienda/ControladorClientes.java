@@ -42,13 +42,13 @@ public class ControladorClientes {
 		iCliente.crearCliente(clienteDto);
 	}
 	
-	@DeleteMapping("/cliente/{documentoCliente}")
+	@DeleteMapping("/eliminarCliente/{documentoCliente}")
 	public void eliminarCliente(@PathVariable Long documentoCliente) {
 		iCliente.eliminarCliente(documentoCliente);
 	}
 	
-	@PatchMapping("/cliente/{documentoCliente}")
-	public void actualizarCliente(@PathVariable Long documentoCliente, @RequestBody ClienteDto clienteDto) {
+	@PatchMapping("/actualizarCliente/{documentoCliente}")
+	public void actualizaralCliente(@PathVariable Long documentoCliente, @RequestBody ClienteDto clienteDto) {
 		iCliente.actualizarCliente(documentoCliente, clienteDto);
 	}
 	

@@ -26,8 +26,8 @@ public class Compras {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
 	
-	@OneToMany(mappedBy = "compras")
-    private List<Productos> productos;
+	// @OneToMany(mappedBy = "compras")
+    // private List<Productos> productos;
 
     @OneToMany(mappedBy = "compras")
 	private List<Detallecompra> detallecompras;
@@ -46,10 +46,8 @@ public class Compras {
     public Compras() {
     }
 
-
-    public Compras(Long ID, List<Productos> productos, List<Detallecompra> detallecompras, Proveedores proveedores, Date FechaCompra, Double totalCompra, Double ivaCompra) {
+    public Compras(Long ID, List<Detallecompra> detallecompras, Proveedores proveedores, Date FechaCompra, Double totalCompra, Double ivaCompra) {
         this.ID = ID;
-        this.productos = productos;
         this.detallecompras = detallecompras;
         this.proveedores = proveedores;
         this.FechaCompra = FechaCompra;
@@ -64,14 +62,6 @@ public class Compras {
 
     public void setID(Long ID) {
         this.ID = ID;
-    }
-
-    public List<Productos> getProductos() {
-        return this.productos;
-    }
-
-    public void setProductos(List<Productos> productos) {
-        this.productos = productos;
     }
 
     public List<Detallecompra> getDetallecompras() {
@@ -113,5 +103,6 @@ public class Compras {
     public void setIvaCompra(Double ivaCompra) {
         this.ivaCompra = ivaCompra;
     }
+
     
 }
