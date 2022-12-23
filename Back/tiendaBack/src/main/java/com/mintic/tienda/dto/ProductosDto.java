@@ -1,16 +1,18 @@
 package com.mintic.tienda.dto;
 
-import com.mintic.tienda.entities.Compras;
+// import java.util.List;
+
 import com.mintic.tienda.entities.Proveedores;
+
+// import com.mintic.tienda.entities.Compras;
+// import com.mintic.tienda.entities.Proveedores;
 
 public class ProductosDto {
 	
-	private Long idProducto;
-
+	private Long IDProductos;
+	
 	private Proveedores proveedores;
 
-	private Compras compras;
-	
 	private Long codigoProducto;
 
 	private String nombreProducto;
@@ -29,14 +31,14 @@ public class ProductosDto {
 
 	private Long devoluciones;
 
+
 	public ProductosDto() {
 	}
 
 
-	public ProductosDto(Long idProducto, Proveedores proveedores, Compras compras, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
-		this.idProducto = idProducto;
+	public ProductosDto(Long IDProductos, Proveedores proveedores, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
+		this.IDProductos = IDProductos;
 		this.proveedores = proveedores;
-		this.compras = compras;
 		this.codigoProducto = codigoProducto;
 		this.nombreProducto = nombreProducto;
 		this.tipoProducto = tipoProducto;
@@ -48,12 +50,12 @@ public class ProductosDto {
 		this.devoluciones = devoluciones;
 	}
 
-	public Long getIdProducto() {
-		return this.idProducto;
+	public Long getIDProductos() {
+		return this.IDProductos;
 	}
 
-	public void setIdProducto(Long idProducto) {
-		this.idProducto = idProducto;
+	public void setIDProductos(Long IDProductos) {
+		this.IDProductos = IDProductos;
 	}
 
 	public Proveedores getProveedores() {
@@ -62,14 +64,6 @@ public class ProductosDto {
 
 	public void setProveedores(Proveedores proveedores) {
 		this.proveedores = proveedores;
-	}
-
-	public Compras getCompras() {
-		return this.compras;
-	}
-
-	public void setCompras(Compras compras) {
-		this.compras = compras;
 	}
 
 	public Long getCodigoProducto() {
@@ -143,5 +137,5 @@ public class ProductosDto {
 	public void setDevoluciones(Long devoluciones) {
 		this.devoluciones = devoluciones;
 	}
-
+	
 }

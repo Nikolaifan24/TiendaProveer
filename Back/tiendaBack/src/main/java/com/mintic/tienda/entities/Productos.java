@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.mintic.tienda.dto.ProveedoresDto;
 
 @Entity
 @Table(name = Productos.TABLE_NAME)
@@ -32,15 +33,17 @@ public class Productos {
 	@OneToMany(mappedBy="productos" )
   	private List<Detallecompra> detallecompras;
 
+	// @JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="IDProveedor")
 	private Proveedores proveedores;
 
-	@ManyToOne
-	@JoinColumn(name="IDCompra")
-	private Compras compras;
+	// @JsonIgnore
+	// @ManyToOne
+	// @JoinColumn(name="IDCompra")
+	// private Compras compras;
 
-	private Long IDCompras;
+	// private Long IDProveedor;
 
 	private Long codigoProducto;
 
@@ -64,13 +67,12 @@ public class Productos {
 	public Productos() {
 	}
 
-	public Productos(Long IDProductos, List<Detalleventa> detalleventas, List<Detallecompra> detallecompras, Proveedores proveedores, Compras compras, Long IDCompras, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
+
+	public Productos(Long IDProductos, List<Detalleventa> detalleventas, List<Detallecompra> detallecompras, Proveedores proveedores, Long codigoProducto, String nombreProducto, String tipoProducto, Double precioCompra, Double precioVenta, Long cantidadProducto, Long unidadesVendidas, Long unidadesCompradas, Long devoluciones) {
 		this.IDProductos = IDProductos;
 		this.detalleventas = detalleventas;
 		this.detallecompras = detallecompras;
 		this.proveedores = proveedores;
-		this.compras = compras;
-		this.IDCompras = IDCompras;
 		this.codigoProducto = codigoProducto;
 		this.nombreProducto = nombreProducto;
 		this.tipoProducto = tipoProducto;
@@ -112,22 +114,6 @@ public class Productos {
 
 	public void setProveedores(Proveedores proveedores) {
 		this.proveedores = proveedores;
-	}
-
-	public Compras getCompras() {
-		return this.compras;
-	}
-
-	public void setCompras(Compras compras) {
-		this.compras = compras;
-	}
-
-	public Long getIDCompras() {
-		return this.IDCompras;
-	}
-
-	public void setIDCompras(Long IDCompras) {
-		this.IDCompras = IDCompras;
 	}
 
 	public Long getCodigoProducto() {
@@ -201,6 +187,5 @@ public class Productos {
 	public void setDevoluciones(Long devoluciones) {
 		this.devoluciones = devoluciones;
 	}
-
-
+	
 }

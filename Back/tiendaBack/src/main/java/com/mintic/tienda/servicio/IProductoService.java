@@ -9,7 +9,7 @@ public interface IProductoService {
 
 	// ProductosDto buscarProductoPorCodigo(Long codigoProducto);
 
-	List<Productos> getProductos();
+	List<Productos> ListaProductos();
 
 	void crearProducto(ProductosDto productosDto);
 
@@ -17,4 +17,9 @@ public interface IProductoService {
 
 	void actualizarProducto(String nombreProducto, ProductosDto productosDto);
 
+	void eliminarProductos(String nombreProductos);
+
+	List<Productos> listarProductoTipo(String tipoProducto);
+
+	List<Productos> encontrarProductoPorNombre(String nombreProducto);
 }
