@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 // import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = Proveedores.TABLE_NAME)
@@ -25,11 +27,11 @@ public class Proveedores {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IDProveedor;
 
-	// @JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "proveedores")
 	private List<Compras> compras;
 
-	// @JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "proveedores")
 	private List<Productos> productos;
 

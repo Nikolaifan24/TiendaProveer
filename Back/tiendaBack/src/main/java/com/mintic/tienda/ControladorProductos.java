@@ -33,7 +33,7 @@ public class ControladorProductos {
 	ProductosDto ProductoDto;
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/Producto/{nombreProducto}")
+	@GetMapping("/Productos/{nombreProducto}")
 	public List<Productos> MostarProductoPorNombre(@PathVariable String nombreProducto) {
 		return iProducto.encontrarProductoPorNombre(nombreProducto);
 	}

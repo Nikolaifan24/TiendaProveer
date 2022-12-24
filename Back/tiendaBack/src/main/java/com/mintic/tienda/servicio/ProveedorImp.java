@@ -106,6 +106,7 @@ public class ProveedorImp implements IProveedorService {
 	private ProveedoresDto mapProveedorDto(Proveedores proveedores) {
 		return new ProveedoresDto(
 				proveedores.getIDProveedor(),
+				proveedores.getProductos(),
 				proveedores.getNombreProveedor(),
 				proveedores.getNitProveedor(),
 				proveedores.getCiudadProveedor(),

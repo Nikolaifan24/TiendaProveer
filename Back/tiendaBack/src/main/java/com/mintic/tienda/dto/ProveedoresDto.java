@@ -2,14 +2,14 @@ package com.mintic.tienda.dto;
 
 import java.util.List;
 
-import com.mintic.tienda.entities.Compras;
+// import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Productos;
 
 public class ProveedoresDto {
 	
 	private Long id;
 		
-	private List<Compras> compras;
+	// private List<Compras> compras;
 
 	private List<Productos> productos;
 
@@ -28,11 +28,9 @@ public class ProveedoresDto {
 
 	public ProveedoresDto() {
 	}
-	
 
-	public ProveedoresDto(Long id, List<Compras> compras, List<Productos> productos, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
+	public ProveedoresDto(Long id, List<Productos> productos, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
 		this.id = id;
-		this.compras = compras;
 		this.productos = productos;
 		this.nombreProveedor = nombreProveedor;
 		this.nitProveedor = nitProveedor;
@@ -48,14 +46,6 @@ public class ProveedoresDto {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public List<Compras> getCompras() {
-		return this.compras;
-	}
-
-	public void setCompras(List<Compras> compras) {
-		this.compras = compras;
 	}
 
 	public List<Productos> getProductos() {
@@ -113,5 +103,5 @@ public class ProveedoresDto {
 	public void setTipoProducto(String TipoProducto) {
 		this.TipoProducto = TipoProducto;
 	}
-
+	
 }
