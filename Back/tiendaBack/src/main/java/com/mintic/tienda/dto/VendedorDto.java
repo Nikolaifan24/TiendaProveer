@@ -1,19 +1,21 @@
 package com.mintic.tienda.dto;
 
-public class VendedorDto {
-    private Long ID;
-	
-	private Long IDUsuario;
+import com.mintic.tienda.entities.Usuario;
 
-	private Long Documento;
+public class VendedorDto {
+    private Long IDVendedor;
+
+    private Usuario usuario;
 	
-	private String Nombre;
+	 private Long documentoVendedor;
 	
-	private String Dirrecion;
+	private String nombreVendedor;
 	
-	private Double Telefono;
+	private String dirrecionVendedor;
 	
-	private Float Comision;
+	private Double telefonoVendedor;
+	
+	private Float comisionVendedor;
 
 	private String FechaIngreso;
 
@@ -23,74 +25,73 @@ public class VendedorDto {
     public VendedorDto() {
     }
 
-
-    public VendedorDto(Long ID, Long IDUsuario, Long Documento, String Nombre, String Dirrecion, Double Telefono, Float Comision, String FechaIngreso, Double Salario) {
-        this.ID = ID;
-        this.IDUsuario = IDUsuario;
-        this.Documento = Documento;
-        this.Nombre = Nombre;
-        this.Dirrecion = Dirrecion;
-        this.Telefono = Telefono;
-        this.Comision = Comision;
+    public VendedorDto(Long IDVendedor, Usuario usuario, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
+        this.IDVendedor = IDVendedor;
+        this.usuario = usuario;
+        this.documentoVendedor = documentoVendedor;
+        this.nombreVendedor = nombreVendedor;
+        this.dirrecionVendedor = dirrecionVendedor;
+        this.telefonoVendedor = telefonoVendedor;
+        this.comisionVendedor = comisionVendedor;
         this.FechaIngreso = FechaIngreso;
         this.Salario = Salario;
     }
 
 
-    public Long getID() {
-        return this.ID;
+    public Long getIDVendedor() {
+        return this.IDVendedor;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setIDVendedor(Long IDVendedor) {
+        this.IDVendedor = IDVendedor;
     }
 
-    public Long getIDUsuario() {
-        return this.IDUsuario;
+    public Usuario getUsuario() {
+        return this.usuario;
     }
 
-    public void setIDUsuario(Long IDUsuario) {
-        this.IDUsuario = IDUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Long getDocumento() {
-        return this.Documento;
+    public Long getDocumentoVendedor() {
+        return this.documentoVendedor;
     }
 
-    public void setDocumento(Long Documento) {
-        this.Documento = Documento;
+    public void setDocumentoVendedor(Long documentoVendedor) {
+        this.documentoVendedor = documentoVendedor;
     }
 
-    public String getNombre() {
-        return this.Nombre;
+    public String getNombreVendedor() {
+        return this.nombreVendedor;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombreVendedor(String nombreVendedor) {
+        this.nombreVendedor = nombreVendedor;
     }
 
-    public String getDirrecion() {
-        return this.Dirrecion;
+    public String getDirrecionVendedor() {
+        return this.dirrecionVendedor;
     }
 
-    public void setDirrecion(String Dirrecion) {
-        this.Dirrecion = Dirrecion;
+    public void setDirrecionVendedor(String dirrecionVendedor) {
+        this.dirrecionVendedor = dirrecionVendedor;
     }
 
-    public Double getTelefono() {
-        return this.Telefono;
+    public Double getTelefonoVendedor() {
+        return this.telefonoVendedor;
     }
 
-    public void setTelefono(Double Telefono) {
-        this.Telefono = Telefono;
+    public void setTelefonoVendedor(Double telefonoVendedor) {
+        this.telefonoVendedor = telefonoVendedor;
     }
 
-    public Float getComision() {
-        return this.Comision;
+    public Float getComisionVendedor() {
+        return this.comisionVendedor;
     }
 
-    public void setComision(Float Comision) {
-        this.Comision = Comision;
+    public void setComisionVendedor(Float comisionVendedor) {
+        this.comisionVendedor = comisionVendedor;
     }
 
     public String getFechaIngreso() {
@@ -109,4 +110,4 @@ public class VendedorDto {
         this.Salario = Salario;
     }
 
-}
+    }

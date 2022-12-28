@@ -26,7 +26,7 @@ public class Vendedor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ID;
+	private Long IDVendedor;
 	
     @ManyToOne
     @JoinColumn(name="IDUsuario")
@@ -54,8 +54,8 @@ public class Vendedor {
     public Vendedor() {
     }
 
-    public Vendedor(Long ID, Usuario usuario, List<Ventas> ventas, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
-        this.ID = ID;
+    public Vendedor(Long IDVendedor, Usuario usuario, List<Ventas> ventas, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
+        this.IDVendedor = IDVendedor;
         this.usuario = usuario;
         this.ventas = ventas;
         this.documentoVendedor = documentoVendedor;
@@ -67,12 +67,12 @@ public class Vendedor {
         this.Salario = Salario;
     }
 
-    public Long getID() {
-        return this.ID;
+    public Long getIDVendedor() {
+        return this.IDVendedor;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setIDVendedor(Long IDVendedor) {
+        this.IDVendedor = IDVendedor;
     }
 
     public Usuario getUsuario() {
@@ -147,6 +147,4 @@ public class Vendedor {
         this.Salario = Salario;
     }
 
-
-
-}
+    }
