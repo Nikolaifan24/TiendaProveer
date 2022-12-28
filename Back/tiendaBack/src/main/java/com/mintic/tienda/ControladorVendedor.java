@@ -3,6 +3,7 @@ package com.mintic.tienda;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Service;
 // import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.tienda.dto.VendedorDto;
 import com.mintic.tienda.entities.Vendedor;
+// import com.mintic.tienda.servicio.IUsuarioService;
 // import com.mintic.tienda.dto.LoginDto;
 // import com.mintic.tienda.dto.ProveedoresDto;
 // import com.mintic.tienda.dto.VendedorDto;
@@ -25,8 +27,11 @@ import com.mintic.tienda.servicio.IVendedorService;
 
 @RestController
 public class ControladorVendedor {
-    @Autowired
+
+	@Autowired
 	IVendedorService iVendedor;
+
+	
 	
 	VendedorDto VendedorDto;
 	
@@ -36,6 +41,10 @@ public class ControladorVendedor {
 		return iVendedor.encontrarVendedorPorNombre(nombreVendedor);
 	}
 	
+	@GetMapping("/Vendedor/documento/{documentoVendedor}")
+	public VendedorDto MostarVendedorPorDocumento(@PathVariable Long documentoVendedor) {
+		return iVendedor.buscarVendedorPorDocumento(documentoVendedor);
+	}
 	
 	@PostMapping("/crearVendedor")
 	public void crearVendedor(@RequestBody VendedorDto VendedorDto) {
@@ -58,5 +67,6 @@ public class ControladorVendedor {
 	}
 	
 	
+
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import com.mintic.tienda.entities.Vendedor;
 
 public interface IVendedor extends CrudRepository<Vendedor, Long>{
+
     @Query(value = "SELECT * FROM Vendedor c where c.nombreVendedor=:nombreVendedor", nativeQuery = true)
 	Vendedor buscarVendedorPorNombre(@Param("nombreVendedor") String NombreProducto);    
 

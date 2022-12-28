@@ -40,7 +40,7 @@ public class Vendedor {
 	
 	private String nombreVendedor;
 	
-	private String dirrecionVendedor;
+	private String direccionVendedor;
 	
 	private Double telefonoVendedor;
 	
@@ -54,13 +54,14 @@ public class Vendedor {
     public Vendedor() {
     }
 
-    public Vendedor(Long IDVendedor, Usuario usuario, List<Ventas> ventas, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
+
+    public Vendedor(Long IDVendedor, Usuario usuario, List<Ventas> ventas, Long documentoVendedor, String nombreVendedor, String direccionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
         this.IDVendedor = IDVendedor;
         this.usuario = usuario;
         this.ventas = ventas;
         this.documentoVendedor = documentoVendedor;
         this.nombreVendedor = nombreVendedor;
-        this.dirrecionVendedor = dirrecionVendedor;
+        this.direccionVendedor = direccionVendedor;
         this.telefonoVendedor = telefonoVendedor;
         this.comisionVendedor = comisionVendedor;
         this.FechaIngreso = FechaIngreso;
@@ -107,12 +108,12 @@ public class Vendedor {
         this.nombreVendedor = nombreVendedor;
     }
 
-    public String getDirrecionVendedor() {
-        return this.dirrecionVendedor;
+    public String getDireccionVendedor() {
+        return this.direccionVendedor;
     }
 
-    public void setDirrecionVendedor(String dirrecionVendedor) {
-        this.dirrecionVendedor = dirrecionVendedor;
+    public void setDireccionVendedor(String direccionVendedor) {
+        this.direccionVendedor = direccionVendedor;
     }
 
     public Double getTelefonoVendedor() {
@@ -146,5 +147,5 @@ public class Vendedor {
     public void setSalario(Double Salario) {
         this.Salario = Salario;
     }
-
+    
     }

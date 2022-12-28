@@ -11,7 +11,7 @@ public class VendedorDto {
 	
 	private String nombreVendedor;
 	
-	private String dirrecionVendedor;
+	private String direccionVendedor;
 	
 	private Double telefonoVendedor;
 	
@@ -25,18 +25,17 @@ public class VendedorDto {
     public VendedorDto() {
     }
 
-    public VendedorDto(Long IDVendedor, Usuario usuario, Long documentoVendedor, String nombreVendedor, String dirrecionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
+    public VendedorDto(Long IDVendedor, Usuario usuario, Long documentoVendedor, String nombreVendedor, String direccionVendedor, Double telefonoVendedor, Float comisionVendedor, String FechaIngreso, Double Salario) {
         this.IDVendedor = IDVendedor;
         this.usuario = usuario;
         this.documentoVendedor = documentoVendedor;
         this.nombreVendedor = nombreVendedor;
-        this.dirrecionVendedor = dirrecionVendedor;
+        this.direccionVendedor = direccionVendedor;
         this.telefonoVendedor = telefonoVendedor;
         this.comisionVendedor = comisionVendedor;
         this.FechaIngreso = FechaIngreso;
         this.Salario = Salario;
     }
-
 
     public Long getIDVendedor() {
         return this.IDVendedor;
@@ -70,12 +69,12 @@ public class VendedorDto {
         this.nombreVendedor = nombreVendedor;
     }
 
-    public String getDirrecionVendedor() {
-        return this.dirrecionVendedor;
+    public String getDireccionVendedor() {
+        return this.direccionVendedor;
     }
 
-    public void setDirrecionVendedor(String dirrecionVendedor) {
-        this.dirrecionVendedor = dirrecionVendedor;
+    public void setDireccionVendedor(String direccionVendedor) {
+        this.direccionVendedor = direccionVendedor;
     }
 
     public Double getTelefonoVendedor() {

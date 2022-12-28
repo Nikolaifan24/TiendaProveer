@@ -1,6 +1,7 @@
 package com.mintic.tienda.servicio;
 import java.util.List;
 
+// import org.springframework.stereotype.Service;
 
 import com.mintic.tienda.dto.VendedorDto;
 import com.mintic.tienda.entities.Vendedor;

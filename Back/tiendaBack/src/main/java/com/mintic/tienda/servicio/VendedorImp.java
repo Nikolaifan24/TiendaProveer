@@ -8,14 +8,18 @@ import java.util.List;
 // import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 // import org.springframework.stereotype.Service;
 import com.mintic.tienda.dto.VendedorDto;
 import com.mintic.tienda.entities.Usuario;
 import com.mintic.tienda.entities.Vendedor;
 import com.mintic.tienda.repositories.IVendedor;
 
+@Service
 public class VendedorImp  implements IVendedorService{
     @Autowired
+	public
 	IVendedor iVendedor;
 	
 	@Override
@@ -38,7 +42,7 @@ public class VendedorImp  implements IVendedorService{
         Usuario usuario = VendedorDto.getUsuario();
         Long documentoVendedor = VendedorDto.getDocumentoVendedor();
         String nombreVendedor = VendedorDto.getNombreVendedor();
-        String direcionVendedor = VendedorDto.getDirrecionVendedor();
+        String direcionVendedor = VendedorDto.getDireccionVendedor();
         Double telefonoVendedor = VendedorDto.getTelefonoVendedor();
         Float comisionVendedor = VendedorDto.getComisionVendedor();
         String FechaIngreso = VendedorDto.getFechaIngreso();
@@ -55,7 +59,7 @@ public class VendedorImp  implements IVendedorService{
 			myVendedor.setNombreVendedor(nombreVendedor);
 		}
         if(direcionVendedor != null) {
-			myVendedor.setDirrecionVendedor(direcionVendedor);;
+			myVendedor.setDireccionVendedor(direcionVendedor);;
 		}
 		if(telefonoVendedor != null) {
 			myVendedor.setTelefonoVendedor(telefonoVendedor);
@@ -79,7 +83,7 @@ public class VendedorImp  implements IVendedorService{
         Usuario usuario = VendedorDto.getUsuario();
         Long documentoVendedor = VendedorDto.getDocumentoVendedor();
         String nombreVendedor = VendedorDto.getNombreVendedor();
-        String direcionVendedor = VendedorDto.getDirrecionVendedor();
+        String direcionVendedor = VendedorDto.getDireccionVendedor();
         Double telefonoVendedor = VendedorDto.getTelefonoVendedor();
         Float comisionVendedor = VendedorDto.getComisionVendedor();
         String FechaIngreso = VendedorDto.getFechaIngreso();
@@ -96,7 +100,7 @@ public class VendedorImp  implements IVendedorService{
 			myVendedor.setNombreVendedor(nombreVendedor);
 		}
         if(direcionVendedor != null) {
-			myVendedor.setDirrecionVendedor(direcionVendedor);;
+			myVendedor.setDireccionVendedor(direcionVendedor);;
 		}
 		if(telefonoVendedor != null) {
 			myVendedor.setTelefonoVendedor(telefonoVendedor);
@@ -149,7 +153,7 @@ public class VendedorImp  implements IVendedorService{
 				Vendedor.getUsuario(),
 				Vendedor.getDocumentoVendedor(),
 				Vendedor.getNombreVendedor(),
-				Vendedor.getDirrecionVendedor(),
+				Vendedor.getDireccionVendedor(),
 				Vendedor.getTelefonoVendedor(),
 				Vendedor.getComisionVendedor(),
 				Vendedor.getFechaIngreso(),
