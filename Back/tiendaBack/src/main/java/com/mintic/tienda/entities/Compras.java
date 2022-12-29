@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 // import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = Compras.TABLE_NAME)
 public class Compras {
@@ -24,11 +26,11 @@ public class Compras {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ID;
+	private Long IDCompras;
 	
 	// @OneToMany(mappedBy = "compras")
     // private List<Productos> productos;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "compras")
 	private List<Detallecompra> detallecompras;
     
@@ -46,8 +48,8 @@ public class Compras {
     public Compras() {
     }
 
-    public Compras(Long ID, List<Detallecompra> detallecompras, Proveedores proveedores, Date FechaCompra, Double totalCompra, Double ivaCompra) {
-        this.ID = ID;
+    public Compras(Long IDCompras, List<Detallecompra> detallecompras, Proveedores proveedores, Date FechaCompra, Double totalCompra, Double ivaCompra) {
+        this.IDCompras = IDCompras;
         this.detallecompras = detallecompras;
         this.proveedores = proveedores;
         this.FechaCompra = FechaCompra;
@@ -55,13 +57,12 @@ public class Compras {
         this.ivaCompra = ivaCompra;
     }
 
-
-    public Long getID() {
-        return this.ID;
+    public Long getIDCompras() {
+        return this.IDCompras;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setIDCompras(Long IDCompras) {
+        this.IDCompras = IDCompras;
     }
 
     public List<Detallecompra> getDetallecompras() {
@@ -104,5 +105,4 @@ public class Compras {
         this.ivaCompra = ivaCompra;
     }
 
-    
-}
+   }
