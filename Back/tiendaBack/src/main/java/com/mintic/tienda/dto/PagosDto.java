@@ -1,14 +1,17 @@
 package com.mintic.tienda.dto;
 
-import java.sql.Date;
+import java.util.Date;
+
+import com.mintic.tienda.entities.Clientes;
+import com.mintic.tienda.entities.Ventas;
 
 public class PagosDto {
 
-    private Long id;
+	private Long IDPagos;
+  
+    private Clientes clientes;
 
-    private Long idClientes;
-
-    private Long idVenta;
+    private Ventas ventas;
 
 	private Date FechaVenta;
 
@@ -24,11 +27,10 @@ public class PagosDto {
 	public PagosDto() {
 	}
 
-
-	public PagosDto(Long id, Long idClientes, Long idVenta, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
-		this.id = id;
-		this.idClientes = idClientes;
-		this.idVenta = idVenta;
+	public PagosDto(Long IDPagos, Clientes clientes, Ventas ventas, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
+		this.IDPagos = IDPagos;
+		this.clientes = clientes;
+		this.ventas = ventas;
 		this.FechaVenta = FechaVenta;
 		this.FechaPago = FechaPago;
 		this.TipoPago = TipoPago;
@@ -36,29 +38,28 @@ public class PagosDto {
 		this.ValorPago = ValorPago;
 	}
 
-
-	public Long getId() {
-		return this.id;
+	public Long getIDPagos() {
+		return this.IDPagos;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIDPagos(Long IDPagos) {
+		this.IDPagos = IDPagos;
 	}
 
-	public Long getIdClientes() {
-		return this.idClientes;
+	public Clientes getClientes() {
+		return this.clientes;
 	}
 
-	public void setIdClientes(Long idClientes) {
-		this.idClientes = idClientes;
+	public void setClientes(Clientes clientes) {
+		this.clientes = clientes;
 	}
 
-	public Long getIdVenta() {
-		return this.idVenta;
+	public Ventas getVentas() {
+		return this.ventas;
 	}
 
-	public void setIdVenta(Long idVenta) {
-		this.idVenta = idVenta;
+	public void setVentas(Ventas ventas) {
+		this.ventas = ventas;
 	}
 
 	public Date getFechaVenta() {
