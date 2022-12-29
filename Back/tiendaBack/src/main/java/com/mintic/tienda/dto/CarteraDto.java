@@ -2,15 +2,20 @@ package com.mintic.tienda.dto;
 
 import java.util.Date;
 
+import com.mintic.tienda.entities.Clientes;
+import com.mintic.tienda.entities.Pagos;
+import com.mintic.tienda.entities.Ventas;
+
+
 public class CarteraDto {
     
-    private Long id;
+    private Long IDCartera;
 
-    private Long idClientes;
+    private Clientes clientes;
 
-    private Long idVenta;
+    private Ventas ventas;
 
-    private Long idPagos;
+    private Pagos pagos;
 
     private Date FechaVenta;
 
@@ -23,46 +28,46 @@ public class CarteraDto {
     }
 
 
-    public CarteraDto(Long id, Long idClientes, Long idVenta, Long idPagos, Date FechaVenta, Date FechaPago, Double Saldo) {
-        this.id = id;
-        this.idClientes = idClientes;
-        this.idVenta = idVenta;
-        this.idPagos = idPagos;
+    public CarteraDto(Long IDCartera, Clientes clientes, Ventas ventas, Pagos pagos, Date FechaVenta, Date FechaPago, Double Saldo) {
+        this.IDCartera = IDCartera;
+        this.clientes = clientes;
+        this.ventas = ventas;
+        this.pagos = pagos;
         this.FechaVenta = FechaVenta;
         this.FechaPago = FechaPago;
         this.Saldo = Saldo;
     }
 
-    public Long getId() {
-        return this.id;
+    public Long getIDCartera() {
+        return this.IDCartera;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIDCartera(Long IDCartera) {
+        this.IDCartera = IDCartera;
     }
 
-    public Long getIdClientes() {
-        return this.idClientes;
+    public Clientes getClientes() {
+        return this.clientes;
     }
 
-    public void setIdClientes(Long idClientes) {
-        this.idClientes = idClientes;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 
-    public Long getIdVenta() {
-        return this.idVenta;
+    public Ventas getVentas() {
+        return this.ventas;
     }
 
-    public void setIdVenta(Long idVenta) {
-        this.idVenta = idVenta;
+    public void setVentas(Ventas ventas) {
+        this.ventas = ventas;
     }
 
-    public Long getIdPagos() {
-        return this.idPagos;
+    public Pagos getPagos() {
+        return this.pagos;
     }
 
-    public void setIdPagos(Long idPagos) {
-        this.idPagos = idPagos;
+    public void setPagos(Pagos pagos) {
+        this.pagos = pagos;
     }
 
     public Date getFechaVenta() {
@@ -88,6 +93,5 @@ public class CarteraDto {
     public void setSaldo(Double Saldo) {
         this.Saldo = Saldo;
     }
-
 
 }

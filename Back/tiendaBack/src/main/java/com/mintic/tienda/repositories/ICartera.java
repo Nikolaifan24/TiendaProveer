@@ -1,6 +1,9 @@
 package com.mintic.tienda.repositories;
 
-import java.sql.Date;
+
+
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,17 +13,17 @@ import com.mintic.tienda.entities.Cartera;
 
 public interface ICartera extends CrudRepository<Cartera, Long> {
     @Query(value = "SELECT * from Cartera p where p.FechaVenta= :FechaVenta and p.FechaPago=:FechaPago", nativeQuery = true)
-	Cartera buscarCarteraporFechapagoyVenta(@Param("FechaVenta") Date FechaVenta,
+	List<Cartera> buscarCarteraporFechapagoyVenta(@Param("FechaVenta") Date FechaVenta,
 			@Param("FechaPago") Date FechaPago);
 
     @Query(value = "SELECT * from Cartera p where p.FechaPago=:FechaPago", nativeQuery = true)
     Cartera buscarCarteraporFechapago(@Param("FechaPago") Date FechaPago);
 	
 	@Query(value = "SELECT * FROM Cartera p where p.FechaVenta=:FechaVenta", nativeQuery = true)
-	Cartera buscarCarteraPorFechaVenta(@Param("FechaVenta") Date FechaVenta);
+	List<Cartera> buscarCarteraPorFechaVenta(@Param("FechaVenta") Date FechaVenta);
 
     @Query(value = "SELECT * FROM Cartera p where p.IDCliente=:IDCliente", nativeQuery = true)
-	Cartera buscarCarteraPorCliente(@Param("IDCliente") Long IDCliente);
+	List<Cartera> buscarCarteraPorCliente(@Param("IDCliente") Long IDCliente);
 
 
     
