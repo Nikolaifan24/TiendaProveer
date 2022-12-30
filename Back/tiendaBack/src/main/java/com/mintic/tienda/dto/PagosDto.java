@@ -1,6 +1,6 @@
 package com.mintic.tienda.dto;
 
-import java.util.Date;
+// import java.util.String;
 
 import com.mintic.tienda.entities.Clientes;
 import com.mintic.tienda.entities.Ventas;
@@ -13,9 +13,9 @@ public class PagosDto {
 
     private Ventas ventas;
 
-	private Date FechaVenta;
+	private String FechaVenta;
 
-	private Date FechaPago;
+	private String FechaPago;
 
 	private String TipoPago;
 
@@ -27,7 +27,7 @@ public class PagosDto {
 	public PagosDto() {
 	}
 
-	public PagosDto(Long IDPagos, Clientes clientes, Ventas ventas, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
+	public PagosDto(Long IDPagos, Clientes clientes, Ventas ventas, String FechaVenta, String FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
 		this.IDPagos = IDPagos;
 		this.clientes = clientes;
 		this.ventas = ventas;
@@ -62,19 +62,19 @@ public class PagosDto {
 		this.ventas = ventas;
 	}
 
-	public Date getFechaVenta() {
+	public String getFechaVenta() {
 		return this.FechaVenta;
 	}
 
-	public void setFechaVenta(Date FechaVenta) {
+	public void setFechaVenta(String FechaVenta) {
 		this.FechaVenta = FechaVenta;
 	}
 
-	public Date getFechaPago() {
+	public String getFechaPago() {
 		return this.FechaPago;
 	}
 
-	public void setFechaPago(Date FechaPago) {
+	public void setFechaPago(String FechaPago) {
 		this.FechaPago = FechaPago;
 	}
 

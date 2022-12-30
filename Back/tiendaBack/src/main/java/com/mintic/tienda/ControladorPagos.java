@@ -1,6 +1,6 @@
 package com.mintic.tienda;
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ControladorPagos {
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/Pagos/fehca/pago/{FehcaPago}")
-	public PagosDto buscarPagosByFechaPago(@PathVariable Date FehcaPago) {
+	public PagosDto buscarPagosByFechaPago(@PathVariable String FehcaPago) {
 		return iPagos.buscarPagosPorFechaPago(FehcaPago);
 	}
 	
@@ -39,16 +39,16 @@ public class ControladorPagos {
 	}
 	
 	@DeleteMapping("/eliminarPagos/{FehcaPago}")
-	public void eliminarPagos(@PathVariable Date FehcaPago) {
+	public void eliminarPagos(@PathVariable String FehcaPago) {
 		iPagos.eliminarPagos(FehcaPago);
 	}
 	
 	@PatchMapping("/actualizarPagos/{FehcaPago}")
-	public void actualizaralPagos(@PathVariable Date FehcaPago, @RequestBody PagosDto PagosDto) {
+	public void actualizaralPagos(@PathVariable String FehcaPago, @RequestBody PagosDto PagosDto) {
 		iPagos.actualizarPagos(FehcaPago, PagosDto);
 	}
 	
-	@GetMapping("/Pagoss")
+	@GetMapping("/pagos")
 	public List<Pagos> listaPagos() {
 		return iPagos.listaPagos();
 	}
@@ -64,7 +64,7 @@ public class ControladorPagos {
 	}
 
 	@GetMapping("/Pagos/buscarPagos/ventaypago/{FechaVenta}/{FechaPago}")
-	public List<Pagos> listarPagosByFechaVentaYPago(@PathVariable Date FechaVenta, @PathVariable Date FechaPago ){
+	public List<Pagos> listarPagosByFechaVentaYPago(@PathVariable String FechaVenta, @PathVariable String FechaPago ){
 		return iPagos.listarPagosPorFechaPagoyVenta(FechaVenta, FechaPago);
 	}
 

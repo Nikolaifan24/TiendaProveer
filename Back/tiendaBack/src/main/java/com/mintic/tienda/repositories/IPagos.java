@@ -1,6 +1,6 @@
 package com.mintic.tienda.repositories;
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -11,11 +11,11 @@ import com.mintic.tienda.entities.Pagos;
 
 public interface IPagos extends CrudRepository<Pagos, Long> {
     @Query(value = "SELECT * from Pagos p where p.FechaPago= :FechaPago and p.TipoPago=:TipoPago", nativeQuery = true)
-	List<Pagos> buscarPagosPorFechayTipo(@Param("FechaPago") Date FechaPago,
+	List<Pagos> buscarPagosPorFechayTipo(@Param("FechaPago") String FechaPago,
 			@Param("TipoPago") String TipoPago);
 
     @Query(value = "SELECT * from Pagos p where p.FechaPago= :FechaPago and p.MedioPago=:MedioPago", nativeQuery = true)
-    List<Pagos> buscarPagosPorFechayMedio(@Param("FechaPago") Date FechaPago,
+    List<Pagos> buscarPagosPorFechayMedio(@Param("FechaPago") String FechaPago,
             @Param("MedioPago") String MedioPago);
 
     
@@ -26,7 +26,7 @@ public interface IPagos extends CrudRepository<Pagos, Long> {
 	List<Pagos> buscarPagosPorMedio(@Param("MedioPago") String MedioPago);
 
     @Query(value = "SELECT * from Pagos p where p.FechaPago=:FechaPago", nativeQuery = true)
-    Pagos buscarPagosporFechapago(@Param("FechaPago") Date FechaPago);
+    Pagos buscarPagosporFechapago(@Param("FechaPago") String FechaPago);
 
     @Query(value = "SELECT * FROM Pagos p where p.IDCliente=:IDCliente", nativeQuery = true)
 	List<Pagos> buscarPagosPorCliente(@Param("IDCliente") Long IDCliente);

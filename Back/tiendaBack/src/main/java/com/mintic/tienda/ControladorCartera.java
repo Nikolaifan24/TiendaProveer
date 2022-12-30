@@ -1,6 +1,6 @@
 package com.mintic.tienda;
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ControladorCartera {
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/Cartera/fehca/pago/{FehcaPago}")
-	public CarteraDto buscarCarteraByFechaPago(@PathVariable Date FehcaPago) {
+	public CarteraDto buscarCarteraByFechaPago(@PathVariable String FehcaPago) {
 		return iCartera.buscarCarteraPorFechaPago(FehcaPago);
 	}
 	
@@ -39,12 +39,12 @@ public class ControladorCartera {
 	}
 	
 	@DeleteMapping("/eliminarCartera/{FehcaPago}")
-	public void eliminarCartera(@PathVariable Date FehcaPago) {
+	public void eliminarCartera(@PathVariable String FehcaPago) {
 		iCartera.eliminarCartera(FehcaPago);
 	}
 	
 	@PatchMapping("/actualizarCartera/{FehcaPago}")
-	public void actualizaralCartera(@PathVariable Date FehcaPago, @RequestBody CarteraDto CarteraDto) {
+	public void actualizaralCartera(@PathVariable String FehcaPago, @RequestBody CarteraDto CarteraDto) {
 		iCartera.actualizarCartera(FehcaPago, CarteraDto);
 	}
 	
@@ -59,12 +59,12 @@ public class ControladorCartera {
 	}
 
     @GetMapping("/Cartera/fechaventa/{FechaVenta}")
-	public List<Cartera> listaCarteraByFechaVenta(@PathVariable Date FechaVenta){
+	public List<Cartera> listaCarteraByFechaVenta(@PathVariable String FechaVenta){
 		return iCartera.listarCarteraFechaVenta(FechaVenta);
 	}
 
 	@GetMapping("/Cartera/buscarCartera/ventaypago/{FechaVenta}/{FechaPago}")
-	public List<Cartera> listarCarteraByFechaVentaYPago(@PathVariable Date FechaVenta, @PathVariable Date FechaPago ){
+	public List<Cartera> listarCarteraByFechaVentaYPago(@PathVariable String FechaVenta, @PathVariable String FechaPago ){
 		return iCartera.listarCarteraPorFechaPagoyVenta(FechaVenta, FechaPago);
 	}
 

@@ -2,7 +2,7 @@ package com.mintic.tienda.servicio;
 
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +33,8 @@ public class PagosoImp implements IPagosService {
 		// Long id = PagosDto.getID();
 		Clientes clientes = PagosDto.getClientes();
 		Ventas ventas = PagosDto.getVentas();
-        Date FechaVenta = PagosDto.getFechaVenta();
-        Date FechaPago = PagosDto.getFechaPago();
+        String FechaVenta = PagosDto.getFechaVenta();
+        String FechaPago = PagosDto.getFechaPago();
 		String TipoPago = PagosDto.getTipoPago();
 		String MedioPago = PagosDto.getMedioPago();
         Double Valor = PagosDto.getValorPago();
@@ -64,13 +64,13 @@ public class PagosoImp implements IPagosService {
 		return Pagos;
 	}
 	
-	private void updatePagos(PagosDto PagosDto, Pagos Pagos) {
+	private void upStringPagos(PagosDto PagosDto, Pagos Pagos) {
 		
 		// Pagos Pagos = new Pagos();
 		Clientes clientes = PagosDto.getClientes();
 		Ventas ventas = PagosDto.getVentas();
-        Date FechaVenta = PagosDto.getFechaVenta();
-        Date FechaPago = PagosDto.getFechaPago();
+        String FechaVenta = PagosDto.getFechaVenta();
+        String FechaPago = PagosDto.getFechaPago();
 		String TipoPago = PagosDto.getTipoPago();
 		String MedioPago = PagosDto.getMedioPago();
         Double Valor = PagosDto.getValorPago();
@@ -100,7 +100,7 @@ public class PagosoImp implements IPagosService {
 	}
 
 	@Override
-	public PagosDto buscarPagosPorFechaPago(Date FechaPago) {
+	public PagosDto buscarPagosPorFechaPago(String FechaPago) {
 		Pagos Pagos = null;
 		try {
 			Pagos = iPagos.buscarPagosporFechapago(FechaPago);
@@ -128,7 +128,7 @@ public class PagosoImp implements IPagosService {
 	}
 
 	@Override
-	public void eliminarPagos(Date FechaPago) {
+	public void eliminarPagos(String FechaPago) {
 		
 		Pagos Pagos = iPagos.buscarPagosporFechapago(FechaPago);
 		iPagos.delete(Pagos);
@@ -136,9 +136,9 @@ public class PagosoImp implements IPagosService {
 	}
 
 	@Override
-	public void actualizarPagos(Date FechaPago, PagosDto PagosDto) {
+	public void actualizarPagos(String FechaPago, PagosDto PagosDto) {
 		Pagos Pagos = iPagos.buscarPagosporFechapago(FechaPago);
-		updatePagos(PagosDto, Pagos);
+		upStringPagos(PagosDto, Pagos);
 
 	}
 
@@ -172,7 +172,7 @@ public class PagosoImp implements IPagosService {
 	}
 
 	@Override
-	public List<Pagos> listarPagosPorFechaPagoyTipo(Date FechaVenta, String TipoPago) {
+	public List<Pagos> listarPagosPorFechaPagoyTipo(String FechaVenta, String TipoPago) {
 		// TODO Auto-generated method stub
 		
 		List<Pagos> lista = new ArrayList<Pagos>();
@@ -184,7 +184,7 @@ public class PagosoImp implements IPagosService {
 	}
 
     @Override
-    public List<Pagos> listarPagosPorFechaPagoyVenta(Date fechaVenta, Date fechaPago) {
+    public List<Pagos> listarPagosPorFechaPagoyVenta(String fechaVenta, String fechaPago) {
         // TODO Auto-generated method stub
         return null;
     }

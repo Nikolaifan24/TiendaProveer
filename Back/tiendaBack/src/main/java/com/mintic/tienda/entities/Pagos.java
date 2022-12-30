@@ -1,6 +1,6 @@
 package com.mintic.tienda.entities;
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,12 +34,12 @@ public class Pagos {
 
     
 	@ManyToOne
-    @JoinColumn(name="IDIVenta")
+    @JoinColumn(name="IDVenta")
     private Ventas ventas;
 
-	private Date FechaVenta;
+	private String FechaVenta;
 
-	private Date FechaPago;
+	private String FechaPago;
 
 	private String TipoPago;
 
@@ -52,7 +52,7 @@ public class Pagos {
     }
 
 
-    public Pagos(Long IDPagos, List<Cartera> carteras, Clientes clientes, Ventas ventas, Date FechaVenta, Date FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
+    public Pagos(Long IDPagos, List<Cartera> carteras, Clientes clientes, Ventas ventas, String FechaVenta, String FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
         this.IDPagos = IDPagos;
         this.carteras = carteras;
         this.clientes = clientes;
@@ -96,19 +96,19 @@ public class Pagos {
         this.ventas = ventas;
     }
 
-    public Date getFechaVenta() {
+    public String getFechaVenta() {
         return this.FechaVenta;
     }
 
-    public void setFechaVenta(Date FechaVenta) {
+    public void setFechaVenta(String FechaVenta) {
         this.FechaVenta = FechaVenta;
     }
 
-    public Date getFechaPago() {
+    public String getFechaPago() {
         return this.FechaPago;
     }
 
-    public void setFechaPago(Date FechaPago) {
+    public void setFechaPago(String FechaPago) {
         this.FechaPago = FechaPago;
     }
 

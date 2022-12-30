@@ -1,6 +1,6 @@
 package com.mintic.tienda.servicio;
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import com.mintic.tienda.dto.CarteraDto;
@@ -8,20 +8,20 @@ import com.mintic.tienda.entities.Cartera;
 
 public interface ICarteraService {
 
-    CarteraDto buscarCarteraPorFechaPago(Date FechaPago); 
+    CarteraDto buscarCarteraPorFechaPago(String FechaPago); 
 
     void crearCartera(CarteraDto CarteraDto);
     
-    void eliminarCartera(Date FechaPago);
+    void eliminarCartera(String FechaPago);
     
-    void actualizarCartera(Date FechaPago, CarteraDto CarteraDto); 
+    void actualizarCartera(String FechaPago, CarteraDto CarteraDto); 
 
     List<Cartera> listaCartera();
 
     List<Cartera> listaCarteraCliente(Long IDCliente);
 
-    List<Cartera> listarCarteraPorFechaPagoyVenta(Date FechaVenta, Date FechaPago);
+    List<Cartera> listarCarteraPorFechaPagoyVenta(String FechaVenta, String FechaPago);
 
-    List<Cartera> listarCarteraFechaVenta(Date FechaVenta);
+    List<Cartera> listarCarteraFechaVenta(String FechaVenta);
     
 }

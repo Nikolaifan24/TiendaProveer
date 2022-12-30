@@ -1,7 +1,7 @@
 package com.mintic.tienda.servicio;
 
 import java.util.ArrayList;
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +33,8 @@ public class CarteraImp implements ICarteraService{
 		Clientes clientes = CarteraDto.getClientes();
 		Ventas ventas = CarteraDto.getVentas();
 		Pagos pagos = CarteraDto.getPagos();
-		Date FechaVenta = CarteraDto.getFechaVenta();
-		Date FechaPago = CarteraDto.getFechaPago();
+		String FechaVenta = CarteraDto.getFechaVenta();
+		String FechaPago = CarteraDto.getFechaPago();
 		Double Saldo = ventas.getTotalVenta()-pagos.getValorPago();
 		
 		if(clientes != null) {
@@ -59,14 +59,14 @@ public class CarteraImp implements ICarteraService{
 		return Cartera;
 	}
 	
-	private void updateCartera(CarteraDto CarteraDto, Cartera Cartera) {
+	private void upStringCartera(CarteraDto CarteraDto, Cartera Cartera) {
 		
 		// Cartera Cartera = new Cartera();
 		Clientes clientes = CarteraDto.getClientes();
 		Ventas ventas = CarteraDto.getVentas();
 		Pagos pagos = CarteraDto.getPagos();
-		Date FechaVenta = CarteraDto.getFechaVenta();
-		Date FechaPago = CarteraDto.getFechaPago();
+		String FechaVenta = CarteraDto.getFechaVenta();
+		String FechaPago = CarteraDto.getFechaPago();
 		Double Saldo = ventas.getTotalVenta()-pagos.getValorPago();
 		
 		if(clientes != null) {
@@ -91,7 +91,7 @@ public class CarteraImp implements ICarteraService{
 	}
 
 	@Override
-	public CarteraDto buscarCarteraPorFechaPago(Date FechaPago) {
+	public CarteraDto buscarCarteraPorFechaPago(String FechaPago) {
 		Cartera Cartera = null;
 		try {
 			Cartera = iCartera.buscarCarteraporFechapago(FechaPago);
@@ -118,7 +118,7 @@ public class CarteraImp implements ICarteraService{
 	}
 
 	@Override
-	public void eliminarCartera(Date FechaPago) {
+	public void eliminarCartera(String FechaPago) {
 		
 		Cartera Cartera = iCartera.buscarCarteraporFechapago(FechaPago);
 		iCartera.delete(Cartera);
@@ -126,9 +126,9 @@ public class CarteraImp implements ICarteraService{
 	}
 
 	@Override
-	public void actualizarCartera(Date FechaPago, CarteraDto CarteraDto) {
+	public void actualizarCartera(String FechaPago, CarteraDto CarteraDto) {
 		Cartera Cartera = iCartera.buscarCarteraporFechapago(FechaPago);
-		updateCartera(CarteraDto, Cartera);
+		upStringCartera(CarteraDto, Cartera);
 
 	}
 
@@ -150,7 +150,7 @@ public class CarteraImp implements ICarteraService{
 	}
 
     @Override
-	public List<Cartera> listarCarteraFechaVenta(Date FechaVenta) {
+	public List<Cartera> listarCarteraFechaVenta(String FechaVenta) {
 		// TODO Auto-generated method stub
 		
 		List<Cartera> lista = new ArrayList<Cartera>();
@@ -162,7 +162,7 @@ public class CarteraImp implements ICarteraService{
 	}
 
 	@Override
-	public List<Cartera> listarCarteraPorFechaPagoyVenta(Date FechaVenta, Date FechaPago) {
+	public List<Cartera> listarCarteraPorFechaPagoyVenta(String FechaVenta, String FechaPago) {
 		// TODO Auto-generated method stub
 		
 		List<Cartera> lista = new ArrayList<Cartera>();
