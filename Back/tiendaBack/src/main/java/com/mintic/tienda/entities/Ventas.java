@@ -2,8 +2,7 @@ package com.mintic.tienda.entities;
 
 
 
-
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -53,13 +52,13 @@ public class Ventas {
 	
 	private Double totalVenta;
 
-	private Double IvaVenta;
+	private Double ivaVenta;
 
-	private Double ValorPago;
+	private Double valorPago;
 
-	private Double Saldo;
+	private Double saldo;
 
-	private String FormaPago;
+	private String formaPago;
 	
 	private Date FechaPago;
 
@@ -69,7 +68,8 @@ public class Ventas {
 	public Ventas() {
 	}
 
-	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double IvaVenta, Double ValorPago, Double Saldo, String FormaPago, Date FechaPago, String zonaventa) {
+
+	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
 		this.IDVenta = IDVenta;
 		this.carteras = carteras;
 		this.detalleventas = detalleventas;
@@ -79,10 +79,10 @@ public class Ventas {
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
-		this.IvaVenta = IvaVenta;
-		this.ValorPago = ValorPago;
-		this.Saldo = Saldo;
-		this.FormaPago = FormaPago;
+		this.ivaVenta = ivaVenta;
+		this.valorPago = valorPago;
+		this.saldo = saldo;
+		this.formaPago = formaPago;
 		this.FechaPago = FechaPago;
 		this.zonaventa = zonaventa;
 	}
@@ -160,35 +160,35 @@ public class Ventas {
 	}
 
 	public Double getIvaVenta() {
-		return this.IvaVenta;
+		return this.ivaVenta;
 	}
 
-	public void setIvaVenta(Double IvaVenta) {
-		this.IvaVenta = IvaVenta;
+	public void setIvaVenta(Double ivaVenta) {
+		this.ivaVenta = ivaVenta;
 	}
 
 	public Double getValorPago() {
-		return this.ValorPago;
+		return this.valorPago;
 	}
 
-	public void setValorPago(Double ValorPago) {
-		this.ValorPago = ValorPago;
+	public void setValorPago(Double valorPago) {
+		this.valorPago = valorPago;
 	}
 
 	public Double getSaldo() {
-		return this.Saldo;
+		return this.saldo;
 	}
 
-	public void setSaldo(Double Saldo) {
-		this.Saldo = Saldo;
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
 	public String getFormaPago() {
-		return this.FormaPago;
+		return this.formaPago;
 	}
 
-	public void setFormaPago(String FormaPago) {
-		this.FormaPago = FormaPago;
+	public void setFormaPago(String formaPago) {
+		this.formaPago = formaPago;
 	}
 
 	public Date getFechaPago() {
@@ -207,4 +207,5 @@ public class Ventas {
 		this.zonaventa = zonaventa;
 	}
 
+	
 }

@@ -1,7 +1,6 @@
 package com.mintic.tienda;
 
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -23,14 +22,14 @@ import com.mintic.tienda.entities.Ventas;
 
 // import com.mintic.tienda.servicio.IDetalleVentasService;
 import com.mintic.tienda.servicio.IProductoService;
-import com.mintic.tienda.servicio.IVentaService;
+import com.mintic.tienda.servicio.IVentasService;
 
 
 @RestController
 public class ControladorVentas {
 	
 	@Autowired
-	IVentaService iVentas;
+	IVentasService iVentas;
 	@Autowired
 	IProductoService iProducto;
 	
@@ -41,18 +40,26 @@ public class ControladorVentas {
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/ventas")
 	public List<Ventas> listarVentas() {
-		return iVentas.listarVentas();
+		return iVentas.getVentas();
 	}
 	
-	@GetMapping("/venta/{FechaVenta}")
-	public VentasDto buscarVentaPorfecha(@PathVariable Date FechaVenta) {
-		return iVentas.buscarVentaPorFechaVenta(FechaVenta);
+	@CrossOrigin(origins = "http://localhost:8091")
+	@GetMapping("/venta/{fechaVenta}")
+	public VentasDto buscarVentaPorfecha(@PathVariable Long fechaVenta) {
+		return iVentas.buscarVentaPorfecha(fechaVenta);
 	}
 	
 	
-	@PostMapping("/crearventa")
-	public void creacionVenta(@RequestBody VentasDto ventasDto) {
-		iVentas.crearVentas(ventasDto);;
+	@CrossOrigin(origins = "http://localhost:8091")
+	@PostMapping("/venta")
+	public void crearVenta(@RequestBody VentasDto ventasDto) {
+		iVentas.crearVenta(ventasDto);
+	}
+	
+	@CrossOrigin(origins = "http://localhost:8091")
+	@PostMapping("/guardarVenta")
+	public void guardarVenta(@RequestBody VentasDto ventasDto) {
+		iVentas.crearVenta(ventasDto);
 	}
 	
 	

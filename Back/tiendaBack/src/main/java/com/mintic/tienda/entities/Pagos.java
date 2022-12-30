@@ -34,7 +34,7 @@ public class Pagos {
 
     
 	@ManyToOne
-    @JoinColumn(name="IDVenta")
+    @JoinColumn(name="IDIVenta")
     private Ventas ventas;
 
 	private Date FechaVenta;
