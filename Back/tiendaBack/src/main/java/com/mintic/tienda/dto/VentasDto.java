@@ -7,7 +7,7 @@ import com.mintic.tienda.entities.Vendedor;
 
 public class VentasDto {
 	
-	private Long ID;
+	private Long IDVenta;
 
 	private Clientes clientes;
 	
@@ -19,13 +19,13 @@ public class VentasDto {
 	
 	private Double totalVenta;
 
-	private Double ivaVenta;
+	private Double IvaVenta;
 
-	private Double valorPago;
+	private Double ValorPago;
 
-	private Double saldo;
+	private Double Saldo;
 
-	private String formaPago;
+	private String FormaPago;
 	
 	private Date FechaPago;
 
@@ -38,27 +38,27 @@ public class VentasDto {
 	}
 
 
-	public VentasDto(Long ID, Clientes clientes, Vendedor vendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, Date FechaPago, String zonaventa) {
-		this.ID = ID;
+	public VentasDto(Long IDVenta, Clientes clientes, Vendedor vendedor, Date FechaVenta, Date FechaEntrega, Double totalVenta, Double IvaVenta, Double ValorPago, Double Saldo, String FormaPago, Date FechaPago, String zonaventa) {
+		this.IDVenta = IDVenta;
 		this.clientes = clientes;
 		this.vendedor = vendedor;
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
-		this.ivaVenta = ivaVenta;
-		this.valorPago = valorPago;
-		this.saldo = saldo;
-		this.formaPago = formaPago;
+		this.IvaVenta = IvaVenta;
+		this.ValorPago = ValorPago;
+		this.Saldo = Saldo;
+		this.FormaPago = FormaPago;
 		this.FechaPago = FechaPago;
 		this.zonaventa = zonaventa;
 	}
 
-	public Long getID() {
-		return this.ID;
+	public Long getIDVenta() {
+		return this.IDVenta;
 	}
 
-	public void setID(Long ID) {
-		this.ID = ID;
+	public void setIDVenta(Long IDVenta) {
+		this.IDVenta = IDVenta;
 	}
 
 	public Clientes getClientes() {
@@ -102,35 +102,35 @@ public class VentasDto {
 	}
 
 	public Double getIvaVenta() {
-		return this.ivaVenta;
+		return this.IvaVenta;
 	}
 
-	public void setIvaVenta(Double ivaVenta) {
-		this.ivaVenta = ivaVenta;
+	public void setIvaVenta(Double IvaVenta) {
+		this.IvaVenta = IvaVenta;
 	}
 
 	public Double getValorPago() {
-		return this.valorPago;
+		return this.ValorPago;
 	}
 
-	public void setValorPago(Double valorPago) {
-		this.valorPago = valorPago;
+	public void setValorPago(Double ValorPago) {
+		this.ValorPago = ValorPago;
 	}
 
 	public Double getSaldo() {
-		return this.saldo;
+		return this.Saldo;
 	}
 
-	public void setSaldo(Double saldo) {
-		this.saldo = saldo;
+	public void setSaldo(Double Saldo) {
+		this.Saldo = Saldo;
 	}
 
 	public String getFormaPago() {
-		return this.formaPago;
+		return this.FormaPago;
 	}
 
-	public void setFormaPago(String formaPago) {
-		this.formaPago = formaPago;
+	public void setFormaPago(String FormaPago) {
+		this.FormaPago = FormaPago;
 	}
 
 	public Date getFechaPago() {
@@ -148,6 +148,5 @@ public class VentasDto {
 	public void setZonaventa(String zonaventa) {
 		this.zonaventa = zonaventa;
 	}
-
-		
+	
 }

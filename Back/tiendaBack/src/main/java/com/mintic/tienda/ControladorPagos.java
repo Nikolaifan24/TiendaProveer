@@ -48,7 +48,7 @@ public class ControladorPagos {
 		iPagos.actualizarPagos(FehcaPago, PagosDto);
 	}
 	
-	@GetMapping("/Pagoss")
+	@GetMapping("/pagos")
 	public List<Pagos> listaPagos() {
 		return iPagos.listaPagos();
 	}
