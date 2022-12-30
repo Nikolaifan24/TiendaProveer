@@ -1,6 +1,6 @@
 package com.mintic.tienda.dto;
 
-import java.util.Date;
+// import java.util.String;
 
 import com.mintic.tienda.entities.Proveedores;
 
@@ -10,7 +10,7 @@ public class ComprasDto {
 
 	private Proveedores proveedores;
 	
-	private Date FechaCompra;
+	private String FechaCompra;
 
 	private Double totalCompra;
 
@@ -20,7 +20,7 @@ public class ComprasDto {
     public ComprasDto() {
     }
 
-    public ComprasDto(Long IDCompras, Proveedores proveedores, Date FechaCompra, Double totalCompra, Double ivaCompra) {
+    public ComprasDto(Long IDCompras, Proveedores proveedores, String FechaCompra, Double totalCompra, Double ivaCompra) {
         this.IDCompras = IDCompras;
         this.proveedores = proveedores;
         this.FechaCompra = FechaCompra;
@@ -44,11 +44,11 @@ public class ComprasDto {
         this.proveedores = proveedores;
     }
 
-    public Date getFechaCompra() {
+    public String getFechaCompra() {
         return this.FechaCompra;
     }
 
-    public void setFechaCompra(Date FechaCompra) {
+    public void setFechaCompra(String FechaCompra) {
         this.FechaCompra = FechaCompra;
     }
 

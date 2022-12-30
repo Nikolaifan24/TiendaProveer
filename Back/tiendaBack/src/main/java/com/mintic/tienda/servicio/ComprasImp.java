@@ -1,7 +1,7 @@
 package com.mintic.tienda.servicio;
 
 import java.util.ArrayList;
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ComprasImp implements IComprasService{
 		Compras Compras = new Compras();
 		// Long id = ComprasDto.getID();
 		Proveedores proveedores = ComprasDto.getProveedores();
-		Date FechaCompra = ComprasDto.getFechaCompra();
+		String FechaCompra = ComprasDto.getFechaCompra();
         Double totalCompra = ComprasDto.getTotalCompra();
 		Double ivaCompra = ComprasDto.getIvaCompra();
 		
@@ -48,12 +48,12 @@ public class ComprasImp implements IComprasService{
 		return Compras;
 	}
 	
-	private void updateCompras(ComprasDto ComprasDto, Compras Compras) {
+	private void upStringCompras(ComprasDto ComprasDto, Compras Compras) {
 		
 		// Compras Compras = new Compras();
 		
 		Proveedores proveedores = ComprasDto.getProveedores();
-		Date FechaCompra = ComprasDto.getFechaCompra();
+		String FechaCompra = ComprasDto.getFechaCompra();
         Double totalCompra = ComprasDto.getTotalCompra();
 		Double ivaCompra = ComprasDto.getIvaCompra();
 		
@@ -72,7 +72,7 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public ComprasDto buscarComprasPorFechaCompra(Date FechaCompra) {
+	public ComprasDto buscarComprasPorFechaCompra(String FechaCompra) {
 		Compras Compras = null;
 		try {
 			Compras = iCompras.buscarComprasPorFecha(FechaCompra);
@@ -97,7 +97,7 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public void eliminarCompras(Date FechaCompra) {
+	public void eliminarCompras(String FechaCompra) {
 		
 		Compras Compras = iCompras.buscarComprasPorFecha(FechaCompra);
 		iCompras.delete(Compras);
@@ -105,9 +105,9 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public void actualizarCompras(Date FechaCompra, ComprasDto ComprasDto) {
+	public void actualizarCompras(String FechaCompra, ComprasDto ComprasDto) {
 		Compras Compras = iCompras.buscarComprasPorFecha(FechaCompra);
-		updateCompras(ComprasDto, Compras);
+		upStringCompras(ComprasDto, Compras);
 
 	}
 
@@ -130,7 +130,7 @@ public class ComprasImp implements IComprasService{
 
 
 	@Override
-	public List<Compras> listarComprasPorFechaComprayProveedor(Date FechaVenta, Long IDProveedor) {
+	public List<Compras> listarComprasPorFechaComprayProveedor(String FechaVenta, Long IDProveedor) {
 		// TODO Auto-generated method stub
 		
 		List<Compras> lista = new ArrayList<Compras>();

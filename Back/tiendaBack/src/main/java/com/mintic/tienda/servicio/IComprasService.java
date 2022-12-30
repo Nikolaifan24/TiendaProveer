@@ -1,6 +1,6 @@
 package com.mintic.tienda.servicio;
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import com.mintic.tienda.dto.ComprasDto;
@@ -10,15 +10,15 @@ public interface IComprasService {
 
     void crearCompras(ComprasDto ComprasDto) ;
 
-    ComprasDto buscarComprasPorFechaCompra(Date FechaCompra) ;
+    ComprasDto buscarComprasPorFechaCompra(String FechaCompra) ;
 
-    void eliminarCompras(Date FechaCompra);
+    void eliminarCompras(String FechaCompra);
 
-    void actualizarCompras(Date FechaCompra, ComprasDto ComprasDto) ;
+    void actualizarCompras(String FechaCompra, ComprasDto ComprasDto) ;
 
     List<Compras> listaCompras();
     
     List<Compras> listaComprasProveedor(Long IDProveedor);
 
-    List<Compras> listarComprasPorFechaComprayProveedor(Date FechaVenta, Long IDProveedor) ;
+    List<Compras> listarComprasPorFechaComprayProveedor(String FechaVenta, Long IDProveedor) ;
 }

@@ -1,7 +1,7 @@
 package com.mintic.tienda.entities;
 
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 // import javax.persistence.CascadeType;
@@ -38,7 +38,7 @@ public class Compras {
     @JoinColumn(name="IDProveedor")
 	private Proveedores proveedores;
 
-    private Date FechaCompra;
+    private String FechaCompra;
 
 	private Double totalCompra;
 
@@ -48,7 +48,7 @@ public class Compras {
     public Compras() {
     }
 
-    public Compras(Long IDCompras, List<Detallecompra> detallecompras, Proveedores proveedores, Date FechaCompra, Double totalCompra, Double ivaCompra) {
+    public Compras(Long IDCompras, List<Detallecompra> detallecompras, Proveedores proveedores, String FechaCompra, Double totalCompra, Double ivaCompra) {
         this.IDCompras = IDCompras;
         this.detallecompras = detallecompras;
         this.proveedores = proveedores;
@@ -81,11 +81,11 @@ public class Compras {
         this.proveedores = proveedores;
     }
 
-    public Date getFechaCompra() {
+    public String getFechaCompra() {
         return this.FechaCompra;
     }
 
-    public void setFechaCompra(Date FechaCompra) {
+    public void setFechaCompra(String FechaCompra) {
         this.FechaCompra = FechaCompra;
     }
 

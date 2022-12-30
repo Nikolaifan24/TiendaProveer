@@ -1,7 +1,7 @@
 package com.mintic.tienda.repositories;
 
 
-import java.util.Date;
+// import java.util.String;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -12,11 +12,11 @@ import com.mintic.tienda.entities.Compras;
 public interface ICompras extends CrudRepository<Compras, Long>{
     
     @Query(value = "SELECT * from Compras p where p.FechaCompra= :FechaCompra and p.IDProveedor=:IDProveedor", nativeQuery = true)
-	List<Compras> buscarComprasPorFechayProveedor(@Param("FechaCompra") Date FechaCompra,
+	List<Compras> buscarComprasPorFechayProveedor(@Param("FechaCompra") String FechaCompra,
 			@Param("IDProveedor") Long IDProveedor);
 	
 	@Query(value = "SELECT * FROM Compras p where p.FechaCompra=:FechaCompra", nativeQuery = true)
-	Compras buscarComprasPorFecha(@Param("FechaCompra") Date FechaCompra);
+	Compras buscarComprasPorFecha(@Param("FechaCompra") String FechaCompra);
 
 	@Query(value = "SELECT * FROM Compras p where p.IDProveedor=:IDProveedor", nativeQuery = true)
 	List<Compras> buscarComprasPorProveedor(@Param("IDProveedor") Long IDProveedor);
