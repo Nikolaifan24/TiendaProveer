@@ -1,5 +1,6 @@
 package com.mintic.tienda.servicio;
 
+// import java.util.Date;
 import java.util.List;
 
 // import com.mintic.tienda.dto.CalculoDto;
@@ -10,9 +11,9 @@ import com.mintic.tienda.entities.Ventas;
 
 public interface IVentasService {
 
-	List<Ventas> getVentas();
+	List<Ventas> ListarVentas();
 
-	VentasDto buscarVentaPorfecha(Long fechaVenta);
+	VentasDto buscarVentaPorfecha(String fechaVenta);
 
 	void crearVenta(VentasDto ventasDto);
 

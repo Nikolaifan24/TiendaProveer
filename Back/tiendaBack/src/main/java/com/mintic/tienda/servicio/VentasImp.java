@@ -1,6 +1,6 @@
 package com.mintic.tienda.servicio;
 
-import java.util.Date;
+// import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +21,16 @@ import com.mintic.tienda.repositories.IVenta;
 public class VentasImp implements IVentasService{
 	
 	@Autowired
+	public
 	IVenta iVenta;
 
 	@Override
-	public List<Ventas> getVentas() {
+	public List <Ventas> ListarVentas() {
 		return (List<Ventas>) iVenta.findAll();
 	}
 
 	@Override
-	public VentasDto buscarVentaPorfecha(Long fechaVenta) {
+	public VentasDto buscarVentaPorfecha(String fechaVenta) {
 		Ventas venta = null;
 		try {
 			venta = iVenta.buscarVentaPorfecha(fechaVenta);
@@ -71,14 +72,14 @@ public class VentasImp implements IVentasService{
 		Long id =  ventasDto.getID();
 		Clientes clientes = ventasDto.getClientes();
 		Vendedor vendedor = ventasDto.getVendedor();
-		Date fechaVenta = ventasDto.getFechaVenta();
-		Date fechaEntrega = ventasDto.getFechaEntrega();
+		String fechaVenta = ventasDto.getFechaVenta();
+		String fechaEntrega = ventasDto.getFechaEntrega();
 		Double valorVenta = ventasDto.getTotalVenta();
 		Double ivaVenta = ventasDto.getIvaVenta();
 		Double valorPago = ventasDto.getValorPago();
 		Double saldo = ventasDto.getSaldo();
 		String formaPago = ventasDto.getFormaPago();
-		Date fechaPago = ventasDto.getFechaPago();
+		String fechaPago = ventasDto.getFechaPago();
 		String zonaVenta = ventasDto.getZonaventa();
 		
 		if(id != null) {
