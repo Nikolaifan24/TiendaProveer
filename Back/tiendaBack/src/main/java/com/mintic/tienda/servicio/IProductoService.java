@@ -22,4 +22,6 @@ public interface IProductoService {
 	List<Productos> listarProductoTipo(String tipoProducto);
 
 	List<Productos> encontrarProductoPorNombre(String nombreProducto);
+
+	List<Productos> encontrarProductoPorNombreProveeodr(String nombreProveedor);
 }

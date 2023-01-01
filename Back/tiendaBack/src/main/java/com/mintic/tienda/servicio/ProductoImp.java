@@ -114,19 +114,22 @@ public class ProductoImp implements IProductoService {
 	@Override
 	public List<Productos> encontrarProductoPorNombre(String nombreProducto) {
 		List<Productos> lista = new ArrayList<Productos>();
+		
 		lista.add(iProductos.buscarProductoPorNombre(nombreProducto));
-		System.out.println("el producto es \n" + lista);
+		System.out.println("el producto es \n" + lista.toString());
 		return lista;
 	}
 
+	@Override
+	public List<Productos> encontrarProductoPorNombreProveeodr(String nombreProveedor) {
+		List<Productos> lista = new ArrayList<Productos>();
+		
+		lista = iProductos.buscarProductoPorNombreProveedor(nombreProveedor);
+		System.out.println("el producto con proveedor es \n" + lista.toString());
+		return lista;
+	}	
 
-	
-
-
-
-	
-	
-	
+		
 
 
 }

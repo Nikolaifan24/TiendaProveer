@@ -18,5 +18,7 @@ public interface IProducto extends CrudRepository<Productos, Long> {
 
 	@Query(value = "SELECT * FROM Productos c where c.tipoProducto= :tipoProducto", nativeQuery = true)
 	List<Productos> buscarProductoPorTipo(@Param("tipoProducto") String tipoProducto);
-		
+	
+	@Query(value = "SELECT Productos.IDProductos, Productos.IDProveedor, Productos.codigoProducto, Productos.nombreProducto, Productos.tipoProducto, Productos.precioCompra, Productos.precioVenta, Productos.cantidadProducto, Productos.unidadesVendidas, Productos.unidadesCompradas, Productos.devoluciones FROM Productos INNER JOIN Proveedores p ON p.nombreProveedor= :nombreProveedor", nativeQuery = true)
+	List<Productos> buscarProductoPorNombreProveedor(@Param("nombreProveedor") String nombreProveedor);
 }

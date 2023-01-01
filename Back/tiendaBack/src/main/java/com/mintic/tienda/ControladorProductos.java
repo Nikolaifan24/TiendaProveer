@@ -38,6 +38,12 @@ public class ControladorProductos {
 		return iProducto.encontrarProductoPorNombre(nombreProducto);
 	}
 	
+
+	@GetMapping("/productos/proveedor/{nombreProveedor}")
+	public List<Productos> MostarProductoPorNombreProveedor(@PathVariable String nombreProveedor) {
+		return iProducto.encontrarProductoPorNombreProveeodr(nombreProveedor);
+	}
+	
 	
 	@PostMapping("/crearProducto")
 	public void crearProducto(@RequestBody ProductosDto ProductoDto) {
