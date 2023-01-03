@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.tienda.dto.ComprasDto;
 import com.mintic.tienda.entities.Compras;
+import com.mintic.tienda.entities.Detallecompra;
+import com.mintic.tienda.repositories.IDetalleCompra;
 // import com.mintic.tienda.servicio.IUsuarioService;
 // import com.mintic.tienda.dto.LoginDto;
 // import com.mintic.tienda.dto.ProveedoresDto;
@@ -32,7 +34,8 @@ public class ContorladorCompras {
     @Autowired
 	IComprasService iCompras;
 
-	
+	@Autowired
+	IDetalleCompra idetallecompra;
 	
 	ComprasDto ComprasDto;
 	
@@ -62,5 +65,14 @@ public class ContorladorCompras {
 		return iCompras.listaCompras();
 	}
 	
+	@GetMapping("/compraslistar/producto/{nombreProducto}")
+	public List<Compras> MostarProductoPornombreProducto(@PathVariable String nombreProducto) {
+		return iCompras.listaComprasPorProductos(nombreProducto);
+	}
+
+	@GetMapping("/compras/productos/comprados/{FechaCompra}")
+	public List<Detallecompra> MostarDetallesCompras(@PathVariable String FechaCompra) {
+		return idetallecompra.buscarDetalleCompraPorFecha(FechaCompra) ;
+	}
     
 }

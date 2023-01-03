@@ -9,14 +9,17 @@ import org.springframework.stereotype.Service;
 
 import com.mintic.tienda.dto.ComprasDto;
 import com.mintic.tienda.entities.Compras;
+import com.mintic.tienda.entities.Detallecompra;
 import com.mintic.tienda.entities.Proveedores;
 import com.mintic.tienda.repositories.ICompras;
+import com.mintic.tienda.repositories.IDetalleCompra;
 
 @Service
 public class ComprasImp implements IComprasService{
     @Autowired
 	public
 	ICompras iCompras;
+	IDetalleCompra idetallecompra;
 	
 	@Override
 	public void crearCompras(ComprasDto ComprasDto) {
@@ -117,17 +120,41 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public List<Compras> listaComprasProveedor(Long IDProveedor) {
+	public List<Compras> listaComprasProveedor(String nombreProveedor) {
 		// TODO Auto-generated method stub
 		
 		List<Compras> lista = new ArrayList<Compras>();
 		
-		lista = iCompras.buscarComprasPorProveedor(IDProveedor);
+		lista = iCompras.buscarCompraPorNombreProveedor(nombreProveedor);
 		
 		
 		return (lista) ;
 	}
 
+
+	@Override
+	public List<Compras> listaComprasPorProductos(String nombreProducto) {
+		// TODO Auto-generated method stub
+		
+		List<Compras> lista = new ArrayList<Compras>();
+		
+		lista = iCompras.buscarCompraPorProductos(nombreProducto);
+		
+		
+		return (lista) ;
+	}
+
+	@Override
+	public List<Detallecompra> listaComprasPordetalles(String FechaCompra) {
+		// TODO Auto-generated method stub
+		
+		List<Detallecompra> lista = new ArrayList<Detallecompra>();
+		
+		lista = idetallecompra.buscarDetalleCompraPorFecha(FechaCompra);
+		
+		
+		return (lista) ;
+	}
 
 	@Override
 	public List<Compras> listarComprasPorFechaComprayProveedor(String FechaVenta, Long IDProveedor) {

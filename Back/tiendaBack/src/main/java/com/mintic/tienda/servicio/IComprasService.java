@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.mintic.tienda.dto.ComprasDto;
 import com.mintic.tienda.entities.Compras;
+import com.mintic.tienda.entities.Detallecompra;
 
 public interface IComprasService {
 
@@ -18,7 +19,11 @@ public interface IComprasService {
 
     List<Compras> listaCompras();
     
-    List<Compras> listaComprasProveedor(Long IDProveedor);
+    List<Compras> listaComprasProveedor(String nombreProveedor); 
 
     List<Compras> listarComprasPorFechaComprayProveedor(String FechaVenta, Long IDProveedor) ;
+
+    List<Compras> listaComprasPorProductos(String nombreProducto);
+
+    List<Detallecompra> listaComprasPordetalles(String FechaCompra);
 }

@@ -19,7 +19,7 @@ public class Detallecompra {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ID;
+	private Long IDDetalleCompra;
 	
     @ManyToOne
     @JoinColumn(name="IDCompra")
@@ -31,7 +31,7 @@ public class Detallecompra {
     
     private Double ValorUnitario;
 
-    private int cantidadProducto;
+    private int CantidadProducto;
 
     private Double ValorTotal;
 
@@ -40,21 +40,21 @@ public class Detallecompra {
     }
 
 
-    public Detallecompra(Long ID, Compras compras, Productos productos, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
-        this.ID = ID;
+    public Detallecompra(Long IDDetalleCompra, Compras compras, Productos productos, Double ValorUnitario, int CantidadProducto, Double ValorTotal) {
+        this.IDDetalleCompra = IDDetalleCompra;
         this.compras = compras;
         this.productos = productos;
         this.ValorUnitario = ValorUnitario;
-        this.cantidadProducto = cantidadProducto;
+        this.CantidadProducto = CantidadProducto;
         this.ValorTotal = ValorTotal;
     }
 
-    public Long getID() {
-        return this.ID;
+    public Long getIDDetalleCompra() {
+        return this.IDDetalleCompra;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setIDDetalleCompra(Long IDDetalleCompra) {
+        this.IDDetalleCompra = IDDetalleCompra;
     }
 
     public Compras getCompras() {
@@ -82,11 +82,11 @@ public class Detallecompra {
     }
 
     public int getCantidadProducto() {
-        return this.cantidadProducto;
+        return this.CantidadProducto;
     }
 
-    public void setCantidadProducto(int cantidadProducto) {
-        this.cantidadProducto = cantidadProducto;
+    public void setCantidadProducto(int CantidadProducto) {
+        this.CantidadProducto = CantidadProducto;
     }
 
     public Double getValorTotal() {
@@ -96,6 +96,6 @@ public class Detallecompra {
     public void setValorTotal(Double ValorTotal) {
         this.ValorTotal = ValorTotal;
     }
-    
 
+    
 }
