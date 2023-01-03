@@ -148,12 +148,24 @@ public class PagosoImp implements IPagosService {
 	}
 
 	@Override
-	public List<Pagos> listaPagosCliente(Long IDCliente) {
+	public List<Pagos> listaPagosCliente(String nombreCliente, String apellidoCliente) {
 		// TODO Auto-generated method stub
 		
 		List<Pagos> lista = new ArrayList<Pagos>();
 		
-		lista = iPagos.buscarPagosPorCliente(IDCliente);
+		lista = iPagos.buscarPagosPorCliente(nombreCliente, apellidoCliente);
+		
+		
+		return (lista) ;
+	}
+
+	@Override
+	public List<Pagos> listaPagosFechaVenta(String Fechaventa) {
+		// TODO Auto-generated method stub
+		
+		List<Pagos> lista = new ArrayList<Pagos>();
+		
+		lista = iPagos.buscarPagosPorFechaVenta(Fechaventa);
 		
 		
 		return (lista) ;

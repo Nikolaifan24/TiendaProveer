@@ -53,13 +53,19 @@ public class ControladorPagos {
 		return iPagos.listaPagos();
 	}
 	
-	@GetMapping("/Pagos/cliente/id/{IDCliente}")
-	public List<Pagos> listaPagosByCliente(@PathVariable Long IDCliente){
-		return iPagos.listaPagosCliente(IDCliente);
+	@GetMapping("/Pagos/cliente/nombre/{nombreCliente}-{apellidoCliente}")
+	public List<Pagos> listaPagosByCliente(@PathVariable String nombreCliente, @PathVariable String apellidoCliente){
+		return iPagos.listaPagosCliente(nombreCliente, apellidoCliente);
 	}
 
+	@GetMapping("/Pagos/venta/fechaventa/{FechaVenta}")
+	public List<Pagos> listaPagosByVenta(@PathVariable String FechaVenta){
+		return iPagos.listaPagosFechaVenta(FechaVenta);
+	}
+
+
     @GetMapping("/Pagos/mediopago/{MedioPagp}")
-	public List<Pagos> listaPagosByFechaVenta(@PathVariable String MedioPago){
+	public List<Pagos> listaPagosByMedioPago(@PathVariable String MedioPago){
 		return iPagos.listarPagosMedioPago(MedioPago);
 	}
 
