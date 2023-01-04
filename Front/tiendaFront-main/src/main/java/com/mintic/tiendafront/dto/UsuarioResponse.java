@@ -2,68 +2,77 @@ package com.mintic.tiendafront.dto;
 
 public class UsuarioResponse {	
 	
-	private Long id;
-	
-	private String nombreUsuario;
-	
-	private Long cedulaUsuario;
+	private Long ID;
 
 	private String usuario;
 
+	private String nombreUsuario;
+
+	private String correo;
+
 	private String password;
 
-	private String emailUsuario;
+	private String perfil;
 
-	public Long getId() {
-		return id;
+
+	public UsuarioResponse() {
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
-
-	public void setNombreUsuario(String nombreUsuario) {
+	public UsuarioResponse(Long ID, String usuario, String nombreUsuario, String correo, String password, String perfil) {
+		this.ID = ID;
+		this.usuario = usuario;
 		this.nombreUsuario = nombreUsuario;
+		this.correo = correo;
+		this.password = password;
+		this.perfil = perfil;
 	}
 
-	public Long getCedulaUsuario() {
-		return cedulaUsuario;
+	public Long getID() {
+		return this.ID;
 	}
 
-	public void setCedulaUsuario(Long cedulaUsuario) {
-		this.cedulaUsuario = cedulaUsuario;
+	public void setID(Long ID) {
+		this.ID = ID;
 	}
 
 	public String getUsuario() {
-		return usuario;
+		return this.usuario;
 	}
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
+	public String getNombreUsuario() {
+		return this.nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getCorreo() {
+		return this.correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getEmailUsuario() {
-		return emailUsuario;
+	public String getPerfil() {
+		return this.perfil;
 	}
 
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
-	
-	
-	
-	
 	
 }

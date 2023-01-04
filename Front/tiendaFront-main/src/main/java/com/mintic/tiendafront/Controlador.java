@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mintic.tiendafront.client.IClientTienda;
 import com.mintic.tiendafront.dto.LoginDto;
-import com.mintic.tiendafront.dto.Usuario;
+import com.mintic.tiendafront.dto.UsuarioDto;
 import com.mintic.tiendafront.dto.UsuarioResponse;
 
 @Controller
@@ -49,11 +49,15 @@ public class Controlador {
 
 		
 		model.addAttribute("usuarios", clienteTienda.getUsuarios());
+		if(model.getAttribute("usuarios") == null) 
+		{
+			model.addAttribute("mensaje", "No hay datos para mostrar");
+		}
 		return "usuario";
 	}
 
 	@PostMapping("/usuario")
-	public String crearUsuario(Model model, Usuario usuario) {
+	public String crearUsuario(Model model, UsuarioDto usuario) {
 
 		clienteTienda.nuevoUsuario(usuario);
 		

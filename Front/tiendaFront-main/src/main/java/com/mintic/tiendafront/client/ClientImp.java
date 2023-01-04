@@ -9,8 +9,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import com.mintic.tiendafront.dto.LoginDto;
-import com.mintic.tiendafront.dto.TipoDocumento;
-import com.mintic.tiendafront.dto.Usuario;
+// import com.mintic.tiendafront.dto.TipoDocumento;
+import com.mintic.tiendafront.dto.UsuarioDto;
 import com.mintic.tiendafront.dto.UsuarioResponse;
 
 import reactor.core.publisher.Mono;
@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class ClientImp implements IClientTienda {
 
-	private static final String URL = "http://localhost:8090/tienda";
+	private static final String URL = "http://localhost:8091/tienda";
 
 	@Autowired
 	private WebClient.Builder webClient;
@@ -61,7 +61,7 @@ public class ClientImp implements IClientTienda {
 	}
 
 	@Override
-	public UsuarioResponse nuevoUsuario(Usuario usuarioDto) {
+	public UsuarioResponse nuevoUsuario(UsuarioDto usuarioDto) {
 				
 		try {
 			UsuarioResponse u = null;

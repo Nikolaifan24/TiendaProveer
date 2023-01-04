@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mintic.tiendafront.dto.ClienteDto;
 import com.mintic.tiendafront.dto.ClienteResponse;
-import com.mintic.tiendafront.dto.Usuario;
+import com.mintic.tiendafront.dto.UsuarioDto;
 import com.mintic.tiendafront.dto.UsuarioResponse;
 
 
