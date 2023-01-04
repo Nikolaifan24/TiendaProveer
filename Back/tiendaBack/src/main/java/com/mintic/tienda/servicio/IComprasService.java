@@ -4,12 +4,13 @@ package com.mintic.tienda.servicio;
 import java.util.List;
 
 import com.mintic.tienda.dto.ComprasDto;
+import com.mintic.tienda.dto.DetallecompraDto;
 import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Detallecompra;
 
 public interface IComprasService {
 
-    void crearCompras(ComprasDto ComprasDto) ;
+    void crearCompras(ComprasDto ComprasDto, DetallecompraDto detallecompraDto) ;
 
     ComprasDto buscarComprasPorFechaCompra(String FechaCompra) ;
 
@@ -19,11 +20,14 @@ public interface IComprasService {
 
     List<Compras> listaCompras();
     
-    List<Compras> listaComprasProveedor(String nombreProveedor); 
+    List<Compras> listaComprasProveedor(String nombreProveedor);
 
-    List<Compras> listarComprasPorFechaComprayProveedor(String FechaVenta, Long IDProveedor) ;
+    List<Compras> listarComprasPorProveedor(String nombreProveedor);
 
     List<Compras> listaComprasPorProductos(String nombreProducto);
 
     List<Detallecompra> listaComprasPordetalles(String FechaCompra);
+
+    DetallecompraDto realizarCalculoCompra(DetallecompraDto detallecompraDto);
+
 }

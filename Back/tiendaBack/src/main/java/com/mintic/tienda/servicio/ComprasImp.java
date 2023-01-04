@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mintic.tienda.dto.ComprasDto;
+import com.mintic.tienda.dto.DetallecompraDto;
 import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Detallecompra;
 import com.mintic.tienda.entities.Proveedores;
@@ -22,17 +23,19 @@ public class ComprasImp implements IComprasService{
 	IDetalleCompra idetallecompra;
 	
 	@Override
-	public void crearCompras(ComprasDto ComprasDto) {
-		iCompras.save(buildCompras(ComprasDto));
+	public void crearCompras(ComprasDto ComprasDto, DetallecompraDto detallecompraDto) {
+		iCompras.save(buildCompras(ComprasDto, detallecompraDto));
+		// iCompras.save(realizarCalculoCompra(detallecompraDto));
 		
 	}
 	
-	private Compras buildCompras(ComprasDto ComprasDto) {
+	private Compras buildCompras(ComprasDto ComprasDto, DetallecompraDto detallecompraDto) {
 		Compras Compras = new Compras();
 		// Long id = ComprasDto.getID();
+		realizarCalculoCompra(detallecompraDto);
 		Proveedores proveedores = ComprasDto.getProveedores();
 		String FechaCompra = ComprasDto.getFechaCompra();
-        Double totalCompra = ComprasDto.getTotalCompra();
+        Double totalCompra = detallecompraDto.getValorTotal();
 		Double ivaCompra = ComprasDto.getIvaCompra();
 		
 		if(proveedores != null) {
@@ -55,14 +58,14 @@ public class ComprasImp implements IComprasService{
 		
 		// Compras Compras = new Compras();
 		
-		Proveedores proveedores = ComprasDto.getProveedores();
+		// Proveedores proveedores = ComprasDto.getProveedores();
 		String FechaCompra = ComprasDto.getFechaCompra();
         Double totalCompra = ComprasDto.getTotalCompra();
 		Double ivaCompra = ComprasDto.getIvaCompra();
 		
-		if(proveedores != null) {
-			Compras.setProveedores(proveedores);
-		}
+		// if(proveedores != null) {
+		// 	Compras.setProveedores(proveedores);
+		// }
 		if(FechaCompra != null) {
 			Compras.setFechaCompra(FechaCompra);
 		}
@@ -157,18 +160,39 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public List<Compras> listarComprasPorFechaComprayProveedor(String FechaVenta, Long IDProveedor) {
+	public List<Compras> listarComprasPorProveedor(String nombreProveedor) {
 		// TODO Auto-generated method stub
 		
 		List<Compras> lista = new ArrayList<Compras>();
 		
-		lista = iCompras.buscarComprasPorFechayProveedor(FechaVenta, IDProveedor);
+		lista = iCompras.buscarCompraPorNombreProveedor(nombreProveedor);
 		
 		
 		return (lista) ;
 	}
 
 	
+
+	@Override
+	public DetallecompraDto realizarCalculoCompra(DetallecompraDto detallecompraDto) {
+	
+		Double valorunitario = detallecompraDto.getValorUnitario();
+		Integer cantidadProducto = detallecompraDto.getCantidadProducto();
+		Double valorProductos = valorunitario * cantidadProducto;
+		
+		if(cantidadProducto != null) {
+			detallecompraDto.setCantidadProducto(cantidadProducto);
+		}
+		if(valorunitario != null) {
+			detallecompraDto.setValorUnitario(valorunitario);
+		}
+		if(valorProductos != null) {
+			detallecompraDto.setValorTotal(valorProductos);
+		}
+		
+		
+		return detallecompraDto;
+	}
 
 	
 }
