@@ -35,7 +35,7 @@ public class ClienteController {
 	@PostMapping("/cliente")
 	public String crearCliente(Model model, ClienteDto cliente) 
 	{
-		if(cliente.getId().longValue() == 0) {
+		if(cliente.getID().longValue() == 0) {
 			ValidacionCrearCliente(model, cliente);
 			
 			if(ValidacionCrearCliente(model, cliente) == true) 
@@ -45,7 +45,7 @@ public class ClienteController {
 				model.addAttribute("mensaje", "Cliente Creado");			
 			}		
 		}else {
-			icliente.ActualizarCliente(cliente, cliente.getCedulaCliente().longValue());		
+			icliente.ActualizarCliente(cliente, cliente.getDocumentoCliente().longValue());		
 			model.addAttribute("clientes", icliente.getClientes());
 			model.addAttribute("mensaje", "Datos del Cliente Actualizados");		
 		}	
@@ -55,10 +55,10 @@ public class ClienteController {
 		return "cliente";
 	}
 
-	@GetMapping("/cliente/{cedulaCliente}")
-	public String actualizarCliente(Model model, @PathVariable(name = "cedulaCliente") Long cedulaCliente)
+	@GetMapping("/cliente/{documentoCliente}")
+	public String actualizarCliente(Model model, @PathVariable(name = "documentoCliente") Long documentoCliente)
 	{
-		//ClienteResponse clienteEditar = icliente.buscarCliente(cedulaCliente);
+		//ClienteResponse clienteEditar = icliente.buscarCliente(documentoCliente);
 		//ValidacionActualizarCliente(model, clienteEditar);
 		//if(ValidacionActualizarCliente(model, clienteEditar) == true)
 		//{			
@@ -69,32 +69,32 @@ public class ClienteController {
 
 		//return "cliente";
 		
-		if (cedulaCliente > 0) {
-			ClienteResponse clienteEditar = icliente.buscarCliente(cedulaCliente);
+		if (documentoCliente > 0) {
+			ClienteResponse clienteEditar = icliente.buscarCliente(documentoCliente);
 			model.addAttribute("clienteEditar", clienteEditar);
 		}
 		
 		return "cliente";
 	}
 
-	@GetMapping("/eliminarcliente/{cedulaCliente}")
-	public String eliminarCliente(Model model, @PathVariable(name = "cedulaCliente") Long cedulaCliente) {
+	@GetMapping("/eliminarcliente/{documentoCliente}")
+	public String eliminarCliente(Model model, @PathVariable(name = "documentoCliente") Long documentoCliente) {
 
-		ValidacionPorCedula(model, cedulaCliente);
-		icliente.borrarCliente(cedulaCliente);
+		ValidacionPorCedula(model, documentoCliente);
+		icliente.borrarCliente(documentoCliente);
 		model.addAttribute("clientes", icliente.getClientes());
 		model.addAttribute("mensaje", "Datos del Cliente Eliminados");
 			
 		return "cliente";
 	}
 	
-	@GetMapping("/BuscarClientePorCedula/{cedulaCliente}")
-	public String BuscarClientePorCedula(Model model, @PathVariable(name = "cedulaCliente") Long cedulaCliente)
+	@GetMapping("/BuscarClientePorCedula/{documentoCliente}")
+	public String BuscarClientePorCedula(Model model, @PathVariable(name = "documentoCliente") Long documentoCliente)
 	{		
 		
-		if(ValidacionPorCedula(model, cedulaCliente))
+		if(ValidacionPorCedula(model, documentoCliente))
 		{	
-			ClienteResponse clienteEditar = icliente.buscarCliente(cedulaCliente);
+			ClienteResponse clienteEditar = icliente.buscarCliente(documentoCliente);
 			
 			if(clienteEditar == null) {
 				model.addAttribute("mensaje", "Cliente Inexistente");
@@ -107,9 +107,9 @@ public class ClienteController {
 		return "cliente";
 	}
 	
-	private boolean ValidacionPorCedula(Model model, Long cedulaCliente) 
+	private boolean ValidacionPorCedula(Model model, Long documentoCliente) 
 	{		
-		if(cedulaCliente == 0) 
+		if(documentoCliente == 0) 
 		{
 			model.addAttribute("mensaje", "Ingrese numero de Cliente para la busqueda");
 			return false;
@@ -120,7 +120,7 @@ public class ClienteController {
 	
 	private boolean ValidacionCrearCliente(Model model, ClienteDto cliente) 
 	{		
-		if(cliente.getCedulaCliente().longValue() == 0) 
+		if(cliente.getDocumentoCliente().longValue() == 0) 
 		{
 			model.addAttribute("mensaje", "Faltan datos del Cliente");
 			return false;
@@ -131,11 +131,6 @@ public class ClienteController {
 			return false;
 		}
 		if(cliente.getNombreCliente().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Cliente");
-			return false;
-		}
-		if(cliente.getEmailCliente().isBlank()) 
 		{
 			model.addAttribute("mensaje", "Faltan datos del Cliente");
 			return false;
@@ -152,27 +147,22 @@ public class ClienteController {
 	private boolean ValidacionActualizarCliente(Model model, ClienteResponse clienteEditar)
 	{
 		
-		if(clienteEditar.getcedulaCliente().longValue() == 0) 
+		if(clienteEditar.getID().longValue() == 0) 
 		{
 			model.addAttribute("mensaje", "Faltan datos del Cliente");
 			return false;
 		}
-		if(clienteEditar.getdireccionCliente().isBlank())
+		if(clienteEditar.getDireccionCliente().isBlank())
 		{
 			model.addAttribute("mensaje", "Faltan datos del Cliente");
 			return false;
 		}
-		if(clienteEditar.getnombreCliente().isBlank()) 
+		if(clienteEditar.getNombreCliente().isBlank()) 
 		{
 			model.addAttribute("mensaje", "Faltan datos del Cliente");
 			return false;
 		}
-		if(clienteEditar.getemailCliente().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Cliente");
-			return false;
-		}
-		if(clienteEditar.gettelefonoCliente().isBlank()) 
+		if(clienteEditar.getTelefonoCliente().isBlank()) 
 		{
 			model.addAttribute("mensaje", "Faltan datos del Cliente");
 			return false;

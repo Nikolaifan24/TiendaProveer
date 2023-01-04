@@ -3,7 +3,7 @@ package com.mintic.tiendafront.dto;
 public class ProductoVenta {
 	
 	
-	private Long cedulaCliente;
+	private Long documentoCliente;
 	
 	
 	private Long codigoProducto1;
@@ -17,10 +17,10 @@ public class ProductoVenta {
 		
 	}
 
-	public ProductoVenta(Long cedulaCliente, Long codigoProducto1, Integer cantidadProducto1, Long codigoProducto2,
+	public ProductoVenta(Long documentoCliente, Long codigoProducto1, Integer cantidadProducto1, Long codigoProducto2,
 			Integer cantidadProducto2, Long codigoProducto3, Integer cantidadProducto3) {
 		super();
-		this.cedulaCliente = cedulaCliente;
+		this.documentoCliente = documentoCliente;
 		this.codigoProducto1 = codigoProducto1;
 		this.cantidadProducto1 = cantidadProducto1;
 		this.codigoProducto2 = codigoProducto2;
@@ -29,12 +29,12 @@ public class ProductoVenta {
 		this.cantidadProducto3 = cantidadProducto3;
 	}
 
-	public Long getCedulaCliente() {
-		return cedulaCliente;
+	public Long getdocumentoCliente() {
+		return documentoCliente;
 	}
 
-	public void setCedulaCliente(Long cedulaCliente) {
-		this.cedulaCliente = cedulaCliente;
+	public void setdocumentoCliente(Long documentoCliente) {
+		this.documentoCliente = documentoCliente;
 	}
 
 	public Long getCodigoProducto1() {

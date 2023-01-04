@@ -20,7 +20,7 @@
 	crossorigin="anonymous"></script>
 	<link href="style.css" rel="stylesheet" type="text/css" />	
 </head>
-<body  opacity=0.8>
+<body background="https://blog.sodexo.cl/hubfs/Navimag%20Blogs%20%2854%29.jpg" style="background-repeat: no-repeat; background-size:cover; " >
 <body>
 <nav class="navbar navbar-expand-lg navbar--dark bg-dark">
 		<a class="navbar-brand" href="/menu">Tienda</a>
@@ -101,23 +101,30 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Cedula Cliente</th>
-					<th>Direccion Cliente</th>
-					<th>Email Cliente</th>
+					<th>Documento Cliente</th>
 					<th>Nombre Cliente</th>
+					<th>Apellido Cliente</th>
+					<th>Direccion Cliente</th>
+					<th>Barrio Cliente</th>
+					<th>Zona Cliente</th>
 					<th>Telefono Cliente</th>
-					
+					<th>Telefono adicional</th>
+					<th>Correo Cliente</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${clientes}" var="cliente">
 					<tr> 
-						<td>${cliente.id}</td>
-						<td>${cliente.cedulaCliente}</td>
-						<td>${cliente.direccionCliente}</td>
-						<td>${cliente.emailCliente}</td>
+						<td>${cliente.ID}</td>
+						<td>${cliente.documentoCliente}</td>
 						<td>${cliente.nombreCliente}</td>
+						<td>${cliente.apellidoCliente}</td>
+						<td>${cliente.direccionCliente}</td>
+						<td>${cliente.barrioCliente}</td>
+						<td>${cliente.zonaCliente}</td>
 						<td>${cliente.telefonoCliente}</td>
+						<td>${cliente.telefonoadicional}</td>
+						<td>${cliente.correoCliente}</td>
 						<td><a class="btn btn-danger" href="/eliminarcliente/${cliente.cedulaCliente}">Eliminar Cliente</a></td>
 						<td><a class="btn btn-success" href="/cliente/${cliente.cedulaCliente}">Actualizar Cliente</a></td>
 						</tr>

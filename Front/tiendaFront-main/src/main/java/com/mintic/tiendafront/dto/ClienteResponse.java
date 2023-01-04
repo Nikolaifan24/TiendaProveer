@@ -2,65 +2,121 @@ package com.mintic.tiendafront.dto;
 
 public class ClienteResponse {
 	
-private Long id;	
+	private Long ID;
 	
-	private Long cedulaCliente;
+	private Long documentoCliente;
+
+	private String nombreCliente;
+
+	private String apellidoCliente;
 	
 	private String direccionCliente;
 	
-	private String emailCliente;
-	
-	private String nombreCliente;
-	
+	private String barrioCliente;
+
+	private String zonaCliente;
+		
 	private String telefonoCliente;
 
+	private String telefonoadicional;
+
+	private String correoCliente;
 	
-	public Long getid() {
-		return id;
+
+	public ClienteResponse() {
 	}
 
-	public void setid(Long id) {
-		this.id = id;
-	}
-
-	public Long getcedulaCliente() {
-		return cedulaCliente;
-	}
-
-	public void setcedulaCliente(Long cedulaCliente) {
-		this.cedulaCliente = cedulaCliente;
-	}
-
-	public String getdireccionCliente() {
-		return direccionCliente;
-	}
-
-	public void setdireccionCliente(String direccionCliente) {
+	public ClienteResponse(Long ID, Long documentoCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String barrioCliente, String zonaCliente, String telefonoCliente, String telefonoadicional, String correoCliente) {
+		this.ID = ID;
+		this.documentoCliente = documentoCliente;
+		this.nombreCliente = nombreCliente;
+		this.apellidoCliente = apellidoCliente;
 		this.direccionCliente = direccionCliente;
+		this.barrioCliente = barrioCliente;
+		this.zonaCliente = zonaCliente;
+		this.telefonoCliente = telefonoCliente;
+		this.telefonoadicional = telefonoadicional;
+		this.correoCliente = correoCliente;
 	}
 
-	public String getemailCliente() {
-		return emailCliente;
+	public Long getID() {
+		return this.ID;
 	}
 
-	public void setemailCliente (String emailCliente) {
-		this.emailCliente = emailCliente;
+	public void setID(Long ID) {
+		this.ID = ID;
 	}
 
-	public String getnombreCliente() {
-		return nombreCliente;
+	public Long getDocumentoCliente() {
+		return this.documentoCliente;
 	}
 
-	public void setnombreCliente(String nombreCliente) {
+	public void setDocumentoCliente(Long documentoCliente) {
+		this.documentoCliente = documentoCliente;
+	}
+
+	public String getNombreCliente() {
+		return this.nombreCliente;
+	}
+
+	public void setNombreCliente(String nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
 
-	public String gettelefonoCliente() {
-		return telefonoCliente;
+	public String getApellidoCliente() {
+		return this.apellidoCliente;
 	}
 
-	public void settelefonoCliente(String telefonoCliente) {
-		this.telefonoCliente = telefonoCliente;
-	}	
+	public void setApellidoCliente(String apellidoCliente) {
+		this.apellidoCliente = apellidoCliente;
+	}
 
+	public String getDireccionCliente() {
+		return this.direccionCliente;
+	}
+
+	public void setDireccionCliente(String direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}
+
+	public String getBarrioCliente() {
+		return this.barrioCliente;
+	}
+
+	public void setBarrioCliente(String barrioCliente) {
+		this.barrioCliente = barrioCliente;
+	}
+
+	public String getZonaCliente() {
+		return this.zonaCliente;
+	}
+
+	public void setZonaCliente(String zonaCliente) {
+		this.zonaCliente = zonaCliente;
+	}
+
+	public String getTelefonoCliente() {
+		return this.telefonoCliente;
+	}
+
+	public void setTelefonoCliente(String telefonoCliente) {
+		this.telefonoCliente = telefonoCliente;
+	}
+
+	public String getTelefonoadicional() {
+		return this.telefonoadicional;
+	}
+
+	public void setTelefonoadicional(String telefonoadicional) {
+		this.telefonoadicional = telefonoadicional;
+	}
+
+	public String getCorreoCliente() {
+		return this.correoCliente;
+	}
+
+	public void setCorreoCliente(String correoCliente) {
+		this.correoCliente = correoCliente;
+	}
+	
 }

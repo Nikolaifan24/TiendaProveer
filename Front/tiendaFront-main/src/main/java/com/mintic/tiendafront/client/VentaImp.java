@@ -121,7 +121,7 @@ public class VentaImp implements IVenta {
 		ResultadoVentaDto resultadoVenta = new ResultadoVentaDto();
 		
 		resultadoVenta.setCodigoVenta((long) Math.random());
-		resultadoVenta.setIdCliente(cliente.getid());
+		resultadoVenta.setIdCliente(cliente.getID());
 		resultadoVenta.setIdUsuario(idUsuario);
 		resultadoVenta.setIvaVenta(totalVenta.getIvaTotal());
 		resultadoVenta.setValorVenta(totalVenta.getPrecioTotalSinIva());

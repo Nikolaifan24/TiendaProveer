@@ -49,7 +49,7 @@ public class ClientImp implements IClientTienda {
 	public List<UsuarioResponse> getUsuarios() {
 
 		try {
-			Mono<List> response = webClient.build().get().uri(URL + "/usuarios").retrieve()
+			Mono<List> response = webClient.build().get().uri(URL + "/usuarioslistar").retrieve()
 					.bodyToMono(List.class);
 
 			return response.block();

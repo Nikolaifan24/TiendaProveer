@@ -57,7 +57,7 @@ public class ControladorVentas {
 	@PostMapping("/venta")
 	public String buscarProducto(Model model, ProductoVenta productosVenta) {
 		Long idUsuario = 1l;
-		ClienteResponse cliente = icliente.buscarCliente(productosVenta.getCedulaCliente());
+		ClienteResponse cliente = icliente.buscarCliente(productosVenta.getdocumentoCliente());
 		
 		ProductoDto producto1 = iVenta.getProduct(Long.valueOf(productosVenta.getCodigoProducto1()));
 		ProductoDto producto2 = iVenta.getProduct(Long.valueOf(productosVenta.getCodigoProducto2()));
@@ -68,7 +68,7 @@ public class ControladorVentas {
 		productosMap.put(producto2,  productosVenta.getCantidadProducto2());
 		productosMap.put(producto3,  productosVenta.getCantidadProducto3());
 		VentaDto totalVenta = iVenta.calcularTotalVenta(productosMap);
-		if (cliente != null && cliente.getcedulaCliente() != null) {
+		if (cliente != null && cliente.getDocumentoCliente() != null) {
 			iVenta.guardarVenta(totalVenta, idUsuario, cliente );
 		}
 		//VentaDto totalVenta = iVenta.guardarVenta(totalVenta, idUsuario, );

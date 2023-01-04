@@ -23,7 +23,7 @@
 	
 </head>
 
-<body background="https://img.lovepik.com/photo/40109/9825.jpg_wh860.jpg" opacity=0.8>
+<body background="https://img.lovepik.com/photo/40109/9825.jpg_wh860.jpg" style="background-repeat: no-repeat; background-size:cover; " >
 <body>
 	<nav class="navbar navbar-expand-lg navbar--dark bg-dark">
 		<a class="navbar-brand" href="/menu">Tienda</a>

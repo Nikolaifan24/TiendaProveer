@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class ClienteServicio implements ICliente {
 	
-	private static final String URL = "http://localhost:8090/tienda";
+	private static final String URL = "http://localhost:8091/tienda";
 
 	@Autowired
 	private WebClient.Builder webClient;
@@ -79,11 +79,11 @@ public class ClienteServicio implements ICliente {
 	}
 	
 	@Override
-	public ClienteResponse buscarCliente(Long cedulaCliente) {
+	public ClienteResponse buscarCliente(Long documentoCliente) {
 				
 		try {
 
-			Mono<ClienteResponse> response = webClient.build().get().uri(URL + "/cliente/" + cedulaCliente)
+			Mono<ClienteResponse> response = webClient.build().get().uri(URL + "/cliente/" + documentoCliente)
 					.retrieve().bodyToMono(ClienteResponse.class);
 
 			return response.block();
@@ -95,12 +95,14 @@ public class ClienteServicio implements ICliente {
 		
 	}
 
+	
+
 	@Override
-	public int borrarCliente(Long cedulaCliente) {
+	public int borrarCliente(Long documentoCliente) {
 		
 		try {
 
-			Mono<Integer> response = webClient.build().delete().uri(URL + "/cliente/" + cedulaCliente)
+			Mono<Integer> response = webClient.build().delete().uri(URL + "/cliente/" + documentoCliente)
 					.retrieve().bodyToMono(Integer.class);
 
 			return response.block();
