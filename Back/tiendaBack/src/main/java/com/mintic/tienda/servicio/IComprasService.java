@@ -10,7 +10,7 @@ import com.mintic.tienda.entities.Detallecompra;
 
 public interface IComprasService {
 
-    void crearCompras(ComprasDto ComprasDto, DetallecompraDto detallecompraDto) ;
+    void crearCompras(ComprasDto ComprasDto) ;
 
     ComprasDto buscarComprasPorFechaCompra(String FechaCompra) ;
 

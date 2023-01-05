@@ -47,8 +47,8 @@ public class ContorladorCompras {
 	}
 	
 	@PostMapping("/crearCompras")
-	public void crearCompras(@RequestBody ComprasDto ComprasDto, @RequestBody DetallecompraDto detallecompraDto ) {
-		iCompras.crearCompras(ComprasDto, detallecompraDto );
+	public void crearCompras(@RequestBody ComprasDto ComprasDto) {
+		iCompras.crearCompras(ComprasDto);
 	}
 	
 	@DeleteMapping("/eliminarCompras/{FechaCompra}")

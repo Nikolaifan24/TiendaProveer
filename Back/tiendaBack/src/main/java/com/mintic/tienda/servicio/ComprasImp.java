@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.mintic.tienda.dto.ComprasDto;
 import com.mintic.tienda.dto.DetallecompraDto;
+import com.mintic.tienda.dto.ProveedoresDto;
 import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Detallecompra;
 import com.mintic.tienda.entities.Proveedores;
 import com.mintic.tienda.repositories.ICompras;
 import com.mintic.tienda.repositories.IDetalleCompra;
+import com.mintic.tienda.repositories.IProveedor;
 
 @Service
 public class ComprasImp implements IComprasService{
@@ -21,24 +23,29 @@ public class ComprasImp implements IComprasService{
 	public
 	ICompras iCompras;
 	IDetalleCompra idetallecompra;
+	IProveedor iProveedor;
 	
 	@Override
-	public void crearCompras(ComprasDto ComprasDto, DetallecompraDto detallecompraDto) {
-		iCompras.save(buildCompras(ComprasDto, detallecompraDto));
+	public void crearCompras(ComprasDto ComprasDto) {
+		iCompras.save(buildCompras(ComprasDto));
 		// iCompras.save(realizarCalculoCompra(detallecompraDto));
 		
 	}
 	
-	private Compras buildCompras(ComprasDto ComprasDto, DetallecompraDto detallecompraDto) {
+	private Compras buildCompras(ComprasDto ComprasDto) {
 		Compras Compras = new Compras();
 		// Long id = ComprasDto.getID();
-		realizarCalculoCompra(detallecompraDto);
-		Proveedores proveedores = ComprasDto.getProveedores();
+		// realizarCalculoCompra(detallecompraDto);
+		ProveedoresDto proveedoresdto = new ProveedoresDto();
+		Long nitProveedor = proveedoresdto.getNitProveedor();
+		// Proveedores proveedores = ComprasDto.getProveedores();
 		String FechaCompra = ComprasDto.getFechaCompra();
-        Double totalCompra = detallecompraDto.getValorTotal();
+        Double totalCompra = ComprasDto.getTotalCompra();
 		Double ivaCompra = ComprasDto.getIvaCompra();
-		
+		Proveedores proveedores = iProveedor.buscarProveedorPorNit(nitProveedor);
+		// System.out.println("el Proveedor es aca" +ivaCompra);
 		if(proveedores != null) {
+			System.out.println("voy de nuevo" + nitProveedor );
 			Compras.setProveedores(proveedores);
 		}
 		if(FechaCompra != null) {

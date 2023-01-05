@@ -26,7 +26,7 @@ public class ProveedorImp implements IProveedorService {
 	
 	private Proveedores buildProveedor(ProveedoresDto proveedorDto) {
 		Proveedores proveedor = new Proveedores();
-		Long id = proveedorDto.getId();
+		Long id = proveedorDto.getIDProveedor();
 		String nombreProveedor = proveedorDto.getNombreProveedor();
 		Long nitProveedor = proveedorDto.getNitProveedor();
 		String ciudadProveedor = proveedorDto.getCiudadProveedor();
@@ -106,7 +106,7 @@ public class ProveedorImp implements IProveedorService {
 	private ProveedoresDto mapProveedorDto(Proveedores proveedores) {
 		return new ProveedoresDto(
 				proveedores.getIDProveedor(),
-				proveedores.getProductos(),
+				// proveedores.getProductos(),
 				proveedores.getNombreProveedor(),
 				proveedores.getNitProveedor(),
 				proveedores.getCiudadProveedor(),

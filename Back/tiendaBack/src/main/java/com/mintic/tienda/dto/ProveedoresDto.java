@@ -1,17 +1,17 @@
 package com.mintic.tienda.dto;
 
-import java.util.List;
+// import java.util.List;
 
 // import com.mintic.tienda.entities.Compras;
-import com.mintic.tienda.entities.Productos;
+// import com.mintic.tienda.entities.Productos;
 
 public class ProveedoresDto {
 	
-	private Long id;
+	private Long IDProveedor;
 		
 	// private List<Compras> compras;
 
-	private List<Productos> productos;
+	// private List<Productos> productos;
 
 	private String nombreProveedor;
 	
@@ -29,9 +29,9 @@ public class ProveedoresDto {
 	public ProveedoresDto() {
 	}
 
-	public ProveedoresDto(Long id, List<Productos> productos, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
-		this.id = id;
-		this.productos = productos;
+
+	public ProveedoresDto(Long IDProveedor, String nombreProveedor, Long nitProveedor, String ciudadProveedor, String direccionProveedor, String telefonoProveedor, String TipoProducto) {
+		this.IDProveedor = IDProveedor;
 		this.nombreProveedor = nombreProveedor;
 		this.nitProveedor = nitProveedor;
 		this.ciudadProveedor = ciudadProveedor;
@@ -40,20 +40,12 @@ public class ProveedoresDto {
 		this.TipoProducto = TipoProducto;
 	}
 
-	public Long getId() {
-		return this.id;
+	public Long getIDProveedor() {
+		return this.IDProveedor;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<Productos> getProductos() {
-		return this.productos;
-	}
-
-	public void setProductos(List<Productos> productos) {
-		this.productos = productos;
+	public void setIDProveedor(Long IDProveedor) {
+		this.IDProveedor = IDProveedor;
 	}
 
 	public String getNombreProveedor() {
@@ -103,5 +95,5 @@ public class ProveedoresDto {
 	public void setTipoProducto(String TipoProducto) {
 		this.TipoProducto = TipoProducto;
 	}
-	
+		
 }
