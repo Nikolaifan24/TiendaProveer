@@ -3,12 +3,12 @@ package com.mintic.tiendafront.client;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+// import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import com.mintic.tiendafront.dto.Proveedor;
+import com.mintic.tiendafront.dto.ProveedoresDto;
 import com.mintic.tiendafront.dto.ProveedorResponse;
 
 import reactor.core.publisher.Mono;
@@ -37,7 +37,7 @@ public class ProveedorServicio implements IProveedor {
 	}
 
 	@Override
-	public ProveedorResponse nuevoProveedor(Proveedor proveedorDto) {
+	public ProveedorResponse nuevoProveedor(ProveedoresDto proveedorDto) {
 			
 		
 		try {
@@ -59,7 +59,7 @@ public class ProveedorServicio implements IProveedor {
 	}
 	
 	@Override
-	public ProveedorResponse ActualizarProveedor(Proveedor proveedorDto, Long nit) {
+	public ProveedorResponse ActualizarProveedor(ProveedoresDto proveedorDto, Long nit) {
 			
 		
 		try {
