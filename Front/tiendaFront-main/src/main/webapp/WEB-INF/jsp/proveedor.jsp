@@ -20,7 +20,7 @@
 	crossorigin="anonymous"></script>
 	<link href="style.css" rel="stylesheet" type="text/css" />	
 </head>
-<body opacity=0.5>
+<body background="https://thumbs.dreamstime.com/b/fondo-oscuro-vac%C3%ADo-iluminado-por-puntos-suelo-de-hormig%C3%B3n-blanco-azul-rojo-y-brillante-172023908.jpg" style="background-repeat: no-repeat; background-size:cover; " >
 <body>
 <nav class="navbar navbar-expand-lg navbar--dark bg-dark">
 		<a class="navbar-brand" href="/menu">Tienda</a>
@@ -100,11 +100,11 @@
 			<tbody>
 				<c:forEach items="${proveedores}" var="proveedor">
 					<tr style=" color: #FFF35F"> 
-						<td>${proveedor.nit}</td>
-						<td>${proveedor.nombre}</td>
-						<td>${proveedor.ciudad}</td>
-						<td>${proveedor.direccion}</td>
-						<td>${proveedor.telefono}</td>
+						<td>${proveedor.nitProveedor}</td>
+						<td>${proveedor.nombreProveedor}</td>
+						<td>${proveedor.ciudadProveedor}</td>
+						<td>${proveedor.direccionProveedor}</td>
+						<td>${proveedor.telefonoProveedor}</td>
 						<td><a class="btn btn-danger" href="/eliminarproveedor/${proveedor.nit}">Eliminar proveedor</a></td>
 						<td><a class="btn btn-success" href="/proveedor/${proveedor.nit}">Actualizar proveedor</a></td>
 						</tr>

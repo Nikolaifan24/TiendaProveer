@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class ProveedorServicio implements IProveedor {
 
-	private static final String URL = "http://localhost:8090/tienda";
+	private static final String URL = "http://localhost:8091/tienda";
 
 	@Autowired
 	private WebClient.Builder webClient;
@@ -25,7 +25,7 @@ public class ProveedorServicio implements IProveedor {
 	public List<ProveedorResponse> getProveedores() {
 
 		try {
-			Mono<List> response = webClient.build().get().uri(URL + "/proveedores").retrieve()
+			Mono<List> response = webClient.build().get().uri(URL + "/proveedor").retrieve()
 					.bodyToMono(List.class);
 
 			return response.block();

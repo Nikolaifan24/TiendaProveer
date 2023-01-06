@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.mintic.tiendafront.client.IProveedor;
-import com.mintic.tiendafront.dto.Proveedor;
+import com.mintic.tiendafront.dto.ProveedoresDto;
 import com.mintic.tiendafront.dto.ProveedorResponse;
 
 
@@ -34,7 +34,7 @@ public class ProveedorController {
 	}
 
 	@PostMapping("/proveedor")
-	public String crearProveedor(Model model, Proveedor proveedor) {
+	public String crearProveedor(Model model, ProveedoresDto proveedor) {
 
 		if(proveedor.getid().longValue() == 0 ) {
 			
@@ -120,7 +120,7 @@ public class ProveedorController {
 		return true;
 	}
 	
-	private boolean Validacion(Model model, Proveedor proveedor) 
+	private boolean Validacion(Model model, ProveedoresDto proveedor) 
 	{		
 		if(proveedor.getNit().longValue() == 0) 
 		{

@@ -20,7 +20,7 @@
 	crossorigin="anonymous"></script>
 	<link href="style.css" rel="stylesheet" type="text/css" />	
 </head>
-<body background="https://blog.sodexo.cl/hubfs/Navimag%20Blogs%20%2854%29.jpg" style="background-repeat: no-repeat; background-size:cover; " >
+<body background="https://conceptoabc.com/wp-content/uploads/2021/12/Universo.jpg" style="background-repeat: no-repeat; background-size:cover; " >
 <body>
 <nav class="navbar navbar-expand-lg navbar--dark bg-dark">
 		<a class="navbar-brand" href="/menu">Tienda</a>
@@ -114,7 +114,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${clientes}" var="cliente">
-					<tr> 
+					<tr style=" color: #332c62"> 
 						<td>${cliente.ID}</td>
 						<td>${cliente.documentoCliente}</td>
 						<td>${cliente.nombreCliente}</td>

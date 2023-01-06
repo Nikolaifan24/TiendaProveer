@@ -7,7 +7,7 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>usuario</title>
+<title>vendedor</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/css.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -30,7 +30,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/usuario">Usuarios
+				<li class="nav-item active"><a class="nav-link" href="/vendedor">vendedors
 
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/cliente">Clientes</a>
@@ -39,18 +39,20 @@
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
+                <li class="nav-item"><a class="nav-link" href="/vendedor">vendedor</a></li>
+
 				<li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
 			</ul>
 
 		</div>
 	</nav>
 	<br>
-	<h1> Usuarios</h1>
+	<h1> Vendedores</h1>
 
 	<div class="container overflow-hidden">
 
 		<div class=" col-xl-2 col-lg-3 col-md-4 col-sm-6" id="formulario">
-			<form method="post" action="/usuario">
+			<form method="post" action="/vendedor">
 				<div class="form-group">
 				 <select name="idTipoDocumento"
 						class="form-select">
@@ -60,35 +62,34 @@
 				</div>
 
 				<div class="container overflow-hidden">
+                <div class="form-group">
+                    <label> Nombre vendedor:</label> <input type="text" name="nombrevendedor" class="form-control"
+                        value="${vendedorEditar.nombrevendedor}" />
+                </div>    
 				<div class="form-group">
-					<input type="hidden" name="id" value="${usuarioEditar.id}">
+					<input type="hidden" name="id" value="${vendedorEditar.id}">
 
-					<label for="numero"> numero:</label><input type="text"
-						name="cedulaUsuario" id="numero"
-						value="${usuarioEditar.cedulaUsuario}" class="form-control" />
+					<label for="numero"> Documento:</label><input type="text"
+						name="documentoVendedor" id="numero"
+						value="${vendedorEditar.documentoVendedor}" class="form-control" />
 				</div>
 				<div class="form-group">
-					<label>nombre:</label><input type="text" name="usuario"
-						class="form-control" value="${usuarioEditar.usuario}" />
+					<label>Dirección:</label><input type="text" name="direccionVendedor"
+						class="form-control" value="${vendedorEditar.documentoVendedor}" />
 				</div>
 				<div class="form-group">
-					<label>Email:</label><input type="text" name="emailUsuario"
-						class="form-control" value="${usuarioEditar.emailUsuario}" />
-				</div>
-				<div class="form-group">
-					<label> nombre usuario:</label> <input type="text"
-						name="nombreUsuario" class="form-control"
-						value="${usuarioEditar.nombreUsuario}" />
+					<label>Telefono:</label><input type="text" name="telefonoVendedor"
+						class="form-control" value="${vendedorEditar.telefonoVendedor}" />
 				</div>
 				<div class="form-group">
 					<label>password:</label> <input type="password" name="password"
-						class="form-control" value="${usuarioEditar.password}" />
+						class="form-control" value="${vendedorEditar.password}" />
 				</div>
 				</div>
 				<br>
 				<div class="btn-group" role="group" aria-label="Basic example">
 				<button type="submit" class="btn btn-primary" formmethod="post" >Crear</button>
-				<a type="button" class="btn btn-secondary" href= "/usuario" >Consultar</a>
+				<a type="button" class="btn btn-secondary" href= "/vendedor" >Consultar</a>
 		 		</div>
 				
 				
@@ -101,24 +102,28 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Numero</th>
-					<th>Email</th>
-					<th>Usuario</th>
-					<th>Nombre usuario</th>
+					<th>Documento</th>
+					<th>Nombre</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>
+					<th>Comisión</th>
+					<th>Fecha Ingreso</th>
+					<th>Salario</th>
 					
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${usuarios}" var="usuario">
+				<c:forEach items="${vendedor}" var="vendedor">
 					<tr style=" color: #FFF35F"> 
-						<td>${usuario.id}</td>
-						<td>${usuario.cedulaUsuario}</td>
-						<td>${usuario.emailUsuario}</td>
-						<td>${usuario.usuario}</td>
-						<td>${usuario.nombreUsuario}</td>
-						<td><a class="btn btn-danger"
-							href="/eliminarusuario/${usuario.cedulaUsuario}">Eliminar</a></td>
-						<td><a class="btn btn-success" href="/usuario/${usuario.cedulaUsuario}">Actualizar</a></td>
+						<td>${vendedor.IDVendedor}</td>
+						<td>${vendedor.documentoVendedor}</td>
+						<td>${vendedor.direccionVendedor}</td>
+						<td>${vendedor.telefonoVendedor}</td>
+						<td>${vendedor.comisionVendedor}</td>
+						<td>${vendedor.FechaIngreso}</td>
+						<td>${vendedor.Salario}</td>
+                       
+						<td><a class="btn btn-success" href="/vendedor/${vendedor.documentoVendedor}">Actualizar</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>
