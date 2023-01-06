@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mintic.tienda.dto.ComprasDto;
 import com.mintic.tienda.dto.DetallecompraDto;
-import com.mintic.tienda.dto.ProveedoresDto;
+// import com.mintic.tienda.dto.ProveedoresDto;
 import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Detallecompra;
 import com.mintic.tienda.entities.Proveedores;
@@ -36,16 +36,17 @@ public class ComprasImp implements IComprasService{
 		Compras Compras = new Compras();
 		// Long id = ComprasDto.getID();
 		// realizarCalculoCompra(detallecompraDto);
-		ProveedoresDto proveedoresdto = new ProveedoresDto();
-		Long nitProveedor = proveedoresdto.getNitProveedor();
-		// Proveedores proveedores = ComprasDto.getProveedores();
+		// ProveedoresDto proveedoresdto = new ProveedoresDto();
+		// Long nitProveedor = proveedoresdto.getNitProveedor();
+		Long nit = ComprasDto.getProveedores().getNitProveedor();
+		Proveedores proveedores = iProveedor.buscarProveedorPorNit(nit);
 		String FechaCompra = ComprasDto.getFechaCompra();
         Double totalCompra = ComprasDto.getTotalCompra();
 		Double ivaCompra = ComprasDto.getIvaCompra();
-		Proveedores proveedores = iProveedor.buscarProveedorPorNit(nitProveedor);
+		// Proveedores proveedores = iProveedor.buscarProveedorPorNit(nitProveedor);
 		// System.out.println("el Proveedor es aca" +ivaCompra);
 		if(proveedores != null) {
-			System.out.println("voy de nuevo" + nitProveedor );
+			System.out.println("voy de nuevo" + proveedores.getCiudadProveedor() );
 			Compras.setProveedores(proveedores);
 		}
 		if(FechaCompra != null) {

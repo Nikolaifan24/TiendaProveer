@@ -1,6 +1,6 @@
 package com.mintic.tiendafront.dto;
 
-public class Proveedor {
+public class ProveedoresDto {
 	
 	private Long id;
 	

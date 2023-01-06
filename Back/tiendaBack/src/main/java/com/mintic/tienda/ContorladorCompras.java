@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.tienda.dto.ComprasDto;
-import com.mintic.tienda.dto.DetallecompraDto;
+// import com.mintic.tienda.dto.DetallecompraDto;
 import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Detallecompra;
 import com.mintic.tienda.repositories.IDetalleCompra;
@@ -48,6 +48,7 @@ public class ContorladorCompras {
 	
 	@PostMapping("/crearCompras")
 	public void crearCompras(@RequestBody ComprasDto ComprasDto) {
+		System.out.println("esta es mi compra");
 		iCompras.crearCompras(ComprasDto);
 	}
 	
