@@ -9,15 +9,15 @@ import com.mintic.tiendafront.dto.ClienteResponse;
 import com.mintic.tiendafront.dto.ProductoDto;
 import com.mintic.tiendafront.dto.VentaDto;
 import com.mintic.tiendafront.dto.VentaResponse;
-import com.mintic.tiendafront.dto.ResultadoVentaDto;
+import com.mintic.tiendafront.dto.DetalleVentaDto;
 
 public interface IVenta {
 	
-	public ProductoDto getProduct (Long codigoProducto);
+	ProductoDto BuscarProductopornombre (String nombreProducto); 
 
-	public VentaDto calcularTotalVenta(Map<ProductoDto, Integer> productosMap);
+	// public VentaDto calcularTotalVenta(Map<ProductoDto, Integer> productosMap);
 
-	public List<VentaResponse> getVentas();
+	List<VentaResponse> ListarVentas(); 
 
 	public void guardarVenta(VentaDto totalVenta, Long idUsuario, ClienteResponse cliente);
 

@@ -24,8 +24,9 @@ import com.mintic.tiendafront.dto.ClienteDto;
 import com.mintic.tiendafront.dto.ClienteResponse;
 import com.mintic.tiendafront.dto.LoginDto;
 import com.mintic.tiendafront.dto.ProductoDto;
-import com.mintic.tiendafront.dto.ProductoVenta;
-import com.mintic.tiendafront.dto.ResultadoVentaDto;
+import com.mintic.tiendafront.dto.ProductoResponse;
+import com.mintic.tiendafront.dto.ProductoResponse;
+import com.mintic.tiendafront.dto.DetalleVentaDto;
 import com.mintic.tiendafront.dto.UsuarioResponse;
 import com.mintic.tiendafront.dto.VentaDto;
 import com.mintic.tiendafront.dto.VentaResponse;
@@ -47,41 +48,43 @@ public class ControladorVentas {
 	
 	
 
-	@GetMapping("/venta")
-	public String b() {
-		//Controlador controlador = new Controlador();
-		//System.out.println(" Esto es una prueba: " +controlador.clienteTienda.login(loginDto));
-		return "venta";
-	}
-	
-	@PostMapping("/venta")
-	public String buscarProducto(Model model, ProductoVenta productosVenta) {
-		Long idUsuario = 1l;
-		ClienteResponse cliente = icliente.buscarCliente(productosVenta.getdocumentoCliente());
+	// @PostMapping("/venta")
+	// public String buscarProducto(Model model, ProductoResponse productosVenta) {
+	// 	Long idUsuario = 1l;
+	// 	ClienteResponse cliente = icliente.buscarCliente(idUsuario);
 		
-		ProductoDto producto1 = iVenta.getProduct(Long.valueOf(productosVenta.getCodigoProducto1()));
-		ProductoDto producto2 = iVenta.getProduct(Long.valueOf(productosVenta.getCodigoProducto2()));
-		ProductoDto producto3 = iVenta.getProduct(Long.valueOf(productosVenta.getCodigoProducto3()));
-		
-		Map<ProductoDto, Integer> productosMap = new LinkedHashMap<>();
-		productosMap.put(producto1,  productosVenta.getCantidadProducto1());
-		productosMap.put(producto2,  productosVenta.getCantidadProducto2());
-		productosMap.put(producto3,  productosVenta.getCantidadProducto3());
-		VentaDto totalVenta = iVenta.calcularTotalVenta(productosMap);
-		if (cliente != null && cliente.getDocumentoCliente() != null) {
-			iVenta.guardarVenta(totalVenta, idUsuario, cliente );
-		}
-		//VentaDto totalVenta = iVenta.guardarVenta(totalVenta, idUsuario, );
+	// 	ProductoDto producto = iVenta.BuscarProductopornombre(productosVenta.getNombreProducto());
+				
+	// 	Map<ProductoDto, Integer> productosMap = new LinkedHashMap<>();
+	// 	productosMap.put(producto,  productosVenta.getCantidadProducto1());
+	// 	VentaDto totalVenta = iVenta.calcularTotalVenta(productosMap);
+	// 	if (cliente != null && cliente.getDocumentoCliente() != null) {
+	// 		iVenta.guardarVenta(totalVenta, idUsuario, cliente );
+	// 	}
+	// 	//VentaDto totalVenta = iVenta.guardarVenta(totalVenta, idUsuario, );
 		
 		
-		model.addAttribute("totalVenta", totalVenta);
+	// 	model.addAttribute("totalVenta", totalVenta);
 		
-		return "venta";
+	// 	return "venta";
+	// }
+
+	@GetMapping("/ventas")
+	public String vendedor(Model model) 
+	{
+		model.addAttribute("ventas", iVenta.ListarVentas());
+		
+		if(model.getAttribute("ventas") == null) 
+		{
+			model.addAttribute("mensaje", "No hay datos para mostrar");
+		}	
+		
+		return "ventas";
 	}
 	
 	@GetMapping("/reporteVenta")
 	public String reporteVenta(Model model) {
-		List<VentaResponse> ventaResponse = iVenta.getVentas();
+		List<VentaResponse> ventaResponse = iVenta.ListarVentas();
 		model.addAttribute("ventas", ventaResponse);
 		
 		if(model.getAttribute("ventas") == null) 

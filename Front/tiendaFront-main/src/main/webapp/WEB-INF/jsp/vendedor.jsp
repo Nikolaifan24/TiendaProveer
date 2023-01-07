@@ -114,7 +114,7 @@
 			<tbody>
 				<c:forEach items="${vendedor}" var="vendedor">
 					<tr style=" color: #FFF35F"> 
-						<td>${vendedor.IDVendedor}</td>
+						<td>${vendedor.usuario.usuario}</td>
 						<td>${vendedor.documentoVendedor}</td>
 						<td>${vendedor.nombreVendedor}</td>
 						<td>${vendedor.direccionVendedor}</td>

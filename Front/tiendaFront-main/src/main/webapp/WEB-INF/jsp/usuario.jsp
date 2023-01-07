@@ -102,7 +102,7 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Numero</th>
+					<th>Perfil de Usuarios</th>
 					<th>Email</th>
 					<th>Usuario</th>
 					<th>Nombre usuario</th>
@@ -113,8 +113,8 @@
 				<c:forEach items="${usuarios}" var="usuario">
 					<tr style=" color: #FFF35F"> 
 						<td>${usuario.id}</td>
-						<td>${usuario.cedulaUsuario}</td>
-						<td>${usuario.emailUsuario}</td>
+						<td>${usuario.perfil}</td>
+						<td>${usuario.correo}</td>
 						<td>${usuario.usuario}</td>
 						<td>${usuario.nombreUsuario}</td>
 						<td><a class="btn btn-danger"
