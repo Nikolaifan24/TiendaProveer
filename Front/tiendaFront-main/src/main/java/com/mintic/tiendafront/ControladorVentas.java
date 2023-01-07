@@ -69,7 +69,7 @@ public class ControladorVentas {
 	// 	return "venta";
 	// }
 
-	@GetMapping("/ventas")
+	@GetMapping("/venta")
 	public String vendedor(Model model) 
 	{
 		model.addAttribute("ventas", iVenta.ListarVentas());

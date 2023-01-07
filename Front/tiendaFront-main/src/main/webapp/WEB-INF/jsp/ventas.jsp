@@ -120,36 +120,21 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach items="${ventas}" var="venta">
 				
-				<tr style=" color: black"> 
-					
-					<td>${totalVenta.codigoProducto1}</td>
-					<td>${totalVenta.cantidadProducto1}</td>
-					<td>${totalVenta.nombreProducto1}</td>
-					<td>${totalVenta.precioProducto1}</td>
-					<td>${totalVenta.ivaProducto1}</td>
-					<td>${totalVenta.precioProducto1}</td>
-				</tr>
+					<tr style=" color: black"> 
+						
+						<td>${venta.cliente.nombreCliente}</td>
+						<td>${totalVenta.cantidadProducto1}</td>
+						<td>${totalVenta.nombreProducto1}</td>
+						<td>${totalVenta.precioProducto1}</td>
+						<td>${totalVenta.ivaProducto1}</td>
+						<td>${totalVenta.precioProducto1}</td>
+					</tr>
 				
-				<tr style=" color: black"> 
-					
-					<td>${totalVenta.codigoProducto2}</td>
-					<td>${totalVenta.cantidadProducto2}</td>
-					<td>${totalVenta.nombreProducto2}</td>
-					<td>${totalVenta.precioProducto2}</td>
-					<td>${totalVenta.ivaProducto2}</td>
-					<td>${totalVenta.precioProducto2}</td>
-				</tr>
+			</c:forEach>
 				
-				<tr style=" color: black"> 
-					
-					<td>${totalVenta.codigoProducto3}</td>
-					<td>${totalVenta.cantidadProducto3}</td>
-					<td>${totalVenta.nombreProducto3}</td>
-					<td>${totalVenta.precioProducto3}</td>
-					<td>${totalVenta.ivaProducto3}</td>
-					<td>${totalVenta.precioProducto3}</td>
-				</tr>
+			
 			</tbody>
 		</table>
 		
