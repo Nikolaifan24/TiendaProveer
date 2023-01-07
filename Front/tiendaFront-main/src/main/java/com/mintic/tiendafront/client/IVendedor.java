@@ -12,6 +12,8 @@ public interface IVendedor {
     VendedorResponse nuevoVendedor(VendedorDto VendedorDto);
 
     VendedorResponse buscarVendedor(String nombreVendedor) ;
+
+    VendedorResponse ActualizarVendedor(VendedorDto VendedorDto, String nombreVendedor) ;
     
     void borrarVendedor(String nombreVendedor);
     

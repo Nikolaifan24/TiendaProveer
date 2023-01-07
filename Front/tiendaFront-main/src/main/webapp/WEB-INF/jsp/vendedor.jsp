@@ -30,16 +30,15 @@
 
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/vendedor">vendedors
+				<li class="nav-item active"><a class="nav-link" href="/usuario">Usuarios</a></li>
 
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="/cliente">Clientes</a>
-				</li>
+				<li class="nav-item"><a class="nav-link" href="/cliente">Clientes</a></li>
+				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
-                <li class="nav-item"><a class="nav-link" href="/vendedor">vendedor</a></li>
+                <li class="nav-item"><a class="nav-link" href="/vendedor">Vendedores</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
 			</ul>
@@ -117,11 +116,12 @@
 					<tr style=" color: #FFF35F"> 
 						<td>${vendedor.IDVendedor}</td>
 						<td>${vendedor.documentoVendedor}</td>
+						<td>${vendedor.nombreVendedor}</td>
 						<td>${vendedor.direccionVendedor}</td>
 						<td>${vendedor.telefonoVendedor}</td>
 						<td>${vendedor.comisionVendedor}</td>
-						<td>${vendedor.FechaIngreso}</td>
-						<td>${vendedor.Salario}</td>
+						<td>${vendedor.fechaIngreso}</td>
+						<td>${vendedor.salario}</td>
                        
 						<td><a class="btn btn-success" href="/vendedor/${vendedor.documentoVendedor}">Actualizar</a></td>
 						</tr>
