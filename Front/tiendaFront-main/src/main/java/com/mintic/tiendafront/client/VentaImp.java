@@ -24,7 +24,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class VentaImp implements IVenta {
 	
-	private static final String URL = "http://localhost:8090/tienda";
+	private static final String URL = "http://localhost:8091/tienda";
 	
 	@Autowired
 	private WebClient.Builder webClient;
@@ -63,7 +63,7 @@ public class VentaImp implements IVenta {
 		try {
 			Mono<List> response = webClient.build().get().uri(URL + "/ventas").retrieve()
 					.bodyToMono(List.class);
-
+			System.out.println("esto es una venta" + response.block());
 			return response.block();
 		} catch (Exception e) {
 

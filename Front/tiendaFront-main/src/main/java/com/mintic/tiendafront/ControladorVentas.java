@@ -70,7 +70,7 @@ public class ControladorVentas {
 	// }
 
 	@GetMapping("/venta")
-	public String vendedor(Model model) 
+	public String ventas(Model model) 
 	{
 		model.addAttribute("ventas", iVenta.ListarVentas());
 		

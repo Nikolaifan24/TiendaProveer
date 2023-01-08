@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Ventas</title>
+<title>Compras</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/css.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -33,7 +33,7 @@
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/producto">Productos</a></li>
+				<li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
