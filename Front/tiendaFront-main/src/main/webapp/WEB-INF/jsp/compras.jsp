@@ -128,11 +128,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${ventas}" var="venta">
+				<c:forEach items="${compras}" var="compra">
 				
 					<tr style=" color: black"> 
 						
-						<td>${venta.fechaVenta}</td>
+						<td>${compra.fechaCompra}</td>
 						<td>${venta.clientes.nombreCliente}</td>
 						<td>${venta.clientes.direccionCliente}</td>
 						<td>${venta.clientes.telefonoCliente}</td>
