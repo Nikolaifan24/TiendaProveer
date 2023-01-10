@@ -47,7 +47,7 @@ public class ControladorCompras {
 				model.addAttribute("mensaje", "Compra Creada con exito");			
 			}		
 		}else {
-			iCompras.ActualizarCompra(Compras, Compras.getFechaCompra());		
+			iCompras.ActualizarCompra(Compras, Compras.getCodigoCompra());		
 			model.addAttribute("compras", iCompras.ListarCompras());
 			model.addAttribute("mensaje", "Datos del Compras Actualizados");		
 		}	
@@ -57,46 +57,46 @@ public class ControladorCompras {
 		return "Compras";
 	}
 
-	@GetMapping("/Compras/{fechaCompra}")
-	public String actualizarCompras(Model model, @PathVariable(name = "fechaCompra") String fechaCompra)
+	@GetMapping("/Compras/{CodigoCompra}")
+	public String actualizarCompras(Model model, @PathVariable(name = "CodigoCompra") Long CodigoCompra)
 	{
-		//ComprasResponse ComprasEditar = iCompras.buscarCompras(fechaCompra);
-		//ValidacionActualizarCompras(model, ComprasEditar);
-		//if(ValidacionActualizarCompras(model, ComprasEditar) == true)
-		//{			
-			//model.addAttribute("ComprasEditar", ComprasEditar);
-			//model.addAttribute("Comprass", iCompras.getComprass());
-			//model.addAttribute("mensaje", "");
-		//}
-
-		//return "Compras";
-		
-		if (fechaCompra != " ") {
-			ComprasResponse ComprasEditar = iCompras.buscarCompra(fechaCompra);
-			model.addAttribute("comprasEditar", ComprasEditar);
+		ComprasResponse ComprasEditar = iCompras.buscarCompra(CodigoCompra);
+		ValidacionActualizarCompras(model, ComprasEditar);
+		if(ValidacionActualizarCompras(model, ComprasEditar) == true)
+		{			
+			model.addAttribute("ComprasEditar", ComprasEditar);
+			model.addAttribute("Comprass", iCompras.ListarCompras());
+			model.addAttribute("mensaje", "");
 		}
-		
+
 		return "Compras";
+		
+		// if (CodigoCompra != 0) {
+		// 	ComprasResponse ComprasEditar = iCompras.buscarCompra(CodigoCompra);
+		// 	model.addAttribute("comprasEditar", ComprasEditar);
+		// }
+		
+		// return "Compras";
 	}
 
-	// @GetMapping("/eliminarCompras/{fechaCompra}")
-	// public String eliminarCompras(Model model, @PathVariable(name = "fechaCompra") String fechaCompra) {
+	// @GetMapping("/eliminarCompras/{CodigoCompra}")
+	// public String eliminarCompras(Model model, @PathVariable(name = "CodigoCompra") String CodigoCompra) {
 
-	// 	ValidacionPorNombre(model, fechaCompra);
-	// 	iCompras.borrarCompras(fechaCompra);
+	// 	ValidacionPorNombre(model, CodigoCompra);
+	// 	iCompras.borrarCompras(CodigoCompra);
 	// 	model.addAttribute("Comprass", iCompras.ListarCompras());
 	// 	model.addAttribute("mensaje", "Datos del Compras Eliminados");
 			
 	// 	return "Compras";
 	// }
 	
-	@GetMapping("/BuscarComprasPorCedula/{fechaCompra}")
-	public String BuscarComprasPorCedula(Model model, @PathVariable(name = "fechaCompra") String fechaCompra)
+	@GetMapping("/BuscarComprasPorCodigo/{CodigoCompra}")
+	public String BuscarComprasPorCodigo(Model model, @PathVariable(name = "CodigoCompra") Long CodigoCompra)
 	{		
 		
-		if(ValidacionPorNombre(model, fechaCompra))
+		if(ValidacionPorCodigo(model, CodigoCompra))
 		{	
-			ComprasResponse ComprasEditar = iCompras.buscarCompra(fechaCompra);
+			ComprasResponse ComprasEditar = iCompras.buscarCompra(CodigoCompra);
 			
 			if(ComprasEditar == null) {
 				model.addAttribute("mensaje", "Compra Inexistente");
@@ -109,9 +109,9 @@ public class ControladorCompras {
 		return "Compras";
 	}
 	
-	private boolean ValidacionPorNombre(Model model, String fechaCompra) 
+	private boolean ValidacionPorCodigo(Model model, Long CodigoCompra) 
 	{		
-		if(fechaCompra == " ") 
+		if(CodigoCompra == 0) 
 		{
 			model.addAttribute("mensaje", "Ingrese numero de Compras para la busqueda");
 			return false;
@@ -123,7 +123,7 @@ public class ControladorCompras {
 	private boolean ValidacionCrearCompras(Model model, ComprasDto Compras) 
 	{		
 		
-		if(Compras.getFechaCompra().isBlank())
+		if(Compras.getCodigoCompra().longValue() == 0)
 		{
 			model.addAttribute("mensaje", "Faltan datos del Compras");
 			return false;
@@ -150,7 +150,7 @@ public class ControladorCompras {
 			model.addAttribute("mensaje", "Faltan datos del Compras");
 			return false;
 		}
-		if(ComprasEditar.getFechaCompra().isBlank())
+		if(ComprasEditar.getCodigoCompra().longValue() == 0)
 		{
 			model.addAttribute("mensaje", "Faltan datos del Compras");
 			return false;
@@ -189,6 +189,17 @@ public class ControladorCompras {
 	}
 	
 
+	@GetMapping("/detallecompra/{CodigoCompra}")
+	public String reportesDetallesCompras(Model model, @PathVariable(name = "CodigoCompra") Long CodigoCompra) {
+		model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
+		
+		if(model.getAttribute("detallecompra") == null) 
+		{
+			model.addAttribute("mensaje", "No hay datos para mostrar");
+		}	
+		
+		return "detallecompra";
+	}
 
 
     

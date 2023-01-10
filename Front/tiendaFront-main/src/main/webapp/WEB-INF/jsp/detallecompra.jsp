@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Compras</title>
+<title>Detalle Compra</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/css.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -33,13 +33,9 @@
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
-
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="/vendedor">Vendedores</a></li>
-
-                <li class="nav-item"><a class="nav-link" href="/compras">Compras</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
 			</ul>
@@ -113,32 +109,27 @@
 			<thead>
 				<tr>
 					
-					<th>Codigo Compra</th>
-					<th>Fecha Compra</th>
-					<th>Nombre proveedor</th>
-					<th>Tipo Producto</th>
-					<th>Total Compra</th>
-					<th>Iva Compra</th>
-					
-
-
-					
+					<th>Nombre Producto</th>
+					<th>Codigo Producto</th>
+					<th>Cantidad Producto</th>
+					<th>Valor Unitario</th>
+					<th>Valor Total</th>
+										
 					
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${compras}" var="compra">
+				<c:forEach items="${detallecompra}" var="detallecompra">
 				
 					<tr style=" color: black"> 
 						
-						<td>${compra.codigoCompra}</td>
-						<td>${compra.fechaCompra}</td>
-						<td>${compra.proveedores.nombreProveedor}</td>
-						<td>${compra.proveedores.tipoProducto}</td>
-						<td>${compra.totalCompra}</td>
-						<td>${compra.ivaCompra}</td>
+						<td>${detallecompra.productos.nombreProducto}</td>
+						<td>${detallecompra.productos.codigoProducto}</td>
+						<td>${detallecompra.cantidadProducto}</td>
+						<td>${detallecompra.valorUnitario}</td>
+						<td>${detallecompra.valorTotal}</td>
 						
-						<td><a class="btn btn-success" href="/detallecompra/${compra.codigoCompra}">Ver</a></td>
+						<td><a class="btn btn-success" href="/detalleventa/${venta.fechaVenta}">Editar</a></td>
 						
 						
 					</tr>

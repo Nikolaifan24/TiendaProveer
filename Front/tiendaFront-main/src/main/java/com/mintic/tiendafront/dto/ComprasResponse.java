@@ -5,6 +5,8 @@ public class ComprasResponse {
     private Long IDCompras;
 
 	private ProveedorResponse proveedores;
+
+    private Long CodigoCompra;
 	
 	private String FechaCompra;
 
@@ -17,9 +19,10 @@ public class ComprasResponse {
     }
 
 
-    public ComprasResponse(Long IDCompras, ProveedorResponse proveedores, String FechaCompra, Double totalCompra, Double ivaCompra) {
+    public ComprasResponse(Long IDCompras, ProveedorResponse proveedores, Long CodigoCompra, String FechaCompra, Double totalCompra, Double ivaCompra) {
         this.IDCompras = IDCompras;
         this.proveedores = proveedores;
+        this.CodigoCompra = CodigoCompra;
         this.FechaCompra = FechaCompra;
         this.totalCompra = totalCompra;
         this.ivaCompra = ivaCompra;
@@ -39,6 +42,14 @@ public class ComprasResponse {
 
     public void setProveedores(ProveedorResponse proveedores) {
         this.proveedores = proveedores;
+    }
+
+    public Long getCodigoCompra() {
+        return this.CodigoCompra;
+    }
+
+    public void setCodigoCompra(Long CodigoCompra) {
+        this.CodigoCompra = CodigoCompra;
     }
 
     public String getFechaCompra() {
@@ -65,4 +76,5 @@ public class ComprasResponse {
         this.ivaCompra = ivaCompra;
     }
 
+   
 }

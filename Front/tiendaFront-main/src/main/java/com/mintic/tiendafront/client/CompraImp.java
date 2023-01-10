@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import com.mintic.tiendafront.dto.ComprasDto;
 import com.mintic.tiendafront.dto.ComprasResponse;
+import com.mintic.tiendafront.dto.DetalleCompraResponse;
 import com.mintic.tiendafront.dto.ComprasResponse;
 
 import reactor.core.publisher.Mono;
@@ -58,10 +59,10 @@ public class CompraImp implements ICompra{
 	}
 
 	@Override
-	public ComprasResponse buscarCompra(String fechaCompra) {
+	public ComprasResponse buscarCompra(Long CodigoCompra) {
 		try {
 
-			Mono<ComprasResponse> response = webClient.build().get().uri(URL + "/Compra/" + fechaCompra)
+			Mono<ComprasResponse> response = webClient.build().get().uri(URL + "/Compra/" + CodigoCompra)
 					.retrieve().bodyToMono(ComprasResponse.class);
 
 			return response.block();
@@ -74,12 +75,12 @@ public class CompraImp implements ICompra{
 
 		
 	@Override
-	public ComprasResponse ActualizarCompra(ComprasDto CompraDto, String fechaCompra) {
+	public ComprasResponse ActualizarCompra(ComprasDto CompraDto, Long CodigoCompra) {
 		
 		try {
 			
 			ComprasResponse u = null;
-			Mono<ComprasResponse> response = webClient.build().post().uri(URL + "/Compra" + fechaCompra )
+			Mono<ComprasResponse> response = webClient.build().post().uri(URL + "/Compra" + CodigoCompra )
 					.body(Mono.just(CompraDto), ComprasResponse.class).retrieve().bodyToMono(ComprasResponse.class);
 				
 			
@@ -94,7 +95,20 @@ public class CompraImp implements ICompra{
 	}	
 
 
-    
+	@Override
+		public List<DetalleCompraResponse> ListarDetalleCompras(Long CodigoCompra) {
+			System.out.println("estoy entrando al metodo");
+			try {
+				Mono<List> response = webClient.build().get().uri(URL + "/compras/detalle/"+ CodigoCompra).retrieve()
+						.bodyToMono(List.class);
+				System.out.println(response.block() + "estoy saliendo del try");	
+				return response.block();
+			} catch (Exception e) {
+
+				return null;
+			}
+
+		}
 
 
 }

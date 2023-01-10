@@ -27,7 +27,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 	public DetalleventaDto buscarDetalleVentasPorIdVenta(Long idVenta) {
 		Detalleventa detalleVentas = null;
 		try {
-			detalleVentas = iDetalleVentas.buscarDetalleVentaPorCodigoCompra(idVenta);
+			detalleVentas = iDetalleVentas.buscarDetalleVentaPorCodigoVenta(idVenta);
 			DetalleventaDto detalleVentasDto = mapDetalleVentasDto(detalleVentas);
 			return detalleVentasDto;
 		} catch (Exception e) {

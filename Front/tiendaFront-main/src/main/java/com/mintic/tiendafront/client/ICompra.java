@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mintic.tiendafront.dto.ComprasDto;
 import com.mintic.tiendafront.dto.ComprasResponse;
+import com.mintic.tiendafront.dto.DetalleCompraResponse;
 
 public interface ICompra {
 
@@ -11,7 +12,9 @@ public interface ICompra {
 
     ComprasResponse nuevoCompra(ComprasDto CompraDto);
 
-    ComprasResponse buscarCompra(String fechaCompra);
+    ComprasResponse buscarCompra(Long CodigoCompra);
 
-    ComprasResponse ActualizarCompra(ComprasDto CompraDto, String fechaCompra) ;
+    ComprasResponse ActualizarCompra(ComprasDto CompraDto, Long CodigoCompra) ;
+
+    List<DetalleCompraResponse> ListarDetalleCompras(Long CodigoCompra) ;
 }
