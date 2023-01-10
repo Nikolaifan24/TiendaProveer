@@ -114,6 +114,7 @@
 				<tr>
 					
 					<th>Fecha Venta</th>
+					<th>Codigo Venta</th>
 					<th>Nombre Cliente</th>
 					<th>Direccion</th>
 					<th>Telefono</th>
@@ -133,6 +134,7 @@
 					<tr style=" color: black"> 
 						
 						<td>${venta.fechaVenta}</td>
+						<td>${venta.codigoVenta}</td>
 						<td>${venta.clientes.nombreCliente}</td>
 						<td>${venta.clientes.direccionCliente}</td>
 						<td>${venta.clientes.telefonoCliente}</td>
@@ -140,7 +142,7 @@
 						<td>${venta.fechaPago}</td>
 						<td>${venta.formaPago}</td>
 						<td>${venta.totalVenta}</td>
-						<td><a class="btn btn-success" href="/detalleventa/${venta.fechaVenta}">Ver</a></td>
+						<td><a class="btn btn-success" href="/detalleventa/${venta.codigoVenta}">Ver</a></td>
 						
 						
 					</tr>

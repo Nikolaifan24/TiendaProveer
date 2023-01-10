@@ -20,7 +20,7 @@ public class Detalleventa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ID;
+	private Long IDDetalle;
 	
     @ManyToOne
     @JoinColumn(name="IDVenta")
@@ -40,8 +40,9 @@ public class Detalleventa {
     public Detalleventa() {
     }
 
-    public Detalleventa(Long ID, Ventas ventas, Productos productos, int cantidadProducto, Double precioProducto, Double totalDetalle) {
-        this.ID = ID;
+
+    public Detalleventa(Long IDDetalle, Ventas ventas, Productos productos, int cantidadProducto, Double precioProducto, Double totalDetalle) {
+        this.IDDetalle = IDDetalle;
         this.ventas = ventas;
         this.productos = productos;
         this.cantidadProducto = cantidadProducto;
@@ -49,12 +50,12 @@ public class Detalleventa {
         this.totalDetalle = totalDetalle;
     }
 
-    public Long getID() {
-        return this.ID;
+    public Long getIDDetalle() {
+        return this.IDDetalle;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setIDDetalle(Long IDDetalle) {
+        this.IDDetalle = IDDetalle;
     }
 
     public Ventas getVentas() {
@@ -96,6 +97,5 @@ public class Detalleventa {
     public void setTotalDetalle(Double totalDetalle) {
         this.totalDetalle = totalDetalle;
     }
-
-
+   
 }

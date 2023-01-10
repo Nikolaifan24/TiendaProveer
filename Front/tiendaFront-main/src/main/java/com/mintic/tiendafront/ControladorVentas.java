@@ -96,6 +96,16 @@ public class ControladorVentas {
 	}
 	
 	
-	
+	@GetMapping("/detalleventa/{CodigoVenta}")
+	public String reportesDetallesventas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta) {
+		model.addAttribute("detalleventa", iVenta.ListarDetalleVentas(CodigoVenta));
+		
+		if(model.getAttribute("detalleventa") == null) 
+		{
+			model.addAttribute("mensaje", "No hay datos para mostrar");
+		}	
+		
+		return "detalleventa";
+	}
 	
 }

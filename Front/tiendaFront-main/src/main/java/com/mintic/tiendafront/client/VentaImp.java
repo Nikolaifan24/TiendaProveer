@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import com.mintic.tiendafront.dto.ClienteDto;
 import com.mintic.tiendafront.dto.ClienteResponse;
 import com.mintic.tiendafront.dto.DetalleVentaDto;
+import com.mintic.tiendafront.dto.DetalleVentaResponse;
 import com.mintic.tiendafront.dto.ProductoDto;
 import com.mintic.tiendafront.dto.DetalleVentaDto;
 import com.mintic.tiendafront.dto.VentaDto;
@@ -53,7 +54,7 @@ public class VentaImp implements IVenta {
 	private Double getTotalSinIva(Map<ProductoDto, Integer> productosMap) {
 		Double totalSinIva = 0.0;
 		for (Entry<ProductoDto, Integer> producto : productosMap.entrySet()) {
-			totalSinIva += producto.getKey().getPrecioCompra();
+			totalSinIva += producto.getKey().getPrecioVenta();
 		}
 		return totalSinIva;
 	}
@@ -61,7 +62,7 @@ public class VentaImp implements IVenta {
 	@Override
 	public List<VentaResponse> ListarVentas() {
 		try {
-			Mono<List> response = webClient.build().get().uri(URL + "/ventas").retrieve()
+			Mono<List> response = webClient.build().get().uri(URL + "/Ventaslistar").retrieve()
 					.bodyToMono(List.class);
 			System.out.println("esto es una venta" + response.block());
 			return response.block();
@@ -94,6 +95,23 @@ public class VentaImp implements IVenta {
 		
 		}
 	}
+
+	@Override
+		public List<DetalleVentaResponse> ListarDetalleVentas(Long CodigoVenta) {
+			System.out.println("estoy entrando al metodo");
+			try {
+				Mono<List> response = webClient.build().get().uri(URL + "/Ventas/detalle/"+ CodigoVenta).retrieve()
+						.bodyToMono(List.class);
+				System.out.println(response.block() + "estoy saliendo del try");	
+				return response.block();
+			} catch (Exception e) {
+
+				return null;
+			}
+
+		}
+
+
 	
 
 }

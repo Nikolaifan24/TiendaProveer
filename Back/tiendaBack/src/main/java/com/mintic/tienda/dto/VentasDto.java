@@ -6,7 +6,7 @@ import com.mintic.tienda.entities.Vendedor;
 
 public class VentasDto {
 	
-	private Long ID;
+	private Long IDVenta;
 
 	private Clientes clientes;
 	
@@ -38,8 +38,8 @@ public class VentasDto {
 	public VentasDto() {
 	}
 
-	public VentasDto(Long ID, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
-		this.ID = ID;
+	public VentasDto(Long IDVenta, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
+		this.IDVenta = IDVenta;
 		this.clientes = clientes;
 		this.vendedor = vendedor;
 		this.CodigoVenta = CodigoVenta;
@@ -54,12 +54,12 @@ public class VentasDto {
 		this.zonaventa = zonaventa;
 	}
 
-	public Long getID() {
-		return this.ID;
+	public Long getIDVenta() {
+		return this.IDVenta;
 	}
 
-	public void setID(Long ID) {
-		this.ID = ID;
+	public void setIDVenta(Long IDVenta) {
+		this.IDVenta = IDVenta;
 	}
 
 	public Clientes getClientes() {
@@ -158,5 +158,5 @@ public class VentasDto {
 		this.zonaventa = zonaventa;
 	}
 
-}
+	}
 	

@@ -7,10 +7,17 @@ import com.mintic.tienda.entities.Detalleventa;
 
 public interface IDetalleVentasService {
 
-	List<Detalleventa> getDetalleVentas();
+	List<Detalleventa> ListarDetalleventas() ;
 
-	DetalleventaDto buscarDetalleVentasPorIdVenta(Long idVenta);
+    // DetalleventaDto buscarDetalleventaCodigoyNombre(Long codigoventa, String nombreProducto) ;
+    DetalleventaDto buscarDetalleventaCodigoyNombre(Long codigoventa, String nombreProducto); 
 
-	void crearDetalleVentas(DetalleventaDto detalleVentasDto);
+    void crearDetalleventas(DetalleventaDto DetalleventasDto); 
+    
+    void actualizarDetalleventa(Long codigoventa, String nombreProducto, DetalleventaDto detalleDto);
+
+    List<Detalleventa> ListarDetalleventasPorCodigo(Long Codigoventa)  ;
+
+    // Detalleventa buscarDetalleventaPorCodigoyNombreProducto(Long codigoVenta, String nombreProducto);
 
 }

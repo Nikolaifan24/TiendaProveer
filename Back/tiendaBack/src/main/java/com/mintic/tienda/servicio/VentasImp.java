@@ -1,5 +1,6 @@
 package com.mintic.tienda.servicio;
 
+import java.util.ArrayList;
 // import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.mintic.tienda.dto.DetalleventaDto;
 import com.mintic.tienda.dto.VentasDto;
 import com.mintic.tienda.entities.Clientes;
+import com.mintic.tienda.entities.Detalleventa;
 import com.mintic.tienda.entities.Vendedor;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
@@ -25,22 +27,12 @@ public class VentasImp implements IVentasService{
 	IVenta iVenta;
 
 	@Override
-	public List <Ventas> ListarVentas() {
+	public List<Ventas> listaVentas() {
+
 		return (List<Ventas>) iVenta.findAll();
+		
 	}
 
-	@Override
-	public VentasDto buscarVentaPorfecha(String fechaVenta) {
-		Ventas venta = null;
-		try {
-			venta = iVenta.buscarVentaPorfecha(fechaVenta);
-			VentasDto ventasDto = mapVentasDto(venta);
-			return ventasDto;
-		} catch (Exception e) {
-			throw e;
-			
-		}
-	}
 
 	private VentasDto mapVentasDto(Ventas venta) {
 		return new VentasDto(
@@ -61,20 +53,15 @@ public class VentasImp implements IVentasService{
 		);
 	}
 
-	@Override
-	public void crearVenta(VentasDto ventasDto) {
-		iVenta.save(buildVenta(ventasDto));
-		
-	}
-
+	
 	private Ventas buildVenta(VentasDto ventasDto) {
 		Ventas venta = new Ventas();
 		
-		Long id =  ventasDto.getID();
+		Long id =  ventasDto.getIDVenta();
 		Clientes clientes = ventasDto.getClientes();
 		Vendedor vendedor = ventasDto.getVendedor();
 		Long codigoventa = ventasDto.getCodigoVenta();
-		String fechaVenta = ventasDto.getFechaVenta();
+		Long CodigoVenta = ventasDto.getCodigoVenta();
 		String fechaEntrega = ventasDto.getFechaEntrega();
 		Double valorVenta = ventasDto.getTotalVenta();
 		Double ivaVenta = ventasDto.getIvaVenta();
@@ -96,8 +83,8 @@ public class VentasImp implements IVentasService{
 		if(codigoventa!= null) {
 			venta.setCodigoVenta(codigoventa);
 		}
-		if(fechaVenta != null) {
-			venta.setFechaVenta(null);
+		if(CodigoVenta != null) {
+			venta.setCodigoVenta(null);
 		}
 		if(fechaEntrega != null) {
 			venta.setFechaEntrega(null);
@@ -129,28 +116,146 @@ public class VentasImp implements IVentasService{
 		
 	}
 
+	
 	@Override
-	public DetalleventaDto realizarCalculo(DetalleventaDto detalleventaDto, Integer cantidad) {
-		// DetalleventaDto detalleventaDto = new DetalleventaDto();
+	public void crearVentas(VentasDto VentasDto) {
+		// TODO Auto-generated method stub
+		iVenta.save(buildVenta(VentasDto));
 		
-		// Long fechaProducto = detalleventaDto.getfechaProducto();
-		// Double precioCompra = detalleventaDto.getPrecioCompra();
-		// Double ivaCompra = productosDto.getIvaCompra();
+	}
+
+	@Override
+	public VentasDto buscarVentasPorCodigoventa(Long Codigoventa) {
+		// TODO Auto-generated method stub
+		Ventas venta = null;
+		try {
+			venta = iVenta.buscarVentasPorCodigo(Codigoventa);
+			VentasDto ventasDto = mapVentasDto(venta);
+			return ventasDto;
+		} catch (Exception e) {
+			throw e;
+			
+		}
+	}
+
+	@Override
+	public void eliminarVentas(Long Codigoventa) {
+		// TODO Auto-generated method stub
+			Ventas Ventas = iVenta.buscarVentasPorCodigo(Codigoventa);
+			iVenta.delete(Ventas);
+		
+	}
+
+	@Override
+	public void actualizarVentas(Long Codigoventa, VentasDto VentasDto) {
+		// TODO Auto-generated method stub
+
+			Ventas Ventas = iVenta.buscarVentasPorCodigo(Codigoventa);
+			upStringVentas(VentasDto, Ventas);
+		
+	}
+
+	
+	private void upStringVentas(VentasDto ventasDto, Ventas ventas) {
+
+		Ventas venta = new Ventas();
+		
+		Long id =  ventasDto.getIDVenta();
+		Clientes clientes = ventasDto.getClientes();
+		Vendedor vendedor = ventasDto.getVendedor();
+		Long codigoventa = ventasDto.getCodigoVenta();
+		Long CodigoVenta = ventasDto.getCodigoVenta();
+		String fechaEntrega = ventasDto.getFechaEntrega();
+		Double valorVenta = ventasDto.getTotalVenta();
+		Double ivaVenta = ventasDto.getIvaVenta();
+		Double valorPago = ventasDto.getValorPago();
+		Double saldo = ventasDto.getSaldo();
+		String formaPago = ventasDto.getFormaPago();
+		String fechaPago = ventasDto.getFechaPago();
+		String zonaVenta = ventasDto.getZonaventa();
+		
+		if(id != null) {
+			venta.setIDVenta(id);
+		}
+		if(clientes  != null) {
+			venta.setClientes(clientes);
+		}
+		if(vendedor  != null) {
+			venta.setVendedor(vendedor);
+		}
+		if(codigoventa!= null) {
+			venta.setCodigoVenta(codigoventa);
+		}
+		if(CodigoVenta != null) {
+			venta.setCodigoVenta(null);
+		}
+		if(fechaEntrega != null) {
+			venta.setFechaEntrega(null);
+		}
+		if(valorVenta != null) {
+			venta.setTotalVenta(ivaVenta);
+		}
+		if(ivaVenta != null) {
+			venta.setIvaVenta(ivaVenta);
+		}
+		if(valorPago != null) {
+			venta.setValorPago(valorPago);
+		}
+		if(saldo != null) {
+			venta.setSaldo(saldo);
+		}
+		if(formaPago != null) {
+			venta.setFormaPago(formaPago);
+		}
+		if(fechaPago != null) {
+			venta.setFechaPago(null);
+		}
+		if(zonaVenta != null) {
+			venta.setZonaventa(zonaVenta);
+		}
+	}
+
+
+	@Override
+	public List<Ventas> listaVentasProveedor(String nombreVendedor) {
+		// TODO Auto-generated method stub
+		List<Ventas> lista = new ArrayList<Ventas>();
+		
+		lista = iVenta.buscarVentaPorNombreVendedor(nombreVendedor);
+		
+		
+		return (lista) ;
+	}
+
+	@Override
+	public List<Ventas> listarVentasPorProveedor(String nombreProveedor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ventas> listaVentasPorProductos(String nombreProducto) {
+		List<Ventas> lista = new ArrayList<Ventas>();
+		
+		lista = iVenta.buscarVentaPorNombreProdcuto(nombreProducto);
+		
+		return (lista) ;
+	}
+
+	@Override
+	public List<Detalleventa> listaVentasPordetalles(Long Codigoventa) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DetalleventaDto realizarCalculoventa(DetalleventaDto detalleventaDto) {
+		// TODO Auto-generated method stub
+
 		Double precioProducto = detalleventaDto.getPrecioProducto();
 		Integer cantidadProducto = detalleventaDto.getCantidad();
 		Double valorProductos = precioProducto * cantidadProducto;
-		// Double valorIvas = ivaCompra * cantidadProducto;
-		// Double valorVenta = valorProductos + valorIvas;
 		
-		// if(fechaProducto != null) {
-		// 	detalleventaDto.setfechaProducto(fechaProducto);
-		// }
-		// if(precioCompra != null) {
-		// 	detalleventaDto.setPrecioCompra(precioCompra);
-		// }
-		// if(ivaCompra != null) {
-		// 	detalleventaDto.setIvaCompra(ivaCompra);
-		// }
 		if(cantidadProducto != null) {
 			detalleventaDto.setCantidad(cantidadProducto);
 		}
@@ -163,6 +268,7 @@ public class VentasImp implements IVentasService{
 		
 		
 		return detalleventaDto;
+		// return null;
 	}
 
 	

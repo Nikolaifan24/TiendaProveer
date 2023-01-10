@@ -1,5 +1,6 @@
 package com.mintic.tienda.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.mintic.tienda.dto.DetalleventaDto;
 // import com.mintic.tienda.dto.ProductosDto;
 import com.mintic.tienda.entities.Detalleventa;
+import com.mintic.tienda.entities.Productos;
+import com.mintic.tienda.entities.Ventas;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.repositories.IDetalleVenta;
 
@@ -19,15 +22,16 @@ public class DetalleVentasImp implements IDetalleVentasService{
 	IDetalleVenta iDetalleVentas;
 
 	@Override
-	public List<Detalleventa> getDetalleVentas() {
+	public List<Detalleventa> ListarDetalleventas()  {
 		return (List<Detalleventa>) iDetalleVentas.findAll();
 	}
 
+	
 	@Override
-	public DetalleventaDto buscarDetalleVentasPorIdVenta(Long idVenta) {
+	public DetalleventaDto buscarDetalleventaCodigoyNombre(Long codigoventa, String nombreProducto)  {
 		Detalleventa detalleVentas = null;
 		try {
-			detalleVentas = iDetalleVentas.buscarDetalleVentaPorCodigoVenta(idVenta);
+			detalleVentas = iDetalleVentas.buscarDetalleventaPorCodigoyNombreProducto(codigoventa, nombreProducto);
 			DetalleventaDto detalleVentasDto = mapDetalleVentasDto(detalleVentas);
 			return detalleVentasDto;
 		} catch (Exception e) {
@@ -38,7 +42,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 
 	private DetalleventaDto mapDetalleVentasDto(Detalleventa detalleVentas) {
 			return new DetalleventaDto(
-					detalleVentas.getID(),
+					detalleVentas.getIDDetalle(),
 					detalleVentas.getVentas(),
 					detalleVentas.getProductos(),
 					detalleVentas.getCantidadProducto(),
@@ -50,8 +54,8 @@ public class DetalleVentasImp implements IDetalleVentasService{
 	}
 
 	@Override
-	public void crearDetalleVentas(DetalleventaDto detalleVentasDto) {
-		iDetalleVentas.save(buildDetalleVentas(detalleVentasDto));
+	public void crearDetalleventas(DetalleventaDto DetalleventasDto){
+		iDetalleVentas.save(buildDetalleVentas(DetalleventasDto));
 		
 	}
 
@@ -66,7 +70,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		Double totalDetalle = detalleVentasDto.getTotalDetalle();
 			
 		if(id != null) {
-			detalleVenta.setID(id);
+			detalleVenta.setIDDetalle(id);;
 		}
 		if(id != null) {
 			detalleVenta.getVentas();
@@ -87,6 +91,56 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		return detalleVenta;
 		
 	}
+
+	@Override
+	public void actualizarDetalleventa(Long codigoventa, String nombreProducto, DetalleventaDto detalleDto) {
+		// TODO Auto-generated method stub
+
+		Detalleventa detalle = iDetalleVentas.buscarDetalleventaPorCodigoyNombreProducto(codigoventa, nombreProducto);
+        updateDetalleventa(detalleDto, detalle);
+	}
+
+	private void updateDetalleventa (DetalleventaDto detalleDto, Detalleventa detalle){
+        Ventas ventas = detalleDto.getVentas();
+        Productos productos = detalleDto.getProductos();
+        Double valorunitario = detalleDto.getPrecioProducto();
+		Integer cantidadProducto = detalleDto.getCantidad();
+		Double valortotal = detalleDto.getTotalDetalle();
+	
+			
+		if(ventas != null) {
+			detalle.setVentas(ventas);;
+		}
+		if(productos != null) {
+			detalle.getProductos();
+        }
+		if(valorunitario != null) {
+			detalle.getPrecioProducto();
+		}
+		if(cantidadProducto != 0) {
+			detalle.setCantidadProducto(0); 
+		}
+		if(valortotal != null) {
+			detalle.setTotalDetalle(valortotal);;
+		}
+
+        iDetalleVentas.save(detalle);
+    }
+
+	
+	
+	
+	@Override
+	public List<Detalleventa> ListarDetalleventasPorCodigo(Long Codigoventa)  {
+		
+		List<Detalleventa> lista = new ArrayList<Detalleventa>();
+		
+		lista = iDetalleVentas.buscarDetalleVentaPorCodigoVenta(Codigoventa);
+		
+		
+		return (lista) ;
+	}
+	
 
 	
 	

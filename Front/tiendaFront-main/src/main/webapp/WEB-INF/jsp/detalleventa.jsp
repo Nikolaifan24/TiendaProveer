@@ -104,39 +104,31 @@
 		<br> 
 		<br>	
 		<div style="color: red">${mensaje}</div>			
-		
-    <table class="table">
+		<table class="table">
 			<thead>
 				<tr>
 					
-					<th>Fecha Venta</th>
-					<th>Nombre Cliente</th>
-					<th>Direccion</th>
-					<th>Telefono</th>
-					<th>vendedor</th>
-					<th>Fecha Pago</th>
-					<th>Forma de Pago</th>
-					<th>Total Venta</th>
-
-
-					
+					<th>Nombre Producto</th>
+					<th>Codigo Producto</th>
+					<th>Cantidad Producto</th>
+					<th>Valor Unitario</th>
+					<th>Valor Total</th>
+										
 					
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${ventas}" var="venta">
+				<c:forEach items="${detalleventa}" var="detalleventa">
 				
 					<tr style=" color: black"> 
 						
-						<td>${venta.fechaVenta}</td>
-						<td>${venta.clientes.nombreCliente}</td>
-						<td>${venta.clientes.direccionCliente}</td>
-						<td>${venta.clientes.telefonoCliente}</td>
-						<td>${venta.vendedor.nombreVendedor}</td>
-						<td>${venta.fechaPago}</td>
-						<td>${venta.formaPago}</td>
-						<td>${venta.totalVenta}</td>
-						<td><a class="btn btn-success" href="/detalleventa/${venta.fechaVenta}">Ver</a></td>
+						<td>${detalleventa.productos.nombreProducto}</td>
+						<td>${detalleventa.productos.codigoProducto}</td>
+						<td>${detalleventa.cantidadProducto}</td>
+						<td>${detalleventa.valorUnitario}</td>
+						<td>${detalleventa.valorTotal}</td>
+						
+						<td><a class="btn btn-success" href="/detalleventa/${venta.fechaVenta}">Editar</a></td>
 						
 						
 					</tr>
