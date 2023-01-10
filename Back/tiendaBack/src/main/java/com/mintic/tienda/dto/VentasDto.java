@@ -12,6 +12,8 @@ public class VentasDto {
 	
 	private Vendedor vendedor;
 
+	private Long CodigoVenta;
+
 	private String FechaVenta;
 
 	private String FechaEntrega;
@@ -36,11 +38,11 @@ public class VentasDto {
 	public VentasDto() {
 	}
 
-
-	public VentasDto(Long ID, Clientes clientes, Vendedor vendedor, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
+	public VentasDto(Long ID, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
 		this.ID = ID;
 		this.clientes = clientes;
 		this.vendedor = vendedor;
+		this.CodigoVenta = CodigoVenta;
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
@@ -74,6 +76,14 @@ public class VentasDto {
 
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
+	}
+
+	public Long getCodigoVenta() {
+		return this.CodigoVenta;
+	}
+
+	public void setCodigoVenta(Long CodigoVenta) {
+		this.CodigoVenta = CodigoVenta;
 	}
 
 	public String getFechaVenta() {
@@ -148,5 +158,5 @@ public class VentasDto {
 		this.zonaventa = zonaventa;
 	}
 
-		
 }
+	

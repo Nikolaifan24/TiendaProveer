@@ -113,14 +113,12 @@
 			<thead>
 				<tr>
 					
-					<th>Fecha Venta</th>
-					<th>Nombre Cliente</th>
-					<th>Direccion</th>
-					<th>Telefono</th>
-					<th>vendedor</th>
-					<th>Fecha Pago</th>
-					<th>Forma de Pago</th>
-					<th>Total Venta</th>
+					<th>Fecha Compra</th>
+					<th>Nombre proveedor</th>
+					<th>Tipo Producto</th>
+					<th>Total Compra</th>
+					<th>Iva Compra</th>
+					
 
 
 					
@@ -133,14 +131,12 @@
 					<tr style=" color: black"> 
 						
 						<td>${compra.fechaCompra}</td>
-						<td>${venta.clientes.nombreCliente}</td>
-						<td>${venta.clientes.direccionCliente}</td>
-						<td>${venta.clientes.telefonoCliente}</td>
-						<td>${venta.vendedor.nombreVendedor}</td>
-						<td>${venta.fechaPago}</td>
-						<td>${venta.formaPago}</td>
-						<td>${venta.totalVenta}</td>
-						<td><a class="btn btn-success" href="/detalleventa/${venta.fechaVenta}">Ver</a></td>
+						<td>${compra.proveedores.nombreProveedor}</td>
+						<td>${compra.proveedores.tipoProducto}</td>
+						<td>${compra.totalCompra}</td>
+						<td>${compra.ivaCompra}</td>
+						
+						<td><a class="btn btn-success" href="/detallecompra/${compra.fechaCompra}">Ver</a></td>
 						
 						
 					</tr>

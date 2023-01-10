@@ -15,8 +15,8 @@ public interface ICompras extends CrudRepository<Compras, Long>{
 	List<Compras> buscarComprasPorFechayProveedor(@Param("FechaCompra") String FechaCompra,
 			@Param("IDProveedor") Long IDProveedor);
 	
-	@Query(value = "SELECT * FROM Compras p where p.FechaCompra=:FechaCompra", nativeQuery = true)
-	Compras buscarComprasPorFecha(@Param("FechaCompra") String FechaCompra);
+	@Query(value = "SELECT * FROM Compras p where p.CodigoCompra=:CodigoCompra", nativeQuery = true)
+	Compras buscarComprasPorCodigo(@Param("CodigoCompra") Long CodigoCompra);
 
 	@Query(value = "SELECT * FROM Compras p INNER JOIN Proveedores c ON c.IDProveedor = p.IDProveedor WHERE c.nombreProveedor= :nombreProveedor", nativeQuery = true)
 	List<Compras> buscarCompraPorNombreProveedor(@Param("nombreProveedor") String nombreProveedor);

@@ -7,6 +7,6 @@ import com.mintic.tienda.entities.Detalleventa;
 
 
 public interface IDetalleVenta extends CrudRepository<Detalleventa, Long> {
-    @Query(value = "SELECT * FROM Detalle_venta  where IDVenta=:IDVenta", nativeQuery = true)
-	Detalleventa buscarDetalleVentaPorIdVenta(@Param("IDVenta") Long IDCompra);
+    @Query(value = "SELECT * FROM detalle_venta d INNER JOIN ventas c ON d.IDventa = c.IDventa WHERE c.CodigoVenta = :CodigoVenta", nativeQuery = true)
+	Detalleventa buscarDetalleVentaPorCodigoVenta(@Param("CodigoVenta") Long CodigoVenta);
 }

@@ -43,6 +43,8 @@ public class Ventas {
     @JoinColumn(name="IDVendedor")
     private Vendedor vendedor;
 
+	private Long CodigoVenta;
+
 	private String FechaVenta;
 
 	private String FechaEntrega;
@@ -66,13 +68,14 @@ public class Ventas {
 	}
 
 
-	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
+	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
 		this.IDVenta = IDVenta;
 		this.carteras = carteras;
 		this.detalleventas = detalleventas;
 		this.pagos = pagos;
 		this.clientes = clientes;
 		this.vendedor = vendedor;
+		this.CodigoVenta = CodigoVenta;
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
@@ -130,6 +133,14 @@ public class Ventas {
 
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
+	}
+
+	public Long getCodigoVenta() {
+		return this.CodigoVenta;
+	}
+
+	public void setCodigoVenta(Long CodigoVenta) {
+		this.CodigoVenta = CodigoVenta;
 	}
 
 	public String getFechaVenta() {
@@ -204,5 +215,5 @@ public class Ventas {
 		this.zonaventa = zonaventa;
 	}
 
-	
+		
 }

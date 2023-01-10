@@ -47,6 +47,7 @@ public class VentasImp implements IVentasService{
 				venta.getIDVenta(),
 				venta.getClientes(),
 				venta.getVendedor(),
+				venta.getCodigoVenta(),
 				venta.getFechaVenta(),
 				venta.getFechaEntrega(),
 				venta.getTotalVenta(),
@@ -72,6 +73,7 @@ public class VentasImp implements IVentasService{
 		Long id =  ventasDto.getID();
 		Clientes clientes = ventasDto.getClientes();
 		Vendedor vendedor = ventasDto.getVendedor();
+		Long codigoventa = ventasDto.getCodigoVenta();
 		String fechaVenta = ventasDto.getFechaVenta();
 		String fechaEntrega = ventasDto.getFechaEntrega();
 		Double valorVenta = ventasDto.getTotalVenta();
@@ -90,6 +92,9 @@ public class VentasImp implements IVentasService{
 		}
 		if(vendedor  != null) {
 			venta.setVendedor(vendedor);
+		}
+		if(codigoventa!= null) {
+			venta.setCodigoVenta(codigoventa);
 		}
 		if(fechaVenta != null) {
 			venta.setFechaVenta(null);

@@ -12,11 +12,11 @@ public interface IComprasService {
 
     void crearCompras(ComprasDto ComprasDto) ;
 
-    ComprasDto buscarComprasPorFechaCompra(String FechaCompra) ;
+    ComprasDto buscarComprasPorCodigoCompra(Long CodigoCompra) ;
 
-    void eliminarCompras(String FechaCompra);
+    void eliminarCompras(Long CodigoCompra);
 
-    void actualizarCompras(String FechaCompra, ComprasDto ComprasDto) ;
+    void actualizarCompras(Long CodigoCompra, ComprasDto ComprasDto) ;
 
     List<Compras> listaCompras();
     
@@ -26,7 +26,7 @@ public interface IComprasService {
 
     List<Compras> listaComprasPorProductos(String nombreProducto);
 
-    List<Detallecompra> listaComprasPordetalles(String FechaCompra);
+    List<Detallecompra> listaComprasPordetalles(Long CodigoCompra);
 
     DetallecompraDto realizarCalculoCompra(DetallecompraDto detallecompraDto);
 

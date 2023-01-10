@@ -41,9 +41,9 @@ public class ContorladorCompras {
 	ComprasDto ComprasDto;
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/Compras/{FechaCompra}")
-	public ComprasDto MostarComprasPorNombre(@PathVariable String FechaCompra) {
-		return iCompras.buscarComprasPorFechaCompra(FechaCompra);
+	@GetMapping("/Compras/{CodigoCompra}")
+	public ComprasDto MostarComprasPorNombre(@PathVariable Long CodigoCompra) {
+		return iCompras.buscarComprasPorCodigoCompra(CodigoCompra);
 	}
 	
 	@PostMapping("/crearCompras")
@@ -52,14 +52,14 @@ public class ContorladorCompras {
 		iCompras.crearCompras(ComprasDto);
 	}
 	
-	@DeleteMapping("/eliminarCompras/{FechaCompra}")
-	public void eliminarCompras(@PathVariable String FechaCompra) {
-		iCompras.eliminarCompras(FechaCompra);
+	@DeleteMapping("/eliminarCompras/{CodigoCompra}")
+	public void eliminarCompras(@PathVariable Long CodigoCompra) {
+		iCompras.eliminarCompras(CodigoCompra);
 	}
 	
-	@PatchMapping("/actualizarCompras/{FechaCompra}")
-	public void actualizaralCompras(@PathVariable String FechaCompra, @RequestBody ComprasDto ComprasDto) {
-		iCompras.actualizarCompras(FechaCompra, ComprasDto);;
+	@PatchMapping("/actualizarCompras/{CodigoCompra}")
+	public void actualizaralCompras(@PathVariable Long CodigoCompra, @RequestBody ComprasDto ComprasDto) {
+		iCompras.actualizarCompras(CodigoCompra, ComprasDto);
 	}
 	
 	@GetMapping("/Compraslistar")
@@ -77,9 +77,14 @@ public class ContorladorCompras {
 		return iCompras.listarComprasPorProveedor(nombreProveedor);
 	}
 
-	@GetMapping("/compras/productos/comprados/{FechaCompra}")
-	public List<Detallecompra> MostarDetallesCompras(@PathVariable String FechaCompra) {
-		return idetallecompra.buscarDetalleCompraPorFecha(FechaCompra) ;
+	@GetMapping("/compras/detalle/{CodigoCompra}")
+	public List<Detallecompra> MostarDetallesCompras(@PathVariable Long CodigoCompra) {
+		return idetallecompra.buscarDetalleCompraPorCodigo(CodigoCompra);
+	}
+
+	@GetMapping("/compras/detalle/codigo/{CodigoCompra}/{nombreProducto}")
+	public Detallecompra MostarunDetalleCompras(@PathVariable Long CodigoCompra,@PathVariable String nombreProducto ) {
+		return idetallecompra.buscarDetalleCompraPorCodigoyNombreProducto(CodigoCompra, nombreProducto);
 	}
     
 }

@@ -38,16 +38,21 @@ public class ComprasImp implements IComprasService{
 		// realizarCalculoCompra(detallecompraDto);
 		// ProveedoresDto proveedoresdto = new ProveedoresDto();
 		// Long nitProveedor = proveedoresdto.getNitProveedor();
-		Long nit = ComprasDto.getProveedores().getNitProveedor();
-		Proveedores proveedores = iProveedor.buscarProveedorPorNit(nit);
+		// Long nit = ComprasDto.getProveedores().getNitProveedor();
+		Proveedores proveedores = ComprasDto.getProveedores();
+		Long codigo = ComprasDto.getCodigoCompra();
 		String FechaCompra = ComprasDto.getFechaCompra();
         Double totalCompra = ComprasDto.getTotalCompra();
 		Double ivaCompra = ComprasDto.getIvaCompra();
 		// Proveedores proveedores = iProveedor.buscarProveedorPorNit(nitProveedor);
 		// System.out.println("el Proveedor es aca" +ivaCompra);
 		if(proveedores != null) {
-			System.out.println("voy de nuevo" + proveedores.getCiudadProveedor() );
+			// System.out.println("voy de nuevo" + proveedores.getCiudadProveedor() );
 			Compras.setProveedores(proveedores);
+		}
+		if(codigo != null) {
+			// System.out.println("voy de nuevo" + proveedores.getCiudadProveedor() );
+			Compras.setCodigoCompra(codigo);
 		}
 		if(FechaCompra != null) {
 			Compras.setFechaCompra(FechaCompra);
@@ -67,6 +72,7 @@ public class ComprasImp implements IComprasService{
 		// Compras Compras = new Compras();
 		
 		// Proveedores proveedores = ComprasDto.getProveedores();
+		Long codigo = ComprasDto.getCodigoCompra();
 		String FechaCompra = ComprasDto.getFechaCompra();
         Double totalCompra = ComprasDto.getTotalCompra();
 		Double ivaCompra = ComprasDto.getIvaCompra();
@@ -74,6 +80,10 @@ public class ComprasImp implements IComprasService{
 		// if(proveedores != null) {
 		// 	Compras.setProveedores(proveedores);
 		// }
+		if(codigo != null) {
+			// System.out.println("voy de nuevo" + proveedores.getCiudadProveedor() );
+			Compras.setCodigoCompra(codigo);
+		}
 		if(FechaCompra != null) {
 			Compras.setFechaCompra(FechaCompra);
 		}
@@ -86,10 +96,10 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public ComprasDto buscarComprasPorFechaCompra(String FechaCompra) {
+	public ComprasDto buscarComprasPorCodigoCompra(Long CodigoCompra) {
 		Compras Compras = null;
 		try {
-			Compras = iCompras.buscarComprasPorFecha(FechaCompra);
+			Compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
 			ComprasDto  ComprasDto = mapComprasDto(Compras);
 			return ComprasDto;
 		} 
@@ -103,6 +113,7 @@ public class ComprasImp implements IComprasService{
 		return new ComprasDto(
 				Compras.getIDCompras(),
 				Compras.getProveedores(),
+				Compras.getCodigoCompra(),
 				Compras.getFechaCompra(),
 				Compras.getTotalCompra(),
 				Compras.getIvaCompra()
@@ -111,16 +122,16 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public void eliminarCompras(String FechaCompra) {
+	public void eliminarCompras(Long CodigoCompra) {
 		
-		Compras Compras = iCompras.buscarComprasPorFecha(FechaCompra);
+		Compras Compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
 		iCompras.delete(Compras);
 		
 	}
 
 	@Override
-	public void actualizarCompras(String FechaCompra, ComprasDto ComprasDto) {
-		Compras Compras = iCompras.buscarComprasPorFecha(FechaCompra);
+	public void actualizarCompras(Long CodigoCompra, ComprasDto ComprasDto) {
+		Compras Compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
 		upStringCompras(ComprasDto, Compras);
 
 	}
@@ -156,12 +167,12 @@ public class ComprasImp implements IComprasService{
 	}
 
 	@Override
-	public List<Detallecompra> listaComprasPordetalles(String FechaCompra) {
+	public List<Detallecompra> listaComprasPordetalles(Long CodigoCompra) {
 		// TODO Auto-generated method stub
 		
 		List<Detallecompra> lista = new ArrayList<Detallecompra>();
 		
-		lista = idetallecompra.buscarDetalleCompraPorFecha(FechaCompra);
+		lista = idetallecompra.buscarDetalleCompraPorCodigo(CodigoCompra);
 		
 		
 		return (lista) ;

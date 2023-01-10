@@ -38,6 +38,8 @@ public class Compras {
     @JoinColumn(name="IDProveedor")
 	private Proveedores proveedores;
 
+    private Long CodigoCompra;
+
     private String FechaCompra;
 
 	private Double totalCompra;
@@ -48,10 +50,12 @@ public class Compras {
     public Compras() {
     }
 
-    public Compras(Long IDCompras, List<Detallecompra> detallecompras, Proveedores proveedores, String FechaCompra, Double totalCompra, Double ivaCompra) {
+
+    public Compras(Long IDCompras, List<Detallecompra> detallecompras, Proveedores proveedores, Long CodigoCompra, String FechaCompra, Double totalCompra, Double ivaCompra) {
         this.IDCompras = IDCompras;
         this.detallecompras = detallecompras;
         this.proveedores = proveedores;
+        this.CodigoCompra = CodigoCompra;
         this.FechaCompra = FechaCompra;
         this.totalCompra = totalCompra;
         this.ivaCompra = ivaCompra;
@@ -81,6 +85,14 @@ public class Compras {
         this.proveedores = proveedores;
     }
 
+    public Long getCodigoCompra() {
+        return this.CodigoCompra;
+    }
+
+    public void setCodigoCompra(Long CodigoCompra) {
+        this.CodigoCompra = CodigoCompra;
+    }
+
     public String getFechaCompra() {
         return this.FechaCompra;
     }
@@ -104,5 +116,5 @@ public class Compras {
     public void setIvaCompra(Double ivaCompra) {
         this.ivaCompra = ivaCompra;
     }
-
+   
    }
