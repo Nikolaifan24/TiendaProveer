@@ -31,8 +31,7 @@ public interface IUsuario extends CrudRepository<Usuario, Long> {
 	*/
 	
 	@Query(value = "select count(*) from Usuario p where p.nombreUsuario= :nombreUsuario and p.password=:password", nativeQuery = true)
-	Integer findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,
-			@Param("password") String password);
+	Integer findByNombreUsuarioAndPassword(@Param("nombreUsuario") String nombreUsuario,@Param("password") String password);
 	
 	@Query(value = "SELECT * FROM Usuario c where c.perfil= :perfil", nativeQuery = true)
 	List<Usuario> buscarUsuarioPorPerfil(@Param("perfil") String perfil);

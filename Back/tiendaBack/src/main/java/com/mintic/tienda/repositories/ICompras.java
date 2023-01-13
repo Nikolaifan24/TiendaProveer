@@ -24,4 +24,8 @@ public interface ICompras extends CrudRepository<Compras, Long>{
 	@Query(value = "SELECT * FROM compras c INNER JOIN detalle_compra d ON c.IDCompras = d.IDCompra INNER JOIN productos p ON d.IDProducto = p.IDProductos WHERE p.nombreProducto = :nombreProducto", nativeQuery = true)
 	List<Compras> buscarCompraPorProductos(@Param("nombreProducto") String nombreProducto);
 
+	@Query(value = "SELECT SUM(d.ValorTotal) FROM detalle_compra d  INNER JOIN compras c on d.IDCompra = c.IDCompras WHERE c.CodigoCompra = :CodigoCompra", nativeQuery = true)
+	Double TotaldelaCompra(@Param("CodigoCompra") Long CodigoCompra);	
+	
+
 }

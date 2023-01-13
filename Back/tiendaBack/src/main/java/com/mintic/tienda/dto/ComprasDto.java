@@ -14,6 +14,8 @@ public class ComprasDto {
 	
 	private String FechaCompra;
 
+    private Long nitProveedor;
+
 	private Double totalCompra;
 
     private Double ivaCompra;
@@ -22,11 +24,13 @@ public class ComprasDto {
     public ComprasDto() {
     }
 
-    public ComprasDto(Long IDCompras, Proveedores proveedores, Long CodigoCompra, String FechaCompra, Double totalCompra, Double ivaCompra) {
+
+    public ComprasDto(Long IDCompras, Proveedores proveedores, Long CodigoCompra, String FechaCompra, Long nitProveedor, Double totalCompra, Double ivaCompra) {
         this.IDCompras = IDCompras;
         this.proveedores = proveedores;
         this.CodigoCompra = CodigoCompra;
         this.FechaCompra = FechaCompra;
+        this.nitProveedor = nitProveedor;
         this.totalCompra = totalCompra;
         this.ivaCompra = ivaCompra;
     }
@@ -63,6 +67,14 @@ public class ComprasDto {
         this.FechaCompra = FechaCompra;
     }
 
+    public Long getNitProveedor() {
+        return this.nitProveedor;
+    }
+
+    public void setNitProveedor(Long nitProveedor) {
+        this.nitProveedor = nitProveedor;
+    }
+
     public Double getTotalCompra() {
         return this.totalCompra;
     }
@@ -78,5 +90,5 @@ public class ComprasDto {
     public void setIvaCompra(Double ivaCompra) {
         this.ivaCompra = ivaCompra;
     }
-
+    
     }
