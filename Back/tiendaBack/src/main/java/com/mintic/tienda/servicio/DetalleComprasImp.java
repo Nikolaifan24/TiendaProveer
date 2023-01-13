@@ -8,18 +8,27 @@ import org.springframework.stereotype.Service;
 
 // import com.mintic.tienda.dto.ClienteDto;
 import com.mintic.tienda.dto.DetallecompraDto;
+// import com.mintic.tienda.dto.ProductosDto;
 import com.mintic.tienda.entities.Compras;
 // import com.mintic.tienda.dto.ProductosDto;
 import com.mintic.tienda.entities.Detallecompra;
 import com.mintic.tienda.entities.Productos;
+import com.mintic.tienda.repositories.ICompras;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.repositories.IDetalleCompra;
+import com.mintic.tienda.repositories.IProducto;
 
 @Service
 public class DetalleComprasImp implements IDetalleComprasService {
 
     @Autowired
 	IDetalleCompra iDetallecompras;
+
+    @Autowired
+	IProducto iProducto;
+
+	@Autowired
+	ICompras iCompras;
 
 	@Override
 	public List<Detallecompra> ListarDetalleCompras() {
@@ -44,6 +53,7 @@ public class DetalleComprasImp implements IDetalleComprasService {
 					Detallecompras.getIDDetalleCompra(),
 					Detallecompras.getCompras(),
 					Detallecompras.getProductos(),
+					Detallecompras.getNombreProducto(),
 					Detallecompras.getValorUnitario(),
 					Detallecompras.getCantidadProducto(),
 					Detallecompras.getValorTotal()
@@ -53,40 +63,49 @@ public class DetalleComprasImp implements IDetalleComprasService {
 	}
 
 	@Override
-	public void crearDetallecompras(DetallecompraDto DetallecomprasDto) {
-		iDetallecompras.save(buildDetallecompras(DetallecomprasDto));
+	public void crearDetallecompras(Long CodigoCompra,DetallecompraDto DetallecomprasDto) {
+		iDetallecompras.save(buildDetallecompras(CodigoCompra, DetallecomprasDto));
 		
 	}
 
-	private Detallecompra buildDetallecompras(DetallecompraDto DetallecomprasDto) {
+	private Detallecompra buildDetallecompras(Long CodigoCompra, DetallecompraDto DetallecomprasDto) {
 		Detallecompra Detallecompra = new Detallecompra();
 		
 		// Long id = DetallecomprasDto.getID();
 		// Long idVenta = DetallecomprasDto.getIDVenta();
 		// Long idProducto = DetallecomprasDto.getIDProducto();
-        Compras compras = DetallecomprasDto.getCompras();
-        Productos productos = DetallecomprasDto.getProductos();
-        Double valorunitario = DetallecomprasDto.getValorUnitario();
-		Integer cantidadProducto = DetallecomprasDto.getCantidadProducto();
+		String nombreProducto = DetallecomprasDto.getNombreProducto();
+        Compras compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
+        Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
+		Double valorunitario = DetallecomprasDto.getValorUnitario();
+		int cantidadProducto = DetallecomprasDto.getCantidadProducto();
 		Double valortotal = DetallecomprasDto.getValorTotal();
-	
+		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+
+		
 			
 		if(compras != null) {
 			Detallecompra.setCompras(compras);
 		}
 		if(productos != null) {
-			Detallecompra.getProductos();
+			Detallecompra.setProductos(productos);
         }
+		if(nombreProducto != null) {
+			Detallecompra.setNombreProducto(nombreProducto);
+		}
 		if(valorunitario != null) {
-			Detallecompra.getValorUnitario();
+			Detallecompra.setValorUnitario(valorunitario);
 		}
 		if(cantidadProducto != 0) {
-			Detallecompra.setCantidadProducto(0); 
+			Detallecompra.setCantidadProducto(cantidadProducto);
 		}
 		if(valortotal != null) {
 			Detallecompra.setValorTotal(valortotal);
 		}
-		
+		if(inventario != null) {
+			productos.setCantidadProducto(inventario);
+        }
+		iProducto.save(productos);
 		return Detallecompra;
 		
 	}

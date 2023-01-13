@@ -29,6 +29,8 @@ public class Detallecompra {
     @JoinColumn(name="IDProducto")
     private Productos productos;
     
+    private String nombreProducto;
+
     private Double ValorUnitario;
 
     private int CantidadProducto;
@@ -40,10 +42,11 @@ public class Detallecompra {
     }
 
 
-    public Detallecompra(Long IDDetalleCompra, Compras compras, Productos productos, Double ValorUnitario, int CantidadProducto, Double ValorTotal) {
+    public Detallecompra(Long IDDetalleCompra, Compras compras, Productos productos, String nombreProducto, Double ValorUnitario, int CantidadProducto, Double ValorTotal) {
         this.IDDetalleCompra = IDDetalleCompra;
         this.compras = compras;
         this.productos = productos;
+        this.nombreProducto = nombreProducto;
         this.ValorUnitario = ValorUnitario;
         this.CantidadProducto = CantidadProducto;
         this.ValorTotal = ValorTotal;
@@ -73,6 +76,14 @@ public class Detallecompra {
         this.productos = productos;
     }
 
+    public String getNombreProducto() {
+        return this.nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
     public Double getValorUnitario() {
         return this.ValorUnitario;
     }
@@ -97,5 +108,5 @@ public class Detallecompra {
         this.ValorTotal = ValorTotal;
     }
 
-    
+        
 }

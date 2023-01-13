@@ -11,6 +11,8 @@ public class DetallecompraDto {
    
    private Productos productos;
 
+   private String nombreProducto;
+
    private Double ValorUnitario;
 
    private int cantidadProducto;
@@ -22,10 +24,11 @@ public class DetallecompraDto {
     }
 
 
-    public DetallecompraDto(Long ID, Compras compras, Productos productos, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
+    public DetallecompraDto(Long ID, Compras compras, Productos productos, String nombreProducto, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
         this.ID = ID;
         this.compras = compras;
         this.productos = productos;
+        this.nombreProducto = nombreProducto;
         this.ValorUnitario = ValorUnitario;
         this.cantidadProducto = cantidadProducto;
         this.ValorTotal = ValorTotal;
@@ -55,6 +58,14 @@ public class DetallecompraDto {
         this.productos = productos;
     }
 
+    public String getNombreProducto() {
+        return this.nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
     public Double getValorUnitario() {
         return this.ValorUnitario;
     }
@@ -78,6 +89,6 @@ public class DetallecompraDto {
     public void setValorTotal(Double ValorTotal) {
         this.ValorTotal = ValorTotal;
     }
- 
 
+   
 }

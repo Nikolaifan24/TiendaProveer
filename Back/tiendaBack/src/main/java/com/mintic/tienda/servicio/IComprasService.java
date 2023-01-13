@@ -30,4 +30,6 @@ public interface IComprasService {
 
     DetallecompraDto realizarCalculoCompra(DetallecompraDto detallecompraDto);
 
+    void cargarCalculosdeCompras(Long CodigoCompra, ComprasDto ComprasDto); 
+
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.tienda.dto.ComprasDto;
+import com.mintic.tienda.dto.DetallecompraDto;
 // import com.mintic.tienda.dto.DetallecompraDto;
 import com.mintic.tienda.entities.Compras;
 import com.mintic.tienda.entities.Detallecompra;
@@ -27,6 +28,7 @@ import com.mintic.tienda.repositories.IDetalleCompra;
 // import com.mintic.tienda.entities.Comprass;
 import com.mintic.tienda.servicio.IComprasService;
 // import com.mintic.tienda.servicio.IComprasService;
+import com.mintic.tienda.servicio.IDetalleComprasService;
 
 
 @RestController
@@ -36,8 +38,9 @@ public class ContorladorCompras {
 	IComprasService iCompras;
 
 	@Autowired
-	IDetalleCompra idetallecompra;
-	
+	IDetalleComprasService idetallecompra;
+
+		
 	ComprasDto ComprasDto;
 	
 	@CrossOrigin(origins = "http://localhost:8091")
@@ -79,12 +82,22 @@ public class ContorladorCompras {
 
 	@GetMapping("/compras/detalle/{CodigoCompra}")
 	public List<Detallecompra> MostarDetallesCompras(@PathVariable Long CodigoCompra) {
-		return idetallecompra.buscarDetalleCompraPorCodigo(CodigoCompra);
+		return idetallecompra.encontrarDetallecompraPorNombre(CodigoCompra);
 	}
 
 	@GetMapping("/compras/detalle/codigo/{CodigoCompra}/{nombreProducto}")
-	public Detallecompra MostarunDetalleCompras(@PathVariable Long CodigoCompra,@PathVariable String nombreProducto ) {
-		return idetallecompra.buscarDetalleCompraPorCodigoyNombreProducto(CodigoCompra, nombreProducto);
+	public DetallecompraDto MostarunDetalleCompras(@PathVariable Long CodigoCompra,@PathVariable String nombreProducto ) {
+		return idetallecompra.buscarDetallecompraCodigoyNombre(CodigoCompra, nombreProducto);
 	}
-    
+
+    @PatchMapping("/Compras/cargar-productos/{CodigoCompra}")
+	public void CargardatosCompras(@PathVariable Long CodigoCompra, @RequestBody ComprasDto ComprasDto) {
+		iCompras.cargarCalculosdeCompras(CodigoCompra, ComprasDto);
+	}
+
+	@PostMapping("/crearCompras/detalles/{CodigoCompra}")
+	public void crearCompras(@PathVariable Long CodigoCompra, @RequestBody DetallecompraDto detallecompraDto) {
+		System.out.println("esta es el detalle de mi compra "+ detallecompraDto);
+		idetallecompra.crearDetallecompras(CodigoCompra, detallecompraDto);
+	}
 }

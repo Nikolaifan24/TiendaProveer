@@ -237,10 +237,10 @@ public class ComprasImp implements IComprasService{
 		
 		// Proveedores proveedores = ComprasDto.getProveedores();
 		Long codigo = ComprasDto.getCodigoCompra();
-		String FechaCompra = ComprasDto.getFechaCompra();
+		// String FechaCompra = ComprasDto.getFechaCompra();
         Double totalCompra = iCompras.TotaldelaCompra(codigo);
 		System.out.println("El total actualizado es" +totalCompra);
-		Double ivaCompra = ComprasDto.getIvaCompra();
+		Double ivaCompra = totalCompra*0.16;
 		
 		// if(proveedores != null) {
 		// 	Compras.setProveedores(proveedores);
@@ -249,9 +249,9 @@ public class ComprasImp implements IComprasService{
 			// System.out.println("voy de nuevo" + proveedores.getCiudadProveedor() );
 			Compras.setCodigoCompra(codigo);
 		}
-		if(FechaCompra != null) {
-			Compras.setFechaCompra(FechaCompra);
-		}
+		// if(FechaCompra != null) {
+		// 	Compras.setFechaCompra(FechaCompra);
+		// }
 		if(totalCompra != null) {
 			Compras.setTotalCompra(totalCompra);
 		}
@@ -260,6 +260,13 @@ public class ComprasImp implements IComprasService{
 		}
 
 		iCompras.save(Compras);
+	}
+
+	@Override
+	public void cargarCalculosdeCompras(Long CodigoCompra, ComprasDto ComprasDto) {
+		Compras Compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
+		CargarCalculos(ComprasDto, Compras) ;
+
 	}
 	
 }
