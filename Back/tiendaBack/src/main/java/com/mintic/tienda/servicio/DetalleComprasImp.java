@@ -91,7 +91,7 @@ public class DetalleComprasImp implements IDetalleComprasService {
 		Double valorunitario = DetallecomprasDto.getValorUnitario();
 		int cantidadProducto = DetallecomprasDto.getCantidadProducto();
 		Double valortotal = valorunitario * cantidadProducto;
-		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		Long inventario = productos.getCantidadProducto()+ cantidadProducto;
 		// Detallecompra detallerepetido= iDetallecompras.buscarDetalleCompraPorCodigoyNombreProducto(CodigoCompra, nombreProducto);
 		// int repetidos = iDetallecompras.ContadorRepetidosCompra(CodigoCompra, nombreProducto);
 		// System.out.println("este es el total de repetidos"+ repetidos);

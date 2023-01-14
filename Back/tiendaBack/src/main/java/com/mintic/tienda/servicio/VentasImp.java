@@ -271,7 +271,28 @@ public class VentasImp implements IVentasService{
 		// return null;
 	}
 
-	
-	
+	private void cargarCalculodeunaVenta(VentasDto ventasDto, Ventas ventas){
 
+
+		Long codigodeVenta = ventasDto.getCodigoVenta();
+		Double totalventa = ventasDto.getTotalVenta();
+		Double ivaventa = ventasDto.getTotalVenta()* 0.16;
+
+		if(codigodeVenta != null){
+			ventas.setCodigoVenta(codigodeVenta);
+		}
+		if(totalventa != null){
+			ventas.setTotalVenta(totalventa);
+		}
+		if(ivaventa != null){
+			ventas.setIvaVenta(ivaventa);
+		}
+	}
+	
+	@Override
+	public void cargarCalculosdeVentas(Long CodigoCompra, VentasDto VentasDto) {
+		Ventas Ventas = iVenta.buscarVentasPorCodigo(CodigoCompra);
+		cargarCalculodeunaVenta(VentasDto, Ventas) ;
+
+	}
 }

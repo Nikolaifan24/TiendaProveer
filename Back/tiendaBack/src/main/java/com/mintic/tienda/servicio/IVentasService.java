@@ -32,4 +32,6 @@ public interface IVentasService {
 
     DetalleventaDto realizarCalculoventa(DetalleventaDto detalleventaDto);
 
+    void cargarCalculosdeVentas(Long CodigoCompra, VentasDto VentasDto);
+
 }

@@ -11,6 +11,8 @@ public class DetalleventaDto {
 	
     private Productos productos;
 
+    private String nombreProducto;
+
 	private int cantidad;
 
 	private Double precioProducto;
@@ -21,10 +23,12 @@ public class DetalleventaDto {
     public DetalleventaDto() {
     }
 
-    public DetalleventaDto(Long ID, Ventas ventas, Productos productos, int cantidad, Double precioProducto, Double totalDetalle) {
+
+    public DetalleventaDto(Long ID, Ventas ventas, Productos productos, String nombreProducto, int cantidad, Double precioProducto, Double totalDetalle) {
         this.ID = ID;
         this.ventas = ventas;
         this.productos = productos;
+        this.nombreProducto = nombreProducto;
         this.cantidad = cantidad;
         this.precioProducto = precioProducto;
         this.totalDetalle = totalDetalle;
@@ -54,6 +58,14 @@ public class DetalleventaDto {
         this.productos = productos;
     }
 
+    public String getNombreProducto() {
+        return this.nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
     public int getCantidad() {
         return this.cantidad;
     }
@@ -77,7 +89,5 @@ public class DetalleventaDto {
     public void setTotalDetalle(Double totalDetalle) {
         this.totalDetalle = totalDetalle;
     }
-
-	
-
+    
 }

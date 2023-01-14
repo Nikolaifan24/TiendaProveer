@@ -14,12 +14,21 @@ import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.repositories.IDetalleVenta;
+import com.mintic.tienda.repositories.IProducto;
+import com.mintic.tienda.repositories.IVenta;
 
 @Service
 public class DetalleVentasImp implements IDetalleVentasService{
 
 	@Autowired
 	IDetalleVenta iDetalleVentas;
+
+	@Autowired
+	IProducto iProducto;
+
+	@Autowired
+	IVenta iVenta;
+
 
 	@Override
 	public List<Detalleventa> ListarDetalleventas()  {
@@ -45,6 +54,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 					detalleVentas.getIDDetalle(),
 					detalleVentas.getVentas(),
 					detalleVentas.getProductos(),
+					detalleVentas.getNombreProducto(),
 					detalleVentas.getCantidadProducto(),
 					detalleVentas.getPrecioProducto(),
 					detalleVentas.getTotalDetalle()
@@ -54,40 +64,49 @@ public class DetalleVentasImp implements IDetalleVentasService{
 	}
 
 	@Override
-	public void crearDetalleventas(DetalleventaDto DetalleventasDto){
-		iDetalleVentas.save(buildDetalleVentas(DetalleventasDto));
+	public void crearDetalleventas(Long CodigoVenta, DetalleventaDto DetalleventasDto){
+		iDetalleVentas.save(buildDetalleVentas(CodigoVenta, DetalleventasDto));
 		
 	}
 
-	private Detalleventa buildDetalleVentas(DetalleventaDto detalleVentasDto) {
+	private Detalleventa buildDetalleVentas(Long CodigoVenta, DetalleventaDto detalleVentasDto) {
 		Detalleventa detalleVenta = new Detalleventa();
 		
-		Long id = detalleVentasDto.getID();
+		// Long id = detalleVentasDto.getID();
 		// Long idVenta = detalleVentasDto.getIDVenta();
 		// Long idProducto = detalleVentasDto.getIDProducto();
-		Integer cantidadProducto = detalleVentasDto.getCantidad();
+		String nombredelProducto = detalleVentasDto.getNombreProducto();
+		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoVenta);
+		Productos productos = iProducto.buscarProductoPorNombre(nombredelProducto);
+		int cantidadProducto = detalleVentasDto.getCantidad();
 		Double precioProducto = detalleVentasDto.getPrecioProducto();
-		Double totalDetalle = detalleVentasDto.getTotalDetalle();
-			
-		if(id != null) {
-			detalleVenta.setIDDetalle(id);;
+		Double totalDetalle = cantidadProducto*precioProducto;
+		System.out.println("el total de mi detalle es:  "+totalDetalle);
+		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		if (nombredelProducto != null){
+			detalleVenta.setNombreProducto(nombredelProducto);
 		}
-		if(id != null) {
-			detalleVenta.getVentas();
+		if (ventas != null){
+			detalleVenta.setVentas(ventas);
 		}
-		if(id != null) {
-			detalleVenta.getProductos();
+		if (productos != null){
+			detalleVenta.setProductos(productos);
 		}
-		if(cantidadProducto != null) {
+		if(cantidadProducto != 0) {
 			detalleVenta.setCantidadProducto(cantidadProducto);;
 		}
 		if(precioProducto != null) {
 			detalleVenta.setPrecioProducto(precioProducto);
 		}
 		if(totalDetalle != null) {
-			detalleVenta.getTotalDetalle();
+			detalleVenta.setTotalDetalle(totalDetalle);
 		}
-		
+		if(inventario != null) {
+			productos.setCantidadProducto(inventario);
+		}
+
+		iProducto.save(productos);
+
 		return detalleVenta;
 		
 	}
@@ -97,33 +116,32 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		// TODO Auto-generated method stub
 
 		Detalleventa detalle = iDetalleVentas.buscarDetalleventaPorCodigoyNombreProducto(codigoventa, nombreProducto);
-        updateDetalleventa(detalleDto, detalle);
+        updateDetalleventa(codigoventa, detalleDto, detalle);
 	}
 
-	private void updateDetalleventa (DetalleventaDto detalleDto, Detalleventa detalle){
-        Ventas ventas = detalleDto.getVentas();
-        Productos productos = detalleDto.getProductos();
-        Double valorunitario = detalleDto.getPrecioProducto();
+	private void updateDetalleventa (Long CodigoVenta, DetalleventaDto detalleDto, Detalleventa detalle){
+        String nombredelProducto = detalleDto.getNombreProducto();
+		Productos productos = iProducto.buscarProductoPorNombre(nombredelProducto);
 		Integer cantidadProducto = detalleDto.getCantidad();
-		Double valortotal = detalleDto.getTotalDetalle();
-	
-			
-		if(ventas != null) {
-			detalle.setVentas(ventas);;
+		Double precioProducto = detalleDto.getPrecioProducto();
+		Double totalDetalle = cantidadProducto*precioProducto;
+		Long inventario = productos.getCantidadProducto()-cantidadProducto;	
+		if (productos != null){
+			detalle.setProductos(productos);
 		}
-		if(productos != null) {
-			detalle.getProductos();
-        }
-		if(valorunitario != null) {
-			detalle.getPrecioProducto();
+		if(cantidadProducto != null) {
+			detalle.setCantidadProducto(cantidadProducto);;
 		}
-		if(cantidadProducto != 0) {
-			detalle.setCantidadProducto(0); 
+		if(precioProducto != null) {
+			detalle.setPrecioProducto(precioProducto);
 		}
-		if(valortotal != null) {
-			detalle.setTotalDetalle(valortotal);;
+		if(totalDetalle != null) {
+			detalle.getTotalDetalle();
 		}
-
+		if(inventario != null) {
+			productos.setCantidadProducto(inventario);
+		}
+		iProducto.save(productos);
         iDetalleVentas.save(detalle);
     }
 

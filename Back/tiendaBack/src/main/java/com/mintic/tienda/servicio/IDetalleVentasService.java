@@ -12,7 +12,7 @@ public interface IDetalleVentasService {
     // DetalleventaDto buscarDetalleventaCodigoyNombre(Long codigoventa, String nombreProducto) ;
     DetalleventaDto buscarDetalleventaCodigoyNombre(Long codigoventa, String nombreProducto); 
 
-    void crearDetalleventas(DetalleventaDto DetalleventasDto); 
+    void crearDetalleventas(Long codigoventa,DetalleventaDto DetalleventasDto); 
     
     void actualizarDetalleventa(Long codigoventa, String nombreProducto, DetalleventaDto detalleDto);
 

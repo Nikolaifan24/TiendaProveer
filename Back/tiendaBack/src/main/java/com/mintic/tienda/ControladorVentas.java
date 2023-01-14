@@ -91,4 +91,21 @@ public class ControladorVentas {
 		return idetalleventa.buscarDetalleventaCodigoyNombre(CodigoVenta, nombreProducto);
 	}
 
+	@PatchMapping("/Ventas/cargar-productos/{Codigoventa}")
+	public void CargardatosVentas(@PathVariable Long Codigoventa, @RequestBody VentasDto VentasDto) {
+		iVentas.cargarCalculosdeVentas(Codigoventa, VentasDto);
+	}
+
+	@PostMapping("/crearVentas/detalles/{Codigoventa}")
+	public void crearVentas(@PathVariable Long Codigoventa, @RequestBody DetalleventaDto detalleventaDto) {
+		System.out.println("esta es el detalle de mi venta "+ detalleventaDto);
+		idetalleventa.crearDetalleventas(Codigoventa, detalleventaDto);
+	}
+
+	@PatchMapping("/Ventas/actualizar/detalles/{Codigoventa}/{nombreProducto}")
+	public void ActualizarDetalledeventa(@PathVariable Long Codigoventa, @PathVariable String nombreProducto, @RequestBody DetalleventaDto detalleventaDto) {
+		System.out.println("esta es la actualizacion de mi detalle "+ detalleventaDto);
+		idetalleventa.actualizarDetalleventa(Codigoventa, nombreProducto, detalleventaDto);
+	}
+
 }
