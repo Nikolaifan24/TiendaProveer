@@ -100,4 +100,10 @@ public class ContorladorCompras {
 		System.out.println("esta es el detalle de mi compra "+ detallecompraDto);
 		idetallecompra.crearDetallecompras(CodigoCompra, detallecompraDto);
 	}
+
+	@PatchMapping("/Compras/actualizar/detalles/{CodigoCompra}/{nombreProducto}")
+	public void ActualizarDetalledeCompra(@PathVariable Long CodigoCompra, @PathVariable String nombreProducto, @RequestBody DetallecompraDto detallecompraDto) {
+		System.out.println("esta es la actualizacion de mi detalle "+ detallecompraDto);
+		idetallecompra.actualizarDetalleCompra(CodigoCompra, nombreProducto, detallecompraDto);
+	}
 }

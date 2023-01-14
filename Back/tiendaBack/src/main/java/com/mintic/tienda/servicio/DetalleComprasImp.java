@@ -110,30 +110,41 @@ public class DetalleComprasImp implements IDetalleComprasService {
 		
 	}
 
-    private void updateDetalleCompra (DetallecompraDto detalleDto, Detallecompra detalle){
-        Compras compras = detalleDto.getCompras();
-        Productos productos = detalleDto.getProductos();
-        Double valorunitario = detalleDto.getValorUnitario();
-		Integer cantidadProducto = detalleDto.getCantidadProducto();
+    private void updateDetalleCompra (Long CodigoCompra, DetallecompraDto detalleDto, Detallecompra detalle){
+        String nombreProducto = detalleDto.getNombreProducto();
+        Compras compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
+        Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
+		Double valorunitario = detalleDto.getValorUnitario();
+		int cantidadProducto = detalleDto.getCantidadProducto();
 		Double valortotal = detalleDto.getValorTotal();
-	
+		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+
+		System.out.println("voy aca");
 			
 		if(compras != null) {
 			detalle.setCompras(compras);
 		}
 		if(productos != null) {
-			detalle.getProductos();
+			detalle.setProductos(productos);
         }
+		if(nombreProducto != null) {
+			detalle.setNombreProducto(nombreProducto);
+		}
 		if(valorunitario != null) {
-			detalle.getValorUnitario();
+			detalle.setValorUnitario(valorunitario);
 		}
 		if(cantidadProducto != 0) {
-			detalle.setCantidadProducto(0); 
+			detalle.setCantidadProducto(cantidadProducto);
 		}
 		if(valortotal != null) {
 			detalle.setValorTotal(valortotal);
 		}
+		if(inventario != null) {
+			productos.setCantidadProducto(inventario);
+			
+        }
 
+		iProducto.save(productos);
         iDetallecompras.save(detalle);
     }
 	
@@ -141,7 +152,7 @@ public class DetalleComprasImp implements IDetalleComprasService {
     public void actualizarDetalleCompra(Long codigoCompra, String nombreProducto, DetallecompraDto detalleDto){
 
         Detallecompra detalle = iDetallecompras.buscarDetalleCompraPorCodigoyNombreProducto(codigoCompra, nombreProducto);
-        updateDetalleCompra(detalleDto, detalle);
+        updateDetalleCompra(codigoCompra,detalleDto, detalle);
     }
 
 	public List<Detallecompra> encontrarDetallecompraPorNombre(Long codigoCompra){
