@@ -15,9 +15,9 @@ public interface IClientTienda {
 
 	public UsuarioResponse nuevoUsuario(UsuarioDto usuarioDto);
 
-	public UsuarioResponse buscarUsuario(Long cedulaUsuario);
+	public UsuarioResponse buscarUsuario(String nombreUsuario);
 
-	public void borrarUsuario(Long cedulaUsuario);
+	public void borrarUsuario(String nombreUsuario);
 
 	
 }

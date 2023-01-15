@@ -57,36 +57,33 @@
 		<div class=" col-xl-2 col-lg-3 col-md-4 col-sm-6" id="formulario">
 			<form method="post" action="/usuario">
 				<div class="form-group">
-				 <select name="idTipoDocumento"
+				<label>Seleccionar Tipo Perfil</label>
+				 <select name="perfil"
 						class="form-select">
-						<option value="0">Seleccionar</option>
+						<option name="perfil" value="0">Seleccionar</option>
+						<option name="perfil" value="${usuarioEditar.perfil}">Usuario</option>
+						<option name="perfil" value="${usuarioEditar.perfil}">Administrador</option>
+
 						
 					</select>
 				</div>
 
 				<div class="container overflow-hidden">
 				<div class="form-group">
-					<input type="hidden" name="id" value="${usuarioEditar.id}">
-
-					<label for="numero"> numero:</label><input type="text"
-						name="cedulaUsuario" id="numero"
-						value="${usuarioEditar.cedulaUsuario}" class="form-control" />
-				</div>
-				<div class="form-group">
-					<label>nombre:</label><input type="text" name="usuario"
+					<label>Nombre del Usuario</label><input type="text" name="usuario"
 						class="form-control" value="${usuarioEditar.usuario}" />
 				</div>
 				<div class="form-group">
-					<label>Email:</label><input type="text" name="emailUsuario"
-						class="form-control" value="${usuarioEditar.emailUsuario}" />
+					<label>Email:</label><input type="text" name="correo"
+						class="form-control" value="${usuarioEditar.correo}" />
 				</div>
 				<div class="form-group">
-					<label> nombre usuario:</label> <input type="text"
+					<label> Usuario:</label> <input type="text"
 						name="nombreUsuario" class="form-control"
 						value="${usuarioEditar.nombreUsuario}" />
 				</div>
 				<div class="form-group">
-					<label>password:</label> <input type="password" name="password"
+					<label>Contraseña:</label> <input type="password" name="password"
 						class="form-control" value="${usuarioEditar.password}" />
 				</div>
 				</div>
@@ -105,7 +102,7 @@
     <table class="table">
 			<thead>
 				<tr>
-					<th>#</th>
+					<!-- <th>#</th> -->
 					<th>Perfil de Usuarios</th>
 					<th>Email</th>
 					<th>Usuario</th>
@@ -116,14 +113,14 @@
 			<tbody>
 				<c:forEach items="${usuarios}" var="usuario">
 					<tr style=" color: #FFF35F"> 
-						<td>${usuario.id}</td>
+						<!-- <td>${usuario.id}</td> -->
 						<td>${usuario.perfil}</td>
 						<td>${usuario.correo}</td>
 						<td>${usuario.usuario}</td>
 						<td>${usuario.nombreUsuario}</td>
 						<td><a class="btn btn-danger"
-							href="/eliminarusuario/${usuario.cedulaUsuario}">Eliminar</a></td>
-						<td><a class="btn btn-success" href="/usuario/${usuario.cedulaUsuario}">Actualizar</a></td>
+							href="/eliminarusuario/${usuario.nombreUsuario}">Eliminar</a></td>
+						<td><a class="btn btn-success" href="/usuario/${usuario.nombreUsuario}">Actualizar</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>

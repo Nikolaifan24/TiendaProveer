@@ -33,8 +33,8 @@ public class ControladorUsuarios {
 	
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/usuario/{nombreUsuario}")
-	public List<Usuario> MostarUsuarioPorNombre(@PathVariable String nombreUsuario) {
-		return iUsuario.encontrarUsuarioPorNombre(nombreUsuario);
+	public UsuarioDto MostarUsuarioPorNombre(@PathVariable String nombreUsuario) {
+		return iUsuario.buscarUsuarioPorNombre(nombreUsuario);
 	}
 	
 	

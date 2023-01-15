@@ -65,7 +65,7 @@ public class ClientImp implements IClientTienda {
 				
 		try {
 			UsuarioResponse u = null;
-			Mono<UsuarioResponse> response = webClient.build().post().uri(URL + "/usuario")
+			Mono<UsuarioResponse> response = webClient.build().post().uri(URL + "/crearUsuario")
 					.body(Mono.just(usuarioDto), UsuarioResponse.class).retrieve().bodyToMono(UsuarioResponse.class);
 				
 			
@@ -81,10 +81,10 @@ public class ClientImp implements IClientTienda {
 	}
 
 	@Override
-	public UsuarioResponse buscarUsuario(Long cedulaUsuario) {
+	public UsuarioResponse buscarUsuario(String nombreUsuario) {
 		try {
 
-			Mono<UsuarioResponse> response = webClient.build().get().uri(URL + "/usuario/" + cedulaUsuario)
+			Mono<UsuarioResponse> response = webClient.build().get().uri(URL + "/usuario/" + nombreUsuario)
 					.retrieve().bodyToMono(UsuarioResponse.class);
 
 			return response.block();
@@ -96,10 +96,10 @@ public class ClientImp implements IClientTienda {
 	}
 
 	@Override
-	public void borrarUsuario(Long cedulaUsuario) {
+	public void borrarUsuario(String nombreUsuario) {
 		try {
 
-			webClient.build().delete().uri(URL + "/usuario/" + cedulaUsuario)
+			webClient.build().delete().uri(URL + "/eliminarUsuario/" + nombreUsuario)
 					.retrieve().bodyToMono(Void.class).block();
 
 

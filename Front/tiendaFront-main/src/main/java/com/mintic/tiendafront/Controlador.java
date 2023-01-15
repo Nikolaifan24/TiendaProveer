@@ -66,10 +66,10 @@ public class Controlador {
 		return "usuario";
 	}
 
-	@GetMapping("/usuario/{cedulaUsuario}")
-	public String actualizarUsuario(Model model, @PathVariable(name = "cedulaUsuario") Long cedulaUsuario) {
+	@GetMapping("/usuario/{nombreUsuario}")
+	public String actualizarUsuario(Model model, @PathVariable(name = "nombreUsuario") String nombreUsuario) {
 
-		UsuarioResponse usuarioEditar = clienteTienda.buscarUsuario(cedulaUsuario);
+		UsuarioResponse usuarioEditar = clienteTienda.buscarUsuario(nombreUsuario);
 
 		
 		model.addAttribute("usuarioEditar", usuarioEditar);
@@ -78,10 +78,10 @@ public class Controlador {
 		return "usuario";
 	}
 
-	@GetMapping("/eliminarusuario/{cedulaUsuario}")
-	public String eliminarUsuario(Model model, @PathVariable(name = "cedulaUsuario") Long cedulaUsuario) {
+	@GetMapping("/eliminarusuario/{nombreUsuario}")
+	public String eliminarUsuario(Model model, @PathVariable(name = "nombreUsuario") String nombreUsuario) {
 
-		clienteTienda.borrarUsuario(cedulaUsuario);
+		clienteTienda.borrarUsuario(nombreUsuario);
 		model.addAttribute("usuarios", clienteTienda.getUsuarios());
 			
 		return "usuario";
