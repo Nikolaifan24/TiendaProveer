@@ -71,7 +71,7 @@ public class UsuarioImp implements IUsuarioService {
 			myusuario.setPassword(password);
 		}
 		if(perfil != null) {
-			myusuario.setPerfil(password);
+			myusuario.setPerfil(perfil);
 		}
 		
 		return myusuario;
@@ -104,7 +104,7 @@ public class UsuarioImp implements IUsuarioService {
 			myusuario.setPassword(password);
 		}
 		if(perfil != null) {
-			myusuario.setPerfil(password);
+			myusuario.setPerfil(perfil);
 		}
 		iUsuario.save(myusuario);
 	}

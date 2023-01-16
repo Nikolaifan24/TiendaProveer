@@ -60,9 +60,9 @@
 				<label>Seleccionar Tipo Perfil</label>
 				 <select name="perfil"
 						class="form-select">
-						<option name="perfil" value="0">Seleccionar</option>
-						<option name="perfil" value="${usuarioEditar.perfil}">Usuario</option>
-						<option name="perfil" value="${usuarioEditar.perfil}">Administrador</option>
+						<option name="perfil" value=" ">Seleccionar</option>
+						<option name="perfil" value="Usuario">Usuario</option>
+						<option name="perfil" value="Administrador">Administrador</option>
 
 						
 					</select>
