@@ -90,7 +90,7 @@
 				<br>
 				<div class="btn-group" role="group" aria-label="Basic example">
 				<button type="submit" class="btn btn-primary" formmethod="post" >Grabar</button>
-				<button type="button" class="btn btn-primary" onclick="relocate_buscar()" >Buscar</button>
+				<button type="button" class="btn btn-secondary" onclick="relocate_buscar()" >Buscar</button>
 				
 		 		</div>
 				

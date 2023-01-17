@@ -19,7 +19,7 @@ import com.mintic.tiendafront.dto.UsuarioResponse;
 public class Controlador {
 
 	@Autowired
-	IClientTienda clienteTienda;
+	IClientTienda UsuarioTienda;
 
 	@GetMapping("/")
 	public String index() {
@@ -33,7 +33,7 @@ public class Controlador {
 	
 	@PostMapping("/login")
 	public String login(Model model, LoginDto loginDto) {
-		Long validLogin = clienteTienda.login(loginDto);
+		Long validLogin = UsuarioTienda.login(loginDto);
 		System.out.println("El id del usuario es: " + validLogin);
 		if (validLogin != 0) {
 			return "menu";
@@ -48,7 +48,7 @@ public class Controlador {
 	public String usuario(Model model) {
 
 		
-		model.addAttribute("usuarios", clienteTienda.getUsuarios());
+		model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
 		if(model.getAttribute("usuarios") == null) 
 		{
 			model.addAttribute("mensaje", "No hay datos para mostrar");
@@ -59,9 +59,9 @@ public class Controlador {
 	@PostMapping("/usuario")
 	public String crearUsuario(Model model, UsuarioDto usuario) {
 
-		clienteTienda.nuevoUsuario(usuario);
+		UsuarioTienda.nuevoUsuario(usuario);
 		
-		model.addAttribute("usuarios", clienteTienda.getUsuarios());
+		model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
 
 		return "usuario";
 	}
@@ -69,11 +69,11 @@ public class Controlador {
 	@GetMapping("/usuario/{nombreUsuario}")
 	public String actualizarUsuario(Model model, @PathVariable(name = "nombreUsuario") String nombreUsuario) {
 
-		UsuarioResponse usuarioEditar = clienteTienda.buscarUsuario(nombreUsuario);
+		UsuarioResponse usuarioEditar = UsuarioTienda.buscarUsuario(nombreUsuario);
 
 		
 		model.addAttribute("usuarioEditar", usuarioEditar);
-		model.addAttribute("usuarios", clienteTienda.getUsuarios());
+		model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
 
 		return "usuario";
 	}
@@ -81,8 +81,8 @@ public class Controlador {
 	@GetMapping("/eliminarusuario/{nombreUsuario}")
 	public String eliminarUsuario(Model model, @PathVariable(name = "nombreUsuario") String nombreUsuario) {
 
-		clienteTienda.borrarUsuario(nombreUsuario);
-		model.addAttribute("usuarios", clienteTienda.getUsuarios());
+		UsuarioTienda.borrarUsuario(nombreUsuario);
+		model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
 			
 		return "usuario";
 	}
@@ -93,11 +93,44 @@ public class Controlador {
 		return "reporte";
 	}
 	*/
+
+	@GetMapping("/BuscarUsuario/{nombreUsuario}")
+	public String BuscarUsuario(Model model, @PathVariable(name = "nombreUsuario") String nombreUsuario)
+	{		
+		
+		if(ValidacionPorNombre(model, nombreUsuario))
+		{	
+			UsuarioResponse usuarioEditar = UsuarioTienda.buscarUsuario(nombreUsuario);
+			
+			if(usuarioEditar == null) {
+				model.addAttribute("mensaje", "Usuario Inexistente");
+			}
+			else {
+				model.addAttribute("usuarioEditar", usuarioEditar);
+				model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
+
+
+			}	
+		}
+
+		return "usuario";
+	}
 	
+	private boolean ValidacionPorNombre(Model model, String nombreUsuario) 
+	{		
+		if(nombreUsuario == " ") 
+		{
+			model.addAttribute("mensaje", "Ingrese el usuario para la busqueda");
+			return false;
+		}		
+		
+		return true;
+	}
+
 	
 	@GetMapping("/reporteUsuario")
 	public String reportesUsuario(Model model) {
-		model.addAttribute("usuarios", clienteTienda.getUsuarios());
+		model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
 		
 		if(model.getAttribute("usuarios") == null) 
 		{
