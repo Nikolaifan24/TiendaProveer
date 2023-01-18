@@ -19,5 +19,7 @@ public interface IClientTienda {
 
 	public void borrarUsuario(String nombreUsuario);
 
+	UsuarioResponse ActualizarUsuario(UsuarioDto UsuarioDto, String nombreUsuario); 
+
 	
 }

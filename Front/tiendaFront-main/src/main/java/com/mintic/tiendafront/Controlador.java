@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -56,12 +57,39 @@ public class Controlador {
 		return "usuario";
 	}
 
+	@PatchMapping("/usuario")
+	public String actualizarUsuario(Model model, UsuarioDto usuario){
+		UsuarioTienda.ActualizarUsuario(usuario, usuario.getNombreUsuario());
+		model.addAttribute("mensaje", "Usuario Actualizado");
+
+		return "usuario";
+	}
+
 	@PostMapping("/usuario")
 	public String crearUsuario(Model model, UsuarioDto usuario) {
 
-		UsuarioTienda.nuevoUsuario(usuario);
+		if (usuario.getID().longValue()== 0 ){
+			System.out.println("Creando usuario");
+			if(ValidacionCrearUsuario(model, usuario)){
+				System.out.println("estoy entrando a una validacion ");
+				UsuarioTienda.nuevoUsuario(usuario);
+				model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
+				model.addAttribute("mensaje", "Usuario Creado");			
+
+			}
+		}
+		else{
+			System.out.println("Editando usuario");
+			UsuarioTienda.ActualizarUsuario(usuario, usuario.getNombreUsuario());
+			model.addAttribute("mensaje", "Usuario Actualizado");			
+
+		}
+
 		
-		model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
+
+		// UsuarioTienda.nuevoUsuario(usuario);
+		
+		// model.addAttribute("usuarios", UsuarioTienda.getUsuarios());
 
 		return "usuario";
 	}
@@ -118,12 +146,47 @@ public class Controlador {
 	
 	private boolean ValidacionPorNombre(Model model, String nombreUsuario) 
 	{		
-		if(nombreUsuario == " ") 
+		if(nombreUsuario == "") 
 		{
 			model.addAttribute("mensaje", "Ingrese el usuario para la busqueda");
 			return false;
+		}
+		else{
+			return true;
+
 		}		
 		
+	}
+
+	private boolean ValidacionCrearUsuario(Model model, UsuarioDto Usuario) 
+	{		
+		if(Usuario.getPerfil().isBlank())
+		{
+			model.addAttribute("mensaje", "Faltan datos del Usuario");
+			return false;
+		}
+		if(Usuario.getNombreUsuario().isBlank())
+		{
+			model.addAttribute("mensaje", "Faltan datos del Usuario");
+			return false;
+		}
+		if(Usuario.getUsuario().isBlank()) 
+		{
+			model.addAttribute("mensaje", "Faltan datos del Usuario");
+			return false;
+		}
+		if(Usuario.getCorreo().isBlank()) 
+		{
+			model.addAttribute("mensaje", "Faltan datos del Usuario");
+			return false;
+		}		
+		
+		if(Usuario.getPassword().isBlank()) 
+		{
+			model.addAttribute("mensaje", "Faltan datos del Usuario");
+			return false;
+		}
+
 		return true;
 	}
 
@@ -139,6 +202,7 @@ public class Controlador {
 		
 		return "reporteUsuario";
 	}
+
 	
 	
 	

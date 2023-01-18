@@ -73,11 +73,11 @@ https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  -->
 			<form method="post" action="/usuario">
 				<div class="form-group">
 					<label>Seleccionar una Accion</label>
-					 <select name="Editarusuario"
+					 <select name="ID" id ="ID"
 							class="form-select">
-							<option name="Editarusuario" value=" ">Seleccionar</option>
-							<option name="Editarusuario" value="0">Editar Usuario</option>
-							<option name="Editarusuario" value="1">Crear Usuario</option>
+							<option name="ID" value=" ">Seleccionar</option>
+							<option name="ID" value="1">Editar Usuario</option>
+							<option name="ID" value="0">Crear Usuario</option>
 	
 							
 						</select>
@@ -117,6 +117,8 @@ https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  -->
 				<div class="btn-group" role="group" aria-label="Basic example">
 				<button type="button" class="btn btn-primary" onclick= alerta() >Grabar</button>
 				<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Buscar</button>
+				<button type="button" class="btn btn-success" onclick= alerta2() >Actualizar</button>
+
 				
 				</div>
 				
@@ -178,6 +180,7 @@ https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  -->
 				mensaje = "Has clickado OK";
 				const Url = 'http://localhost:8092/usuario'
 				let payload = {
+				ID: document.getElementById("ID").value,
 				usuario: document.getElementById("Nombre").value,
 				// console.log(nombreval);
 				nombreUsuario: document.getElementById("Usuario").value,
@@ -190,13 +193,14 @@ https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  -->
 				type: "POST",
 				url: "http://localhost:8092/usuario",
 				data: {
-				usuario: document.getElementById("Nombre").value,
-				// console.log(nombreval);
-				nombreUsuario: document.getElementById("Usuario").value,
-				correo: document.getElementById("Correo").value,
-				password: document.getElementById("Contraseña").value,
-				perfil: document.getElementById("Perfil").value
-			},
+					ID: document.getElementById("ID").value,
+					usuario: document.getElementById("Usuario").value,
+					// console.log(nombreval);
+					nombreUsuario: document.getElementById("Nombre").value,
+					correo: document.getElementById("Correo").value,
+					password: document.getElementById("Contraseña").value,
+					perfil: document.getElementById("Perfil").value
+				},
 				success: success1(),
 				dataType: "json"
 				});
@@ -210,7 +214,46 @@ https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  -->
 			}
 		// document.getElementById("ejemplo").innerHTML = mensaje;
 		}
-		
+		function alerta2(){
+
+			var opcion = confirm("Clicka en Aceptar o Cancelar");
+			if (opcion == true) {
+				mensaje = "Has clickado OK";
+				const Url = 'http://localhost:8092/usuario'
+				let payload = {
+				ID: document.getElementById("ID").value,
+				usuario: document.getElementById("Nombre").value,
+				// console.log(nombreval);
+				nombreUsuario: document.getElementById("Usuario").value,
+				correo: document.getElementById("Correo").value,
+				password: document.getElementById("Contraseña").value,
+				perfil: document.getElementById("Perfil").value
+			};
+			console.log(payload);
+			$.ajax({
+				type: "PATCH",
+				url: "http://localhost:8092/usuario",
+				data: {
+					ID: document.getElementById("ID").value,
+					usuario: document.getElementById("Usuario").value,
+					// console.log(nombreval);
+					nombreUsuario: document.getElementById("Nombre").value,
+					correo: document.getElementById("Correo").value,
+					password: document.getElementById("Contraseña").value,
+					perfil: document.getElementById("Perfil").value
+				},
+				success: success1(),
+				dataType: "json"
+				});
+			// $('.btn btn-primary').click(function(){
+			// 	$.post(Url,payload, function(payload, status){console.log(`${data} and status is ${status}`)})
+			// })
+			
+			} else {
+				mensaje = "Has clickado Cancelar";
+				location.href = "/usuario "
+			}
+		}
 	</script>
 </body>
 </html>

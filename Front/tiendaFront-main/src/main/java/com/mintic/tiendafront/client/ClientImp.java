@@ -109,5 +109,24 @@ public class ClientImp implements IClientTienda {
 		}
 	}
 
+	@Override
+	public UsuarioResponse ActualizarUsuario(UsuarioDto UsuarioDto, String nombreUsuario) {
+		
+		try {
+			
+			UsuarioResponse u = null;
+			Mono<UsuarioResponse> response = webClient.build().patch().uri(URL + "/actualizarUsuario/" + nombreUsuario )
+					.body(Mono.just(UsuarioDto), UsuarioResponse.class).retrieve().bodyToMono(UsuarioResponse.class);
+				
+			
+			u = response.block();
+			return u;
+
+		} catch (WebClientResponseException e) {
+			e.getMessage();
+			System.out.println("---->" + e.getMessage());
+			return null;
+		}
+	}
 
 }
