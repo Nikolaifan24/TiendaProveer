@@ -33,7 +33,7 @@
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
+				<li class="nav-item"><a class="nav-link" href="/compraEditars">compraEditars</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
@@ -47,56 +47,66 @@
 		</div>
 	</nav>
 	<br>
-	<h1> Ventas</h1>
+	<h1> Compras</h1>
 
 	<div class="container overflow-hidden">
 
 		<div class=" col-xl-2 col-lg-3 col-md-4 col-sm-6" id="formulario">
-			<form method="post" action="/venta">
+			<form method="post" action="/compras">
 					
 				<div class="container overflow-hidden">
 					<div class="form-group">
-						<label for="cedulaCliente"> cedulaCliente:</label>
-						<input type="text"
-							name="cedulaCliente" id="cedulaCliente"
-							value="${producto.cedulaCliente}" class="form-control" />
+						<label>Seleccionar una Accion</label>
+						 <select name="IDCompras" id ="ID"
+								class="form-select">
+								<option name="IDCompras" value=" ">Seleccionar</option>
+								<option name="IDCompras" value="1">Editar Usuario</option>
+								<option name="IDCompras" value="0">Crear Usuario</option>
+		
+								
+							</select>
 					</div>
-					
 					
 					
 				
 					<div class="form-group">
-						<label for="codigoProducto1"> codigo producto 1:</label>
+						<label for="Nit"> Nit proveedor</label>
 						<input type="text"
-							name="codigoProducto1" id="codigoProducto1"
-							value="${producto.codigoProducto1}" class="form-control" />
-						<label for="cantidadProducto1"> cantidad producto 1:</label>
+							name="nitProveedor" id="Nit"
+							value="${compraEditar.nitProveedor}" class="form-control" />
+						<label for="codigoCompra"> Codigo de la Compra:</label>
 						<input type="text"
-							name="cantidadProducto1" id="cantidadProducto1"
+							name="codigoCompra" id="codigoCompra"
+							value="${compraEditar.codigoCompra}" class="form-control" />
+					</div>
+					<!-- <div class="row justify-content-center">
+						<div class="col-lg-3 col-sm-6">
+							<label for="startDate">Start</label>
+							<input id="startDate" class="form-control" type="date" />
+							<span id="startDateSelected"></span>
+						</div>
+					</div> -->
+
+					<div class="form-group">
+						<label for="fechaCompra"> Fecha de la Compra:</label>
+						<input type="date"
+							name="fechaCompra" id="fechaCompra"
+							value="${compraEditar.fechaCompra}" class="form-control" />
+						<label for="totalCompra"> Total de la Compra:</label>
+						<input type="text"
+							name="totalCompra" id="totalCompra"
 							value="" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label for="codigoProducto2"> codigo producto 2:</label>
+						<label for="ivaCompra"> Iva de la compra: </label>
 						<input type="text"
-							name="codigoProducto2" id="codigoProducto2"
-							value="${producto.codigoProducto2}" class="form-control" />
-						<label for="cantidadProducto2"> cantidad producto 2:</label>
-						<input type="text"
-							name="cantidadProducto2" id="cantidadProducto2"
-							value="" class="form-control" />
+							name="ivaCompra" id="ivaCompra"
+							value="${compraEditar.ivaCompra}" class="form-control" />
 					</div>
-					<div class="form-group">
-						<label for="codigoProducto3"> codigo producto 3:</label>
-						<input type="text"
-							name="codigoProducto3" id="codigoProducto3"
-							value="${producto.codigoProducto3}" class="form-control" />
-						<label for="cantidadProducto3"> cantidad producto 3:</label>
-						<input type="text"
-							name="cantidadProducto3" id="cantidadProducto3"
-							value="" class="form-control" />
+					<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="submit" class="btn btn-primary" formmethod="post" >Crear</button>
+					<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>
 					</div>
-					
-					<button type="submit" class="btn btn-secondary" href="/venta">Consultar</button>
 					
 				</div>
 				
@@ -139,7 +149,7 @@
 						<td>${compra.ivaCompra}</td>
 						
 						<td><a class="btn btn-success" href="/detallecompra/${compra.codigoCompra}">Ver</a></td>
-						
+						<td><a class="btn btn-danger" href="/BuscarComprasPorCodigo/${compra.codigoCompra}">Actualizar</a></td>
 						
 					</tr>
 				
@@ -156,3 +166,11 @@
 	
 </body>
 </html>
+<script>
+	function relocate_buscar()
+		{
+			var inputVal = document.getElementById("codigoCompra").value;
+			location.href = "/BuscarComprasPorCodigo/" + inputVal; 
+			console.log("El valor es");
+		} 
+</script>

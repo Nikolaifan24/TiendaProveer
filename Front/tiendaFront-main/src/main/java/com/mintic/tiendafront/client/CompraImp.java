@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import com.mintic.tiendafront.dto.ComprasDto;
 import com.mintic.tiendafront.dto.ComprasResponse;
+import com.mintic.tiendafront.dto.DetalleCompraDto;
 import com.mintic.tiendafront.dto.DetalleCompraResponse;
 import com.mintic.tiendafront.dto.ComprasResponse;
 
@@ -39,12 +40,12 @@ public class CompraImp implements ICompra{
 	}
 
 	@Override
-	public ComprasResponse nuevoCompra(ComprasDto CompraDto) {
+	public ComprasResponse nuevaCompras(ComprasDto ComprasDto) {
 				
 		try {
 			ComprasResponse u = null;
-			Mono<ComprasResponse> response = webClient.build().post().uri(URL + "/Compra")
-					.body(Mono.just(CompraDto), ComprasResponse.class).retrieve().bodyToMono(ComprasResponse.class);
+			Mono<ComprasResponse> response = webClient.build().post().uri(URL + "/crearCompras")
+					.body(Mono.just(ComprasDto), ComprasResponse.class).retrieve().bodyToMono(ComprasResponse.class);
 				
 			
 			u = response.block();
@@ -59,10 +60,10 @@ public class CompraImp implements ICompra{
 	}
 
 	@Override
-	public ComprasResponse buscarCompra(Long CodigoCompra) {
+	public ComprasResponse buscarCompraCodigo(Long CodigoCompra) {
 		try {
 
-			Mono<ComprasResponse> response = webClient.build().get().uri(URL + "/Compra/" + CodigoCompra)
+			Mono<ComprasResponse> response = webClient.build().get().uri(URL + "/BuscarComprasPorCodigo/" + CodigoCompra)
 					.retrieve().bodyToMono(ComprasResponse.class);
 
 			return response.block();
@@ -80,7 +81,7 @@ public class CompraImp implements ICompra{
 		try {
 			
 			ComprasResponse u = null;
-			Mono<ComprasResponse> response = webClient.build().post().uri(URL + "/Compra" + CodigoCompra )
+			Mono<ComprasResponse> response = webClient.build().patch().uri(URL + "/actualizarCompras/" + CodigoCompra )
 					.body(Mono.just(CompraDto), ComprasResponse.class).retrieve().bodyToMono(ComprasResponse.class);
 				
 			
@@ -110,5 +111,110 @@ public class CompraImp implements ICompra{
 
 		}
 
+		@Override
+		public List<ComprasResponse> ListarComprasPorProducto(String nombreProducto) {
+			System.out.println("estoy entrando al metodo");
+			try {
+				Mono<List> response = webClient.build().get().uri(URL + "/compraslistar/producto/"+ nombreProducto).retrieve()
+						.bodyToMono(List.class);
+				System.out.println(response.block() + "estoy saliendo del try");	
+				return response.block();
+			} catch (Exception e) {
+
+				return null;
+			}
+
+		}
+
+		@Override
+		public List<ComprasResponse> ListarComprasPorProveedor(String nombreProveedor) {
+			System.out.println("estoy entrando al metodo");
+			try {
+				Mono<List> response = webClient.build().get().uri(URL + "/compraslistar/proveedor/"+ nombreProveedor).retrieve()
+						.bodyToMono(List.class);
+				System.out.println(response.block() + "estoy saliendo del try");	
+				return response.block();
+			} catch (Exception e) {
+
+				return null;
+			}
+
+		}
+		
+		@Override
+		public DetalleCompraResponse DetalladeunaCompra(Long CodigoCompra, String nombreProducto) {
+			try {
+
+				Mono<DetalleCompraResponse> response = webClient.build().get().uri(URL + "/compras/detalle/codigo/" + CodigoCompra +"/"+ nombreProducto)
+						.retrieve().bodyToMono(DetalleCompraResponse.class);
+	
+				return response.block();
+			} catch (Exception e) {
+	
+				return null;
+			}
+
+		}
+		@Override
+		public ComprasResponse CargarDatosdeunaCompra(ComprasDto ComprasDto, Long CodigoCompra) {
+		
+			try {
+				
+				ComprasResponse u = null;
+				Mono<ComprasResponse> response = webClient.build().patch().uri(URL + "/Compras/cargar-productos/" + CodigoCompra )
+						.body(Mono.just(ComprasDto), ComprasResponse.class).retrieve().bodyToMono(ComprasResponse.class);
+					
+				
+				u = response.block();
+				return u;
+	
+			} catch (WebClientResponseException e) {
+				e.getMessage();
+				System.out.println("---->" + e.getMessage());
+				return null;
+			}
+		}	
+		
+
+		@Override
+		public DetalleCompraResponse nuevoCompraDetalle(Long CodigoCompra, DetalleCompraDto detalleCompraDto) {
+					
+			try {
+				DetalleCompraResponse u = null;
+				Mono<DetalleCompraResponse> response = webClient.build().post().uri(URL + "/crearCompras/detalles/" + CodigoCompra)
+						.body(Mono.just(detalleCompraDto), DetalleCompraResponse.class).retrieve().bodyToMono(DetalleCompraResponse.class);
+					
+				
+				u = response.block();
+				return u;
+	
+			} catch (WebClientResponseException e) {
+				e.getMessage();
+				System.out.println("---->" + e.getMessage());
+				return null;
+			}
+	
+		}
+
+
+		@Override
+		public DetalleCompraResponse ActualizarDetalledeCompra(Long CodigoCompra, String nombreProducto, DetalleCompraDto detalleCompraDto) {
+		
+			try {
+				
+				DetalleCompraResponse u = null;
+				Mono<DetalleCompraResponse> response = webClient.build().patch().uri(URL + "/Compras/actualizar/detalles/" + CodigoCompra +"/" + nombreProducto )
+						.body(Mono.just(detalleCompraDto), DetalleCompraResponse.class).retrieve().bodyToMono(DetalleCompraResponse.class);
+					
+				
+				u = response.block();
+				return u;
+	
+			} catch (WebClientResponseException e) {
+				e.getMessage();
+				System.out.println("---->" + e.getMessage());
+				return null;
+			}
+		}
 
 }

@@ -10,6 +10,8 @@ public class ComprasResponse {
 	
 	private String FechaCompra;
 
+    private Long nitProveedor;
+
 	private Double totalCompra;
 
     private Double ivaCompra;
@@ -18,15 +20,16 @@ public class ComprasResponse {
     public ComprasResponse() {
     }
 
-
-    public ComprasResponse(Long IDCompras, ProveedorResponse proveedores, Long CodigoCompra, String FechaCompra, Double totalCompra, Double ivaCompra) {
+    public ComprasResponse(Long IDCompras, ProveedorResponse proveedores, Long CodigoCompra, String FechaCompra, Long nitProveedor, Double totalCompra, Double ivaCompra) {
         this.IDCompras = IDCompras;
         this.proveedores = proveedores;
         this.CodigoCompra = CodigoCompra;
         this.FechaCompra = FechaCompra;
+        this.nitProveedor = nitProveedor;
         this.totalCompra = totalCompra;
         this.ivaCompra = ivaCompra;
     }
+
 
     public Long getIDCompras() {
         return this.IDCompras;
@@ -60,6 +63,14 @@ public class ComprasResponse {
         this.FechaCompra = FechaCompra;
     }
 
+    public Long getNitProveedor() {
+        return this.nitProveedor;
+    }
+
+    public void setNitProveedor(Long nitProveedor) {
+        this.nitProveedor = nitProveedor;
+    }
+
     public Double getTotalCompra() {
         return this.totalCompra;
     }
@@ -76,5 +87,5 @@ public class ComprasResponse {
         this.ivaCompra = ivaCompra;
     }
 
-   
+       
 }

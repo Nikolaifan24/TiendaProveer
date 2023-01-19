@@ -34,7 +34,7 @@ public class ControladorCompras {
 		return "compras";
 	}
 
-	@PostMapping("/Compras")
+	@PostMapping("/compras")
 	public String crearCompras(Model model, ComprasDto Compras) 
 	{
 		if(Compras.getIDCompras().longValue() == 0) {
@@ -42,7 +42,7 @@ public class ControladorCompras {
 			
 			if(ValidacionCrearCompras(model, Compras) == true) 
 			{
-				iCompras.nuevoCompra(Compras);				
+				iCompras.nuevaCompras(Compras);
 				model.addAttribute("compras", iCompras.ListarCompras());
 				model.addAttribute("mensaje", "Compra Creada con exito");			
 			}		
@@ -54,13 +54,13 @@ public class ControladorCompras {
 		
 		
 
-		return "Compras";
+		return "compras";
 	}
 
-	@GetMapping("/Compras/{CodigoCompra}")
+	@GetMapping("/Compras/{codigoCompra}")
 	public String actualizarCompras(Model model, @PathVariable(name = "CodigoCompra") Long CodigoCompra)
 	{
-		ComprasResponse ComprasEditar = iCompras.buscarCompra(CodigoCompra);
+		ComprasResponse ComprasEditar = iCompras.buscarCompraCodigo(CodigoCompra);
 		ValidacionActualizarCompras(model, ComprasEditar);
 		if(ValidacionActualizarCompras(model, ComprasEditar) == true)
 		{			
@@ -69,7 +69,7 @@ public class ControladorCompras {
 			model.addAttribute("mensaje", "");
 		}
 
-		return "Compras";
+		return "compras";
 		
 		// if (CodigoCompra != 0) {
 		// 	ComprasResponse ComprasEditar = iCompras.buscarCompra(CodigoCompra);
@@ -90,23 +90,25 @@ public class ControladorCompras {
 	// 	return "Compras";
 	// }
 	
-	@GetMapping("/BuscarComprasPorCodigo/{CodigoCompra}")
-	public String BuscarComprasPorCodigo(Model model, @PathVariable(name = "CodigoCompra") Long CodigoCompra)
+	@GetMapping("/BuscarComprasPorCodigo/{codigoCompra}")
+	public String BuscarComprasPorCodigo(Model model, @PathVariable(name = "codigoCompra") Long CodigoCompra)
 	{		
 		
 		if(ValidacionPorCodigo(model, CodigoCompra))
 		{	
-			ComprasResponse ComprasEditar = iCompras.buscarCompra(CodigoCompra);
+			ComprasResponse ComprasEditar = iCompras.buscarCompraCodigo(CodigoCompra);
 			
 			if(ComprasEditar == null) {
 				model.addAttribute("mensaje", "Compra Inexistente");
 			}
 			else {
-				model.addAttribute("comprasEditar", ComprasEditar);
+				model.addAttribute("compraEditar", ComprasEditar);
+				model.addAttribute("compras", iCompras.ListarCompras());
+
 			}	
 		}
 
-		return "Compras";
+		return "compras";
 	}
 	
 	private boolean ValidacionPorCodigo(Model model, Long CodigoCompra) 

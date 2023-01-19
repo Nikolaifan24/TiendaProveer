@@ -44,7 +44,7 @@ public class ContorladorCompras {
 	ComprasDto ComprasDto;
 	
 	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/Compras/{CodigoCompra}")
+	@GetMapping("/BuscarComprasPorCodigo/{CodigoCompra}")
 	public ComprasDto MostarComprasPorNombre(@PathVariable Long CodigoCompra) {
 		return iCompras.buscarComprasPorCodigoCompra(CodigoCompra);
 	}
