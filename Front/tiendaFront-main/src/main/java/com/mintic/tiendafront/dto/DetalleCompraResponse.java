@@ -7,6 +7,8 @@ public class DetalleCompraResponse {
     private ComprasResponse compras;
     
     private ProductoResponse productos;
+
+    private String nombreProducto;
  
     private Double ValorUnitario;
  
@@ -19,10 +21,11 @@ public class DetalleCompraResponse {
     }
 
 
-    public DetalleCompraResponse(Long ID, ComprasResponse compras, ProductoResponse productos, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
+    public DetalleCompraResponse(Long ID, ComprasResponse compras, ProductoResponse productos, String nombreProducto, Double ValorUnitario, int cantidadProducto, Double ValorTotal) {
         this.ID = ID;
         this.compras = compras;
         this.productos = productos;
+        this.nombreProducto = nombreProducto;
         this.ValorUnitario = ValorUnitario;
         this.cantidadProducto = cantidadProducto;
         this.ValorTotal = ValorTotal;
@@ -50,6 +53,14 @@ public class DetalleCompraResponse {
 
     public void setProductos(ProductoResponse productos) {
         this.productos = productos;
+    }
+
+    public String getNombreProducto() {
+        return this.nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     public Double getValorUnitario() {

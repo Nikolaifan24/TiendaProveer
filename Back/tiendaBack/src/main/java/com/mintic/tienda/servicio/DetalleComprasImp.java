@@ -92,6 +92,7 @@ public class DetalleComprasImp implements IDetalleComprasService {
 		int cantidadProducto = DetallecomprasDto.getCantidadProducto();
 		Double valortotal = valorunitario * cantidadProducto;
 		Long inventario = productos.getCantidadProducto()+ cantidadProducto;
+		Double TotalCompra = compras.getTotalCompra() + valortotal;
 		// Detallecompra detallerepetido= iDetallecompras.buscarDetalleCompraPorCodigoyNombreProducto(CodigoCompra, nombreProducto);
 		// int repetidos = iDetallecompras.ContadorRepetidosCompra(CodigoCompra, nombreProducto);
 		// System.out.println("este es el total de repetidos"+ repetidos);
@@ -118,11 +119,15 @@ public class DetalleComprasImp implements IDetalleComprasService {
 		if(inventario != null) {
 			productos.setCantidadProducto(inventario);
 		}
+		if(TotalCompra != null) {
+			compras.setTotalCompra(TotalCompra);
+		}	
 
 		// if(detallerepetido == Detallecompra){
 
 		// 	System.out.println("El detalle ya fue creado");
 		// }
+		iCompras.save(compras);
 		iProducto.save(productos);
 				
 		return Detallecompra;
@@ -137,8 +142,9 @@ public class DetalleComprasImp implements IDetalleComprasService {
 		int cantidadProducto = detalleDto.getCantidadProducto();
 		Double valortotal = valorunitario * cantidadProducto;
 		Long inventario = productos.getCantidadProducto()+ cantidadProducto;
+		Double TotalCompra = compras.getTotalCompra() + valortotal;
 
-		System.out.println("voy aca");
+		// System.out.println("voy aca");
 			
 		if(compras != null) {
 			detalle.setCompras(compras);
@@ -162,7 +168,10 @@ public class DetalleComprasImp implements IDetalleComprasService {
 			productos.setCantidadProducto(inventario);
 			
         }
-
+		if(TotalCompra != null) {
+			compras.setTotalCompra(TotalCompra);
+		}	
+		iCompras.save(compras);
 		iProducto.save(productos);
         iDetallecompras.save(detalle);
     }

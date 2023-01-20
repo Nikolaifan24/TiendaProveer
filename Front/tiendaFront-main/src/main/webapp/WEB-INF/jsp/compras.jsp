@@ -95,7 +95,7 @@
 						<label for="totalCompra"> Total de la Compra:</label>
 						<input type="text"
 							name="totalCompra" id="totalCompra"
-							value="" class="form-control" />
+							value="${compraEditar.totalCompra}" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="ivaCompra"> Iva de la compra: </label>
@@ -158,10 +158,7 @@
 			
 			</tbody>
 		</table>
-		
-		<div>Total Venta Sin Iva: ${totalVenta.precioTotalSinIva}</div>
-		<div>Iva Total: ${totalVenta.ivaTotal}</div>
-		<div>Total con Iva: ${totalVenta.precioTotal}</div>
+				
 	</div>
 	
 </body>

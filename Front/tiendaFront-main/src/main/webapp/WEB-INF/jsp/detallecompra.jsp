@@ -43,56 +43,58 @@
 		</div>
 	</nav>
 	<br>
-	<h1> Ventas</h1>
+	<h1> Compras</h1>
 
 	<div class="container overflow-hidden">
 
 		<div class=" col-xl-2 col-lg-3 col-md-4 col-sm-6" id="formulario">
-			<form method="post" action="/venta">
+			<form method="post" action="/detallecompra/${CodigoCompra}">
 					
 				<div class="container overflow-hidden">
 					<div class="form-group">
-						<label for="cedulaCliente"> cedulaCliente:</label>
-						<input type="text"
-							name="cedulaCliente" id="cedulaCliente"
-							value="${producto.cedulaCliente}" class="form-control" />
+						<label>Seleccionar una Accion</label>
+						 <select name="ID" id ="ID"
+								class="form-select">
+								<option name="ID" value=" ">Seleccionar</option>
+								<option name="ID" value="1">Editar Detalle</option>
+								<option name="ID" value="0">Crear un Detalle</option>
+		
+								
+							</select>
 					</div>
 					
 					
-					
+					<div class="form-group">
+						<label>Codigo de la compra:</label><input type="text" name="codigoCompra" id ="codigoCompra"
+							class="form-control" value="${CodigoCompra}" disabled="disabled" />
+					</div>
 				
 					<div class="form-group">
-						<label for="codigoProducto1"> codigo producto 1:</label>
+						<label for="nombreProducto"> Nombre del Producto:</label>
 						<input type="text"
-							name="codigoProducto1" id="codigoProducto1"
-							value="${producto.codigoProducto1}" class="form-control" />
-						<label for="cantidadProducto1"> cantidad producto 1:</label>
+							name="nombreProducto" id="nombreProducto"
+							value="${detallecompraEditar.nombreProducto}" class="form-control" />
+						<label for="codigoProducto"> Codigo del Producto</label>
 						<input type="text"
-							name="cantidadProducto1" id="cantidadProducto1"
-							value="" class="form-control" />
+							name="codigoProducto" id="codigoProducto"
+							value="${detallecompraEditar.productos.codigoProducto}" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label for="codigoProducto2"> codigo producto 2:</label>
+						<label for="cantidadProducto"> Cantidad del Producto:</label>
 						<input type="text"
-							name="codigoProducto2" id="codigoProducto2"
-							value="${producto.codigoProducto2}" class="form-control" />
-						<label for="cantidadProducto2"> cantidad producto 2:</label>
+							name="cantidadProducto" id="cantidadProducto"
+							value="${detallecompraEditar.cantidadProducto}" class="form-control" />
+						<label for="valorUnitario"> Valor Unitario:</label>
 						<input type="text"
-							name="cantidadProducto2" id="cantidadProducto2"
-							value="" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="codigoProducto3"> codigo producto 3:</label>
-						<input type="text"
-							name="codigoProducto3" id="codigoProducto3"
-							value="${producto.codigoProducto3}" class="form-control" />
-						<label for="cantidadProducto3"> cantidad producto 3:</label>
-						<input type="text"
-							name="cantidadProducto3" id="cantidadProducto3"
-							value="" class="form-control" />
+							name="valorUnitario" id="valorUnitario"
+							value="${detallecompraEditar.valorUnitario}" class="form-control" />
 					</div>
 					
-					<button type="submit" class="btn btn-secondary" href="/venta">Consultar</button>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="submit" class="btn btn-primary" formmethod="post" >Crear</button>
+						<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>
+						<!-- <button type="submit" class="btn btn-danger" formmethod="post" >Carga Datos</button> -->
+					</div>
 					
 				</div>
 				
@@ -123,13 +125,13 @@
 				
 					<tr style=" color: black"> 
 						
-						<td>${detallecompra.productos.nombreProducto}</td>
+						<td>${detallecompra.nombreProducto}</td>
 						<td>${detallecompra.productos.codigoProducto}</td>
 						<td>${detallecompra.cantidadProducto}</td>
 						<td>${detallecompra.valorUnitario}</td>
 						<td>${detallecompra.valorTotal}</td>
 						
-						<td><a class="btn btn-success" href="/detalleventa/${venta.fechaVenta}">Editar</a></td>
+						<td><a class="btn btn-success" href="/BuscarDetalle/${CodigoCompra}/${detallecompra.nombreProducto}">Editar</a></td>
 						
 						
 					</tr>
@@ -140,10 +142,21 @@
 			</tbody>
 		</table>
 		
-		<div>Total Venta Sin Iva: ${totalVenta.precioTotalSinIva}</div>
-		<div>Iva Total: ${totalVenta.ivaTotal}</div>
-		<div>Total con Iva: ${totalVenta.precioTotal}</div>
+		<div>Total Venta Sin Iva:   </div>
+		<div>Iva Total: ${valorTotal}   </div>
+		<div>Total con Iva: </div>
 	</div>
 	
 </body>
 </html>
+
+<script>
+	console.log(document.getElementById("codigoCompra").value);
+	function relocate_buscar()
+		{
+			var inputVal = document.getElementById("codigoCompra").value;
+			var inputVal1 = document.getElementById("nombreProducto").value;
+			location.href = "/detallecompra/" + inputVal + "/" + inputVal1; 
+			console.log("El valor es");
+		} 
+</script>
