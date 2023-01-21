@@ -30,4 +30,6 @@ public interface ICompra {
     DetalleCompraResponse nuevoCompraDetalle(Long CodigoCompra, DetalleCompraDto detalleCompraDto) ;
 
     DetalleCompraResponse ActualizarDetalledeCompra(Long CodigoCompra, String nombreProducto, DetalleCompraDto detalleCompraDto); 
+
+    Double totalCompra(Long CodigoCompra); 
 }

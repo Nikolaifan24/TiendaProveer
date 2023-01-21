@@ -142,9 +142,9 @@
 			</tbody>
 		</table>
 		
-		<div>Total Venta Sin Iva:   </div>
-		<div>Iva Total: ${valorTotal}   </div>
-		<div>Total con Iva: </div>
+		<div>Total Venta Sin Iva: ${TotalsinIVa}  </div>
+		<div>Iva Total: ${TotalIVa}  </div>
+		<div>Total con Iva: ${TotalCompra} </div>
 	</div>
 	
 </body>

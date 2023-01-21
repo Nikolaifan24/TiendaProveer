@@ -186,6 +186,7 @@ public class ControladorCompras {
 
 				iCompras.nuevoCompraDetalle(CodigoCompra, Detalle);
 				model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
+				model.addAttribute("TotalCompra", iCompras.totalCompra(CodigoCompra));
 				model.addAttribute("mensaje", "Compra Creada con exito");			
 			}		
 		}else {
@@ -330,6 +331,12 @@ public class ControladorCompras {
 	public String reportesDetallesCompras(Model model, @PathVariable(name = "CodigoCompra") Long CodigoCompra) {
 		model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
 		model.addAttribute("CodigoCompra", CodigoCompra);
+		model.addAttribute("TotalCompra", iCompras.totalCompra(CodigoCompra));
+		model.addAttribute("TotalIVa", iCompras.totalCompra(CodigoCompra)*.16);
+		model.addAttribute("TotalsinIVa", iCompras.totalCompra(CodigoCompra)-iCompras.totalCompra(CodigoCompra)*.16);
+		
+
+
 		if(model.getAttribute("detallecompra") == null) 
 		{
 			model.addAttribute("mensaje", "No hay datos para mostrar");

@@ -90,9 +90,14 @@ public class ContorladorCompras {
 		return idetallecompra.buscarDetallecompraCodigoyNombre(CodigoCompra, nombreProducto);
 	}
 
-    @PatchMapping("/Compras/cargar-productos/{CodigoCompra}")
-	public void CargardatosCompras(@PathVariable Long CodigoCompra, @RequestBody ComprasDto ComprasDto) {
-		iCompras.cargarCalculosdeCompras(CodigoCompra, ComprasDto);
+    // @PatchMapping("/Compras/cargar-productos/{CodigoCompra}")
+	// public void CargardatosCompras(@PathVariable Long CodigoCompra, @RequestBody ComprasDto ComprasDto) {
+	// 	iCompras.cargarCalculosdeCompras(CodigoCompra, ComprasDto);
+	// }
+
+	@GetMapping("/compras/detalle-total/codigo/{CodigoCompra}")
+	public Double TotaldemiCompra(@PathVariable Long CodigoCompra) {
+		return iCompras.cargarCalculosdeCompras(CodigoCompra);
 	}
 
 	@PostMapping("/crearCompras/detalles/{CodigoCompra}")

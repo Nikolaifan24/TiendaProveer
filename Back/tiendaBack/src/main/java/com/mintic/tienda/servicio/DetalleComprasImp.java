@@ -88,7 +88,7 @@ public class DetalleComprasImp implements IDetalleComprasService {
 		String nombreProducto = DetallecomprasDto.getNombreProducto();
         Compras compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
         Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
-		Double valorunitario = DetallecomprasDto.getValorUnitario();
+		Double valorunitario = productos.getPrecioCompra();
 		int cantidadProducto = DetallecomprasDto.getCantidadProducto();
 		Double valortotal = valorunitario * cantidadProducto;
 		Long inventario = productos.getCantidadProducto()+ cantidadProducto;
@@ -138,7 +138,7 @@ public class DetalleComprasImp implements IDetalleComprasService {
         String nombreProducto = detalleDto.getNombreProducto();
         Compras compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
         Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
-		Double valorunitario = detalleDto.getValorUnitario();
+		Double valorunitario = productos.getPrecioCompra();
 		int cantidadProducto = detalleDto.getCantidadProducto();
 		Double valortotal = valorunitario * cantidadProducto;
 		Long inventario = productos.getCantidadProducto()+ cantidadProducto;

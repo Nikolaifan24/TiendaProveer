@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.reactive.function.client.WebClient.ResponseSpec;
 
 import com.mintic.tiendafront.dto.ComprasDto;
 import com.mintic.tiendafront.dto.ComprasResponse;
@@ -217,4 +218,25 @@ public class CompraImp implements ICompra{
 			}
 		}
 
+
+		@Override
+		public Double totalCompra(Long CodigoCompra) {
+			try {
+				/*
+				* aqui nos conectamos al back  directamente al controlador donde estan las rutas 
+				* el back espera recibir un dto  por eso enviamos el dto login dto
+				* */
+
+				Mono<Double> response = webClient.build().get().uri(URL + "/compras/detalle-total/codigo/" + CodigoCompra).retrieve()
+				.bodyToMono(Double.class);
+				System.out.println(response.block() + "estoy saliendo del try");	
+				return response.block();
+
+							} catch (WebClientResponseException e) {
+				e.getMessage();
+				System.out.println("---->" + e.getMessage());
+				return 0.0;
+			}
+
+		}
 }
