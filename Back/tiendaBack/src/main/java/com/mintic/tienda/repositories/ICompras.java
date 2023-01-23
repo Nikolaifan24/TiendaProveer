@@ -27,5 +27,7 @@ public interface ICompras extends CrudRepository<Compras, Long>{
 	@Query(value = "SELECT SUM(d.ValorTotal) FROM detalle_compra d  INNER JOIN compras c on d.IDCompra = c.IDCompras WHERE c.CodigoCompra = :CodigoCompra", nativeQuery = true)
 	Double TotaldelaCompra(@Param("CodigoCompra") Long CodigoCompra);	
 	
+	@Query(value = "SELECT * from compras c ORDER BY c.FechaCompra DESC", nativeQuery = true)
+	List<Compras> ListarComprasenOrden();
 
 }

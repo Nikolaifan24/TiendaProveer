@@ -239,4 +239,18 @@ public class CompraImp implements ICompra{
 			}
 
 		}
+
+		@Override
+		public void borrarDetalleCompras(Long codigoCompra, String nombreProducto) {
+			try {
+
+				webClient.build().delete().uri(URL + "/eliminarDetalleCompra/" + codigoCompra + "/" +nombreProducto)
+						.retrieve().bodyToMono(Void.class).block();
+
+
+			} catch (WebClientResponseException e) {
+				e.getMessage();
+				System.out.println("---->" + e.getMessage());
+			}
+		}
 }

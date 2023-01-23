@@ -132,7 +132,7 @@
 						<td>${detallecompra.valorTotal}</td>
 						
 						<td><a class="btn btn-success" href="/BuscarDetalle/${CodigoCompra}/${detallecompra.nombreProducto}">Editar</a></td>
-						
+						<td><a class="btn btn-danger" href="/eliminarDetalleCompra/${CodigoCompra}/${detallecompra.nombreProducto}">Eliminar</a></td>
 						
 					</tr>
 				

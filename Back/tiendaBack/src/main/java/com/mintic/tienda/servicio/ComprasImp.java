@@ -45,7 +45,7 @@ public class ComprasImp implements IComprasService{
 		System.out.println("este es el proveedor " + proveedores);
 		Long codigo = ComprasDto.getCodigoCompra();
 		String FechaCompra = ComprasDto.getFechaCompra();
-        Double totalCompra = 0.0;
+        Double totalCompra = cargarCalculosdeCompras(codigo);
 		Double ivaCompra = ComprasDto.getIvaCompra()*totalCompra;
 		// Proveedores proveedores = iProveedor.buscarProveedorPorNit(nitProveedor);
 		// System.out.println("el Proveedor es aca" +ivaCompra);
@@ -84,7 +84,7 @@ public class ComprasImp implements IComprasService{
 		Long nitProveedor = ComprasDto.getNitProveedor();
 		Proveedores proveedores = iProveedor.buscarProveedorPorNit(nitProveedor);
 		System.out.println("este es el proveedor " + proveedores);
-        Double totalCompra = 0.0;
+        Double totalCompra = cargarCalculosdeCompras(codigo);
 		// System.out.println("El total actualizado es" +totalCompra);
 		Double ivaCompra = ComprasDto.getIvaCompra()*totalCompra;
 		
@@ -156,7 +156,7 @@ public class ComprasImp implements IComprasService{
 
 	@Override
 	public List<Compras> listaCompras() {
-		return (List<Compras>) iCompras.findAll();
+		return (List<Compras>) iCompras.ListarComprasenOrden();
 	}
 
 	@Override
@@ -265,6 +265,9 @@ public class ComprasImp implements IComprasService{
 	@Override
 	public Double cargarCalculosdeCompras(Long CodigoCompra) {
 		Double total = iCompras.TotaldelaCompra(CodigoCompra);
+		if (total == null){
+			total = 0.0;
+		}
 		return total;
 	}
 	

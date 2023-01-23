@@ -17,4 +17,6 @@ public interface IDetalleComprasService {
     void actualizarDetalleCompra(Long codigoCompra, String nombreProducto, DetallecompraDto detalleDto);
 
     List<Detallecompra> encontrarDetallecompraPorNombre(Long codigoCompra);
+
+    void eliminarDetalleCompra(Long codigoCompra, String nombreProdcuto); 
 }

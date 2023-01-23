@@ -345,6 +345,13 @@ public class ControladorCompras {
 		return "detallecompra";
 	}
 
+	@GetMapping("/eliminarDetalleCompra/{codigoCompra}/{nombreProducto}")
+	public String eliminarUsuario(Model model,@PathVariable(name = "codigoCompra") Long CodigoCompra, @PathVariable(name = "nombreProducto") String nombreProducto) {
 
+		iCompras.borrarDetalleCompras(CodigoCompra, nombreProducto);
+		model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
+			
+		return "detallecompra";
+	}
     
 }

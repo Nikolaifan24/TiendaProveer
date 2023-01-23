@@ -111,4 +111,9 @@ public class ContorladorCompras {
 		System.out.println("esta es la actualizacion de mi detalle "+ detallecompraDto);
 		idetallecompra.actualizarDetalleCompra(CodigoCompra, nombreProducto, detallecompraDto);
 	}
+
+	@DeleteMapping("/eliminarDetalleCompra/{codigoCompra}/{nombreProducto}")
+	public void eliminarDetalleCompra(@PathVariable Long codigoCompra, @PathVariable String nombreProducto) {
+		idetallecompra.eliminarDetalleCompra(codigoCompra, nombreProducto);
+	}
 }

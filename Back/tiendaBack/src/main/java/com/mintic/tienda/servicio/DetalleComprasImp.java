@@ -180,6 +180,7 @@ public class DetalleComprasImp implements IDetalleComprasService {
     public void actualizarDetalleCompra(Long codigoCompra, String nombreProducto, DetallecompraDto detalleDto){
 
         Detallecompra detalle = iDetallecompras.buscarDetalleCompraPorCodigoyNombreProducto(codigoCompra, nombreProducto);
+		volvervalor(detalle);
         updateDetalleCompra(codigoCompra,detalleDto, detalle);
     }
 
@@ -189,5 +190,35 @@ public class DetalleComprasImp implements IDetalleComprasService {
 		lista = iDetallecompras.buscarDetalleCompraPorCodigo(codigoCompra);
 		return lista;
 
+	}
+
+	@Override
+	public void eliminarDetalleCompra(Long codigoCompra, String nombreProdcuto) {
+		
+		Detallecompra detalle = iDetallecompras.buscarDetalleCompraPorCodigoyNombreProducto(codigoCompra, nombreProdcuto);
+		volvervalor(detalle);
+		volvervalorCompra(codigoCompra, detalle);
+		iDetallecompras.delete(detalle);
+		
+	}
+	private void volvervalor(Detallecompra detalle){
+
+		String nombreProducto = detalle.getNombreProducto();
+		int cantidadProducto = detalle.getCantidadProducto();
+		Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
+		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		if(inventario != null) {
+			productos.setCantidadProducto(inventario);
+		}
+		iProducto.save(productos);
+	}
+	private void volvervalorCompra(Long CodigoCompra, Detallecompra detalle){
+		Double total = detalle.getValorTotal();
+		Compras compras = iCompras.buscarComprasPorCodigo(CodigoCompra);
+		Double totalCompra = detalle.getCompras().getTotalCompra() - total;
+		if(totalCompra != null){
+			compras.setTotalCompra(totalCompra);
+		}
+		iCompras.save(compras);
 	}
 }
