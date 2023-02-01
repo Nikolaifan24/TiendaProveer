@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class ProveedorServicio implements IProveedor {
 
-	private static final String URL = "http://localhost:8091/tienda";
+	private static final String URL = "http://localhost:8090/tienda";
 
 	@Autowired
 	private WebClient.Builder webClient;
@@ -38,15 +38,14 @@ public class ProveedorServicio implements IProveedor {
 
 	@Override
 	public ProveedorResponse nuevoProveedor(ProveedoresDto proveedorDto) {
-			
-		
+
 		try {
-			
+
 			ProveedorResponse u = null;
 			Mono<ProveedorResponse> response = webClient.build().post().uri(URL + "/proveedor")
-					.body(Mono.just(proveedorDto), ProveedorResponse.class).retrieve().bodyToMono(ProveedorResponse.class);
-				
-			
+					.body(Mono.just(proveedorDto), ProveedorResponse.class).retrieve()
+					.bodyToMono(ProveedorResponse.class);
+
 			u = response.block();
 			return u;
 
@@ -57,18 +56,17 @@ public class ProveedorServicio implements IProveedor {
 		}
 
 	}
-	
+
 	@Override
 	public ProveedorResponse ActualizarProveedor(ProveedoresDto proveedorDto, Long nit) {
-			
-		
+
 		try {
-			
+
 			ProveedorResponse u = null;
 			Mono<ProveedorResponse> response = webClient.build().post().uri(URL + "/proveedor/" + nit)
-					.body(Mono.just(proveedorDto), ProveedorResponse.class).retrieve().bodyToMono(ProveedorResponse.class);
-				
-			
+					.body(Mono.just(proveedorDto), ProveedorResponse.class).retrieve()
+					.bodyToMono(ProveedorResponse.class);
+
 			u = response.block();
 			return u;
 
@@ -111,6 +109,5 @@ public class ProveedorServicio implements IProveedor {
 			return 0;
 		}
 	}
-
 
 }

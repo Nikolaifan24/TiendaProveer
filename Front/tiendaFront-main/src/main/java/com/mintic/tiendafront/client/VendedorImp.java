@@ -14,20 +14,20 @@ import com.mintic.tiendafront.dto.VendedorResponse;
 import reactor.core.publisher.Mono;
 
 @Service
-public class VendedorImp implements IVendedor{
+public class VendedorImp implements IVendedor {
 
-	private static final String URL = "http://localhost:8091/tienda";
+	private static final String URL = "http://localhost:8090/tienda";
 
-    @Autowired
+	@Autowired
 	private WebClient.Builder webClient;
 
-    @Override
+	@Override
 	public List<VendedorResponse> ListarVendedors() {
 
 		try {
 			Mono<List> response = webClient.build().get().uri(URL + "/Vendedoreslistar").retrieve()
 					.bodyToMono(List.class);
-			// System.out.println(response.block() + "estoy saliendo del try");	
+			// System.out.println(response.block() + "estoy saliendo del try");
 			return response.block();
 		} catch (Exception e) {
 
@@ -38,13 +38,12 @@ public class VendedorImp implements IVendedor{
 
 	@Override
 	public VendedorResponse nuevoVendedor(VendedorDto VendedorDto) {
-				
+
 		try {
 			VendedorResponse u = null;
 			Mono<VendedorResponse> response = webClient.build().post().uri(URL + "/Vendedor")
 					.body(Mono.just(VendedorDto), VendedorResponse.class).retrieve().bodyToMono(VendedorResponse.class);
-				
-			
+
 			u = response.block();
 			return u;
 
@@ -78,25 +77,21 @@ public class VendedorImp implements IVendedor{
 			webClient.build().delete().uri(URL + "/Vendedor/" + nombreVendedor)
 					.retrieve().bodyToMono(Void.class).block();
 
-
 		} catch (WebClientResponseException e) {
 			e.getMessage();
 			System.out.println("---->" + e.getMessage());
 		}
 	}
 
-
-	
 	@Override
 	public VendedorResponse ActualizarVendedor(VendedorDto VendedorDto, String nombreVendedor) {
-		
+
 		try {
-			
+
 			VendedorResponse u = null;
-			Mono<VendedorResponse> response = webClient.build().post().uri(URL + "/Vendedor" + nombreVendedor )
+			Mono<VendedorResponse> response = webClient.build().post().uri(URL + "/Vendedor" + nombreVendedor)
 					.body(Mono.just(VendedorDto), VendedorResponse.class).retrieve().bodyToMono(VendedorResponse.class);
-				
-			
+
 			u = response.block();
 			return u;
 
@@ -105,7 +100,6 @@ public class VendedorImp implements IVendedor{
 			System.out.println("---->" + e.getMessage());
 			return null;
 		}
-	}	
-
+	}
 
 }
