@@ -16,14 +16,6 @@ public class VentaResponse {
 
 	private Double ivaVenta;
 
-	private Double valorPago;
-
-	private Double saldo;
-
-	private String formaPago;
-	
-	private String FechaPago;
-
 	private String zonaventa;
 
 
@@ -31,7 +23,7 @@ public class VentaResponse {
 	}
 
 
-	public VentaResponse(Long ID, ClienteResponse clientes, VendedorResponse vendedor, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
+	public VentaResponse(Long ID, ClienteResponse clientes, VendedorResponse vendedor, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, String zonaventa) {
 		this.ID = ID;
 		this.clientes = clientes;
 		this.vendedor = vendedor;
@@ -39,10 +31,6 @@ public class VentaResponse {
 		this.FechaEntrega = FechaEntrega;
 		this.totalVenta = totalVenta;
 		this.ivaVenta = ivaVenta;
-		this.valorPago = valorPago;
-		this.saldo = saldo;
-		this.formaPago = formaPago;
-		this.FechaPago = FechaPago;
 		this.zonaventa = zonaventa;
 	}
 
@@ -102,38 +90,6 @@ public class VentaResponse {
 		this.ivaVenta = ivaVenta;
 	}
 
-	public Double getValorPago() {
-		return this.valorPago;
-	}
-
-	public void setValorPago(Double valorPago) {
-		this.valorPago = valorPago;
-	}
-
-	public Double getSaldo() {
-		return this.saldo;
-	}
-
-	public void setSaldo(Double saldo) {
-		this.saldo = saldo;
-	}
-
-	public String getFormaPago() {
-		return this.formaPago;
-	}
-
-	public void setFormaPago(String formaPago) {
-		this.formaPago = formaPago;
-	}
-
-	public String getFechaPago() {
-		return this.FechaPago;
-	}
-
-	public void setFechaPago(String FechaPago) {
-		this.FechaPago = FechaPago;
-	}
-
 	public String getZonaventa() {
 		return this.zonaventa;
 	}
@@ -142,5 +98,5 @@ public class VentaResponse {
 		this.zonaventa = zonaventa;
 	}
 
-
+	
 }

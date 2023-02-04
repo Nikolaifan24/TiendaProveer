@@ -48,18 +48,14 @@ public class Ventas {
 	private String FechaVenta;
 
 	private String FechaEntrega;
+
+	private Long documentoCliente;
+
+	private String nombreVendedor;
 	
 	private Double totalVenta;
 
 	private Double ivaVenta;
-
-	private Double valorPago;
-
-	private Double saldo;
-
-	private String formaPago;
-	
-	private String FechaPago;
 
 	private String zonaventa;
 
@@ -68,7 +64,7 @@ public class Ventas {
 	}
 
 
-	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, Double valorPago, Double saldo, String formaPago, String FechaPago, String zonaventa) {
+	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Long documentoCliente, String nombreVendedor, Double totalVenta, Double ivaVenta, String zonaventa) {
 		this.IDVenta = IDVenta;
 		this.carteras = carteras;
 		this.detalleventas = detalleventas;
@@ -78,12 +74,10 @@ public class Ventas {
 		this.CodigoVenta = CodigoVenta;
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
+		this.documentoCliente = documentoCliente;
+		this.nombreVendedor = nombreVendedor;
 		this.totalVenta = totalVenta;
 		this.ivaVenta = ivaVenta;
-		this.valorPago = valorPago;
-		this.saldo = saldo;
-		this.formaPago = formaPago;
-		this.FechaPago = FechaPago;
 		this.zonaventa = zonaventa;
 	}
 
@@ -159,6 +153,22 @@ public class Ventas {
 		this.FechaEntrega = FechaEntrega;
 	}
 
+	public Long getDocumentoCliente() {
+		return this.documentoCliente;
+	}
+
+	public void setDocumentoCliente(Long documentoCliente) {
+		this.documentoCliente = documentoCliente;
+	}
+
+	public String getNombreVendedor() {
+		return this.nombreVendedor;
+	}
+
+	public void setNombreVendedor(String nombreVendedor) {
+		this.nombreVendedor = nombreVendedor;
+	}
+
 	public Double getTotalVenta() {
 		return this.totalVenta;
 	}
@@ -175,38 +185,6 @@ public class Ventas {
 		this.ivaVenta = ivaVenta;
 	}
 
-	public Double getValorPago() {
-		return this.valorPago;
-	}
-
-	public void setValorPago(Double valorPago) {
-		this.valorPago = valorPago;
-	}
-
-	public Double getSaldo() {
-		return this.saldo;
-	}
-
-	public void setSaldo(Double saldo) {
-		this.saldo = saldo;
-	}
-
-	public String getFormaPago() {
-		return this.formaPago;
-	}
-
-	public void setFormaPago(String formaPago) {
-		this.formaPago = formaPago;
-	}
-
-	public String getFechaPago() {
-		return this.FechaPago;
-	}
-
-	public void setFechaPago(String FechaPago) {
-		this.FechaPago = FechaPago;
-	}
-
 	public String getZonaventa() {
 		return this.zonaventa;
 	}
@@ -215,5 +193,5 @@ public class Ventas {
 		this.zonaventa = zonaventa;
 	}
 
-		
+	
 }

@@ -42,12 +42,10 @@ public class VentasImp implements IVentasService{
 				venta.getCodigoVenta(),
 				venta.getFechaVenta(),
 				venta.getFechaEntrega(),
+				venta.getDocumentoCliente(),
+				venta.getNombreVendedor(),
 				venta.getTotalVenta(),
 				venta.getIvaVenta(),
-				venta.getValorPago(),
-				venta.getSaldo(),
-				venta.getFormaPago(),
-				venta.getFechaPago(),
 				venta.getZonaventa()
 		
 		);
@@ -60,15 +58,10 @@ public class VentasImp implements IVentasService{
 		Long id =  ventasDto.getIDVenta();
 		Clientes clientes = ventasDto.getClientes();
 		Vendedor vendedor = ventasDto.getVendedor();
-		Long codigoventa = ventasDto.getCodigoVenta();
 		Long CodigoVenta = ventasDto.getCodigoVenta();
 		String fechaEntrega = ventasDto.getFechaEntrega();
 		Double valorVenta = ventasDto.getTotalVenta();
 		Double ivaVenta = ventasDto.getIvaVenta();
-		Double valorPago = ventasDto.getValorPago();
-		Double saldo = ventasDto.getSaldo();
-		String formaPago = ventasDto.getFormaPago();
-		String fechaPago = ventasDto.getFechaPago();
 		String zonaVenta = ventasDto.getZonaventa();
 		
 		if(id != null) {
@@ -80,32 +73,17 @@ public class VentasImp implements IVentasService{
 		if(vendedor  != null) {
 			venta.setVendedor(vendedor);
 		}
-		if(codigoventa!= null) {
-			venta.setCodigoVenta(codigoventa);
-		}
 		if(CodigoVenta != null) {
-			venta.setCodigoVenta(null);
+			venta.setCodigoVenta(CodigoVenta);
 		}
 		if(fechaEntrega != null) {
-			venta.setFechaEntrega(null);
+			venta.setFechaEntrega(fechaEntrega);;
 		}
 		if(valorVenta != null) {
 			venta.setTotalVenta(ivaVenta);
 		}
 		if(ivaVenta != null) {
 			venta.setIvaVenta(ivaVenta);
-		}
-		if(valorPago != null) {
-			venta.setValorPago(valorPago);
-		}
-		if(saldo != null) {
-			venta.setSaldo(saldo);
-		}
-		if(formaPago != null) {
-			venta.setFormaPago(formaPago);
-		}
-		if(fechaPago != null) {
-			venta.setFechaPago(null);
 		}
 		if(zonaVenta != null) {
 			venta.setZonaventa(zonaVenta);
@@ -168,10 +146,6 @@ public class VentasImp implements IVentasService{
 		String fechaEntrega = ventasDto.getFechaEntrega();
 		Double valorVenta = ventasDto.getTotalVenta();
 		Double ivaVenta = ventasDto.getIvaVenta();
-		Double valorPago = ventasDto.getValorPago();
-		Double saldo = ventasDto.getSaldo();
-		String formaPago = ventasDto.getFormaPago();
-		String fechaPago = ventasDto.getFechaPago();
 		String zonaVenta = ventasDto.getZonaventa();
 		
 		if(id != null) {
@@ -197,18 +171,6 @@ public class VentasImp implements IVentasService{
 		}
 		if(ivaVenta != null) {
 			venta.setIvaVenta(ivaVenta);
-		}
-		if(valorPago != null) {
-			venta.setValorPago(valorPago);
-		}
-		if(saldo != null) {
-			venta.setSaldo(saldo);
-		}
-		if(formaPago != null) {
-			venta.setFormaPago(formaPago);
-		}
-		if(fechaPago != null) {
-			venta.setFechaPago(null);
 		}
 		if(zonaVenta != null) {
 			venta.setZonaventa(zonaVenta);
