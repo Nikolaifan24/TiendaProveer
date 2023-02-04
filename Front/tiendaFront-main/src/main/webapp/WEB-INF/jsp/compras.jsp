@@ -70,9 +70,9 @@
 					
 				
 					<div class="form-group">
-						<label for="Nit"> Nit proveedor</label>
+						<label for="nitProveedor"> Nit proveedor</label>
 						<input type="text"
-							name="nitProveedor" id="Nit"
+							name="nitProveedor" id="nitProveedor"
 							value="${compraEditar.nitProveedor}" class="form-control" />
 						<label for="codigoCompra"> Codigo de la Compra:</label>
 						<input type="text"
@@ -92,17 +92,17 @@
 						<input type="date"
 							name="fechaCompra" id="fechaCompra"
 							value="${compraEditar.fechaCompra}" class="form-control" />
-						<label for="totalCompra"> Total de la Compra:</label>
+						<!-- <label for="totalCompra"> Total de la Compra:</label>
 						<input type="text"
 							name="totalCompra" id="totalCompra"
-							value="${compraEditar.totalCompra}" class="form-control" />
+							value="${compraEditar.totalCompra}" class="form-control" /> -->
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="ivaCompra"> Iva de la compra: </label>
 						<input type="text"
 							name="ivaCompra" id="ivaCompra"
 							value="${compraEditar.ivaCompra}" class="form-control" />
-					</div>
+					</div> -->
 					<div class="btn-group" role="group" aria-label="Basic example">
 					<button type="submit" class="btn btn-primary" formmethod="post" >Crear</button>
 					<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>

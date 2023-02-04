@@ -68,12 +68,21 @@
 						<label>Codigo de la compra:</label><input type="text" name="codigoCompra" id ="codigoCompra"
 							class="form-control" value="${CodigoCompra}" disabled="disabled" />
 					</div>
-				
 					<div class="form-group">
-						<label for="nombreProducto"> Nombre del Producto:</label>
+						<label>Seleccionar un Producto</label>
+						 <select name="nombreProducto" id ="nombreProducto" class="form-select">
+							<!-- <option name="nombreProducto" value=" ">Seleccionar</option> -->
+							<c:forEach items="${productos}" var="productos">
+								<option name="nombreProducto" value="${productos.nombreProducto}">${productos.nombreProducto}</option>
+							</c:forEach>		
+								
+							</select>
+					</div>
+					<div class="form-group">
+						<!-- <label for="nombreProducto"> Nombre del Producto:</label>
 						<input type="text"
 							name="nombreProducto" id="nombreProducto"
-							value="${detallecompraEditar.nombreProducto}" class="form-control" />
+							value="${detallecompraEditar.nombreProducto}" class="form-control" /> -->
 						<label for="codigoProducto"> Codigo del Producto</label>
 						<input type="text"
 							name="codigoProducto" id="codigoProducto"
@@ -84,10 +93,10 @@
 						<input type="text"
 							name="cantidadProducto" id="cantidadProducto"
 							value="${detallecompraEditar.cantidadProducto}" class="form-control" />
-						<label for="valorUnitario"> Valor Unitario:</label>
+						<!-- <label for="valorUnitario"> Valor Unitario:</label>
 						<input type="text"
 							name="valorUnitario" id="valorUnitario"
-							value="${detallecompraEditar.valorUnitario}" class="form-control" />
+							value="${detallecompraEditar.valorUnitario}" class="form-control" /> -->
 					</div>
 					
 					<div class="btn-group" role="group" aria-label="Basic example">

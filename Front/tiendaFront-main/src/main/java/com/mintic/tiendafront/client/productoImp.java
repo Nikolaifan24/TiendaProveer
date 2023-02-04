@@ -26,8 +26,28 @@ public class productoImp implements IProducto {
 
 	@Override
 	public List<ProductoDto> getProductos() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Mono<List> response = webClient.build().get().uri(URL + "/Productoslistar").retrieve()
+					.bodyToMono(List.class);
+			// System.out.println(response.block() + "estoy saliendo del try");
+			return response.block();
+		} catch (Exception e) {
+
+			return null;
+		}
+	}
+
+	@Override
+	public List<ProductoDto> ListarProductosNombre(String nombreProducto) {
+		try {
+			Mono<List> response = webClient.build().get().uri(URL + "/Productos/" + nombreProducto).retrieve()
+					.bodyToMono(List.class);
+			// System.out.println(response.block() + "estoy saliendo del try");
+			return response.block();
+		} catch (Exception e) {
+
+			return null;
+		}
 	}
 
 	@Override

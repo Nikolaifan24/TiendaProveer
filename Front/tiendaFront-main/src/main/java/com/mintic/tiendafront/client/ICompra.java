@@ -11,27 +11,30 @@ public interface ICompra {
 
     List<ComprasResponse> ListarCompras();
 
-    ComprasResponse nuevaCompras(ComprasDto ComprasDto); 
+    ComprasResponse nuevaCompras(ComprasDto ComprasDto);
 
     ComprasResponse buscarCompraCodigo(Long CodigoCompra);
 
-    ComprasResponse ActualizarCompra(ComprasDto CompraDto, Long CodigoCompra) ;
+    ComprasResponse ActualizarCompra(ComprasDto CompraDto, Long CodigoCompra);
 
-    List<DetalleCompraResponse> ListarDetalleCompras(Long CodigoCompra) ;
+    List<DetalleCompraResponse> ListarDetalleCompras(Long CodigoCompra);
 
-    List<ComprasResponse> ListarComprasPorProducto(String nombreProducto); 
+    List<ComprasResponse> ListarComprasPorProducto(String nombreProducto);
 
-    List<ComprasResponse> ListarComprasPorProveedor(String nombreProveedor) ;
+    List<ComprasResponse> ListarComprasPorProveedor(String nombreProveedor);
 
-    DetalleCompraResponse DetalladeunaCompra(Long CodigoCompra, String nombreProducto) ; 
+    DetalleCompraResponse DetalladeunaCompra(Long CodigoCompra, String nombreProducto);
 
-    ComprasResponse CargarDatosdeunaCompra(ComprasDto ComprasDto, Long CodigoCompra); 
+    ComprasResponse CargarDatosdeunaCompra(ComprasDto ComprasDto, Long CodigoCompra);
 
-    DetalleCompraResponse nuevoCompraDetalle(Long CodigoCompra, DetalleCompraDto detalleCompraDto) ;
+    DetalleCompraResponse nuevoCompraDetalle(Long CodigoCompra, DetalleCompraDto detalleCompraDto);
 
-    DetalleCompraResponse ActualizarDetalledeCompra(Long CodigoCompra, String nombreProducto, DetalleCompraDto detalleCompraDto); 
+    DetalleCompraResponse ActualizarDetalledeCompra(Long CodigoCompra, String nombreProducto,
+            DetalleCompraDto detalleCompraDto);
 
-    Double totalCompra(Long CodigoCompra); 
+    Double totalCompra(Long CodigoCompra);
 
-    void borrarDetalleCompras(Long codigoCompra, String nombreProducto); 
+    void borrarDetalleCompras(Long codigoCompra, String nombreProducto);
+
+    Integer ContadordeCompras(Long CodigoCompra);
 }

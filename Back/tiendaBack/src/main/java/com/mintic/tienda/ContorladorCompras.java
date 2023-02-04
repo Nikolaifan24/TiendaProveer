@@ -30,46 +30,44 @@ import com.mintic.tienda.servicio.IComprasService;
 // import com.mintic.tienda.servicio.IComprasService;
 import com.mintic.tienda.servicio.IDetalleComprasService;
 
-
 @RestController
 public class ContorladorCompras {
 
-    @Autowired
+	@Autowired
 	IComprasService iCompras;
 
 	@Autowired
 	IDetalleComprasService idetallecompra;
 
-		
 	ComprasDto ComprasDto;
-	
+
 	@CrossOrigin(origins = "http://localhost:8091")
 	@GetMapping("/BuscarComprasPorCodigo/{CodigoCompra}")
 	public ComprasDto MostarComprasPorNombre(@PathVariable Long CodigoCompra) {
 		return iCompras.buscarComprasPorCodigoCompra(CodigoCompra);
 	}
-	
+
 	@PostMapping("/crearCompras")
 	public void crearCompras(@RequestBody ComprasDto ComprasDto) {
 		System.out.println("esta es mi compra");
 		iCompras.crearCompras(ComprasDto);
 	}
-	
+
 	@DeleteMapping("/eliminarCompras/{CodigoCompra}")
 	public void eliminarCompras(@PathVariable Long CodigoCompra) {
 		iCompras.eliminarCompras(CodigoCompra);
 	}
-	
+
 	@PatchMapping("/actualizarCompras/{CodigoCompra}")
 	public void actualizaralCompras(@PathVariable Long CodigoCompra, @RequestBody ComprasDto ComprasDto) {
 		iCompras.actualizarCompras(CodigoCompra, ComprasDto);
 	}
-	
+
 	@GetMapping("/Compraslistar")
 	public List<Compras> listaCompras() {
 		return iCompras.listaCompras();
 	}
-	
+
 	@GetMapping("/compraslistar/producto/{nombreProducto}")
 	public List<Compras> MostarProductoPornombreProducto(@PathVariable String nombreProducto) {
 		return iCompras.listaComprasPorProductos(nombreProducto);
@@ -86,13 +84,15 @@ public class ContorladorCompras {
 	}
 
 	@GetMapping("/compras/detalle/codigo/{CodigoCompra}/{nombreProducto}")
-	public DetallecompraDto MostarunDetalleCompras(@PathVariable Long CodigoCompra,@PathVariable String nombreProducto ) {
+	public DetallecompraDto MostarunDetalleCompras(@PathVariable Long CodigoCompra,
+			@PathVariable String nombreProducto) {
 		return idetallecompra.buscarDetallecompraCodigoyNombre(CodigoCompra, nombreProducto);
 	}
 
-    // @PatchMapping("/Compras/cargar-productos/{CodigoCompra}")
-	// public void CargardatosCompras(@PathVariable Long CodigoCompra, @RequestBody ComprasDto ComprasDto) {
-	// 	iCompras.cargarCalculosdeCompras(CodigoCompra, ComprasDto);
+	// @PatchMapping("/Compras/cargar-productos/{CodigoCompra}")
+	// public void CargardatosCompras(@PathVariable Long CodigoCompra, @RequestBody
+	// ComprasDto ComprasDto) {
+	// iCompras.cargarCalculosdeCompras(CodigoCompra, ComprasDto);
 	// }
 
 	@GetMapping("/compras/detalle-total/codigo/{CodigoCompra}")
@@ -102,18 +102,24 @@ public class ContorladorCompras {
 
 	@PostMapping("/crearCompras/detalles/{CodigoCompra}")
 	public void crearCompras(@PathVariable Long CodigoCompra, @RequestBody DetallecompraDto detallecompraDto) {
-		System.out.println("esta es el detalle de mi compra "+ detallecompraDto);
+		System.out.println("esta es el detalle de mi compra " + detallecompraDto);
 		idetallecompra.crearDetallecompras(CodigoCompra, detallecompraDto);
 	}
 
 	@PatchMapping("/Compras/actualizar/detalles/{CodigoCompra}/{nombreProducto}")
-	public void ActualizarDetalledeCompra(@PathVariable Long CodigoCompra, @PathVariable String nombreProducto, @RequestBody DetallecompraDto detallecompraDto) {
-		System.out.println("esta es la actualizacion de mi detalle "+ detallecompraDto);
+	public void ActualizarDetalledeCompra(@PathVariable Long CodigoCompra, @PathVariable String nombreProducto,
+			@RequestBody DetallecompraDto detallecompraDto) {
+		System.out.println("esta es la actualizacion de mi detalle " + detallecompraDto);
 		idetallecompra.actualizarDetalleCompra(CodigoCompra, nombreProducto, detallecompraDto);
 	}
 
 	@DeleteMapping("/eliminarDetalleCompra/{codigoCompra}/{nombreProducto}")
 	public void eliminarDetalleCompra(@PathVariable Long codigoCompra, @PathVariable String nombreProducto) {
 		idetallecompra.eliminarDetalleCompra(codigoCompra, nombreProducto);
+	}
+
+	@GetMapping("/compras/conteo/codigo/{CodigoCompra}")
+	public Integer ContarunaCompra(@PathVariable Long CodigoCompra) {
+		return iCompras.contadordeCompras(CodigoCompra);
 	}
 }

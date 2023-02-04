@@ -34,10 +34,12 @@ public class ComprasImp implements IComprasService {
 		System.out.println("este es el total de repetidos" + repetidos);
 		if (repetidos != 0) {
 			System.out.println("esta repetido un detalle por favor rectificar");
+			// return 0;
 		}
 		// while(Detallecompra.getCompras() != detallecompra2.getCompras()) {
 		else {
 			iCompras.save(buildCompras(ComprasDto));
+			// return 1;
 		}
 
 	}
@@ -55,7 +57,7 @@ public class ComprasImp implements IComprasService {
 		Long codigo = ComprasDto.getCodigoCompra();
 		String FechaCompra = ComprasDto.getFechaCompra();
 		Double totalCompra = cargarCalculosdeCompras(codigo);
-		Double ivaCompra = ComprasDto.getIvaCompra() * totalCompra;
+		Double ivaCompra = 0.19 * totalCompra;
 		// Proveedores proveedores = iProveedor.buscarProveedorPorNit(nitProveedor);
 		// System.out.println("el Proveedor es aca" +ivaCompra);
 		if (nitProveedor != null) {
@@ -270,4 +272,9 @@ public class ComprasImp implements IComprasService {
 		return total;
 	}
 
+	@Override
+	public int contadordeCompras(Long CodigoCompra) {
+		int conteo = iCompras.ContadorRepetidosdeunaCompra(CodigoCompra);
+		return conteo;
+	}
 }

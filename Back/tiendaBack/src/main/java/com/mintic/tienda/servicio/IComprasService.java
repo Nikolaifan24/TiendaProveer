@@ -10,16 +10,16 @@ import com.mintic.tienda.entities.Detallecompra;
 
 public interface IComprasService {
 
-    void crearCompras(ComprasDto ComprasDto) ;
+    void crearCompras(ComprasDto ComprasDto);
 
-    ComprasDto buscarComprasPorCodigoCompra(Long CodigoCompra) ;
+    ComprasDto buscarComprasPorCodigoCompra(Long CodigoCompra);
 
     void eliminarCompras(Long CodigoCompra);
 
-    void actualizarCompras(Long CodigoCompra, ComprasDto ComprasDto) ;
+    void actualizarCompras(Long CodigoCompra, ComprasDto ComprasDto);
 
     List<Compras> listaCompras();
-    
+
     List<Compras> listaComprasProveedor(String nombreProveedor);
 
     List<Compras> listarComprasPorProveedor(String nombreProveedor);
@@ -30,6 +30,8 @@ public interface IComprasService {
 
     DetallecompraDto realizarCalculoCompra(DetallecompraDto detallecompraDto);
 
-    Double cargarCalculosdeCompras(Long CodigoCompra); 
+    Double cargarCalculosdeCompras(Long CodigoCompra);
+
+    int contadordeCompras(Long CodigoCompra);
 
 }

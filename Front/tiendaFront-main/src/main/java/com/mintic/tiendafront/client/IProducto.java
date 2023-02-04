@@ -16,6 +16,8 @@ public interface IProducto {
 
 	public ProductoDto buscarProductoPorCodigo(Long codigoProducto);
 
+	List<ProductoDto> ListarProductosNombre(String  nombreProducto) ;
+
 	//public ProductoDto buscarProducto(Long codigoProducto);
 
 	//public int borrarProdcuto(Long codigoProducto);
