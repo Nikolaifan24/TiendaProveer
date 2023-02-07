@@ -17,6 +17,8 @@ import com.mintic.tienda.entities.Detalleventa;
 import com.mintic.tienda.entities.Vendedor;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
+import com.mintic.tienda.repositories.ICliente;
+import com.mintic.tienda.repositories.IVendedor;
 import com.mintic.tienda.repositories.IVenta;
 
 @Service
@@ -25,6 +27,12 @@ public class VentasImp implements IVentasService{
 	@Autowired
 	public
 	IVenta iVenta;
+
+	@Autowired
+	ICliente iCliente;
+
+	@Autowired
+	IVendedor iVendedor;
 
 	@Override
 	public List<Ventas> listaVentas() {
@@ -44,6 +52,7 @@ public class VentasImp implements IVentasService{
 				venta.getFechaEntrega(),
 				venta.getDocumentoCliente(),
 				venta.getNombreVendedor(),
+				venta.getDescuento(),
 				venta.getTotalVenta(),
 				venta.getIvaVenta(),
 				venta.getZonaventa()
@@ -55,17 +64,27 @@ public class VentasImp implements IVentasService{
 	private Ventas buildVenta(VentasDto ventasDto) {
 		Ventas venta = new Ventas();
 		
-		Long id =  ventasDto.getIDVenta();
-		Clientes clientes = ventasDto.getClientes();
-		Vendedor vendedor = ventasDto.getVendedor();
+		// Long id =  ventasDto.getIDVenta();
+		Long documentoCliente = ventasDto.getDocumentoCliente();
+		String nombreVendedor = ventasDto.getNombreVendedor();
+		Clientes clientes = iCliente.buscarClientePorCedula(documentoCliente);
+		Vendedor vendedor = iVendedor.buscarVendedorPorNombre(nombreVendedor);
 		Long CodigoVenta = ventasDto.getCodigoVenta();
+		String fechaVenta = ventasDto.getFechaVenta();
 		String fechaEntrega = ventasDto.getFechaEntrega();
-		Double valorVenta = ventasDto.getTotalVenta();
-		Double ivaVenta = ventasDto.getIvaVenta();
+		Integer descuento = ventasDto.getDescuento();
 		String zonaVenta = ventasDto.getZonaventa();
+		Double Total = cargarCalculosdeVenta(CodigoVenta);
+		Double iva = Total*0.19;
 		
-		if(id != null) {
-			venta.setIDVenta(id);
+		// if(id != null) {
+		// 	venta.setIDVenta(id);
+		// }
+		if(nombreVendedor  != null) {
+			venta.setNombreVendedor(nombreVendedor);
+		}
+		if(documentoCliente  != null) {
+			venta.setDocumentoCliente(documentoCliente);
 		}
 		if(clientes  != null) {
 			venta.setClientes(clientes);
@@ -77,16 +96,22 @@ public class VentasImp implements IVentasService{
 			venta.setCodigoVenta(CodigoVenta);
 		}
 		if(fechaEntrega != null) {
-			venta.setFechaEntrega(fechaEntrega);;
+			venta.setFechaEntrega(fechaEntrega);
 		}
-		if(valorVenta != null) {
-			venta.setTotalVenta(ivaVenta);
+		if(fechaVenta != null) {
+			venta.setFechaVenta(fechaVenta);
 		}
-		if(ivaVenta != null) {
-			venta.setIvaVenta(ivaVenta);
+		if(descuento != null) {
+			venta.setDescuento(descuento);
 		}
 		if(zonaVenta != null) {
 			venta.setZonaventa(zonaVenta);
+		}
+		if(Total != null) {
+			venta.setTotalVenta(Total);
+		}
+		if(iva != null) {
+			venta.setIvaVenta(iva);
 		}
 			
 		return venta;
@@ -97,8 +122,24 @@ public class VentasImp implements IVentasService{
 	
 	@Override
 	public void crearVentas(VentasDto VentasDto) {
-		// TODO Auto-generated method stub
-		iVenta.save(buildVenta(VentasDto));
+		
+		Ventas ventas = buildVenta(VentasDto);
+		Long Codigo = ventas.getCodigoVenta();
+		int repetidos = iVenta.ContadorRepetidosdeunaVenta(Codigo);
+		System.out.println("este es el total de repetidos" + repetidos);
+		if (repetidos != 0) {
+			System.out.println("esta repetido un detalle por favor rectificar");
+			// return 0;
+		}
+		// while(Detallecompra.getVentas() != detallecompra2.getVentas()) {
+		else {
+			iVenta.save(buildVenta(VentasDto));
+			// return 1;
+		}
+	
+
+
+		// iVenta.save(buildVenta(VentasDto));
 		
 	}
 
@@ -137,19 +178,26 @@ public class VentasImp implements IVentasService{
 	private void upStringVentas(VentasDto ventasDto, Ventas ventas) {
 
 		Ventas venta = new Ventas();
-		
-		Long id =  ventasDto.getIDVenta();
-		Clientes clientes = ventasDto.getClientes();
-		Vendedor vendedor = ventasDto.getVendedor();
-		Long codigoventa = ventasDto.getCodigoVenta();
+		Long documentoCliente = ventasDto.getDocumentoCliente();
+		String nombreVendedor = ventasDto.getNombreVendedor();
+		Clientes clientes = iCliente.buscarClientePorCedula(documentoCliente);
+		Vendedor vendedor = iVendedor.buscarVendedorPorNombre(nombreVendedor);
 		Long CodigoVenta = ventasDto.getCodigoVenta();
+		String fechaVenta = ventasDto.getFechaVenta();
 		String fechaEntrega = ventasDto.getFechaEntrega();
-		Double valorVenta = ventasDto.getTotalVenta();
-		Double ivaVenta = ventasDto.getIvaVenta();
+		Integer descuento = ventasDto.getDescuento();
 		String zonaVenta = ventasDto.getZonaventa();
+		Double Total = cargarCalculosdeVenta(CodigoVenta);
+		Double iva = Total*0.19;
 		
-		if(id != null) {
-			venta.setIDVenta(id);
+		// if(id != null) {
+		// 	venta.setIDVenta(id);
+		// }
+		if(nombreVendedor  != null) {
+			venta.setNombreVendedor(nombreVendedor);
+		}
+		if(documentoCliente  != null) {
+			venta.setDocumentoCliente(documentoCliente);
 		}
 		if(clientes  != null) {
 			venta.setClientes(clientes);
@@ -157,29 +205,33 @@ public class VentasImp implements IVentasService{
 		if(vendedor  != null) {
 			venta.setVendedor(vendedor);
 		}
-		if(codigoventa!= null) {
-			venta.setCodigoVenta(codigoventa);
-		}
 		if(CodigoVenta != null) {
-			venta.setCodigoVenta(null);
+			venta.setCodigoVenta(CodigoVenta);
 		}
 		if(fechaEntrega != null) {
-			venta.setFechaEntrega(null);
+			venta.setFechaEntrega(fechaEntrega);
 		}
-		if(valorVenta != null) {
-			venta.setTotalVenta(ivaVenta);
+		if(fechaVenta != null) {
+			venta.setFechaVenta(fechaVenta);
 		}
-		if(ivaVenta != null) {
-			venta.setIvaVenta(ivaVenta);
+		if(descuento != null) {
+			venta.setDescuento(descuento);
 		}
 		if(zonaVenta != null) {
 			venta.setZonaventa(zonaVenta);
 		}
+		if(Total != null) {
+			venta.setTotalVenta(Total);
+		}
+		if(iva != null) {
+			venta.setIvaVenta(iva);
+		}
+		iVenta.save(venta);
 	}
 
 
 	@Override
-	public List<Ventas> listaVentasProveedor(String nombreVendedor) {
+	public List<Ventas> listaVentasporVendedor(String nombreVendedor) {
 		// TODO Auto-generated method stub
 		List<Ventas> lista = new ArrayList<Ventas>();
 		
@@ -211,50 +263,15 @@ public class VentasImp implements IVentasService{
 	}
 
 	@Override
-	public DetalleventaDto realizarCalculoventa(DetalleventaDto detalleventaDto) {
-		// TODO Auto-generated method stub
-
-		Double precioProducto = detalleventaDto.getPrecioProducto();
-		Integer cantidadProducto = detalleventaDto.getCantidad();
-		Double valorProductos = precioProducto * cantidadProducto;
-		
-		if(cantidadProducto != null) {
-			detalleventaDto.setCantidad(cantidadProducto);
+	public Double cargarCalculosdeVenta(Long CodigoVenta) {
+		Double total = iVenta.TotaldelaVenta(CodigoVenta);
+		if (total == null) {
+			total = 0.0;
 		}
-		if(precioProducto != null) {
-			detalleventaDto.setPrecioProducto(precioProducto);
-		}
-		if(valorProductos != null) {
-			detalleventaDto.setTotalDetalle(valorProductos);
-		}
-		
-		
-		return detalleventaDto;
-		// return null;
-	}
-
-	private void cargarCalculodeunaVenta(VentasDto ventasDto, Ventas ventas){
-
-
-		Long codigodeVenta = ventasDto.getCodigoVenta();
-		Double totalventa = ventasDto.getTotalVenta();
-		Double ivaventa = ventasDto.getTotalVenta()* 0.16;
-
-		if(codigodeVenta != null){
-			ventas.setCodigoVenta(codigodeVenta);
-		}
-		if(totalventa != null){
-			ventas.setTotalVenta(totalventa);
-		}
-		if(ivaventa != null){
-			ventas.setIvaVenta(ivaventa);
-		}
+		return total;
 	}
 	
-	@Override
-	public void cargarCalculosdeVentas(Long CodigoCompra, VentasDto VentasDto) {
-		Ventas Ventas = iVenta.buscarVentasPorCodigo(CodigoCompra);
-		cargarCalculodeunaVenta(VentasDto, Ventas) ;
+	
 
-	}
+	
 }

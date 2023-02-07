@@ -18,6 +18,8 @@ public interface IDetalleVentasService {
 
     List<Detalleventa> ListarDetalleventasPorCodigo(Long Codigoventa)  ;
 
+    void eliminarDetalleVenta(Long codigoVenta, String nombreProdcuto); 
+
     // Detalleventa buscarDetalleventaPorCodigoyNombreProducto(Long codigoVenta, String nombreProducto);
 
 }

@@ -65,21 +65,31 @@ public class DetalleVentasImp implements IDetalleVentasService{
 
 	@Override
 	public void crearDetalleventas(Long CodigoVenta, DetalleventaDto DetalleventasDto){
-		iDetalleVentas.save(buildDetalleVentas(CodigoVenta, DetalleventasDto));
+		Detalleventa detalle = buildDetalleVentas(CodigoVenta, DetalleventasDto);
+		Ventas ventas = detalle.getVentas();
+		Productos productos = detalle.getProductos();
+		String nombreProducto = detalle.getNombreProducto();
+		int repetidos = iDetalleVentas.ContadorRepetidosventa(CodigoVenta, nombreProducto);
+		if (repetidos != 0){
+
+		}
+
+		else{
+			iVenta.save(ventas);
+			iDetalleVentas.save(detalle);
+			iProducto.save(productos);
+		}
 		
 	}
 
 	private Detalleventa buildDetalleVentas(Long CodigoVenta, DetalleventaDto detalleVentasDto) {
 		Detalleventa detalleVenta = new Detalleventa();
 		
-		// Long id = detalleVentasDto.getID();
-		// Long idVenta = detalleVentasDto.getIDVenta();
-		// Long idProducto = detalleVentasDto.getIDProducto();
 		String nombredelProducto = detalleVentasDto.getNombreProducto();
 		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoVenta);
 		Productos productos = iProducto.buscarProductoPorNombre(nombredelProducto);
 		int cantidadProducto = detalleVentasDto.getCantidad();
-		Double precioProducto = detalleVentasDto.getPrecioProducto();
+		Double precioProducto = productos.getPrecioVenta();
 		Double totalDetalle = cantidadProducto*precioProducto;
 		System.out.println("el total de mi detalle es:  "+totalDetalle);
 		Long inventario = productos.getCantidadProducto()- cantidadProducto;
@@ -105,7 +115,6 @@ public class DetalleVentasImp implements IDetalleVentasService{
 			productos.setCantidadProducto(inventario);
 		}
 
-		iProducto.save(productos);
 
 		return detalleVenta;
 		
@@ -116,33 +125,44 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		// TODO Auto-generated method stub
 
 		Detalleventa detalle = iDetalleVentas.buscarDetalleventaPorCodigoyNombreProducto(codigoventa, nombreProducto);
+		volvervalor(detalle);
+		volvervalorCompra(codigoventa, detalle);
         updateDetalleventa(codigoventa, detalleDto, detalle);
 	}
 
-	private void updateDetalleventa (Long CodigoVenta, DetalleventaDto detalleDto, Detalleventa detalle){
-        String nombredelProducto = detalleDto.getNombreProducto();
+	private void updateDetalleventa (Long CodigoVenta, DetalleventaDto detalleVentasDto, Detalleventa detalleVenta){
+        String nombredelProducto = detalleVentasDto.getNombreProducto();
+		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoVenta);
 		Productos productos = iProducto.buscarProductoPorNombre(nombredelProducto);
-		Integer cantidadProducto = detalleDto.getCantidad();
-		Double precioProducto = detalleDto.getPrecioProducto();
+		int cantidadProducto = detalleVentasDto.getCantidad();
+		Double precioProducto = productos.getPrecioVenta();
 		Double totalDetalle = cantidadProducto*precioProducto;
-		Long inventario = productos.getCantidadProducto()-cantidadProducto;	
-		if (productos != null){
-			detalle.setProductos(productos);
+		System.out.println("el total de mi detalle es:  "+totalDetalle);
+		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		if (nombredelProducto != null){
+			detalleVenta.setNombreProducto(nombredelProducto);
 		}
-		if(cantidadProducto != null) {
-			detalle.setCantidadProducto(cantidadProducto);;
+		if (ventas != null){
+			detalleVenta.setVentas(ventas);
+		}
+		if (productos != null){
+			detalleVenta.setProductos(productos);
+		}
+		if(cantidadProducto != 0) {
+			detalleVenta.setCantidadProducto(cantidadProducto);;
 		}
 		if(precioProducto != null) {
-			detalle.setPrecioProducto(precioProducto);
+			detalleVenta.setPrecioProducto(precioProducto);
 		}
 		if(totalDetalle != null) {
-			detalle.getTotalDetalle();
+			detalleVenta.setTotalDetalle(totalDetalle);
 		}
 		if(inventario != null) {
 			productos.setCantidadProducto(inventario);
 		}
+		iVenta.save(ventas);
 		iProducto.save(productos);
-        iDetalleVentas.save(detalle);
+        iDetalleVentas.save(detalleVenta);
     }
 
 	
@@ -158,8 +178,37 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		
 		return (lista) ;
 	}
-	
 
+	@Override
+	public void eliminarDetalleVenta(Long codigoVenta, String nombreProdcuto) {
+		
+		Detalleventa detalle = iDetalleVentas.buscarDetalleventaPorCodigoyNombreProducto(codigoVenta, nombreProdcuto);
+		volvervalor(detalle);
+		volvervalorCompra(codigoVenta, detalle);
+		iDetalleVentas.delete(detalle);
+		
+	}
+	
+	private void volvervalor(Detalleventa detalle){
+
+		String nombreProducto = detalle.getNombreProducto();
+		int cantidadProducto = detalle.getCantidadProducto();
+		Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
+		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		if(inventario != null) {
+			productos.setCantidadProducto(inventario);
+		}
+		iProducto.save(productos);
+	}
+	private void volvervalorCompra(Long CodigoCompra, Detalleventa detalle){
+		Double total = detalle.getTotalDetalle();
+		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoCompra);
+		Double totalVenta = detalle.getVentas().getTotalVenta() - total;
+		if(totalVenta != null){
+			ventas.setTotalVenta(totalVenta);
+		}
+		iVenta.save(ventas);
+	}
 	
 	
 }

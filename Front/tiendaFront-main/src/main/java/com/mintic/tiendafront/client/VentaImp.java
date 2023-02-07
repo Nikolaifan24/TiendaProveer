@@ -34,30 +34,6 @@ public class VentaImp implements IVenta {
 	IVenta iVenta;
 
 	@Override
-	public ProductoDto BuscarProductopornombre(String nombreProducto) {
-
-		try {
-			Mono<ProductoDto> response = webClient.build().get().uri(URL + "/producto/" + nombreProducto)
-					.retrieve().bodyToMono(ProductoDto.class);
-			return response.block();
-
-		} catch (WebClientResponseException e) {
-			e.getMessage();
-			System.out.println("---->" + e.getMessage());
-			return null;
-		}
-
-	}
-
-	private Double getTotalSinIva(Map<ProductoDto, Integer> productosMap) {
-		Double totalSinIva = 0.0;
-		for (Entry<ProductoDto, Integer> producto : productosMap.entrySet()) {
-			totalSinIva += producto.getKey().getPrecioVenta();
-		}
-		return totalSinIva;
-	}
-
-	@Override
 	public List<VentaResponse> ListarVentas() {
 		try {
 			Mono<List> response = webClient.build().get().uri(URL + "/Ventaslistar").retrieve()
@@ -73,12 +49,6 @@ public class VentaImp implements IVenta {
 	@Override
 	public void guardarVenta(VentaDto totalVenta, Long idUsuario, ClienteResponse cliente) {
 		DetalleVentaDto resultadoVenta = new DetalleVentaDto();
-
-		// resultadoVenta.setCodigoVenta((long) Math.random());
-
-		// resultadoVenta.setIvaVenta(totalVenta.getTotalVenta());
-		// resultadoVenta.getTotalDetalle(totalVenta.getTotalVenta());
-		// resultadoVenta.setTotalVenta(totalVenta.getPrecioTotal());
 
 		try {
 			webClient.build().post().uri(URL + "/guardarVenta")
@@ -107,4 +77,5 @@ public class VentaImp implements IVenta {
 
 	}
 
+	
 }

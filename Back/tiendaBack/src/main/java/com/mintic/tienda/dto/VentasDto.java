@@ -21,6 +21,8 @@ public class VentasDto {
 	private Long documentoCliente;
 
 	private String nombreVendedor;
+
+	private int descuento;
 	
 	private Double totalVenta;
 
@@ -31,7 +33,7 @@ public class VentasDto {
 	public VentasDto() {
 	}
 
-	public VentasDto(Long IDVenta, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Long documentoCliente, String nombreVendedor, Double totalVenta, Double ivaVenta, String zonaventa) {
+	public VentasDto(Long IDVenta, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Long documentoCliente, String nombreVendedor, int descuento, Double totalVenta, Double ivaVenta, String zonaventa) {
 		this.IDVenta = IDVenta;
 		this.clientes = clientes;
 		this.vendedor = vendedor;
@@ -40,6 +42,7 @@ public class VentasDto {
 		this.FechaEntrega = FechaEntrega;
 		this.documentoCliente = documentoCliente;
 		this.nombreVendedor = nombreVendedor;
+		this.descuento = descuento;
 		this.totalVenta = totalVenta;
 		this.ivaVenta = ivaVenta;
 		this.zonaventa = zonaventa;
@@ -107,6 +110,14 @@ public class VentasDto {
 
 	public void setNombreVendedor(String nombreVendedor) {
 		this.nombreVendedor = nombreVendedor;
+	}
+
+	public int getDescuento() {
+		return this.descuento;
+	}
+
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
 	}
 
 	public Double getTotalVenta() {

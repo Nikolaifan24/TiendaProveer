@@ -8,9 +8,17 @@ public class VentaResponse {
 	
 	private VendedorResponse vendedor;
 
+	private Long CodigoVenta;
+
 	private String FechaVenta;
 
 	private String FechaEntrega;
+
+	private Long documentoCliente;
+
+	private String nombreVendedor;
+
+	private int descuento;
 	
 	private Double totalVenta;
 
@@ -23,12 +31,16 @@ public class VentaResponse {
 	}
 
 
-	public VentaResponse(Long ID, ClienteResponse clientes, VendedorResponse vendedor, String FechaVenta, String FechaEntrega, Double totalVenta, Double ivaVenta, String zonaventa) {
+	public VentaResponse(Long ID, ClienteResponse clientes, VendedorResponse vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Long documentoCliente, String nombreVendedor, int descuento, Double totalVenta, Double ivaVenta, String zonaventa) {
 		this.ID = ID;
 		this.clientes = clientes;
 		this.vendedor = vendedor;
+		this.CodigoVenta = CodigoVenta;
 		this.FechaVenta = FechaVenta;
 		this.FechaEntrega = FechaEntrega;
+		this.documentoCliente = documentoCliente;
+		this.nombreVendedor = nombreVendedor;
+		this.descuento = descuento;
 		this.totalVenta = totalVenta;
 		this.ivaVenta = ivaVenta;
 		this.zonaventa = zonaventa;
@@ -58,6 +70,14 @@ public class VentaResponse {
 		this.vendedor = vendedor;
 	}
 
+	public Long getCodigoVenta() {
+		return this.CodigoVenta;
+	}
+
+	public void setCodigoVenta(Long CodigoVenta) {
+		this.CodigoVenta = CodigoVenta;
+	}
+
 	public String getFechaVenta() {
 		return this.FechaVenta;
 	}
@@ -72,6 +92,30 @@ public class VentaResponse {
 
 	public void setFechaEntrega(String FechaEntrega) {
 		this.FechaEntrega = FechaEntrega;
+	}
+
+	public Long getDocumentoCliente() {
+		return this.documentoCliente;
+	}
+
+	public void setDocumentoCliente(Long documentoCliente) {
+		this.documentoCliente = documentoCliente;
+	}
+
+	public String getNombreVendedor() {
+		return this.nombreVendedor;
+	}
+
+	public void setNombreVendedor(String nombreVendedor) {
+		this.nombreVendedor = nombreVendedor;
+	}
+
+	public int getDescuento() {
+		return this.descuento;
+	}
+
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
 	}
 
 	public Double getTotalVenta() {
@@ -98,5 +142,4 @@ public class VentaResponse {
 		this.zonaventa = zonaventa;
 	}
 
-	
 }

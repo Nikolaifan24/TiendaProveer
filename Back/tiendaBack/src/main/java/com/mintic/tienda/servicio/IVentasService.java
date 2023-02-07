@@ -22,16 +22,14 @@ public interface IVentasService {
 
     List<Ventas> listaVentas();
     
-    List<Ventas> listaVentasProveedor(String nombreProveedor);
-
-    List<Ventas> listarVentasPorProveedor(String nombreProveedor);
+     List<Ventas> listarVentasPorProveedor(String nombreProveedor);
 
     List<Ventas> listaVentasPorProductos(String nombreProducto);
 
     List<Detalleventa> listaVentasPordetalles(Long Codigoventa);
 
-    DetalleventaDto realizarCalculoventa(DetalleventaDto detalleventaDto);
-
-    void cargarCalculosdeVentas(Long CodigoCompra, VentasDto VentasDto);
+    List<Ventas> listaVentasporVendedor(String nombreVendedor);
+    
+    Double cargarCalculosdeVenta(Long CodigoVenta) ;
 
 }

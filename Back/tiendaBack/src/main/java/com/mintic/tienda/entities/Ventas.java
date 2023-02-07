@@ -52,7 +52,9 @@ public class Ventas {
 	private Long documentoCliente;
 
 	private String nombreVendedor;
-	
+
+	private int descuento;
+
 	private Double totalVenta;
 
 	private Double ivaVenta;
@@ -64,7 +66,7 @@ public class Ventas {
 	}
 
 
-	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Long documentoCliente, String nombreVendedor, Double totalVenta, Double ivaVenta, String zonaventa) {
+	public Ventas(Long IDVenta, List<Cartera> carteras, List<Detalleventa> detalleventas, List<Pagos> pagos, Clientes clientes, Vendedor vendedor, Long CodigoVenta, String FechaVenta, String FechaEntrega, Long documentoCliente, String nombreVendedor, int descuento, Double totalVenta, Double ivaVenta, String zonaventa) {
 		this.IDVenta = IDVenta;
 		this.carteras = carteras;
 		this.detalleventas = detalleventas;
@@ -76,6 +78,7 @@ public class Ventas {
 		this.FechaEntrega = FechaEntrega;
 		this.documentoCliente = documentoCliente;
 		this.nombreVendedor = nombreVendedor;
+		this.descuento = descuento;
 		this.totalVenta = totalVenta;
 		this.ivaVenta = ivaVenta;
 		this.zonaventa = zonaventa;
@@ -169,6 +172,14 @@ public class Ventas {
 		this.nombreVendedor = nombreVendedor;
 	}
 
+	public int getDescuento() {
+		return this.descuento;
+	}
+
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
+	}
+
 	public Double getTotalVenta() {
 		return this.totalVenta;
 	}
@@ -193,5 +204,5 @@ public class Ventas {
 		this.zonaventa = zonaventa;
 	}
 
-	
+		
 }

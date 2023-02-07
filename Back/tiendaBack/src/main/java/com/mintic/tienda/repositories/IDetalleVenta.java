@@ -16,4 +16,6 @@ public interface IDetalleVenta extends CrudRepository<Detalleventa, Long> {
     @Query(value = "SELECT * FROM detalle_Venta d INNER JOIN ventas c ON d.IDVenta = c.IDventa INNER JOIN productos p on d.IDProducto = p.IDProductos WHERE c.CodigoVenta = :CodigoVenta AND p.nombreProducto = :nombreProducto", nativeQuery = true)
 	Detalleventa buscarDetalleventaPorCodigoyNombreProducto(@Param("CodigoVenta") Long CodigoVenta, @Param("nombreProducto") String nombreProducto);
 
+    @Query(value = "select count(*) from detalle_venta d INNER JOIN productos p on d.IDProducto= p.IDProductos INNER JOIN ventas v on d.IDventa = v.IDVenta WHERE v.CodigoVenta = :CodigoVenta AND p.nombreProducto = :nombreProducto ", nativeQuery = true)
+    Integer ContadorRepetidosventa(@Param("CodigoVenta") Long CodigoVenta, @Param("nombreProducto") String nombreProducto);
 }

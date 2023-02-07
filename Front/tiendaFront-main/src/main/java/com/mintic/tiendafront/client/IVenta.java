@@ -14,10 +14,6 @@ import com.mintic.tiendafront.dto.DetalleVentaResponse;
 
 public interface IVenta {
 	
-	ProductoDto BuscarProductopornombre (String nombreProducto); 
-
-	// public VentaDto calcularTotalVenta(Map<ProductoDto, Integer> productosMap);
-
 	List<VentaResponse> ListarVentas(); 
 
 	public void guardarVenta(VentaDto totalVenta, Long idUsuario, ClienteResponse cliente);
