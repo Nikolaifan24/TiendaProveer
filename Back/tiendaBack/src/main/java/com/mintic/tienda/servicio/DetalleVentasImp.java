@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 // import com.mintic.tienda.dto.ClienteDto;
 import com.mintic.tienda.dto.DetalleventaDto;
+import com.mintic.tienda.entities.Cartera;
 // import com.mintic.tienda.dto.ProductosDto;
 import com.mintic.tienda.entities.Detalleventa;
 import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
+import com.mintic.tienda.repositories.ICartera;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.repositories.IDetalleVenta;
 import com.mintic.tienda.repositories.IProducto;
@@ -28,6 +30,9 @@ public class DetalleVentasImp implements IDetalleVentasService{
 
 	@Autowired
 	IVenta iVenta;
+
+	@Autowired
+	ICartera iCartera;
 
 
 	@Override
@@ -76,23 +81,37 @@ public class DetalleVentasImp implements IDetalleVentasService{
 
 		else{
 			iVenta.save(ventas);
+			CreacionAlternativa(CodigoVenta);
 			iDetalleVentas.save(detalle);
 			iProducto.save(productos);
+			
 		}
 		
 	}
 
+	private void CreacionAlternativa(Long CodigoVenta){
+		Cartera cartera = iCartera.buscarCarteraPorCodigoVenta(CodigoVenta);
+		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoVenta);
+		Double TotalVenta = ventas.getTotalVenta();
+		if (TotalVenta != null){
+			cartera.setSaldo(TotalVenta);
+		}
+		iCartera.save(cartera);
+	}
+
 	private Detalleventa buildDetalleVentas(Long CodigoVenta, DetalleventaDto detalleVentasDto) {
 		Detalleventa detalleVenta = new Detalleventa();
-		
+		Cartera cartera = new Cartera();
 		String nombredelProducto = detalleVentasDto.getNombreProducto();
 		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoVenta);
 		Productos productos = iProducto.buscarProductoPorNombre(nombredelProducto);
 		int cantidadProducto = detalleVentasDto.getCantidad();
 		Double precioProducto = productos.getPrecioVenta();
 		Double totalDetalle = cantidadProducto*precioProducto;
-		System.out.println("el total de mi detalle es:  "+totalDetalle);
+		Double TotalVenta = ventas.getTotalVenta() + totalDetalle;
 		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+
+
 		if (nombredelProducto != null){
 			detalleVenta.setNombreProducto(nombredelProducto);
 		}
@@ -114,6 +133,11 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		if(inventario != null) {
 			productos.setCantidadProducto(inventario);
 		}
+		if (TotalVenta != null){
+			ventas.setTotalVenta(TotalVenta);
+			cartera.setSaldo(TotalVenta);
+		}
+		
 
 
 		return detalleVenta;
@@ -126,7 +150,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 
 		Detalleventa detalle = iDetalleVentas.buscarDetalleventaPorCodigoyNombreProducto(codigoventa, nombreProducto);
 		volvervalor(detalle);
-		volvervalorCompra(codigoventa, detalle);
+		volvervalorVenta(codigoventa, detalle);
         updateDetalleventa(codigoventa, detalleDto, detalle);
 	}
 
@@ -184,7 +208,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		
 		Detalleventa detalle = iDetalleVentas.buscarDetalleventaPorCodigoyNombreProducto(codigoVenta, nombreProdcuto);
 		volvervalor(detalle);
-		volvervalorCompra(codigoVenta, detalle);
+		volvervalorVenta(codigoVenta, detalle);
 		iDetalleVentas.delete(detalle);
 		
 	}
@@ -200,13 +224,16 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		}
 		iProducto.save(productos);
 	}
-	private void volvervalorCompra(Long CodigoCompra, Detalleventa detalle){
+	private void volvervalorVenta(Long CodigoVenta, Detalleventa detalle){
 		Double total = detalle.getTotalDetalle();
-		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoCompra);
+		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoVenta);
+		Cartera cartera = iCartera.buscarCarteraPorCodigoVenta(CodigoVenta);
 		Double totalVenta = detalle.getVentas().getTotalVenta() - total;
 		if(totalVenta != null){
 			ventas.setTotalVenta(totalVenta);
+			cartera.setSaldo(totalVenta);
 		}
+		iCartera.save(cartera);
 		iVenta.save(ventas);
 	}
 	

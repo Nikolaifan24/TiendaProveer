@@ -36,6 +36,10 @@ public class Cartera {
     @JoinColumn(name="IDPagos")
     private Pagos pagos;
 
+    private Long documentoCliente;
+
+    private Long codigoVenta;
+
     private String FechaVenta;
 
     private String FechaPago;
@@ -46,12 +50,13 @@ public class Cartera {
     public Cartera() {
     }
 
-
-    public Cartera(Long IDCartera, Clientes clientes, Ventas ventas, Pagos pagos, String FechaVenta, String FechaPago, Double Saldo) {
+    public Cartera(Long IDCartera, Clientes clientes, Ventas ventas, Pagos pagos, Long documentoCliente, Long codigoVenta, String FechaVenta, String FechaPago, Double Saldo) {
         this.IDCartera = IDCartera;
         this.clientes = clientes;
         this.ventas = ventas;
         this.pagos = pagos;
+        this.documentoCliente = documentoCliente;
+        this.codigoVenta = codigoVenta;
         this.FechaVenta = FechaVenta;
         this.FechaPago = FechaPago;
         this.Saldo = Saldo;
@@ -89,6 +94,22 @@ public class Cartera {
         this.pagos = pagos;
     }
 
+    public Long getDocumentoCliente() {
+        return this.documentoCliente;
+    }
+
+    public void setDocumentoCliente(Long documentoCliente) {
+        this.documentoCliente = documentoCliente;
+    }
+
+    public Long getCodigoVenta() {
+        return this.codigoVenta;
+    }
+
+    public void setCodigoVenta(Long codigoVenta) {
+        this.codigoVenta = codigoVenta;
+    }
+
     public String getFechaVenta() {
         return this.FechaVenta;
     }
@@ -113,4 +134,4 @@ public class Cartera {
         this.Saldo = Saldo;
     }
 
-}
+    }

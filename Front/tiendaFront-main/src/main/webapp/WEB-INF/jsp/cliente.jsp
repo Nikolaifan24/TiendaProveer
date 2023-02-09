@@ -20,7 +20,7 @@
 	crossorigin="anonymous"></script>
 	<link href="style.css" rel="stylesheet" type="text/css" />	
 </head>
-<body background="https://conceptoabc.com/wp-content/uploads/2021/12/Universo.jpg" style="background-repeat: no-repeat; background-size:cover; " >
+<!-- <body background="https://conceptoabc.com/wp-content/uploads/2021/12/Universo.jpg" style="background-repeat: no-repeat; background-size:cover; " > -->
 <body>
 <nav class="navbar navbar-expand-lg navbar--dark bg-dark">
 		<a class="navbar-brand" href="/menu">Tienda</a>
@@ -67,23 +67,23 @@
 				<div class="form-group">
 					<label>Direccion Cliente:</label> <input type="text" name="direccionCliente" 
 					class="form-control"
-						value="${clienteEditar.direccionCliente}" disabled="disabled"/>
+						value="${clienteEditar.direccionCliente}" />
 				</div>
 				
 				<div class="form-group">
 					<label>Nombre Cliente:</label><input type="text" name="nombreCliente"
-						class="form-control" value="${clienteEditar.nombreCliente}" disabled="disabled" />
+						class="form-control" value="${clienteEditar.nombreCliente}" />
 				</div>
 				
 				<div class="form-group">
 					<label>Email:</label><input type="text" name="emailCliente"
-						class="form-control" value="${clienteEditar.emailCliente}" disabled="disabled"/>
+						class="form-control" value="${clienteEditar.emailCliente}" />
 				</div>			
 				
 				
 				<div class="form-group">
 					<label>Telefono Cliente:</label> <input type="text" name="telefonoCliente"
-						class="form-control" value="${clienteEditar.telefonoCliente}" disabled="disabled"/>
+						class="form-control" value="${clienteEditar.telefonoCliente}" />
 				</div>
 				
 				</div>

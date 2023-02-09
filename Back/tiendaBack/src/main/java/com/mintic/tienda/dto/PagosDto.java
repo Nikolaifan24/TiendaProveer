@@ -13,6 +13,10 @@ public class PagosDto {
 
     private Ventas ventas;
 
+	private Long codigoVenta;
+
+    private Long documentoCliente;
+
 	private String FechaVenta;
 
 	private String FechaPago;
@@ -27,10 +31,13 @@ public class PagosDto {
 	public PagosDto() {
 	}
 
-	public PagosDto(Long IDPagos, Clientes clientes, Ventas ventas, String FechaVenta, String FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
+
+	public PagosDto(Long IDPagos, Clientes clientes, Ventas ventas, Long codigoVenta, Long documentoCliente, String FechaVenta, String FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
 		this.IDPagos = IDPagos;
 		this.clientes = clientes;
 		this.ventas = ventas;
+		this.codigoVenta = codigoVenta;
+		this.documentoCliente = documentoCliente;
 		this.FechaVenta = FechaVenta;
 		this.FechaPago = FechaPago;
 		this.TipoPago = TipoPago;
@@ -60,6 +67,22 @@ public class PagosDto {
 
 	public void setVentas(Ventas ventas) {
 		this.ventas = ventas;
+	}
+
+	public Long getCodigoVenta() {
+		return this.codigoVenta;
+	}
+
+	public void setCodigoVenta(Long codigoVenta) {
+		this.codigoVenta = codigoVenta;
+	}
+
+	public Long getDocumentoCliente() {
+		return this.documentoCliente;
+	}
+
+	public void setDocumentoCliente(Long documentoCliente) {
+		this.documentoCliente = documentoCliente;
 	}
 
 	public String getFechaVenta() {
@@ -102,4 +125,5 @@ public class PagosDto {
 		this.ValorPago = ValorPago;
 	}
 
+		
 }

@@ -110,6 +110,8 @@ public class CarteraImp implements ICarteraService{
 				Cartera.getClientes(),
 				Cartera.getVentas(),
 				Cartera.getPagos(),
+				Cartera.getDocumentoCliente(),
+				Cartera.getCodigoVenta(),
 				Cartera.getFechaVenta(),
 				Cartera.getFechaPago(),
 				Cartera.getSaldo()

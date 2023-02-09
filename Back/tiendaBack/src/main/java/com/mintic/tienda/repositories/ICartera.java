@@ -25,6 +25,7 @@ public interface ICartera extends CrudRepository<Cartera, Long> {
     @Query(value = "SELECT * FROM Cartera p where p.IDCliente=:IDCliente", nativeQuery = true)
 	List<Cartera> buscarCarteraPorCliente(@Param("IDCliente") Long IDCliente);
 
-
+	@Query(value = "SELECT * FROM Cartera c INNER JOIN ventas v on c.IDVenta = v.IDVenta WHERE v.CodigoVenta = :codigoventa", nativeQuery = true)
+	Cartera buscarCarteraPorCodigoVenta(@Param("codigoventa") Long CodigoVenta);
     
 }

@@ -186,6 +186,9 @@ public class ControladorCompras {
 				model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
 				model.addAttribute("productos", iProducto.getProductos());
 				model.addAttribute("TotalCompra", iCompras.totalCompra(CodigoCompra));
+				model.addAttribute("TotalIVa", iCompras.totalCompra(CodigoCompra) * .16);
+				model.addAttribute("TotalsinIVa",
+				iCompras.totalCompra(CodigoCompra) - iCompras.totalCompra(CodigoCompra) * .16);
 				model.addAttribute("mensaje", "Producto Agregado con exito");
 			}
 		} else {
@@ -193,6 +196,10 @@ public class ControladorCompras {
 			model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
 			model.addAttribute("productos", iProducto.getProductos());
 			model.addAttribute("mensaje", "Datos del Detalle Actualizados");
+			model.addAttribute("TotalCompra", iCompras.totalCompra(CodigoCompra));
+			model.addAttribute("TotalIVa", iCompras.totalCompra(CodigoCompra) * .16);
+			model.addAttribute("TotalsinIVa",
+				iCompras.totalCompra(CodigoCompra) - iCompras.totalCompra(CodigoCompra) * .16);
 		}
 
 		return "detallecompra";
@@ -207,6 +214,10 @@ public class ControladorCompras {
 			model.addAttribute("detallecompraEditar", DetalleComprasEditar);
 			model.addAttribute("productos", iProducto.ListarProductosNombre(nombreProducto));
 			model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
+			model.addAttribute("TotalCompra", iCompras.totalCompra(CodigoCompra));
+			model.addAttribute("TotalIVa", iCompras.totalCompra(CodigoCompra) * .16);
+			model.addAttribute("TotalsinIVa",
+				iCompras.totalCompra(CodigoCompra) - iCompras.totalCompra(CodigoCompra) * .16);
 			model.addAttribute("mensaje", "Detalle Actulizado");
 		}
 
@@ -240,7 +251,10 @@ public class ControladorCompras {
 
 				// model.addAttribute("CodigoCompra", CodigoCompra);
 				model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
-
+				model.addAttribute("TotalCompra", iCompras.totalCompra(CodigoCompra));
+				model.addAttribute("TotalIVa", iCompras.totalCompra(CodigoCompra) * .16);
+				model.addAttribute("TotalsinIVa",
+				iCompras.totalCompra(CodigoCompra) - iCompras.totalCompra(CodigoCompra) * .16);
 			}
 		}
 
@@ -332,7 +346,11 @@ public class ControladorCompras {
 
 		iCompras.borrarDetalleCompras(CodigoCompra, nombreProducto);
 		model.addAttribute("detallecompra", iCompras.ListarDetalleCompras(CodigoCompra));
-
+		model.addAttribute("CodigoCompra", CodigoCompra);
+		model.addAttribute("TotalCompra", iCompras.totalCompra(CodigoCompra));
+		model.addAttribute("TotalIVa", iCompras.totalCompra(CodigoCompra) * .16);
+		model.addAttribute("TotalsinIVa",
+				iCompras.totalCompra(CodigoCompra) - iCompras.totalCompra(CodigoCompra) * .16);		
 		return "detallecompra";
 	}
 

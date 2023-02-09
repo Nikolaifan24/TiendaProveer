@@ -110,8 +110,8 @@
 						<td>${proveedor.ciudadProveedor}</td>
 						<td>${proveedor.direccionProveedor}</td>
 						<td>${proveedor.telefonoProveedor}</td>
-						<td><a class="btn btn-danger" href="/eliminarproveedor/${proveedor.nit}">Eliminar proveedor</a></td>
-						<td><a class="btn btn-success" href="/proveedor/${proveedor.nit}">Actualizar proveedor</a></td>
+						<td><a class="btn btn-danger" href="/eliminarproveedor/${proveedor.nitProveedor}">Eliminar proveedor</a></td>
+						<td><a class="btn btn-success" href="/proveedor/${proveedor.nitProveedor}">Actualizar proveedor</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>

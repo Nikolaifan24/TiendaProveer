@@ -12,12 +12,16 @@ import org.springframework.stereotype.Service;
 // import com.mintic.tienda.dto.ResultadoVentaDto;
 import com.mintic.tienda.dto.DetalleventaDto;
 import com.mintic.tienda.dto.VentasDto;
+import com.mintic.tienda.entities.Cartera;
 import com.mintic.tienda.entities.Clientes;
 import com.mintic.tienda.entities.Detalleventa;
+import com.mintic.tienda.entities.Pagos;
 import com.mintic.tienda.entities.Vendedor;
 // import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Ventas;
+import com.mintic.tienda.repositories.ICartera;
 import com.mintic.tienda.repositories.ICliente;
+import com.mintic.tienda.repositories.IPagos;
 import com.mintic.tienda.repositories.IVendedor;
 import com.mintic.tienda.repositories.IVenta;
 
@@ -33,6 +37,12 @@ public class VentasImp implements IVentasService{
 
 	@Autowired
 	IVendedor iVendedor;
+
+	@Autowired
+	IPagos iPagos;
+
+	@Autowired
+	ICartera iCartera;
 
 	@Override
 	public List<Ventas> listaVentas() {
@@ -63,8 +73,6 @@ public class VentasImp implements IVentasService{
 	
 	private Ventas buildVenta(VentasDto ventasDto) {
 		Ventas venta = new Ventas();
-		
-		// Long id =  ventasDto.getIDVenta();
 		Long documentoCliente = ventasDto.getDocumentoCliente();
 		String nombreVendedor = ventasDto.getNombreVendedor();
 		Clientes clientes = iCliente.buscarClientePorCedula(documentoCliente);
@@ -77,9 +85,6 @@ public class VentasImp implements IVentasService{
 		Double Total = cargarCalculosdeVenta(CodigoVenta);
 		Double iva = Total*0.19;
 		
-		// if(id != null) {
-		// 	venta.setIDVenta(id);
-		// }
 		if(nombreVendedor  != null) {
 			venta.setNombreVendedor(nombreVendedor);
 		}
@@ -113,9 +118,63 @@ public class VentasImp implements IVentasService{
 		if(iva != null) {
 			venta.setIvaVenta(iva);
 		}
-			
+		
 		return venta;
 		
+		
+	}
+
+	private void CreacionAlternativa(Long documento, Long CodigoVenta, String fechaVenta, Double Total){
+		Cartera cartera = new Cartera();
+		Pagos pagos = new Pagos();
+		Ventas venta = iVenta.buscarVentasPorCodigo(CodigoVenta);
+		Clientes cliente = iCliente.buscarClientePorCedula(documento);
+		String Fechapago = "1998-02-06";
+		String Medio = "Efectivo";
+		String Tipo = "Total";
+		Double valor = 0.0;
+		
+		if(documento != null){
+			cartera.setDocumentoCliente(documento);
+			pagos.setDocumentoCliente(documento);
+		}
+		if(CodigoVenta != null) {
+			cartera.setCodigoVenta(CodigoVenta);
+			pagos.setCodigoVenta(CodigoVenta);
+		}
+		if(venta != null){
+			cartera.setVentas(venta);
+			pagos.setVentas(venta);
+		}
+		if(cliente != null){
+			cartera.setClientes(cliente);
+			pagos.setClientes(cliente);
+		}
+		if(Fechapago != null){
+			cartera.setFechaPago(Fechapago);
+			pagos.setFechaPago(Fechapago);
+		}
+		if(fechaVenta != null) {
+			cartera.setFechaVenta(fechaVenta);
+			pagos.setFechaVenta(fechaVenta);
+		}
+		if(Total != null) {
+			cartera.setSaldo(Total);
+		}
+		if(Medio != null){
+			pagos.setMedioPago(Medio);
+		}
+		if(valor != null){
+			pagos.setValorPago(valor);
+		}
+		if(Tipo != null){
+			pagos.setTipoPago(Tipo);
+		}
+		if(pagos != null){
+			cartera.setPagos(pagos);
+		}
+		iPagos.save(pagos);
+		iCartera.save(cartera);
 		
 	}
 
@@ -125,22 +184,24 @@ public class VentasImp implements IVentasService{
 		
 		Ventas ventas = buildVenta(VentasDto);
 		Long Codigo = ventas.getCodigoVenta();
+		Long documento = ventas.getDocumentoCliente();
+		Double total = ventas.getTotalVenta();
+		String fechaventa = ventas.getFechaVenta();
 		int repetidos = iVenta.ContadorRepetidosdeunaVenta(Codigo);
-		System.out.println("este es el total de repetidos" + repetidos);
 		if (repetidos != 0) {
 			System.out.println("esta repetido un detalle por favor rectificar");
 			// return 0;
 		}
 		// while(Detallecompra.getVentas() != detallecompra2.getVentas()) {
 		else {
+
 			iVenta.save(buildVenta(VentasDto));
-			// return 1;
+			CreacionAlternativa(documento, Codigo, fechaventa, total);
 		}
 	
 
 
-		// iVenta.save(buildVenta(VentasDto));
-		
+			
 	}
 
 	@Override
@@ -175,9 +236,9 @@ public class VentasImp implements IVentasService{
 	}
 
 	
-	private void upStringVentas(VentasDto ventasDto, Ventas ventas) {
+	private void upStringVentas(VentasDto ventasDto, Ventas venta) {
 
-		Ventas venta = new Ventas();
+		
 		Long documentoCliente = ventasDto.getDocumentoCliente();
 		String nombreVendedor = ventasDto.getNombreVendedor();
 		Clientes clientes = iCliente.buscarClientePorCedula(documentoCliente);

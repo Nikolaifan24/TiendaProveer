@@ -30,7 +30,6 @@ public class PagosoImp implements IPagosService {
 	
 	private Pagos buildPagos(PagosDto PagosDto) {
 		Pagos Pagos = new Pagos();
-		// Long id = PagosDto.getID();
 		Clientes clientes = PagosDto.getClientes();
 		Ventas ventas = PagosDto.getVentas();
         String FechaVenta = PagosDto.getFechaVenta();
@@ -66,7 +65,6 @@ public class PagosoImp implements IPagosService {
 	
 	private void upStringPagos(PagosDto PagosDto, Pagos Pagos) {
 		
-		// Pagos Pagos = new Pagos();
 		Clientes clientes = PagosDto.getClientes();
 		Ventas ventas = PagosDto.getVentas();
         String FechaVenta = PagosDto.getFechaVenta();
@@ -118,6 +116,8 @@ public class PagosoImp implements IPagosService {
 				Pagos.getIDPagos(),
                 Pagos.getClientes(),
 				Pagos.getVentas(),
+				Pagos.getCodigoVenta(),
+				Pagos.getDocumentoCliente(),
 				Pagos.getFechaVenta(),
 				Pagos.getFechaPago(),
 				Pagos.getTipoPago(),

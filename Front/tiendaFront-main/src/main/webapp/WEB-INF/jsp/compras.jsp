@@ -79,30 +79,16 @@
 							name="codigoCompra" id="codigoCompra"
 							value="${compraEditar.codigoCompra}" class="form-control" />
 					</div>
-					<!-- <div class="row justify-content-center">
-						<div class="col-lg-3 col-sm-6">
-							<label for="startDate">Start</label>
-							<input id="startDate" class="form-control" type="date" />
-							<span id="startDateSelected"></span>
-						</div>
-					</div> -->
+					
 
 					<div class="form-group">
 						<label for="fechaCompra"> Fecha de la Compra:</label>
 						<input type="date"
 							name="fechaCompra" id="fechaCompra"
 							value="${compraEditar.fechaCompra}" class="form-control" />
-						<!-- <label for="totalCompra"> Total de la Compra:</label>
-						<input type="text"
-							name="totalCompra" id="totalCompra"
-							value="${compraEditar.totalCompra}" class="form-control" /> -->
+						
 					</div>
-					<!-- <div class="form-group">
-						<label for="ivaCompra"> Iva de la compra: </label>
-						<input type="text"
-							name="ivaCompra" id="ivaCompra"
-							value="${compraEditar.ivaCompra}" class="form-control" />
-					</div> -->
+					
 					<div class="btn-group" role="group" aria-label="Basic example">
 					<button type="submit" class="btn btn-primary" formmethod="post" >Crear</button>
 					<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>

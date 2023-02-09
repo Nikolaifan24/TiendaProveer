@@ -37,7 +37,11 @@ public class Pagos {
     @JoinColumn(name="IDVenta")
     private Ventas ventas;
 
-	private String FechaVenta;
+    private Long codigoVenta;
+
+    private Long documentoCliente;
+
+    private String FechaVenta;
 
 	private String FechaPago;
 
@@ -52,11 +56,14 @@ public class Pagos {
     }
 
 
-    public Pagos(Long IDPagos, List<Cartera> carteras, Clientes clientes, Ventas ventas, String FechaVenta, String FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
+
+    public Pagos(Long IDPagos, List<Cartera> carteras, Clientes clientes, Ventas ventas, Long codigoVenta, Long documentoCliente, String FechaVenta, String FechaPago, String TipoPago, String MedioPago, Double ValorPago) {
         this.IDPagos = IDPagos;
         this.carteras = carteras;
         this.clientes = clientes;
         this.ventas = ventas;
+        this.codigoVenta = codigoVenta;
+        this.documentoCliente = documentoCliente;
         this.FechaVenta = FechaVenta;
         this.FechaPago = FechaPago;
         this.TipoPago = TipoPago;
@@ -94,6 +101,22 @@ public class Pagos {
 
     public void setVentas(Ventas ventas) {
         this.ventas = ventas;
+    }
+
+    public Long getCodigoVenta() {
+        return this.codigoVenta;
+    }
+
+    public void setCodigoVenta(Long codigoVenta) {
+        this.codigoVenta = codigoVenta;
+    }
+
+    public Long getDocumentoCliente() {
+        return this.documentoCliente;
+    }
+
+    public void setDocumentoCliente(Long documentoCliente) {
+        this.documentoCliente = documentoCliente;
     }
 
     public String getFechaVenta() {
@@ -135,6 +158,5 @@ public class Pagos {
     public void setValorPago(Double ValorPago) {
         this.ValorPago = ValorPago;
     }
-    
- 
+           
 }
