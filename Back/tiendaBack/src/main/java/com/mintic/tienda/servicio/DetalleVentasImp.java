@@ -155,6 +155,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 	}
 
 	private void updateDetalleventa (Long CodigoVenta, DetalleventaDto detalleVentasDto, Detalleventa detalleVenta){
+		Cartera cartera = new Cartera();
         String nombredelProducto = detalleVentasDto.getNombreProducto();
 		Ventas ventas = iVenta.buscarVentasPorCodigo(CodigoVenta);
 		Productos productos = iProducto.buscarProductoPorNombre(nombredelProducto);
@@ -163,6 +164,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		Double totalDetalle = cantidadProducto*precioProducto;
 		System.out.println("el total de mi detalle es:  "+totalDetalle);
 		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		Double TotalVenta = ventas.getTotalVenta() + totalDetalle;
 		if (nombredelProducto != null){
 			detalleVenta.setNombreProducto(nombredelProducto);
 		}
@@ -184,10 +186,15 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		if(inventario != null) {
 			productos.setCantidadProducto(inventario);
 		}
+		if (TotalVenta != null){
+			ventas.setTotalVenta(TotalVenta);
+			cartera.setSaldo(TotalVenta);
+		}
 		iVenta.save(ventas);
 		iProducto.save(productos);
         iDetalleVentas.save(detalleVenta);
-    }
+		iCartera.save(cartera);
+    } 
 
 	
 	
@@ -218,7 +225,7 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		String nombreProducto = detalle.getNombreProducto();
 		int cantidadProducto = detalle.getCantidadProducto();
 		Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
-		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		Long inventario = productos.getCantidadProducto() + cantidadProducto;
 		if(inventario != null) {
 			productos.setCantidadProducto(inventario);
 		}

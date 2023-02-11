@@ -81,7 +81,7 @@ public class VentasImp implements IVentasService{
 		String fechaVenta = ventasDto.getFechaVenta();
 		String fechaEntrega = ventasDto.getFechaEntrega();
 		Integer descuento = ventasDto.getDescuento();
-		String zonaVenta = ventasDto.getZonaventa();
+		String zonaVenta = iCliente.buscarzonaClientePorCedula(documentoCliente);
 		Double Total = cargarCalculosdeVenta(CodigoVenta);
 		Double iva = Total*0.19;
 		
@@ -247,7 +247,7 @@ public class VentasImp implements IVentasService{
 		String fechaVenta = ventasDto.getFechaVenta();
 		String fechaEntrega = ventasDto.getFechaEntrega();
 		Integer descuento = ventasDto.getDescuento();
-		String zonaVenta = ventasDto.getZonaventa();
+		String zonaVenta = iCliente.buscarzonaClientePorCedula(documentoCliente);
 		Double Total = cargarCalculosdeVenta(CodigoVenta);
 		Double iva = Total*0.19;
 		
@@ -332,7 +332,11 @@ public class VentasImp implements IVentasService{
 		return total;
 	}
 	
-	
+	@Override
+	public int contadordeVentas(Long CodigoVenta) {
+		int conteo = iVenta.ContadorRepetidosdeunaVenta(CodigoVenta);
+		return conteo;
+	}
 
 	
 }

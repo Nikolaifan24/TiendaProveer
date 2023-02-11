@@ -33,7 +33,7 @@
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/producto">Productos</a></li>
+				<li class="nav-item"><a class="nav-link" href="/producto">vendedor</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
@@ -56,47 +56,58 @@
 					
 				<div class="container overflow-hidden">
 					<div class="form-group">
-						<label for="cedulaCliente"> cedulaCliente:</label>
-						<input type="text"
-							name="cedulaCliente" id="cedulaCliente"
-							value="${producto.cedulaCliente}" class="form-control" />
+						<label>Seleccionar una Accion</label>
+						 <select name="ID" id ="ID"
+								class="form-select">
+								<option name="ID" value="1">Editar Venta</option>
+								<option name="ID" value="0">Crear Venta</option>
+		
+								
+							</select>
+						<label>Seleccionar un Vendedor</label>
+						<select name="nombreVendedor" id ="nombreVendedor"class="form-select">
+							<c:forEach items="${vendedor}" var="vendedor">
+								<option name="nombreVendedor" value="${vendedor.nombreVendedor}">${vendedor.nombreVendedor}</option>
+							</c:forEach>
+								
+							</select>
 					</div>
 					
-					
-					
-				
 					<div class="form-group">
-						<label for="codigoProducto1"> codigo producto 1:</label>
+						<label for="documentoCliente"> Documento Cliente</label>
 						<input type="text"
-							name="codigoProducto1" id="codigoProducto1"
-							value="${producto.codigoProducto1}" class="form-control" />
-						<label for="cantidadProducto1"> cantidad producto 1:</label>
+							name="documentoCliente" id="documentoCliente"
+							value="${VentasEditar.documentoCliente}" class="form-control" />
+						<label for="CodigoVenta"> Codigo de la Venta:</label>
 						<input type="text"
-							name="cantidadProducto1" id="cantidadProducto1"
-							value="" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="codigoProducto2"> codigo producto 2:</label>
-						<input type="text"
-							name="codigoProducto2" id="codigoProducto2"
-							value="${producto.codigoProducto2}" class="form-control" />
-						<label for="cantidadProducto2"> cantidad producto 2:</label>
-						<input type="text"
-							name="cantidadProducto2" id="cantidadProducto2"
-							value="" class="form-control" />
+							name="CodigoVenta" id="CodigoVenta"
+							value="${VentasEditar.CodigoVenta}" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label for="codigoProducto3"> codigo producto 3:</label>
-						<input type="text"
-							name="codigoProducto3" id="codigoProducto3"
-							value="${producto.codigoProducto3}" class="form-control" />
-						<label for="cantidadProducto3"> cantidad producto 3:</label>
-						<input type="text"
-							name="cantidadProducto3" id="cantidadProducto3"
-							value="" class="form-control" />
+						<label>Seleccionar Descuento</label>
+						 <select name="descuento" id ="descuento"
+								class="form-select">
+								<option name="descuento" value="5">5%</option>
+								<option name="descuento" value="3">3%</option>
+		
+								
+							</select>
+					</div>
+					<div class="form-group">
+						<label for="FechaVenta"> Fecha de la Venta:</label>
+						<input type="date"
+							name="FechaVenta" id="FechaVenta"
+							value="${VentasEditar.FechaVenta}" class="form-control" />
+						<label for="FechaEntrega"> Fecha de Entrega:</label>
+						<input type="date"
+							name="FechaEntrega" id="FechaEntrega"
+							value="${VentasEditar.FechaEntrega}" class="form-control" />
 					</div>
 					
-					<button type="submit" class="btn btn-secondary" href="/venta">Consultar</button>
+					<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="submit" class="btn btn-primary" formmethod="post" >Guardar</button>
+					<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>
+					</div>
 					
 				</div>
 				
@@ -116,11 +127,11 @@
 					<th>Fecha Venta</th>
 					<th>Codigo Venta</th>
 					<th>Nombre Cliente</th>
+					<th>Apellido Cliente</th>
+					<th>Documento</th>
 					<th>Direccion</th>
 					<th>Telefono</th>
-					<th>vendedor</th>
-					<th>Fecha Pago</th>
-					<th>Forma de Pago</th>
+					<th>Vendedor</th>
 					<th>Total Venta</th>
 
 
@@ -136,11 +147,11 @@
 						<td>${venta.fechaVenta}</td>
 						<td>${venta.codigoVenta}</td>
 						<td>${venta.clientes.nombreCliente}</td>
+						<td>${venta.clientes.apellidoCliente}</td>
+						<td>${venta.clientes.documentoCliente}</td>
 						<td>${venta.clientes.direccionCliente}</td>
 						<td>${venta.clientes.telefonoCliente}</td>
 						<td>${venta.vendedor.nombreVendedor}</td>
-						<td>${venta.fechaPago}</td>
-						<td>${venta.formaPago}</td>
 						<td>${venta.totalVenta}</td>
 						<td><a class="btn btn-success" href="/detalleventa/${venta.codigoVenta}">Ver</a></td>
 						
@@ -153,9 +164,6 @@
 			</tbody>
 		</table>
 		
-		<div>Total Venta Sin Iva: ${totalVenta.precioTotalSinIva}</div>
-		<div>Iva Total: ${totalVenta.ivaTotal}</div>
-		<div>Total con Iva: ${totalVenta.precioTotal}</div>
 	</div>
 	
 </body>

@@ -101,6 +101,18 @@ public class ControladorVentas {
 		idetalleventa.actualizarDetalleventa(Codigoventa, nombreProducto, detalleventaDto);
 	}
 
-	
+	@GetMapping("/Ventas/conteo/codigo/{CodigoVenta}")
+	public Integer ContarunaCompra(@PathVariable Long CodigoVenta) {
+		return iVentas.contadordeVentas(CodigoVenta);
+	}
 
+	@GetMapping("/Ventas/detalle-total/codigo/{CodigoVenta}")
+	public Double TotaldemiCompra(@PathVariable Long CodigoVenta) {
+		return iVentas.cargarCalculosdeVenta(CodigoVenta);
+	}
+
+	@DeleteMapping("/eliminarDetalleVentas/{CodigoVenta}/{nombreProducto}")
+	public void eliminarDetalleVentas(@PathVariable Long CodigoVenta, @PathVariable String nombreProducto) {
+		idetalleventa.eliminarDetalleVenta(CodigoVenta, nombreProducto);
+	}
 }

@@ -33,7 +33,7 @@
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/compraEditars">compraEditars</a></li>
+				<li class="nav-item"><a class="nav-link" href="/producto">vendedor</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
@@ -90,7 +90,7 @@
 					</div>
 					
 					<div class="btn-group" role="group" aria-label="Basic example">
-					<button type="submit" class="btn btn-primary" formmethod="post" >Crear</button>
+					<button type="submit" class="btn btn-primary" formmethod="post" >Guardar</button>
 					<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>
 					</div>
 					
@@ -132,7 +132,7 @@
 						<td>${compra.proveedores.nombreProveedor}</td>
 						<td>${compra.proveedores.tipoProducto}</td>
 						<td>${compra.totalCompra}</td>
-						<td>${compra.ivaCompra}</td>
+						<td>${compra.totalCompra*0.16}</td>
 						
 						<td><a class="btn btn-success" href="/detallecompra/${compra.codigoCompra}">Ver</a></td>
 						<td><a class="btn btn-danger" href="/BuscarComprasPorCodigo/${compra.codigoCompra}">Actualizar</a></td>

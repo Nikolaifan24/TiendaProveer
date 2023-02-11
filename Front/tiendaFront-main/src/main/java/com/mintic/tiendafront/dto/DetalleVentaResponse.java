@@ -8,6 +8,8 @@ public class DetalleVentaResponse {
 	
     private ProductoResponse productos;
 
+    private String nombreProducto;
+
 	private int cantidad;
 
 	private Double precioProducto;
@@ -19,10 +21,11 @@ public class DetalleVentaResponse {
     }
 
 
-    public DetalleVentaResponse(Long ID, VentaResponse ventas, ProductoResponse productos, int cantidad, Double precioProducto, Double totalDetalle) {
+    public DetalleVentaResponse(Long ID, VentaResponse ventas, ProductoResponse productos, String nombreProducto, int cantidad, Double precioProducto, Double totalDetalle) {
         this.ID = ID;
         this.ventas = ventas;
         this.productos = productos;
+        this.nombreProducto = nombreProducto;
         this.cantidad = cantidad;
         this.precioProducto = precioProducto;
         this.totalDetalle = totalDetalle;
@@ -50,6 +53,14 @@ public class DetalleVentaResponse {
 
     public void setProductos(ProductoResponse productos) {
         this.productos = productos;
+    }
+
+    public String getNombreProducto() {
+        return this.nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     public int getCantidad() {

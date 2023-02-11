@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mintic.tiendafront.client.IClientTienda;
 import com.mintic.tiendafront.client.ICliente;
 import com.mintic.tiendafront.client.IProducto;
+import com.mintic.tiendafront.client.IVendedor;
 import com.mintic.tiendafront.client.IVenta;
 
 import com.mintic.tiendafront.dto.ClienteDto;
@@ -27,6 +28,7 @@ import com.mintic.tiendafront.dto.ProductoDto;
 import com.mintic.tiendafront.dto.ProductoResponse;
 import com.mintic.tiendafront.dto.ProductoResponse;
 import com.mintic.tiendafront.dto.DetalleVentaDto;
+import com.mintic.tiendafront.dto.DetalleVentaResponse;
 import com.mintic.tiendafront.dto.UsuarioResponse;
 import com.mintic.tiendafront.dto.VentaDto;
 import com.mintic.tiendafront.dto.VentaResponse;
@@ -39,40 +41,22 @@ public class ControladorVentas {
 	IVenta iVenta;
 	
 	@Autowired
-	IClientTienda clienteTienda;
-	
-	@Autowired
 	ICliente icliente;
 	
-	LoginDto loginDto;
+	@Autowired
+	IVendedor iVendedor;
 	
+	@Autowired
+	IProducto iProducto;
 	
 
-	// @PostMapping("/venta")
-	// public String buscarProducto(Model model, ProductoResponse productosVenta) {
-	// 	Long idUsuario = 1l;
-	// 	ClienteResponse cliente = icliente.buscarCliente(idUsuario);
-		
-	// 	ProductoDto producto = iVenta.BuscarProductopornombre(productosVenta.getNombreProducto());
-				
-	// 	Map<ProductoDto, Integer> productosMap = new LinkedHashMap<>();
-	// 	productosMap.put(producto,  productosVenta.getCantidadProducto1());
-	// 	VentaDto totalVenta = iVenta.calcularTotalVenta(productosMap);
-	// 	if (cliente != null && cliente.getDocumentoCliente() != null) {
-	// 		iVenta.guardarVenta(totalVenta, idUsuario, cliente );
-	// 	}
-	// 	//VentaDto totalVenta = iVenta.guardarVenta(totalVenta, idUsuario, );
-		
-		
-	// 	model.addAttribute("totalVenta", totalVenta);
-		
-	// 	return "venta";
-	// }
+
 
 	@GetMapping("/venta")
 	public String ventas(Model model) 
 	{
 		model.addAttribute("ventas", iVenta.ListarVentas());
+		model.addAttribute("vendedor", iVendedor.ListarVendedors());
 		
 		if(model.getAttribute("ventas") == null) 
 		{
@@ -81,7 +65,233 @@ public class ControladorVentas {
 		
 		return "ventas";
 	}
+
+	@PostMapping("/venta")
+	public String crearVentas(Model model, VentaDto ventas) {
+		if (ventas.getID().longValue() == 0) {
+			ValidacionCrearVentas(model, ventas);
+
+			if (ValidacionCrearVentas(model, ventas) == true) {
+
+				iVenta.guardarVenta(ventas);
+				model.addAttribute("ventas", iVenta.ListarVentas());
+
+				model.addAttribute("mensaje", "Venta Creada con exito");
+			}
+		} else {
+			iVenta.ActualizarVenta(ventas, ventas.getCodigoVenta());
+			model.addAttribute("ventas", iVenta.ListarVentas());
+			model.addAttribute("mensaje", "Datos del ventas Actualizados");
+		}
+
+		return "ventas";
+	}
+
+	@GetMapping("/venta/{CodigoVenta}")
+	public String actualizarVentas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta) {
+		VentaResponse VentasEditar = iVenta.buscarVentaCodigo(CodigoVenta);
+		ValidacionActualizarVentas(model, VentasEditar);
+		if (ValidacionActualizarVentas(model, VentasEditar) == true) {
+			model.addAttribute("VentasEditar", VentasEditar);
+			model.addAttribute("ventas", iVenta.ListarVentas());
+			model.addAttribute("mensaje", "");
+		}
+
+		return "ventas";
+
+	}
 	
+	@GetMapping("/BuscarVentasPorCodigo/{CodigoVenta}")
+	public String BuscarVentasPorCodigo(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta) {
+
+		if (ValidacionPorCodigo(model, CodigoVenta)) {
+			VentaResponse VentasEditar = iVenta.buscarVentaCodigo(CodigoVenta);
+
+			if (VentasEditar == null) {
+				model.addAttribute("mensaje", "Venta Inexistente");
+			} else {
+				model.addAttribute("VentaEditar", VentasEditar);
+				model.addAttribute("Ventas", iVenta.ListarVentas());
+
+			}
+		}
+
+		return "ventas";
+	}
+
+	private boolean ValidacionPorCodigo(Model model, Long CodigoVenta) {
+		if (CodigoVenta == 0) {
+			model.addAttribute("mensaje", "Ingrese numero de Ventas para la busqueda");
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean ValidacionCrearVentas(Model model, VentaDto Ventas) {
+
+		if (Ventas.getCodigoVenta() == null) {
+			model.addAttribute("mensaje", "Falta Codigo");
+			return false;
+		}
+		if (Ventas.getDocumentoCliente() == null) {
+			model.addAttribute("mensaje", "Faltan Nit");
+			return false;
+		}
+
+		if (Ventas.getFechaVenta().isEmpty()) {
+			model.addAttribute("mensaje", "Faltan Fecha");
+			return false;
+		}
+
+		int conteo = iVenta.ContadordeVentas(Ventas.getCodigoVenta());
+		if (conteo == 1) {
+			model.addAttribute("mensaje", "Venta Repetida");
+			return false;
+
+		}
+		
+		return true;
+	}
+
+	private boolean ValidacionActualizarVentas(Model model, VentaResponse VentasEditar) {
+
+		if (VentasEditar.getID().longValue() == 0) {
+			model.addAttribute("mensaje", "Faltan datos del Ventas");
+			return false;
+		}
+		if (VentasEditar.getCodigoVenta().longValue() == 0) {
+			model.addAttribute("mensaje", "Faltan datos del Ventas");
+			return false;
+		}
+		if (VentasEditar.getTotalVenta().longValue() == 0) {
+			model.addAttribute("mensaje", "Faltan datos del Ventas");
+			return false;
+		}
+		
+		return true;
+
+	}
+
+	@PostMapping("/detalleventa/{CodigoVenta}")
+	public String crearDetalleVentas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta,
+			DetalleVentaDto Detalle) {
+		if (Detalle.getID().longValue() == 0) {
+			ValidacionCrearDetalledeunaVenta(model, Detalle);
+
+			if (ValidacionCrearDetalledeunaVenta(model, Detalle) == true) {
+
+				iVenta.nuevoVentaDetalle(CodigoVenta, Detalle);
+				model.addAttribute("detalleventa", iVenta.ListarDetalleVentas(CodigoVenta));
+				model.addAttribute("productos", iProducto.getProductos());
+				model.addAttribute("TotalVenta", iVenta.totalVenta(CodigoVenta));
+				model.addAttribute("TotalIVa", iVenta.totalVenta(CodigoVenta) * .16);
+				model.addAttribute("TotalsinIVa",
+				iVenta.totalVenta(CodigoVenta) - iVenta.totalVenta(CodigoVenta) * .16);
+				model.addAttribute("mensaje", "Producto Agregado con exito");
+			}
+		} else {
+			iVenta.ActualizarDetalleVenta(CodigoVenta, Detalle.getNombreProducto(), Detalle);
+			model.addAttribute("detalleventa", iVenta.ListarDetalleVentas(CodigoVenta));
+			model.addAttribute("productos", iProducto.getProductos());
+			model.addAttribute("mensaje", "Datos del Detalle Actualizados");
+			model.addAttribute("TotalVenta", iVenta.totalVenta(CodigoVenta));
+			model.addAttribute("TotalIVa", iVenta.totalVenta(CodigoVenta) * .16);
+			model.addAttribute("TotalsinIVa",
+				iVenta.totalVenta(CodigoVenta) - iVenta.totalVenta(CodigoVenta) * .16);
+		}
+
+		return "detalleventa";
+	}
+
+	@GetMapping("/detalleVenta/{CodigoVenta}/{nombreProducto}")
+	public String actualizarDetalleVentas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta,
+			@PathVariable(name = "nombreProducto") String nombreProducto) {
+		DetalleVentaResponse DetalleVentasEditar = iVenta.DetalladeunaVenta(CodigoVenta, nombreProducto);
+		ValidacionActualizarDetalle(model, DetalleVentasEditar);
+		if (ValidacionActualizarDetalle(model, DetalleVentasEditar) == true) {
+			model.addAttribute("detalleVentaEditar", DetalleVentasEditar);
+			model.addAttribute("productos", iProducto.ListarProductosNombre(nombreProducto));
+			model.addAttribute("detalleVenta", iVenta.ListarDetalleVentas(CodigoVenta));
+			model.addAttribute("TotalVenta", iVenta.totalVenta(CodigoVenta));
+			model.addAttribute("TotalIVa", iVenta.totalVenta(CodigoVenta) * .16);
+			model.addAttribute("TotalsinIVa",
+				iVenta.totalVenta(CodigoVenta) - iVenta.totalVenta(CodigoVenta) * .16);
+			model.addAttribute("mensaje", "Detalle Actulizado");
+		}
+
+		return "detalleVenta";
+
+	
+	}
+
+	private boolean ValidacionPorCodigoyNombre(Model model, Long CodigoVenta, String nombreProducto) {
+		if (CodigoVenta == 0 && nombreProducto.isBlank()) {
+			model.addAttribute("mensaje", "Ingrese datos correctos para la busqueda");
+			return false;
+		}
+
+		return true;
+	}
+
+	@GetMapping("/BuscarDetalle/{CodigoVenta}/{nombreProducto}")
+	public String BuscarVentasDetallePorCodigoyNombre(Model model,
+			@PathVariable(name = "CodigoVenta") Long CodigoVenta,
+			@PathVariable(name = "nombreProducto") String nombreProducto) {
+
+		if (ValidacionPorCodigoyNombre(model, CodigoVenta, nombreProducto)) {
+			DetalleVentaResponse DetalleEditar = iVenta.DetalladeunaVenta(CodigoVenta, nombreProducto);
+
+			if (DetalleEditar == null) {
+				model.addAttribute("mensaje", "Venta Inexistente");
+			} else {
+				model.addAttribute("detalleVentaEditar", DetalleEditar);
+				model.addAttribute("productos", iProducto.ListarProductosNombre(nombreProducto));
+				model.addAttribute("detalleventa", iVenta.ListarDetalleVentas(CodigoVenta));
+				model.addAttribute("TotalVenta", iVenta.totalVenta(CodigoVenta));
+				model.addAttribute("TotalIVa", iVenta.totalVenta(CodigoVenta) * .16);
+				model.addAttribute("TotalsinIVa",
+				iVenta.totalVenta(CodigoVenta) - iVenta.totalVenta(CodigoVenta) * .16);
+			}
+		}
+
+		return "detalleventa";
+	}
+
+	
+	private boolean ValidacionCrearDetalledeunaVenta(Model model, DetalleVentaDto detalle) {
+
+		if (detalle.getNombreProducto().isBlank()) {
+			model.addAttribute("mensaje", "Falta el nombre del producto");
+			return false;
+		}
+		if (detalle.getCantidad() == 0) {
+			model.addAttribute("mensaje", "Faltan Cantidad del Producto");
+			return false;
+		}
+		return true;
+	}
+
+	private boolean ValidacionActualizarDetalle(Model model, DetalleVentaResponse detalleVentaEditar) {
+
+		if (detalleVentaEditar.getProductos().getNombreProducto().isBlank()) {
+			model.addAttribute("mensaje", "Faltan datos del Ventas");
+			return false;
+		}
+		if (detalleVentaEditar.getCantidad() == 0) {
+			model.addAttribute("mensaje", "Faltan datos del Ventas");
+			return false;
+		}
+		if (detalleVentaEditar.getPrecioProducto().longValue() == 0) {
+			model.addAttribute("mensaje", "Faltan datos del Ventas");
+			return false;
+		}
+
+		return true;
+
+	}
+
+
 	@GetMapping("/reporteVenta")
 	public String reporteVenta(Model model) {
 		List<VentaResponse> ventaResponse = iVenta.ListarVentas();
@@ -98,8 +308,14 @@ public class ControladorVentas {
 	
 	@GetMapping("/detalleventa/{CodigoVenta}")
 	public String reportesDetallesventas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta) {
+		// Double Totaldeunaventa =  iVenta.totalVenta(CodigoVenta);
 		model.addAttribute("detalleventa", iVenta.ListarDetalleVentas(CodigoVenta));
-		
+		model.addAttribute("detalleVenta", iVenta.ListarDetalleVentas(CodigoVenta));
+		model.addAttribute("productos", iProducto.getProductos());
+		model.addAttribute("TotalVenta", iVenta.totalVenta(CodigoVenta));
+		model.addAttribute("TotalIVa", iVenta.totalVenta(CodigoVenta)* .16);
+		model.addAttribute("TotalsinIVa",
+		iVenta.totalVenta(CodigoVenta) - iVenta.totalVenta(CodigoVenta)* .16);
 		if(model.getAttribute("detalleventa") == null) 
 		{
 			model.addAttribute("mensaje", "No hay datos para mostrar");
@@ -108,4 +324,21 @@ public class ControladorVentas {
 		return "detalleventa";
 	}
 	
+	@GetMapping("/eliminarDetalleVenta/{codigoVenta}/{nombreProducto}")
+	public String eliminarUsuario(Model model, @PathVariable(name = "codigoVenta") Long CodigoVenta,
+			@PathVariable(name = "nombreProducto") String nombreProducto) {
+		
+		iVenta.eliminarDetalleVenta(CodigoVenta, nombreProducto);
+		model.addAttribute("CodigoVenta", CodigoVenta);
+		model.addAttribute("detalleventa", iVenta.ListarDetalleVentas(CodigoVenta));
+		model.addAttribute("detalleVenta", iVenta.ListarDetalleVentas(CodigoVenta));
+		model.addAttribute("productos", iProducto.getProductos());
+		model.addAttribute("TotalVenta", iVenta.totalVenta(CodigoVenta));
+		model.addAttribute("TotalIVa", iVenta.totalVenta(CodigoVenta)* .16);
+		model.addAttribute("TotalsinIVa",
+		iVenta.totalVenta(CodigoVenta) - iVenta.totalVenta(CodigoVenta)* .16);		
+		return "detalleventa";
+	}
+
+
 }

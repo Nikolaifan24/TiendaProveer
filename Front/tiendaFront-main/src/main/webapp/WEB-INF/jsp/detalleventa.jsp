@@ -33,9 +33,13 @@
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
+				<li class="nav-item"><a class="nav-link" href="/producto">vendedor</a></li>
+
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="/vendedor">Vendedores</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
 			</ul>
@@ -48,51 +52,55 @@
 	<div class="container overflow-hidden">
 
 		<div class=" col-xl-2 col-lg-3 col-md-4 col-sm-6" id="formulario">
-			<form method="post" action="/venta">
+			<form method="post" action="/detalleventa/${CodigoVenta}">
 					
 				<div class="container overflow-hidden">
 					<div class="form-group">
-						<label for="cedulaCliente"> cedulaCliente:</label>
-						<input type="text"
-							name="cedulaCliente" id="cedulaCliente"
-							value="${producto.cedulaCliente}" class="form-control" />
+						<label>Seleccionar una Accion</label>
+						 <select name="ID" id ="ID"
+								class="form-select">
+								<option name="ID" value="1">Editar Detalle</option>
+								<option name="ID" value="0">Crear un Detalle</option>
+		
+								
+							</select>
 					</div>
 					
 					
+					<div class="form-group">
+						<label>Codigo de la Venta:</label><input type="text" name="CodigoVenta" id ="CodigoVenta"
+							class="form-control" value="${CodigoVenta}" disabled="disabled" />
+					</div>
+					<div class="form-group">
+						<label>Seleccionar un Producto</label>
+						 <select name="nombreProducto" id ="nombreProducto" class="form-select">
+							
+							<c:forEach items="${productos}" var="productos">
+								<option name="nombreProducto" value="${productos.nombreProducto}">${productos.nombreProducto}</option>
+							</c:forEach>		
+								
+							</select>
+					</div>
+					<div class="form-group">
+						
+						<label for="codigoProducto"> Codigo del Producto</label>
+						<input type="text"
+							name="codigoProducto" id="codigoProducto"
+							value="${detalleVentaEditar.productos.codigoProducto}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="cantidad"> Cantidad del Producto:</label>
+						<input type="text"
+							name="cantidad" id="cantidad"
+							value="${detalleVentaEditar.cantidad}" class="form-control" />
 					
+					</div>
+					
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="submit" class="btn btn-primary" formmethod="post" >Guardar</button>
+						<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>
 				
-					<div class="form-group">
-						<label for="codigoProducto1"> codigo producto 1:</label>
-						<input type="text"
-							name="codigoProducto1" id="codigoProducto1"
-							value="${producto.codigoProducto1}" class="form-control" />
-						<label for="cantidadProducto1"> cantidad producto 1:</label>
-						<input type="text"
-							name="cantidadProducto1" id="cantidadProducto1"
-							value="" class="form-control" />
 					</div>
-					<div class="form-group">
-						<label for="codigoProducto2"> codigo producto 2:</label>
-						<input type="text"
-							name="codigoProducto2" id="codigoProducto2"
-							value="${producto.codigoProducto2}" class="form-control" />
-						<label for="cantidadProducto2"> cantidad producto 2:</label>
-						<input type="text"
-							name="cantidadProducto2" id="cantidadProducto2"
-							value="" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="codigoProducto3"> codigo producto 3:</label>
-						<input type="text"
-							name="codigoProducto3" id="codigoProducto3"
-							value="${producto.codigoProducto3}" class="form-control" />
-						<label for="cantidadProducto3"> cantidad producto 3:</label>
-						<input type="text"
-							name="cantidadProducto3" id="cantidadProducto3"
-							value="" class="form-control" />
-					</div>
-					
-					<button type="submit" class="btn btn-secondary" href="/venta">Consultar</button>
 					
 				</div>
 				
@@ -125,10 +133,11 @@
 						<td>${detalleventa.productos.nombreProducto}</td>
 						<td>${detalleventa.productos.codigoProducto}</td>
 						<td>${detalleventa.cantidadProducto}</td>
-						<td>${detalleventa.valorUnitario}</td>
-						<td>${detalleventa.valorTotal}</td>
+						<td>${detalleventa.precioProducto}</td>
+						<td>${detalleventa.totalDetalle}</td>
 						
-						<td><a class="btn btn-success" href="/detalleventa/${venta.fechaVenta}">Editar</a></td>
+						<td><a class="btn btn-success" href="/BuscarDetalle/${CodigoVenta}/${detalleventa.nombreProducto}">Editar</a></td>
+						<td><a class="btn btn-danger" href="/eliminarDetalleVenta/${CodigoVenta}/${detalleventa.nombreProducto}">Eliminar</a></td>
 						
 						
 					</tr>
@@ -139,9 +148,9 @@
 			</tbody>
 		</table>
 		
-		<div>Total Venta Sin Iva: ${totalVenta.precioTotalSinIva}</div>
-		<div>Iva Total: ${totalVenta.ivaTotal}</div>
-		<div>Total con Iva: ${totalVenta.precioTotal}</div>
+		<div>Total Venta Sin Iva: ${TotalsinIVa}</div>
+		<div>Iva Total: ${TotalIVa}  </div>
+		<div>Total con Iva: ${TotalVenta}</div>
 	</div>
 	
 </body>

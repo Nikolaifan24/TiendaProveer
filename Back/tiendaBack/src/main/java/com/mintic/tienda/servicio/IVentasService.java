@@ -32,4 +32,5 @@ public interface IVentasService {
     
     Double cargarCalculosdeVenta(Long CodigoVenta) ;
 
+    int contadordeVentas(Long CodigoVenta) ;
 }

@@ -19,7 +19,7 @@ public class VentaDto {
 	private String nombreVendedor;
 
 	private int descuento;
-	
+
 	private Double totalVenta;
 
 	private Double ivaVenta;

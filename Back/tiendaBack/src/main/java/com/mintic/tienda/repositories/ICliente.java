@@ -23,5 +23,6 @@ public interface ICliente extends CrudRepository<Clientes, Long>{
 	List<Clientes> buscarClientePorNombreyApellido(@Param("nombreCliente") String nombreCliente,
 			@Param("apellidoCliente") String apellidoCliente);
 
-    		
+	@Query(value = "SELECT c.zonaCliente FROM clientes c WHERE c.documentoCliente = :documentoCliente", nativeQuery = true)
+	String buscarzonaClientePorCedula(@Param("documentoCliente") Long documentoCliente);	
 }

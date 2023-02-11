@@ -16,8 +16,29 @@ public interface IVenta {
 	
 	List<VentaResponse> ListarVentas(); 
 
-	public void guardarVenta(VentaDto totalVenta, Long idUsuario, ClienteResponse cliente);
-
+	VentaResponse guardarVenta(VentaDto VentaDto);
 
 	List<DetalleVentaResponse> ListarDetalleVentas(Long CodigoVenta) ;
+
+	VentaResponse buscarVentaCodigo(Long CodigoCompra) ;
+
+	void eliminarVenta(Long CodigoVenta) ;
+
+	VentaResponse ActualizarVenta(VentaDto ventaDto, Long CodigoVenta) ;
+
+	List<VentaResponse> ListarVentasporProducto(String nombreProducto) ;
+
+	List<DetalleVentaResponse> ListarunDetalledeVentas(Long CodigoVenta, String nombreProducto) ;
+
+	DetalleVentaResponse nuevoVentaDetalle(Long CodigoCompra, DetalleVentaDto detalle) ;
+
+	DetalleVentaResponse ActualizarDetalleVenta(Long CodigoVenta, String nombreProducto, DetalleVentaDto detalleventaDto) ;
+
+	Integer ContadordeVentas(Long CodigoVenta) ;
+
+	Double totalVenta(Long CodigoVenta) ;
+
+	DetalleVentaResponse DetalladeunaVenta(Long CodigoVenta, String nombreProducto) ;
+
+	void eliminarDetalleVenta(Long CodigoVenta, String nombreProducto) ;
 }

@@ -141,17 +141,7 @@ public class ControladorCompras {
 			return false;
 
 		}
-		// if(Compras.getTotalCompra() == null)
-		// {
-		// model.addAttribute("mensaje", "Faltan total");
-		// return false;
-		// }
-		// if(Compras.getIvaCompra() == null)
-		// {
-		// model.addAttribute("mensaje", "Faltan iva");
-		// return false;
-		// }
-
+		
 		return true;
 	}
 
@@ -235,7 +225,7 @@ public class ControladorCompras {
 		return true;
 	}
 
-	@GetMapping("/BuscarDetalle/{CodigoCompra}/{nombreProducto}")
+	@GetMapping("/BuscarDetalleCompras/{CodigoCompra}/{nombreProducto}")
 	public String BuscarComprasDetallePorCodigoyNombre(Model model,
 			@PathVariable(name = "CodigoCompra") Long CodigoCompra,
 			@PathVariable(name = "nombreProducto") String nombreProducto) {
@@ -261,15 +251,7 @@ public class ControladorCompras {
 		return "detallecompra";
 	}
 
-	// @PatchMapping("/detallecompra/{CodigoCompra}")
-	// public String actualizarDetalle(Model model, ComprasDto Compras,
-	// @PathVariable(name = "CodigoCompra") Long CodigoCompra){
-	// iCompras.CargarDatosdeunaCompra(Compras, CodigoCompra);
-	// model.addAttribute("mensaje", "Productos cargados");
-
-	// return "compras";
-	// }
-
+	
 	private boolean ValidacionCrearDetalledeunaCompra(Model model, DetalleCompraDto detalle) {
 
 		if (detalle.getNombreProducto().isBlank()) {
@@ -280,11 +262,6 @@ public class ControladorCompras {
 			model.addAttribute("mensaje", "Faltan Cantidad del Producto");
 			return false;
 		}
-		// if (detalle.getValorUnitario().longValue() == 0) {
-		// 	model.addAttribute("mensaje", "Faltan datos del detalle");
-		// 	return false;
-		// }
-
 		return true;
 	}
 
@@ -307,11 +284,7 @@ public class ControladorCompras {
 
 	}
 
-	// @GetMapping("/reporte")
-	// public String reportes() {
-	// return "reporte";
-	// }
-
+	
 	@GetMapping("/reporteCompras")
 	public String reportesCompras(Model model) {
 		model.addAttribute("Comprass", iCompras.ListarCompras());
