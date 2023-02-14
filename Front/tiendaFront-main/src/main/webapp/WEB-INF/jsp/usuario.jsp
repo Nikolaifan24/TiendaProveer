@@ -40,26 +40,23 @@ https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  -->
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
+				<li class="nav-item"><a class="nav-link" href="/compras">Compras</a></li>
+
 				<li class="nav-item"><a class="nav-link" href="/producto">Productos</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
+                <li class="nav-item"><a class="nav-link" href="/faltantes">Faltantes</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="/devoluciones">Devoluciones</a></li>
+
+				<li class="nav-item"><a class="nav-link" href="/Pagos">Pagos</a></li>
+
+            	<li class="nav-item"><a class="nav-link" href="/Cartera">Cartera</a></li>
+
                 <li class="nav-item"><a class="nav-link" href="/vendedor">Vendedores</a></li>
 
-                <li class="nav-item"><a class="nav-link" href="/compras">Compras</a></li>
-
-				<li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					  Dropdown link
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					  <li><a class="dropdown-item" href="#">Action</a></li>
-					  <li><a class="dropdown-item" href="#">Another action</a></li>
-					  <li><a class="dropdown-item" href="#">Something else here</a></li>
-					</ul>
-				</li>
+                <li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
 			</ul>
 
 		</div>

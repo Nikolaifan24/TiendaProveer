@@ -29,21 +29,29 @@
 
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/usuario">Usuarios</a></li>
+				<li class="nav-item"><a class="nav-link" href="/usuario">Usuarios</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/cliente">Clientes</a></li>
 				
 				<li class="nav-item"><a class="nav-link" href="/proveedor">Proveedores</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/producto">Productos</a></li>
+				<li class="nav-item"><a class="nav-link" href="/compras">Compras</a></li>
+
+				<li class="nav-item active"><a class="nav-link" href="/producto">Productos</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
+                <li class="nav-item"><a class="nav-link" href="/faltantes">Faltantes</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="/devoluciones">Devoluciones</a></li>
+
+				<li class="nav-item"><a class="nav-link" href="/Pagos">Pagos</a></li>
+
+            	<li class="nav-item"><a class="nav-link" href="/Cartera">Cartera</a></li>
+
                 <li class="nav-item"><a class="nav-link" href="/vendedor">Vendedores</a></li>
 
-                <li class="nav-item"><a class="nav-link" href="/compras">Compras</a></li>
-
-				<li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
 			</ul>
 
 		</div>
