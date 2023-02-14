@@ -20,6 +20,8 @@ public interface IDetalleVentasService {
 
     void eliminarDetalleVenta(Long codigoVenta, String nombreProdcuto); 
 
+    int contadorDetalleVenta(Long CodigoVenta, String nombreProducto);
+
     // Detalleventa buscarDetalleventaPorCodigoyNombreProducto(Long codigoVenta, String nombreProducto);
 
 }

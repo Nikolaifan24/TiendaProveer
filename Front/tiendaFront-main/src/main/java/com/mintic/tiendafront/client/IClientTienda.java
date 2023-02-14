@@ -5,7 +5,7 @@ import java.util.List;
 import com.mintic.tiendafront.dto.UsuarioDto;
 import com.mintic.tiendafront.dto.UsuarioResponse;
 import com.mintic.tiendafront.dto.LoginDto;
-import com.mintic.tiendafront.dto.TipoDocumento;
+// import com.mintic.tiendafront.dto.TipoDocumento;
 
 public interface IClientTienda {
 

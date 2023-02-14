@@ -36,6 +36,8 @@ public interface IVenta {
 
 	Integer ContadordeVentas(Long CodigoVenta) ;
 
+	Integer ContadordeDetalleVentas(Long CodigoVenta, String nombreProducto) ;
+
 	Double totalVenta(Long CodigoVenta) ;
 
 	DetalleVentaResponse DetalladeunaVenta(Long CodigoVenta, String nombreProducto) ;

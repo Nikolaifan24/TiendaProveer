@@ -234,6 +234,28 @@ public class VentaImp implements IVenta {
 	}
 
 	@Override
+	public Integer ContadordeDetalleVentas(Long CodigoVenta, String nombreProducto) {
+		try {
+			/*
+			 * aqui nos conectamos al back directamente al controlador donde estan las rutas
+			 * el back espera recibir un dto por eso enviamos el dto login dto
+			 */
+
+			Mono<Integer> response = webClient.build().get().uri(URL + "/Ventas/conteo/detalle/" + CodigoVenta + "/" + nombreProducto)
+					.retrieve()
+					.bodyToMono(Integer.class);
+			System.out.println(response.block() + "estoy saliendo del try");
+			return response.block();
+
+		} catch (WebClientResponseException e) {
+			e.getMessage();
+			System.out.println("---->" + e.getMessage());
+			return 0;
+		}
+
+	}
+
+	@Override
 	public Double totalVenta(Long CodigoVenta) {
 		try {
 			/*

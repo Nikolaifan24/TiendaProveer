@@ -243,6 +243,13 @@ public class DetalleVentasImp implements IDetalleVentasService{
 		iCartera.save(cartera);
 		iVenta.save(ventas);
 	}
+
+
+	@Override
+	public int contadorDetalleVenta(Long CodigoVenta, String nombreProducto) {
+		int contador = iDetalleVentas.ContadorRepetidosventa(CodigoVenta, nombreProducto);
+		return contador;
+	}
 	
 	
 }

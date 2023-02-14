@@ -54,7 +54,8 @@ public class ControladorVentas {
 
 	@GetMapping("/venta")
 	public String ventas(Model model) 
-	{
+	{	
+		
 		model.addAttribute("ventas", iVenta.ListarVentas());
 		model.addAttribute("vendedor", iVendedor.ListarVendedors());
 		
@@ -75,13 +76,16 @@ public class ControladorVentas {
 
 				iVenta.guardarVenta(ventas);
 				model.addAttribute("ventas", iVenta.ListarVentas());
-
+				model.addAttribute("vendedor", iVendedor.ListarVendedors());
 				model.addAttribute("mensaje", "Venta Creada con exito");
 			}
 		} else {
-			iVenta.ActualizarVenta(ventas, ventas.getCodigoVenta());
-			model.addAttribute("ventas", iVenta.ListarVentas());
-			model.addAttribute("mensaje", "Datos del ventas Actualizados");
+
+			if (ValidacionCrearVentas(model, ventas) == true){
+				iVenta.ActualizarVenta(ventas, ventas.getCodigoVenta());
+				model.addAttribute("ventas", iVenta.ListarVentas());
+				model.addAttribute("mensaje", "Datos del ventas Actualizados");
+			}
 		}
 
 		return "ventas";
@@ -130,23 +134,19 @@ public class ControladorVentas {
 
 	private boolean ValidacionCrearVentas(Model model, VentaDto Ventas) {
 
-		if (Ventas.getCodigoVenta() == null) {
-			model.addAttribute("mensaje", "Falta Codigo");
-			return false;
-		}
-		if (Ventas.getDocumentoCliente() == null) {
-			model.addAttribute("mensaje", "Faltan Nit");
-			return false;
-		}
+		while (Ventas.getCodigoVenta() == null || Ventas.getDocumentoCliente() == null || Ventas.getFechaVenta().isEmpty() ||  Ventas.getFechaEntrega().isEmpty()){
+			model.addAttribute("mensaje", "Faltan Datos por Favor Validar");
+			model.addAttribute("ventas", iVenta.ListarVentas());
+			model.addAttribute("vendedor", iVendedor.ListarVendedors());
 
-		if (Ventas.getFechaVenta().isEmpty()) {
-			model.addAttribute("mensaje", "Faltan Fecha");
 			return false;
 		}
 
 		int conteo = iVenta.ContadordeVentas(Ventas.getCodigoVenta());
 		if (conteo == 1) {
 			model.addAttribute("mensaje", "Venta Repetida");
+			model.addAttribute("vendedor", iVendedor.ListarVendedors());
+			model.addAttribute("ventas", iVenta.ListarVentas());
 			return false;
 
 		}
@@ -156,16 +156,11 @@ public class ControladorVentas {
 
 	private boolean ValidacionActualizarVentas(Model model, VentaResponse VentasEditar) {
 
-		if (VentasEditar.getID().longValue() == 0) {
-			model.addAttribute("mensaje", "Faltan datos del Ventas");
-			return false;
-		}
-		if (VentasEditar.getCodigoVenta().longValue() == 0) {
-			model.addAttribute("mensaje", "Faltan datos del Ventas");
-			return false;
-		}
-		if (VentasEditar.getTotalVenta().longValue() == 0) {
-			model.addAttribute("mensaje", "Faltan datos del Ventas");
+		while (VentasEditar.getCodigoVenta() == null || VentasEditar.getDocumentoCliente() == null || VentasEditar.getFechaVenta().isEmpty() ||  VentasEditar.getFechaEntrega().isEmpty()){
+			model.addAttribute("mensaje", "Faltan Datos para poder actualizar ");
+			model.addAttribute("ventas", iVenta.ListarVentas());
+			model.addAttribute("vendedor", iVendedor.ListarVendedors());
+
 			return false;
 		}
 		
@@ -174,8 +169,7 @@ public class ControladorVentas {
 	}
 
 	@PostMapping("/detalleventa/{CodigoVenta}")
-	public String crearDetalleVentas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta,
-			DetalleVentaDto Detalle) {
+	public String crearDetalleVentas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta,	DetalleVentaDto Detalle) {
 		if (Detalle.getID().longValue() == 0) {
 			ValidacionCrearDetalledeunaVenta(model, Detalle);
 
@@ -261,14 +255,12 @@ public class ControladorVentas {
 	
 	private boolean ValidacionCrearDetalledeunaVenta(Model model, DetalleVentaDto detalle) {
 
-		if (detalle.getNombreProducto().isBlank()) {
-			model.addAttribute("mensaje", "Falta el nombre del producto");
+		while(detalle.getCantidad() == 0 ){
+			model.addAttribute("mensaje", "Faltan datos por favor verificar");
 			return false;
 		}
-		if (detalle.getCantidad() == 0) {
-			model.addAttribute("mensaje", "Faltan Cantidad del Producto");
-			return false;
-		}
+
+		
 		return true;
 	}
 
@@ -309,6 +301,8 @@ public class ControladorVentas {
 	@GetMapping("/detalleventa/{CodigoVenta}")
 	public String reportesDetallesventas(Model model, @PathVariable(name = "CodigoVenta") Long CodigoVenta) {
 		// Double Totaldeunaventa =  iVenta.totalVenta(CodigoVenta);
+		int valor  = 0;
+		model.addAttribute("cantidad", valor);
 		model.addAttribute("detalleventa", iVenta.ListarDetalleVentas(CodigoVenta));
 		model.addAttribute("detalleVenta", iVenta.ListarDetalleVentas(CodigoVenta));
 		model.addAttribute("productos", iProducto.getProductos());

@@ -102,17 +102,23 @@ public class ControladorVentas {
 	}
 
 	@GetMapping("/Ventas/conteo/codigo/{CodigoVenta}")
-	public Integer ContarunaCompra(@PathVariable Long CodigoVenta) {
+	public Integer ContarunaVenta(@PathVariable Long CodigoVenta) {
 		return iVentas.contadordeVentas(CodigoVenta);
 	}
 
 	@GetMapping("/Ventas/detalle-total/codigo/{CodigoVenta}")
-	public Double TotaldemiCompra(@PathVariable Long CodigoVenta) {
+	public Double TotaldemiVenta(@PathVariable Long CodigoVenta) {
 		return iVentas.cargarCalculosdeVenta(CodigoVenta);
 	}
 
 	@DeleteMapping("/eliminarDetalleVentas/{CodigoVenta}/{nombreProducto}")
 	public void eliminarDetalleVentas(@PathVariable Long CodigoVenta, @PathVariable String nombreProducto) {
 		idetalleventa.eliminarDetalleVenta(CodigoVenta, nombreProducto);
+	}
+
+	@GetMapping("/Ventas/conteo/detalle/{CodigoVenta}/{nombreProducto}")
+	public Integer ContarDetalleVenta(@PathVariable Long CodigoVenta, @PathVariable String nombreProducto) {
+		return idetalleventa.contadorDetalleVenta(CodigoVenta, nombreProducto);
+
 	}
 }

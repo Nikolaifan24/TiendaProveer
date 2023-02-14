@@ -39,7 +39,7 @@
 
                 <li class="nav-item"><a class="nav-link" href="/vendedor">Vendedores</a></li>
 
-                <li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/venta">Ventas</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/reporte">Reportes</a></li>
 			</ul>

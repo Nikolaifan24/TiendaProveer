@@ -47,7 +47,7 @@ public class VentasImp implements IVentasService{
 	@Override
 	public List<Ventas> listaVentas() {
 
-		return (List<Ventas>) iVenta.findAll();
+		return (List<Ventas>) iVenta.ListarVentasenOrden();
 		
 	}
 
