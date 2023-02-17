@@ -8,13 +8,13 @@ import com.mintic.tienda.entities.Pagos;
 
 public interface IPagosService {
 
-    PagosDto buscarPagosPorFechaPago(String fehcaPago);
+    PagosDto buscarPagosPorFechaPago(Long CodigoVenta, String FechaPago); 
 
     void crearPagos(PagosDto pagosDto);
 
-    void eliminarPagos(String fehcaPago);
+    void eliminarPagos(Long CodigoVenta, String FechaPago); 
 
-    void actualizarPagos(String fehcaPago, PagosDto pagosDto);
+    void actualizarPagos(Long CodigoVenta, String FechaPago, PagosDto PagosDto) ;
 
     List<Pagos> listaPagos();
 

@@ -13,8 +13,7 @@ import com.mintic.tienda.entities.Cartera;
 
 public interface ICartera extends CrudRepository<Cartera, Long> {
     @Query(value = "SELECT * from Cartera p where p.FechaVenta= :FechaVenta and p.FechaPago=:FechaPago", nativeQuery = true)
-	List<Cartera> buscarCarteraporFechapagoyVenta(@Param("FechaVenta") String FechaVenta,
-			@Param("FechaPago") String FechaPago);
+	List<Cartera> buscarCarteraporFechapagoyVenta(@Param("FechaVenta") String FechaVenta, 	@Param("FechaPago") String FechaPago);
 
     @Query(value = "SELECT * from Cartera p where p.FechaPago=:FechaPago", nativeQuery = true)
     Cartera buscarCarteraporFechapago(@Param("FechaPago") String FechaPago);

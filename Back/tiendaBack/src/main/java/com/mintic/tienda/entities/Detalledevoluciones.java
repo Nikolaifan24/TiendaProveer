@@ -38,7 +38,9 @@ public class Detalledevoluciones {
     
     private String nombreProducto;
 
-    private Long Cantidad;
+    private Double precioProducto;
+
+    private int Cantidad;
 
     private Double ValorDevoluciones;
 
@@ -46,15 +48,16 @@ public class Detalledevoluciones {
     public Detalledevoluciones() {
     }
 
-
-    public Detalledevoluciones(Long ID, Devoluciones devoluciones, Productos productos, String nombreProducto, Long Cantidad, Double ValorDevoluciones) {
+    public Detalledevoluciones(Long ID, Devoluciones devoluciones, Productos productos, String nombreProducto, Double precioProducto, int Cantidad, Double ValorDevoluciones) {
         this.ID = ID;
         this.devoluciones = devoluciones;
         this.productos = productos;
         this.nombreProducto = nombreProducto;
+        this.precioProducto = precioProducto;
         this.Cantidad = Cantidad;
         this.ValorDevoluciones = ValorDevoluciones;
     }
+
 
     public Long getID() {
         return this.ID;
@@ -88,11 +91,19 @@ public class Detalledevoluciones {
         this.nombreProducto = nombreProducto;
     }
 
-    public Long getCantidad() {
+    public Double getPrecioProducto() {
+        return this.precioProducto;
+    }
+
+    public void setPrecioProducto(Double precioProducto) {
+        this.precioProducto = precioProducto;
+    }
+
+    public int getCantidad() {
         return this.Cantidad;
     }
 
-    public void setCantidad(Long Cantidad) {
+    public void setCantidad(int Cantidad) {
         this.Cantidad = Cantidad;
     }
 
@@ -103,5 +114,7 @@ public class Detalledevoluciones {
     public void setValorDevoluciones(Double ValorDevoluciones) {
         this.ValorDevoluciones = ValorDevoluciones;
     }
-    
-}
+
+
+
+   }

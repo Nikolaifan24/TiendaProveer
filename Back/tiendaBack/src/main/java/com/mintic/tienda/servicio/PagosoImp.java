@@ -98,10 +98,10 @@ public class PagosoImp implements IPagosService {
 	}
 
 	@Override
-	public PagosDto buscarPagosPorFechaPago(String FechaPago) {
+	public PagosDto buscarPagosPorFechaPago(Long CodigoVenta, String FechaPago) {
 		Pagos Pagos = null;
 		try {
-			Pagos = iPagos.buscarPagosporFechapago(FechaPago);
+			Pagos = iPagos.buscarPagosporCodigoVentaFechapago(CodigoVenta, FechaPago);
 			PagosDto  PagosDto = mapPagosDto(Pagos);
 			return PagosDto;
 		} 
@@ -128,16 +128,16 @@ public class PagosoImp implements IPagosService {
 	}
 
 	@Override
-	public void eliminarPagos(String FechaPago) {
+	public void eliminarPagos(Long CodigoVenta, String FechaPago) {
 		
-		Pagos Pagos = iPagos.buscarPagosporFechapago(FechaPago);
+		Pagos Pagos = iPagos.buscarPagosporCodigoVentaFechapago(CodigoVenta, FechaPago);
 		iPagos.delete(Pagos);
 		
 	}
 
 	@Override
-	public void actualizarPagos(String FechaPago, PagosDto PagosDto) {
-		Pagos Pagos = iPagos.buscarPagosporFechapago(FechaPago);
+	public void actualizarPagos(Long CodigoVenta, String FechaPago, PagosDto PagosDto) {
+		Pagos Pagos = iPagos.buscarPagosporCodigoVentaFechapago(CodigoVenta, FechaPago);
 		upStringPagos(PagosDto, Pagos);
 
 	}
@@ -197,8 +197,12 @@ public class PagosoImp implements IPagosService {
 
     @Override
     public List<Pagos> listarPagosPorFechaPagoyVenta(String fechaVenta, String fechaPago) {
-        // TODO Auto-generated method stub
-        return null;
+		List<Pagos> lista = new ArrayList<Pagos>();
+		
+		lista = iPagos.buscarPagosPorFechaPagoFechaVenta(fechaPago, fechaVenta);
+		
+		
+		return (lista) ;
     }
 
 	

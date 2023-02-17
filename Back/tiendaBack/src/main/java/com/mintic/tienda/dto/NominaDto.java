@@ -17,6 +17,10 @@ public class NominaDto {
 
     private Faltantes faltantes;
 
+    private String nombreVendedor;
+
+    private Long codigoVenta;
+
     private String fechaInicio;
 
     private String fechaFinal;
@@ -33,12 +37,14 @@ public class NominaDto {
     public NominaDto() {
     }
 
-    public NominaDto(Long ID, Ventas ventas, Vendedor vendedor, Devoluciones devoluciones, Faltantes faltantes, String fechaInicio, String fechaFinal, Double TotalDevoluciones, Double TotalFaltantes, Double TotalVentas, Double TotalReal) {
+    public NominaDto(Long ID, Ventas ventas, Vendedor vendedor, Devoluciones devoluciones, Faltantes faltantes, String nombreVendedor, Long codigoVenta, String fechaInicio, String fechaFinal, Double TotalDevoluciones, Double TotalFaltantes, Double TotalVentas, Double TotalReal) {
         this.ID = ID;
         this.ventas = ventas;
         this.vendedor = vendedor;
         this.devoluciones = devoluciones;
         this.faltantes = faltantes;
+        this.nombreVendedor = nombreVendedor;
+        this.codigoVenta = codigoVenta;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.TotalDevoluciones = TotalDevoluciones;
@@ -85,6 +91,22 @@ public class NominaDto {
 
     public void setFaltantes(Faltantes faltantes) {
         this.faltantes = faltantes;
+    }
+
+    public String getNombreVendedor() {
+        return this.nombreVendedor;
+    }
+
+    public void setNombreVendedor(String nombreVendedor) {
+        this.nombreVendedor = nombreVendedor;
+    }
+
+    public Long getCodigoVenta() {
+        return this.codigoVenta;
+    }
+
+    public void setCodigoVenta(Long codigoVenta) {
+        this.codigoVenta = codigoVenta;
     }
 
     public String getFechaInicio() {
@@ -136,4 +158,4 @@ public class NominaDto {
     }
 
 
-}
+    }

@@ -26,10 +26,10 @@ public class ControladorPagos {
 	
 	PagosDto PagosDto;
 	
-	@CrossOrigin(origins = "http://localhost:8091")
-	@GetMapping("/Pagos/fehca/pago/{FehcaPago}")
-	public PagosDto buscarPagosByFechaPago(@PathVariable String FehcaPago) {
-		return iPagos.buscarPagosPorFechaPago(FehcaPago);
+	@CrossOrigin(origins = "http://localhost:8090")
+	@GetMapping("/Pagos/fehca/pago/{CodigoVenta}-{FehcaPago}")
+	public PagosDto buscarPagosByFechaPago(@PathVariable Long CodigoVenta, @PathVariable String FehcaPago) {
+		return iPagos.buscarPagosPorFechaPago(CodigoVenta, FehcaPago);
 	}
 	
 	
@@ -38,14 +38,14 @@ public class ControladorPagos {
 		iPagos.crearPagos(PagosDto);
 	}
 	
-	@DeleteMapping("/eliminarPagos/{FehcaPago}")
-	public void eliminarPagos(@PathVariable String FehcaPago) {
-		iPagos.eliminarPagos(FehcaPago);
+	@DeleteMapping("/eliminarPagos/{CodigoVenta}-{FehcaPago}")
+	public void eliminarPagos(@PathVariable Long CodigoVenta, @PathVariable String FehcaPago) {
+		iPagos.eliminarPagos(CodigoVenta, FehcaPago);
 	}
 	
-	@PatchMapping("/actualizarPagos/{FehcaPago}")
-	public void actualizaralPagos(@PathVariable String FehcaPago, @RequestBody PagosDto PagosDto) {
-		iPagos.actualizarPagos(FehcaPago, PagosDto);
+	@PatchMapping("/actualizarPagos/{CodigoVenta}-{FehcaPago}")
+	public void actualizaralPagos(@PathVariable Long CodigoVenta, @PathVariable String FehcaPago, @RequestBody PagosDto PagosDto) {
+		iPagos.actualizarPagos(CodigoVenta, FehcaPago, PagosDto);
 	}
 	
 	@GetMapping("/pagos")

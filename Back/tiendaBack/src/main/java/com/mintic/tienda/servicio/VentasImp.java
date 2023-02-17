@@ -129,7 +129,7 @@ public class VentasImp implements IVentasService{
 		Pagos pagos = new Pagos();
 		Ventas venta = iVenta.buscarVentasPorCodigo(CodigoVenta);
 		Clientes cliente = iCliente.buscarClientePorCedula(documento);
-		String Fechapago = "1998-02-06";
+		String Fechapago = venta.getFechaVenta();
 		String Medio = "Efectivo";
 		String Tipo = "Total";
 		Double valor = 0.0;

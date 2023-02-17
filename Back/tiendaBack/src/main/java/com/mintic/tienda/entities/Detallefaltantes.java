@@ -35,7 +35,9 @@ public class Detallefaltantes {
     
     private String nombreProducto;
 
-    private Long Cantidad;
+    private Double precioProducto;
+
+    private int Cantidad;
 
     private Double totalDetalle;
 
@@ -43,11 +45,12 @@ public class Detallefaltantes {
     public Detallefaltantes() {
     }
 
-    public Detallefaltantes(Long ID, Faltantes faltantes, Productos productos, String nombreProducto, Long Cantidad, Double totalDetalle) {
+    public Detallefaltantes(Long ID, Faltantes faltantes, Productos productos, String nombreProducto, Double precioProducto, int Cantidad, Double totalDetalle) {
         this.ID = ID;
         this.faltantes = faltantes;
         this.productos = productos;
         this.nombreProducto = nombreProducto;
+        this.precioProducto = precioProducto;
         this.Cantidad = Cantidad;
         this.totalDetalle = totalDetalle;
     }
@@ -84,11 +87,19 @@ public class Detallefaltantes {
         this.nombreProducto = nombreProducto;
     }
 
-    public Long getCantidad() {
+    public Double getPrecioProducto() {
+        return this.precioProducto;
+    }
+
+    public void setPrecioProducto(Double precioProducto) {
+        this.precioProducto = precioProducto;
+    }
+
+    public int getCantidad() {
         return this.Cantidad;
     }
 
-    public void setCantidad(Long Cantidad) {
+    public void setCantidad(int Cantidad) {
         this.Cantidad = Cantidad;
     }
 
@@ -99,5 +110,6 @@ public class Detallefaltantes {
     public void setTotalDetalle(Double totalDetalle) {
         this.totalDetalle = totalDetalle;
     }
+
 
     }

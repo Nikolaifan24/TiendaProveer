@@ -1,5 +1,7 @@
 package com.mintic.tienda.dto;
 
+import com.mintic.tienda.entities.Faltantes;
+import com.mintic.tienda.entities.Productos;
 import com.mintic.tienda.entities.Vendedor;
 import com.mintic.tienda.entities.Ventas;
 
@@ -7,13 +9,15 @@ public class DetallefaltantesDto {
     
     private Long ID;
 	
-	private Ventas ventas;
+	private Faltantes faltantes;
 
-    private Vendedor vendedor;
+    private Productos productos;
     
     private String nombreProducto;
 
-    private Long Cantidad;
+    private Double precioProducto;
+
+    private int Cantidad;
 
     private Double totalDetalle; 
 
@@ -21,15 +25,16 @@ public class DetallefaltantesDto {
     public DetallefaltantesDto() {
     }
 
-
-    public DetallefaltantesDto(Long ID, Ventas ventas, Vendedor vendedor, String nombreProducto, Long Cantidad, Double totalDetalle) {
+    public DetallefaltantesDto(Long ID, Faltantes faltantes, Productos productos, String nombreProducto, Double precioProducto, int Cantidad, Double totalDetalle) {
         this.ID = ID;
-        this.ventas = ventas;
-        this.vendedor = vendedor;
+        this.faltantes = faltantes;
+        this.productos = productos;
         this.nombreProducto = nombreProducto;
+        this.precioProducto = precioProducto;
         this.Cantidad = Cantidad;
         this.totalDetalle = totalDetalle;
     }
+
 
     public Long getID() {
         return this.ID;
@@ -39,20 +44,20 @@ public class DetallefaltantesDto {
         this.ID = ID;
     }
 
-    public Ventas getVentas() {
-        return this.ventas;
+    public Faltantes getFaltantes() {
+        return this.faltantes;
     }
 
-    public void setVentas(Ventas ventas) {
-        this.ventas = ventas;
+    public void setFaltantes(Faltantes faltantes) {
+        this.faltantes = faltantes;
     }
 
-    public Vendedor getVendedor() {
-        return this.vendedor;
+    public Productos getProductos() {
+        return this.productos;
     }
 
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
+    public void setProductos(Productos productos) {
+        this.productos = productos;
     }
 
     public String getNombreProducto() {
@@ -63,11 +68,19 @@ public class DetallefaltantesDto {
         this.nombreProducto = nombreProducto;
     }
 
-    public Long getCantidad() {
+    public Double getPrecioProducto() {
+        return this.precioProducto;
+    }
+
+    public void setPrecioProducto(Double precioProducto) {
+        this.precioProducto = precioProducto;
+    }
+
+    public int getCantidad() {
         return this.Cantidad;
     }
 
-    public void setCantidad(Long Cantidad) {
+    public void setCantidad(int Cantidad) {
         this.Cantidad = Cantidad;
     }
 
@@ -78,5 +91,5 @@ public class DetallefaltantesDto {
     public void setTotalDetalle(Double totalDetalle) {
         this.totalDetalle = totalDetalle;
     }
-    
+
 }
