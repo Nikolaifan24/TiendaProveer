@@ -67,9 +67,8 @@
 						<label>Seleccionar una Accion</label>
 						 <select name="IDdevoluciones" id ="ID"
 								class="form-select">
-								<option name="IDdevoluciones" value=" ">Seleccionar</option>
-								<option name="IDdevoluciones" value="1">Editar Usuario</option>
-								<option name="IDdevoluciones" value="0">Crear Usuario</option>
+								<option name="IDdevoluciones" value="1">Editar Devolucion</option>
+								<option name="IDdevoluciones" value="0">Crear Devolucion</option>
 		
 								
 							</select>
@@ -136,13 +135,13 @@
 				
 					<tr style=" color: black"> 
 						
-						<td>${devoluciones.codigoventa}</td>
+						<td>${devoluciones.codigoVenta}</td>
 						<td>${devoluciones.fechaVenta}</td>
 						<td>${devoluciones.vendedor.nombreVendedor}</td>
-						<td>${devoluciones.TotalDevoluciones}</td>
+						<td>${devoluciones.totalDevoluciones}</td>
 										
-						<td><a class="btn btn-success" href="/detalledevoluciones/${devoluciones.codigoventa}">Ver</a></td>
-						<td><a class="btn btn-danger" href="/BuscardevolucionesPorVenta/${devoluciones.codigoventa}">Actualizar</a></td>
+						<td><a class="btn btn-success" href="/detalledevoluciones/${devoluciones.codigoVenta}">Ver</a></td>
+						<td><a class="btn btn-danger" href="/BuscardevolucionesPorVenta/${devoluciones.codigoVenta}">Actualizar</a></td>
 						
 					</tr>
 				

@@ -96,13 +96,13 @@
 						<label for="codigoProducto"> Codigo del Producto</label>
 						<input type="text"
 							name="codigoProducto" id="codigoProducto"
-							value="${detalleDevolucionesEditar.productos.codigoProducto}" class="form-control" />
+							value="${detalledevolucionesEditar.productos.codigoProducto}" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="cantidad"> Cantidad del Producto:</label>
 						<input type="text"
 							name="cantidad" id="cantidad"
-							value="${detalleDevolucionesEditar.cantidad}" class="form-control" />
+							value="${detalledevolucionesEditar.cantidad}" class="form-control" />
 					
 					</div>
 					

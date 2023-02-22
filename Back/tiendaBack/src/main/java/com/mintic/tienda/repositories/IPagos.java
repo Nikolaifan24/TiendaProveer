@@ -25,8 +25,8 @@ public interface IPagos extends CrudRepository<Pagos, Long> {
     @Query(value = "SELECT * from Pagos p where p.codigoVenta = :CodigoVenta AND p.FechaPago=:FechaPago ", nativeQuery = true)
     Pagos buscarPagosporCodigoVentaFechapago(@Param("CodigoVenta") Long CodigoVenta, @Param("FechaPago") String FechaPago);
 
-    @Query(value = "SELECT * FROM Pagos p INNER JOIN Clientes c ON p.IDCliente= c.IDCliente WHERE c.nombreCliente= :nombreCliente AND c.apellidoCliente= :apellidoCliente", nativeQuery = true)
-	List<Pagos> buscarPagosPorCliente(@Param("nombreCliente") String nombreCliente, @Param("apellidoCliente") String apellidoCliente);
+    @Query(value = "SELECT * FROM Pagos p INNER JOIN Clientes c ON p.IDCliente= c.IDCliente WHERE c.documentoCliente= :", nativeQuery = true)
+	List<Pagos> buscarPagosPorCliente(@Param("documentoCliente") Long documentoCliente);
 
     @Query(value = "SELECT * FROM Pagos p INNER JOIN Ventas c ON c.IDVenta= p.IDVenta WHERE c.FechaVenta= :FechaVenta", nativeQuery = true)
 	List<Pagos> buscarPagosPorFechaVenta(@Param("FechaVenta") String FechaVenta);

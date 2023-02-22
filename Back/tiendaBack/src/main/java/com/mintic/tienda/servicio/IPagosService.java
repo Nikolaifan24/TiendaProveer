@@ -18,7 +18,7 @@ public interface IPagosService {
 
     List<Pagos> listaPagos();
 
-    List<Pagos> listaPagosCliente(String nombreCliente, String apellidoCliente);
+    List<Pagos> listaPagosCliente(Long documentoCliente);
 
     List<Pagos> listarPagosMedioPago(String MedioPago);
 

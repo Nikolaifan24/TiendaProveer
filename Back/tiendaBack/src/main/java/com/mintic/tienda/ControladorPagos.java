@@ -27,7 +27,7 @@ public class ControladorPagos {
 	PagosDto PagosDto;
 	
 	@CrossOrigin(origins = "http://localhost:8090")
-	@GetMapping("/Pagos/fehca/pago/{CodigoVenta}-{FehcaPago}")
+	@GetMapping("/Pagos/fecha/pago/{CodigoVenta}/{FehcaPago}")
 	public PagosDto buscarPagosByFechaPago(@PathVariable Long CodigoVenta, @PathVariable String FehcaPago) {
 		return iPagos.buscarPagosPorFechaPago(CodigoVenta, FehcaPago);
 	}
@@ -38,7 +38,7 @@ public class ControladorPagos {
 		iPagos.crearPagos(PagosDto);
 	}
 	
-	@DeleteMapping("/eliminarPagos/{CodigoVenta}-{FehcaPago}")
+	@DeleteMapping("/eliminarPagos/{CodigoVenta}/{FehcaPago}")
 	public void eliminarPagos(@PathVariable Long CodigoVenta, @PathVariable String FehcaPago) {
 		iPagos.eliminarPagos(CodigoVenta, FehcaPago);
 	}
@@ -53,9 +53,9 @@ public class ControladorPagos {
 		return iPagos.listaPagos();
 	}
 	
-	@GetMapping("/Pagos/cliente/nombre/{nombreCliente}-{apellidoCliente}")
-	public List<Pagos> listaPagosByCliente(@PathVariable String nombreCliente, @PathVariable String apellidoCliente){
-		return iPagos.listaPagosCliente(nombreCliente, apellidoCliente);
+	@GetMapping("/Pagos/cliente/{documentoCliente}")
+	public List<Pagos> listaPagosByCliente(@PathVariable Long documentoCliente){
+		return iPagos.listaPagosCliente(documentoCliente);
 	}
 
 	@GetMapping("/Pagos/venta/fechaventa/{FechaVenta}")
