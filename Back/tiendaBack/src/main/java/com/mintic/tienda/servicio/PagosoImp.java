@@ -10,41 +10,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mintic.tienda.dto.PagosDto;
 import com.mintic.tienda.entities.Pagos;
+import com.mintic.tienda.entities.Cartera;
 import com.mintic.tienda.entities.Clientes;
 // import com.mintic.tienda.entities.Pagos;
 import com.mintic.tienda.entities.Ventas;
+import com.mintic.tienda.repositories.ICartera;
+import com.mintic.tienda.repositories.ICliente;
 import com.mintic.tienda.repositories.IPagos;
+import com.mintic.tienda.repositories.IVenta;
 
 @Service
 public class PagosoImp implements IPagosService {
 
     @Autowired
-	public
 	IPagos iPagos;
+
+	@Autowired
+	ICliente iCliente;
+
+	@Autowired
+	IVenta iVenta;
+
+	@Autowired
+	ICartera iCartera;
 	
 	@Override
 	public void crearPagos(PagosDto PagosDto) {
-		iPagos.save(buildPagos(PagosDto));
-		
+		Pagos pagos = buildPagos(PagosDto);
+		Long CodigoVenta = pagos.getCodigoVenta();
+		iPagos.save(pagos);
+		ModificarCartera(pagos, CodigoVenta);
+	}
+
+	public void ModificarCartera(Pagos pagos, Long CodigoVenta){
+
+		Cartera cartera = iCartera.buscarCarteraPorCodigoVenta(CodigoVenta);
+		Double Total= pagos.getValorPago();
+		Double TotalCartera = cartera.getSaldo() - Total;
+
+		if (TotalCartera!= null){
+			cartera.setSaldo(TotalCartera);
+		}
+		iCartera.save(cartera);
+
 	}
 	
 	private Pagos buildPagos(PagosDto PagosDto) {
 		Pagos Pagos = new Pagos();
-		Clientes clientes = PagosDto.getClientes();
-		Ventas ventas = PagosDto.getVentas();
-        String FechaVenta = PagosDto.getFechaVenta();
+		Long Codigoventa = PagosDto.getCodigoVenta();
+		Long documentoCliente = PagosDto.getDocumentoCliente();
+		Clientes clientes = iCliente.buscarClientePorCedula(documentoCliente);
+		Ventas ventas = iVenta.buscarVentasPorCodigo(Codigoventa);
+        String FechaVenta = ventas.getFechaVenta();
         String FechaPago = PagosDto.getFechaPago();
 		String TipoPago = PagosDto.getTipoPago();
 		String MedioPago = PagosDto.getMedioPago();
         Double Valor = PagosDto.getValorPago();
-		
+
+		if(Codigoventa!= null) {
+			Pagos.setCodigoVenta(Codigoventa);
+		}
+		if(documentoCliente!= null) {
+			Pagos.setDocumentoCliente(documentoCliente);
+		}
         if(ventas!= null) {
-			Pagos.setVentas(ventas);;
+			Pagos.setVentas(ventas);
 		}
 		if(clientes != null) {
-			Pagos.setClientes(clientes);;
+			Pagos.setClientes(clientes);
 		}
-				if(FechaVenta != null) {
+		if(FechaVenta != null) {
 			Pagos.setFechaVenta(FechaVenta);
 		}
 		if(FechaPago != null) {
@@ -61,25 +96,35 @@ public class PagosoImp implements IPagosService {
 		}
 				
 		return Pagos;
+
 	}
 	
 	private void upStringPagos(PagosDto PagosDto, Pagos Pagos) {
 		
-		Clientes clientes = PagosDto.getClientes();
-		Ventas ventas = PagosDto.getVentas();
-        String FechaVenta = PagosDto.getFechaVenta();
+		Long Codigoventa = PagosDto.getCodigoVenta();
+		Long documentoCliente = PagosDto.getDocumentoCliente();
+		Clientes clientes = iCliente.buscarClientePorCedula(documentoCliente);
+		Ventas ventas = iVenta.buscarVentasPorCodigo(Codigoventa);
+        String FechaVenta = ventas.getFechaVenta();
         String FechaPago = PagosDto.getFechaPago();
 		String TipoPago = PagosDto.getTipoPago();
 		String MedioPago = PagosDto.getMedioPago();
         Double Valor = PagosDto.getValorPago();
 		
+
+		if(Codigoventa!= null) {
+			Pagos.setCodigoVenta(Codigoventa);
+		}
+		if(documentoCliente!= null) {
+			Pagos.setDocumentoCliente(documentoCliente);
+		}
         if(ventas!= null) {
-			Pagos.setVentas(ventas);;
+			Pagos.setVentas(ventas);
 		}
 		if(clientes != null) {
-			Pagos.setClientes(clientes);;
+			Pagos.setClientes(clientes);
 		}
-				if(FechaVenta != null) {
+		if(FechaVenta != null) {
 			Pagos.setFechaVenta(FechaVenta);
 		}
 		if(FechaPago != null) {
@@ -139,6 +184,7 @@ public class PagosoImp implements IPagosService {
 	public void actualizarPagos(Long CodigoVenta, String FechaPago, PagosDto PagosDto) {
 		Pagos Pagos = iPagos.buscarPagosporCodigoVentaFechapago(CodigoVenta, FechaPago);
 		upStringPagos(PagosDto, Pagos);
+		ModificarCartera(Pagos, CodigoVenta);
 
 	}
 

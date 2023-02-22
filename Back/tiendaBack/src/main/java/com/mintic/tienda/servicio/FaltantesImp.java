@@ -44,7 +44,7 @@ public class FaltantesImp implements IFaltantesServices{
 			Faltantes.getCodigoventa(),
 			Faltantes.getFechaVenta(),
 			Faltantes.getNombreVendedor(),
-			Faltantes.getTotalFaltanes()
+			Faltantes.getTotalFaltantes()
 				
 		);
 	}
@@ -66,18 +66,17 @@ public class FaltantesImp implements IFaltantesServices{
     @Override
 	public void crearFaltantes(FaltantesDto FaltantesDto) {
 		iFaltantes.save(buildFaltantes(FaltantesDto));
-		// iFaltantes.save(realizarCalculoCompra(detallecompraDto));
-		
+				
 	}
     
 	private Faltantes buildFaltantes(FaltantesDto FaltantesDto) {
 		Faltantes Faltantes = new Faltantes();
-        String nombreVendedor = FaltantesDto.getNombreVendedor();
-        Vendedor vendedor = iVendedor.buscarVendedorPorNombre(nombreVendedor);
         Long codigoventa = FaltantesDto.getCodigoventa();
         Ventas ventas = iVenta.buscarVentasPorCodigo(codigoventa);
+		String nombreVendedor = ventas.getNombreVendedor();
+		Vendedor vendedor = iVendedor.buscarVendedorPorNombre(nombreVendedor);
 		String fechaVenta = ventas.getFechaVenta();
-
+		Double Total = cargarCalculosdeunFaltante(codigoventa);
 		if(nombreVendedor != null) {
 			Faltantes.setNombreVendedor(nombreVendedor);
 		}
@@ -92,6 +91,10 @@ public class FaltantesImp implements IFaltantesServices{
 		}
         if(fechaVenta != null) {
 			Faltantes.setFechaVenta(fechaVenta);
+		}
+		if(Total != null) {
+			
+			Faltantes.setTotalFaltantes(Total);
 		}
 
 		return Faltantes;
@@ -119,8 +122,8 @@ public class FaltantesImp implements IFaltantesServices{
         Vendedor vendedor = iVendedor.buscarVendedorPorNombre(nombreVendedor);
         Long codigoventa = FaltantesDto.getCodigoventa();
 		Ventas ventas = iVenta.buscarVentasPorCodigo(codigoventa);
-        String fechaVenta = faltantes.getFechaVenta();
-		Double Total = cargarCalculosdeunaDevolucion(codigoventa);
+        String fechaVenta = ventas.getFechaVenta();
+		Double Total = cargarCalculosdeunFaltante(codigoventa);
 
 		if(nombreVendedor != null) {
 			
@@ -144,7 +147,7 @@ public class FaltantesImp implements IFaltantesServices{
 		}
 		if(Total != null) {
 			
-			faltantes.setTotalFaltanes(Total);
+			faltantes.setTotalFaltantes(Total);
 		}
 		iFaltantes.save(faltantes);
 	}
@@ -170,7 +173,7 @@ public class FaltantesImp implements IFaltantesServices{
 	}
 
 	@Override
-	public Double cargarCalculosdeunaDevolucion(Long CodigoVenta) {
+	public Double cargarCalculosdeunFaltante(Long CodigoVenta) {
 		Double total = iFaltantes.TotaldeunFaltante(CodigoVenta);
 		if (total == null) {
 			total = 0.0;

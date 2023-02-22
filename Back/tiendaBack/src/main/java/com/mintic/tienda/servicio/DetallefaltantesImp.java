@@ -71,7 +71,6 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 	public void crearDetallefaltantess(Long CodigoVenta, DetallefaltantesDto DetallefaltantessDto){
 		Detallefaltantes detalle = buildDetallefaltantess(CodigoVenta, DetallefaltantessDto);
 		Faltantes Faltantes = detalle.getFaltantes();
-		Productos productos = detalle.getProductos();
 		String nombreProducto = detalle.getNombreProducto();
 		int repetidos = iDetallefaltantes.ContadorRepetidos(CodigoVenta, nombreProducto);
 		if (repetidos != 0){
@@ -81,17 +80,15 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 		else{
 			iFaltantes.save(Faltantes);
 			iDetallefaltantes.save(detalle);
-			iProducto.save(productos);
-			CreacionAlternativa(CodigoVenta);
+			CreacionAlternativa(detalle, CodigoVenta);
 			
 		}
 		
 	}
 
-	private void CreacionAlternativa(Long CodigoVenta){
+	private void CreacionAlternativa(Detallefaltantes detalle, Long CodigoVenta){
 		Cartera cartera = iCartera.buscarCarteraPorCodigoVenta(CodigoVenta);
-		Faltantes Faltantes = iFaltantes.buscarfaltantesPorCodigoVenta(CodigoVenta);
-		Double Total= Faltantes.getTotalFaltanes();
+		Double Total= detalle.getTotalDetalle();
 		Double TotalCartera = cartera.getSaldo() - Total;
 
 		if (TotalCartera!= null){
@@ -109,9 +106,9 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 		int cantidadProducto = DetallefaltantessDto.getCantidad();
 		Double precioProducto = productos.getPrecioVenta();
 		Double totalDetalle = cantidadProducto*precioProducto;
-		Double TotalFaltantes = Faltantes.getTotalFaltanes() + totalDetalle;
+		Double TotalFaltantes = Faltantes.getTotalFaltantes() + totalDetalle;
 		// Double TotalCartera = cartera.getSaldo() - TotalFaltantes;
-		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		
 
 
 		if (nombredelProducto != null){
@@ -132,15 +129,10 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 		if(totalDetalle != null) {
 			Detallefaltantes.setTotalDetalle(totalDetalle);
 		}
-		if(inventario != null) {
-			productos.setCantidadProducto(inventario);
-		}
 		if (TotalFaltantes != null){
-			Faltantes.setTotalFaltanes(TotalFaltantes);
+			Faltantes.setTotalFaltantes(TotalFaltantes);
 		}
-		// if (TotalCartera != null){
-		// 	cartera.setSaldo(TotalCartera);
-		// }
+	
 
 
 		return Detallefaltantes;
@@ -165,9 +157,9 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 		int cantidadProducto = DetallefaltantessDto.getCantidad();
 		Double precioProducto = productos.getPrecioVenta();
 		Double totalDetalle = cantidadProducto*precioProducto;
-		Double TotalFaltantes = Faltantes.getTotalFaltanes() + totalDetalle;
+		Double TotalFaltantes = Faltantes.getTotalFaltantes()+ totalDetalle;
 		Double TotalCartera = cartera.getSaldo() - totalDetalle;
-		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		
 
 
 		if (nombredelProducto != null){
@@ -188,11 +180,8 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 		if(totalDetalle != null) {
 			Detallefaltantes.setTotalDetalle(totalDetalle);
 		}
-		if(inventario != null) {
-			productos.setCantidadProducto(inventario);
-		}
 		if (TotalFaltantes != null){
-			Faltantes.setTotalFaltanes(TotalFaltantes);
+			Faltantes.setTotalFaltantes(TotalFaltantes);
 			cartera.setSaldo(TotalFaltantes);
 		}
 		if (TotalCartera != null){
@@ -200,8 +189,7 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 		}
 
 		iFaltantes.save(Faltantes);
-		iProducto.save(productos);
-        iDetallefaltantes.save(Detallefaltantes);
+		iDetallefaltantes.save(Detallefaltantes);
 		iCartera.save(cartera);
     } 
 
@@ -244,10 +232,10 @@ public class DetallefaltantesImp implements IDetalleFaltantesService {
 		Double total = detalle.getTotalDetalle();
 		Faltantes Faltantes = iFaltantes.buscarfaltantesPorCodigoVenta(CodigoVenta);
 		Cartera cartera = iCartera.buscarCarteraPorCodigoVenta(CodigoVenta);
-		Double totalFaltantes = detalle.getFaltantes().getTotalFaltanes() - total;
+		Double totalFaltantes = detalle.getFaltantes().getTotalFaltantes() - total;
 		Double totalCartera = cartera.getSaldo() + total;
 		if(totalFaltantes != null){
-			Faltantes.setTotalFaltanes(totalFaltantes);
+			Faltantes.setTotalFaltantes(totalFaltantes);
 		}
 		if(totalCartera != null){
 			cartera.setSaldo(totalCartera);

@@ -64,35 +64,49 @@
 				
 				<div class="container overflow-hidden">
 				<div class="form-group">
-					<input type="hidden" name="id" value="${proveedorEditar.id}">
+					<label>Seleccionar una Accion</label>
+						 <select name="IDProveedor" id ="IDProveedor"
+								class="form-select">
+								<option name="IDProveedor" value="1">Editar Proveedor</option>
+								<option name="IDProveedor" value="0">Crear Proveedor</option>
+										
+						</select>
 
-					<label for="nit"> Nit:</label><input type="text"
-						name="nit" id="nit"
-						value="${proveedorEditar.nit}" class="form-control" />
+					<label for="nitProveedor"> Nit:</label><input type="text"
+						name="nitProveedor" id="nitProveedor"
+						value="${proveedorEditar.nitProveedor}" class="form-control" />
 				</div>
 				<div class="form-group">
-					<label>nombre:</label><input type="text" name="nombre"
-						class="form-control" value="${proveedorEditar.nombre}" />
+					<label>nombre:</label><input type="text" name="nombreProveedor"
+						class="form-control" value="${proveedorEditar.nombreProveedor}" />
 				</div>
 				<div class="form-group">
-					<label>Ciudad:</label><input type="text" name="ciudad"
-						class="form-control" value="${proveedorEditar.ciudad}" />
+					<label>Seleccionar una Accion</label>
+						 <select name="TipoProducto" id ="TipoProducto"
+								class="form-select">
+								<option name="Escobas" value="Escobas">Escobas</option>
+								<option name="Traperos" value="Traperos">Traperos</option>
+								<option name="Liquidos" value="Liquidos">Liquidos</option>
+
+										
+						</select>
+					<label>Ciudad:</label><input type="text" name="ciudadProveedor"
+						class="form-control" value="${proveedorEditar.ciudadProveedor}" />
 				</div>
 				<div class="form-group">
 					<label> Direccion:</label> <input type="text"
-						name="address" class="form-control"
-						value="${proveedorEditar.address}" />
+						name="direccionProveedor" class="form-control"
+						value="${proveedorEditar.direccionProveedor}" />
 				</div>
 				<div class="form-group">
-					<label>Telefono:</label> <input type="text" name="telefono"
-						class="form-control" value="${proveedorEditar.telefono}" />
+					<label>Telefono:</label> <input type="text" name="telefonoProveedor"
+						class="form-control" value="${proveedorEditar.telefonoProveedor}" />
 				</div>
 				</div>
 				<br>
 				<div class="btn-group" role="group" aria-label="Basic example">
 				<button type="submit" class="btn btn-primary" formmethod="post" >Grabar</button>
-				<!-- <a type="button" class="btn btn-secondary" href= "/proveedorPorNit/${proveedorEditar.nit}" >Consultar proveedor</a>-->
-				<a type="button" class="btn btn-secondary" onclick="getInputValue();" >Consultar Proveedor</a>
+				<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>
 		 		</div>
 			</form>
 		</div>
@@ -119,7 +133,7 @@
 						<td>${proveedor.direccionProveedor}</td>
 						<td>${proveedor.telefonoProveedor}</td>
 						<td><a class="btn btn-danger" href="/eliminarproveedor/${proveedor.nitProveedor}">Eliminar proveedor</a></td>
-						<td><a class="btn btn-success" href="/proveedor/${proveedor.nitProveedor}">Actualizar proveedor</a></td>
+						<td><a class="btn btn-success" href="/proveedorPorNit/${proveedor.nitProveedor}" >Actualizar proveedor</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>
@@ -128,17 +142,4 @@
 
 </body>
 
-
-<script>
-
-function getInputValue(){
-    
-    var inputVal = document.getElementById("nit").value;
-    var url = "/proveedorPorNit/" + inputVal;
-    let res = fetch(url);
-        
-}
-
-
-</script>
 </html>

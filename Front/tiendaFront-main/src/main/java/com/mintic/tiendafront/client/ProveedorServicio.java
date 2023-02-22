@@ -63,7 +63,7 @@ public class ProveedorServicio implements IProveedor {
 		try {
 
 			ProveedorResponse u = null;
-			Mono<ProveedorResponse> response = webClient.build().post().uri(URL + "/proveedor/" + nit)
+			Mono<ProveedorResponse> response = webClient.build().patch().uri(URL + "/proveedor/" + nit)
 					.body(Mono.just(proveedorDto), ProveedorResponse.class).retrieve()
 					.bodyToMono(ProveedorResponse.class);
 
@@ -85,7 +85,7 @@ public class ProveedorServicio implements IProveedor {
 
 			Mono<ProveedorResponse> response = webClient.build().get().uri(URL + "/proveedor/" + nit)
 					.retrieve().bodyToMono(ProveedorResponse.class);
-
+			
 			return response.block();
 		} catch (Exception e) {
 

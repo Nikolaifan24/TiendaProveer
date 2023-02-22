@@ -26,7 +26,7 @@ public interface IFaltantes  extends CrudRepository<Faltantes, Long> {
     @Query(value = "select count(*) from faltantes f INNER JOIN ventas v ON f.IDventa = v.IDventa WHERE v.CodigoVenta= :CodigoVenta", nativeQuery = true)
 	Integer ContadorRepetidosFaltantes(@Param("CodigoVenta") Long CodigoVenta);
 
-    @Query(value = "SELECT SUM(d.totalfaltantes) FROM detalle_faltantes d  INNER JOIN faltantes f on d.IDfaltantes = f.IDFaltantes WHERE c.codigoVenta = :CodigoVenta", nativeQuery = true)
+    @Query(value = "SELECT SUM(d.totalDetalle) FROM detalle_faltantes d  INNER JOIN faltantes f on d.IDfaltantes = f.IDFaltantes WHERE f.codigoVenta = :CodigoVenta", nativeQuery = true)
 	Double TotaldeunFaltante(@Param("CodigoVenta") Long CodigoVenta);
 
 }

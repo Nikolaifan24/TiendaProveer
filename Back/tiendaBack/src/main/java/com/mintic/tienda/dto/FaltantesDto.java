@@ -18,20 +18,20 @@ public class FaltantesDto {
 
     private String nombreVendedor;
 
-    private Double totalFaltanes;
+    private Double totalFaltantes;
 
 
     public FaltantesDto() {
     }
 
-    public FaltantesDto(Long IDFaltantes, Ventas ventas, Vendedor vendedor, Long codigoventa, String fechaVenta, String nombreVendedor, Double totalFaltanes) {
+    public FaltantesDto(Long IDFaltantes, Ventas ventas, Vendedor vendedor, Long codigoventa, String fechaVenta, String nombreVendedor, Double totalFaltantes) {
         this.IDFaltantes = IDFaltantes;
         this.ventas = ventas;
         this.vendedor = vendedor;
         this.codigoventa = codigoventa;
         this.fechaVenta = fechaVenta;
         this.nombreVendedor = nombreVendedor;
-        this.totalFaltanes = totalFaltanes;
+        this.totalFaltantes = totalFaltantes;
     }
 
     public Long getIDFaltantes() {
@@ -82,13 +82,12 @@ public class FaltantesDto {
         this.nombreVendedor = nombreVendedor;
     }
 
-    public Double getTotalFaltanes() {
-        return this.totalFaltanes;
+    public Double getTotalFaltantes() {
+        return this.totalFaltantes;
     }
 
-    public void setTotalFaltanes(Double totalFaltanes) {
-        this.totalFaltanes = totalFaltanes;
+    public void setTotalFaltantes(Double totalFaltantes) {
+        this.totalFaltantes = totalFaltantes;
     }
 
-
-}
+    }

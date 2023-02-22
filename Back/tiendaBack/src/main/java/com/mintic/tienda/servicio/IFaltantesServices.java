@@ -22,7 +22,7 @@ public interface IFaltantesServices {
 
     List<Productos> listaFaltantesPorProductos(String nombreProducto) ;
 
-    Double cargarCalculosdeunaDevolucion(Long CodigoVenta) ;
+    Double cargarCalculosdeunFaltante(Long CodigoVenta); 
 
     Integer ContarFaltantes(Long CodigoVenta);
 }

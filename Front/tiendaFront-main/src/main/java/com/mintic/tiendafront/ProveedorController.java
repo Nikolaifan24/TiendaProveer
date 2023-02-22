@@ -36,11 +36,11 @@ public class ProveedorController {
 	@PostMapping("/proveedor")
 	public String crearProveedor(Model model, ProveedoresDto proveedor) {
 
-		if(proveedor.getid().longValue() == 0 ) {
+		if(proveedor.getIDProveedor().longValue() == 0 ) {
 			
-			Validacion(model, proveedor);
+			ValidacionCrear(model, proveedor);
 			
-			if(Validacion(model, proveedor) == true) 
+			if(ValidacionCrear(model, proveedor) == true) 
 			{
 				proveedores.nuevoProveedor(proveedor);				
 				model.addAttribute("proveedores", proveedores.getProveedores());
@@ -49,7 +49,7 @@ public class ProveedorController {
 			
 		}
 		else {
-			proveedores.ActualizarProveedor(proveedor, proveedor.getNit().longValue());		
+			proveedores.ActualizarProveedor(proveedor, proveedor.getNitProveedor());		
 			model.addAttribute("proveedores", proveedores.getProveedores());
 			model.addAttribute("mensaje", "Datos del proveedor Actualizados");		
 		}	
@@ -57,23 +57,14 @@ public class ProveedorController {
 		return "proveedor";
 	}
 
-	@GetMapping("/proveedor/{nit}")
-	public String actualizarProveedor(Model model, @PathVariable(name = "nit") Long nit) 
+	@GetMapping("/proveedor/{nitProveedor}")
+	public String actualizarProveedor(Model model, @PathVariable(name = "nitProveedor") Long nit) 
 	{
 		if (nit > 0) {
 			ProveedorResponse proveedorEditar = proveedores.buscarProveedor(nit);
 			model.addAttribute("proveedorEditar", proveedorEditar);		
 		}
 		
-		//Validacion(model, proveedorEditar);
-		//if(Validacion(model, proveedorEditar) == true)
-		//{			
-				
-			//model.addAttribute("proveedores", proveedores.getProveedores());
-			//model.addAttribute("mensaje", "Datos del proveedor Actualizados");
-		//}
-		
-
 		return "proveedor";
 	}
 
@@ -89,13 +80,13 @@ public class ProveedorController {
 		return "proveedor";
 	}
 		
-	@GetMapping("/proveedorPorNit/{nit}")
-	public String BuscarProveedorPorNit(Model model, @PathVariable(name = "nit") Long nit)
+	@GetMapping("/proveedorPorNit/{nitProveedor}")
+	public String BuscarProveedorPorNit(Model model, @PathVariable(name = "nitProveedor") Long nitProveedor)
 	{		
 		
-		if(ValidacionPorNit(model, nit))
+		if(ValidacionPorNit(model, nitProveedor))
 		{	
-			ProveedorResponse proveedorEditar = proveedores.buscarProveedor(nit);
+			ProveedorResponse proveedorEditar = proveedores.buscarProveedor(nitProveedor);
 			if(proveedorEditar == null) 
 			{
 				model.addAttribute("mensaje", "Proveedor Inexistente");
@@ -103,6 +94,7 @@ public class ProveedorController {
 			else {
 				
 				model.addAttribute("proveedorEditar", proveedorEditar);
+				model.addAttribute("proveedores", proveedores.getProveedores());
 			}	
 		}
 
@@ -120,65 +112,26 @@ public class ProveedorController {
 		return true;
 	}
 	
-	private boolean Validacion(Model model, ProveedoresDto proveedor) 
-	{		
-		if(proveedor.getNit().longValue() == 0) 
-		{
+	private boolean ValidacionCrear(Model model, ProveedoresDto proveedor) 
+	{	
+		while (proveedor.getNitProveedor() ==null && proveedor.getNombreProveedor() ==null && 
+		proveedor.getCiudadProveedor() ==null && proveedor.getDireccionProveedor() ==null &&
+		proveedor.getTelefonoProveedor() ==null && proveedor.getTipoProducto() ==null )	{
 			model.addAttribute("mensaje", "Faltan datos del Proveedor");
 			return false;
 		}
-		if(proveedor.getNombre().isBlank())
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}
-		if(proveedor.getCiudad().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}
-		if(proveedor.getAddress().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}
-		if(proveedor.getTelefono().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}		
-		
+				
 		return true;
 	}
 	
-	private boolean Validacion(Model model, ProveedorResponse proveedorEditar) {
+	private boolean ValidacionActulizar(Model model, ProveedorResponse proveedor) {
 		
-		if(proveedorEditar.getNit().longValue() == 0) 
-		{
+		while (proveedor.getNitProveedor() == null && proveedor.getNombreProveedor() == null && 
+		proveedor.getCiudadProveedor() == null && proveedor.getDireccionProveedor() == null &&
+		proveedor.getTelefonoProveedor() == null && proveedor.getTipoProducto() == null )	{
 			model.addAttribute("mensaje", "Faltan datos del Proveedor");
 			return false;
 		}
-		if(proveedorEditar.getNombre().isBlank())
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}
-		if(proveedorEditar.getCiudad().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}
-		if(proveedorEditar.getAddress().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}
-		if(proveedorEditar.getTelefono().isBlank()) 
-		{
-			model.addAttribute("mensaje", "Faltan datos del Proveedor");
-			return false;
-		}		
-		
 		return true;
 		
 	}

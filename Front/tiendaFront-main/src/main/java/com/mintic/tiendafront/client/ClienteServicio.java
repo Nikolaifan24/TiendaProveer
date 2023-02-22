@@ -42,7 +42,7 @@ public class ClienteServicio implements ICliente {
 		try {
 
 			ClienteResponse u = null;
-			Mono<ClienteResponse> response = webClient.build().post().uri(URL + "/cliente")
+			Mono<ClienteResponse> response = webClient.build().post().uri(URL + "/crearcliente")
 					.body(Mono.just(clienteDto), ClienteResponse.class).retrieve().bodyToMono(ClienteResponse.class);
 
 			u = response.block();
@@ -56,12 +56,12 @@ public class ClienteServicio implements ICliente {
 	}
 
 	@Override
-	public ClienteResponse ActualizarCliente(ClienteDto clienteDto, Long id) {
+	public ClienteResponse ActualizarCliente(ClienteDto clienteDto, Long documentoCliente) {
 
 		try {
 
 			ClienteResponse u = null;
-			Mono<ClienteResponse> response = webClient.build().post().uri(URL + "/cliente" + id)
+			Mono<ClienteResponse> response = webClient.build().patch().uri(URL + "/actualizarCliente/" + documentoCliente)
 					.body(Mono.just(clienteDto), ClienteResponse.class).retrieve().bodyToMono(ClienteResponse.class);
 
 			u = response.block();

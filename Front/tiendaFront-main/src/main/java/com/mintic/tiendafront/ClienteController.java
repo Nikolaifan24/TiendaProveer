@@ -45,13 +45,12 @@ public class ClienteController {
 				model.addAttribute("mensaje", "Cliente Creado");			
 			}		
 		}else {
-			icliente.ActualizarCliente(cliente, cliente.getDocumentoCliente().longValue());		
+			icliente.ActualizarCliente(cliente, cliente.getDocumentoCliente());		
 			model.addAttribute("clientes", icliente.getClientes());
 			model.addAttribute("mensaje", "Datos del Cliente Actualizados");		
 		}	
 		
 		
-
 		return "cliente";
 	}
 
@@ -88,7 +87,7 @@ public class ClienteController {
 		return "cliente";
 	}
 	
-	@GetMapping("/BuscarClientePorCedula/{documentoCliente}")
+	@GetMapping("/BuscarClientesDocumento/{documentoCliente}")
 	public String BuscarClientePorCedula(Model model, @PathVariable(name = "documentoCliente") Long documentoCliente)
 	{		
 		

@@ -43,7 +43,7 @@ public class ControladorPagos {
 		iPagos.eliminarPagos(CodigoVenta, FehcaPago);
 	}
 	
-	@PatchMapping("/actualizarPagos/{CodigoVenta}-{FehcaPago}")
+	@PatchMapping("/actualizarPagos/{CodigoVenta}/{FehcaPago}")
 	public void actualizaralPagos(@PathVariable Long CodigoVenta, @PathVariable String FehcaPago, @RequestBody PagosDto PagosDto) {
 		iPagos.actualizarPagos(CodigoVenta, FehcaPago, PagosDto);
 	}

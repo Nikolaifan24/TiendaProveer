@@ -46,13 +46,14 @@ public class Faltantes {
 
     private String nombreVendedor;
 
-    private Double totalFaltanes;
+    private Double totalFaltantes;
 
 
     public Faltantes() {
     }
 
-    public Faltantes(Long IDFaltantes, List<Detallefaltantes> detallefaltantes, Ventas ventas, Vendedor vendedor, Long codigoventa, String fechaVenta, String nombreVendedor, Double totalFaltanes) {
+
+    public Faltantes(Long IDFaltantes, List<Detallefaltantes> detallefaltantes, Ventas ventas, Vendedor vendedor, Long codigoventa, String fechaVenta, String nombreVendedor, Double totalFaltantes) {
         this.IDFaltantes = IDFaltantes;
         this.detallefaltantes = detallefaltantes;
         this.ventas = ventas;
@@ -60,7 +61,7 @@ public class Faltantes {
         this.codigoventa = codigoventa;
         this.fechaVenta = fechaVenta;
         this.nombreVendedor = nombreVendedor;
-        this.totalFaltanes = totalFaltanes;
+        this.totalFaltantes = totalFaltantes;
     }
 
     public Long getIDFaltantes() {
@@ -119,12 +120,12 @@ public class Faltantes {
         this.nombreVendedor = nombreVendedor;
     }
 
-    public Double getTotalFaltanes() {
-        return this.totalFaltanes;
+    public Double getTotalFaltantes() {
+        return this.totalFaltantes;
     }
 
-    public void setTotalFaltanes(Double totalFaltanes) {
-        this.totalFaltanes = totalFaltanes;
+    public void setTotalFaltantes(Double totalFaltantes) {
+        this.totalFaltantes = totalFaltantes;
     }
-
+    
 }

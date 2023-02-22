@@ -68,41 +68,64 @@
 
 				<div class="container overflow-hidden">
 				<div class="form-group">
-					<input type="hidden" name="id" value="${clienteEditar.id}">
+					<label>Seleccionar una Accion</label>
+						 <select name="ID" id ="ID"
+								class="form-select">
+								<option name="ID" value="1">Editar Cliente</option>
+								<option name="ID" value="0">Crear Cliente</option>
+										
+						</select>
 
 					<label for="numero"> numero:</label>
 					<input type="text"
-						name="cedulaCliente" id="numero"
-						value="${clienteEditar.cedulaCliente}" class="form-control"/>
+						name="documentoCliente" id="documentoCliente"
+						value="${clienteEditar.documentoCliente}" class="form-control"/>
 				</div>
 				
 				<div class="form-group">
 					<label>Direccion Cliente:</label> <input type="text" name="direccionCliente" 
 					class="form-control"
 						value="${clienteEditar.direccionCliente}" />
+
+					<label>Barrio Cliente:</label> <input type="text" name="barrioCliente" 
+					class="form-control"
+						value="${clienteEditar.barrioCliente}" />
+						<label>Seleccionar una zona</label>
+							<select name="zonaCliente" id ="zonaCliente"
+								class="form-select">
+								<option name="zonaCliente" value="Norte">Norte</option>
+								<option name="zonaCliente" value="Sur">Sur</option>
+								<option name="zonaCliente" value="Oriente">Oriente</option>
+								<option name="zonaCliente" value="Occidente">Occidente</option>		
+						</select>	
 				</div>
 				
 				<div class="form-group">
 					<label>Nombre Cliente:</label><input type="text" name="nombreCliente"
 						class="form-control" value="${clienteEditar.nombreCliente}" />
+
+					<label>Apellido Cliente:</label><input type="text" name="apellidoCliente"
+					class="form-control" value="${clienteEditar.apellidoCliente}" />
 				</div>
 				
 				<div class="form-group">
-					<label>Email:</label><input type="text" name="emailCliente"
-						class="form-control" value="${clienteEditar.emailCliente}" />
+					<label>Email:</label><input type="text" name="correoCliente"
+						class="form-control" value="${clienteEditar.correoCliente}" />
 				</div>			
 				
 				
 				<div class="form-group">
 					<label>Telefono Cliente:</label> <input type="text" name="telefonoCliente"
 						class="form-control" value="${clienteEditar.telefonoCliente}" />
+					<label>Telefono adicional:</label> <input type="text" name="telefonoadicional"
+					class="form-control" value="${clienteEditar.telefonoadicional}" />
 				</div>
 				
 				</div>
 				<br>
 				<div class="btn-group" role="group" aria-label="Basic example">
 				<button type="submit" class="btn btn-primary" formmethod="post" >Grabar</button>
-				<button type="button" class="btn btn-secondary" onclick="relocate_buscar()" >Buscar</button>
+				<button type="button" class="btn btn-secondary" onclick= relocate_buscar() >Consultar</button>
 				
 		 		</div>
 				
@@ -142,32 +165,21 @@
 						<td>${cliente.telefonoCliente}</td>
 						<td>${cliente.telefonoadicional}</td>
 						<td>${cliente.correoCliente}</td>
-						<td><a class="btn btn-danger" href="/eliminarcliente/${cliente.cedulaCliente}">Eliminar Cliente</a></td>
-						<td><a class="btn btn-success" href="/cliente/${cliente.cedulaCliente}">Actualizar Cliente</a></td>
+						<td><a class="btn btn-success" href="/cliente/${cliente.documentoCliente}">Actualizar Cliente</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 	
-	<script>
-
-function getInputValue(){
-    
-    var inputVal = document.forms[0].value;
-    var url = "/BuscarClientePorCedula/" + inputVal;
-    
-    let res = fetch(url);
-        
-}
-function relocate_buscar()
-{
-	var inputVal = document.getElementById("numero").value;
-    location.href = "/BuscarClientePorCedula/" + inputVal; 
-    console.log(inputValue);
-} 
-
-
-</script>
 </body>
 </html>
+
+<script>
+	function relocate_buscar()
+		{
+			var inputVal = document.getElementById("documentoCliente").value;
+			location.href = "/BuscarClientesDocumento/" + inputVal; 
+			console.log("El valor es");
+		} 
+</script>

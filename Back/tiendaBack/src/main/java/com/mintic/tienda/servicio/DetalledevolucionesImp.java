@@ -33,7 +33,6 @@ public class DetalledevolucionesImp implements IDetalleDevolucionesService{
 	@Autowired
 	ICartera iCartera;
 
-
 	@Override
 	public List<Detalledevoluciones> ListarDetalledevoluciones()  {
 		return (List<Detalledevoluciones>) iDetalledevoluciones.findAll();
@@ -83,16 +82,15 @@ public class DetalledevolucionesImp implements IDetalleDevolucionesService{
 			iDevoluciones.save(devoluciones);
 			iDetalledevoluciones.save(detalle);
 			iProducto.save(productos);
-			CreacionAlternativa(CodigoVenta);
+			CreacionAlternativa(detalle, CodigoVenta);
 			
 		}
 		
 	}
 
-	private void CreacionAlternativa(Long CodigoVenta){
+	private void CreacionAlternativa(Detalledevoluciones detalle, Long CodigoVenta ){
 		Cartera cartera = iCartera.buscarCarteraPorCodigoVenta(CodigoVenta);
-		Devoluciones devoluciones = iDevoluciones.buscarDevolucionesPorCodigoVenta(CodigoVenta);
-		Double Total= devoluciones.getTotalDevoluciones();
+		Double Total= detalle.getValorDevoluciones();
 		Double TotalCartera = cartera.getSaldo() - Total;
 
 		if (TotalCartera!= null){
@@ -111,8 +109,7 @@ public class DetalledevolucionesImp implements IDetalleDevolucionesService{
 		Double precioProducto = productos.getPrecioVenta();
 		Double totalDetalle = cantidadProducto*precioProducto;
 		Double TotalDevoluciones = devoluciones.getTotalDevoluciones() + totalDetalle;
-		// Double TotalCartera = cartera.getSaldo() - TotalDevoluciones;
-		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		Long inventario = productos.getCantidadProducto()+ cantidadProducto;
 
 
 		if (nombredelProducto != null){
@@ -139,9 +136,7 @@ public class DetalledevolucionesImp implements IDetalleDevolucionesService{
 		if (TotalDevoluciones != null){
 			devoluciones.setTotalDevoluciones(TotalDevoluciones);
 		}
-		// if (TotalCartera != null){
-		// 	cartera.setSaldo(TotalCartera);
-		// }
+		
 
 
 		return Detalledevoluciones;
@@ -168,7 +163,7 @@ public class DetalledevolucionesImp implements IDetalleDevolucionesService{
 		Double totalDetalle = cantidadProducto*precioProducto;
 		Double TotalDevoluciones = devoluciones.getTotalDevoluciones() + totalDetalle;
 		Double TotalCartera = cartera.getSaldo() - totalDetalle;
-		Long inventario = productos.getCantidadProducto()- cantidadProducto;
+		Long inventario = productos.getCantidadProducto() + cantidadProducto;
 
 
 		if (nombredelProducto != null){
@@ -235,7 +230,7 @@ public class DetalledevolucionesImp implements IDetalleDevolucionesService{
 		String nombreProducto = detalle.getNombreProducto();
 		int cantidadProducto = detalle.getCantidad();
 		Productos productos = iProducto.buscarProductoPorNombre(nombreProducto);
-		Long inventario = productos.getCantidadProducto() + cantidadProducto;
+		Long inventario = productos.getCantidadProducto() - cantidadProducto;
 		if(inventario != null) {
 			productos.setCantidadProducto(inventario);
 		}

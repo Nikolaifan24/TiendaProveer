@@ -91,7 +91,7 @@ public class ControladorFaltantes {
 
 	@GetMapping("/Faltantes/detalle-total/codigo/{CodigoVenta}")
 	public Double TotaldemiVenta(@PathVariable Long CodigoVenta) {
-		return iFaltantes.cargarCalculosdeunaDevolucion(CodigoVenta);
+		return iFaltantes.cargarCalculosdeunFaltante(CodigoVenta);
 	}
 
 	@DeleteMapping("/eliminarDetallefaltantes/{CodigoVenta}/{nombreProducto}")
